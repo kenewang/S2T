@@ -1,4 +1,5 @@
 import icon from "../svg/iconmonstr-magnifier-lined.svg";
+import "./Header.css";
 const Header = ({ openLeftNav, openSearch }) => {
   return (
     <header id="main-header">

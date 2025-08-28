@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import "./RightNav.css";
 const RightNav = forwardRef(function RightNav({ isOpen }, ref) {
   return (
     <div

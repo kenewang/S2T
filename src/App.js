@@ -1,11 +1,23 @@
 import { useEffect, useRef, useState } from "react";
-import "./style.css";
+import "./global.css"; // only global + reset styles
+
 import LeftNav from "./components/LeftNav";
+import "./components/LeftNav.css";
+
 import RightNav from "./components/RightNav";
+import "./components/RightNav.css";
+
 import Header from "./components/Header";
+import "./components/Header.css";
+
 import SearchOverlay from "./components/SearchOverlay";
+import "./components/SearchOverlay.css";
+
 import DocumentList from "./components/DocumentList";
+import "./components/DocumentList.css";
+
 import Footer from "./components/Footer";
+import "./components/Footer.css";
 
 export default function App() {
   // ==== state mirrors the original vanilla JS behaviour ====

@@ -1,0 +1,37 @@
+.document-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  background: rgba(248, 248, 248, 0.9);
+  padding: 1rem;
+  border: khaki solid;
+}
+
+.document {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 140px;
+  height: 180px;
+  background-color: rgb(210, 204, 153);
+  border: 1px solid black;
+  border-radius: 6px;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.document p {
+  color: black;
+}
+
+.document img {
+  position: relative;
+  left: 0.5rem;
+  top: 0.4rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}

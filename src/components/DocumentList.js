@@ -1,4 +1,5 @@
 import menu_icon from "../svg/iconmonstr-menu-dot-vertical-filled.svg";
+import "./DocumentList.css";
 const DocumentList = ({ openRightNav }) => {
   return (
     <section className="document-container">

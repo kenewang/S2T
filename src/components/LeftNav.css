@@ -1,0 +1,39 @@
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0; /* default is closed */
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #f8f8f8;
+  z-index: 30;
+  transition: width 0.3s ease;
+  padding-top: 60px;
+}
+
+.sidenav.open {
+  width: 250px;
+}
+
+.sidenav a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidenav a:hover {
+  background-color: #575757;
+  color: khaki;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  background-color: #f8f8f8;
+}

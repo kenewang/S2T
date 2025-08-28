@@ -1,3 +1,4 @@
+import "./LeftNav.css";
 const LeftNav = ({ isOpen, closeLeftNav }) => {
   return (
     <div
