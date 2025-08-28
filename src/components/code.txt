@@ -1,3 +1,131 @@
+import menu_icon from "../svg/iconmonstr-menu-dot-vertical-filled.svg";
+const DocumentList = ({ openRightNav }) => {
+  return (
+    <section className="document-container">
+      {[1, 2, 3, 4].map((_, i) => (
+        <div className="document" key={i}>
+          <p>Bulma</p>
+          <div onClick={openRightNav} role="button" aria-label="Open options">
+            <img src={menu_icon} alt="Options" />
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+};
+
+export default DocumentList;
+
+
+const Footer = () => {
+  return (
+    <footer>
+      <p>Footer</p>
+    </footer>
+  );
+};
+
+export default Footer;
+
+import icon from "../svg/iconmonstr-magnifier-lined.svg";
+const Header = ({ openLeftNav, openSearch }) => {
+  return (
+    <header id="main-header">
+      <span
+        className="menu-icon"
+        onClick={openLeftNav} //call the function "openLeftNav" when the hamburger menu is clicked
+        aria-label="Open menu"
+        role="button"
+      >
+        ☰
+      </span>
+      <div
+        className="search-icon"
+        id="search-btn"
+        onClick={openSearch}
+        role="button"
+      >
+        <img src={icon} alt="search_icon" />
+      </div>
+      <h2>Share2Teach</h2>
+    </header>
+  );
+};
+
+export default Header;
+
+const LeftNav = ({ isOpen, closeLeftNav }) => {
+  return (
+    <div
+      id="mySidenav"
+      className={`sidenav ${isOpen ? "open" : ""}`} // toggle style.css class
+      //If isOpen is true → the class will be ".sidenav.open" inside style.css.
+      //If isOpen is false → the class will just be ".sidenav" inside style.css.
+      //The CSS handles the actual width change.
+    >
+      <a
+        href="#"
+        className="closebtn"
+        onClick={(e) => {
+          e.preventDefault();
+          closeLeftNav();
+        }}
+      >
+        ×
+      </a>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+  );
+};
+
+export default LeftNav;
+
+import { forwardRef } from "react";
+const RightNav = forwardRef(function RightNav({ isOpen }, ref) {
+  return (
+    <div
+      id="rightSidenav"
+      ref={ref}
+      className="sidenav right-sidenav"
+      style={{ width: isOpen ? "180px" : "0px" }}
+      aria-hidden={!isOpen}
+    >
+      <a href="#">Option 1</a>
+      <a href="#">Option 2</a>
+      <a href="#">Option 3</a>
+    </div>
+  );
+});
+export default RightNav;
+
+const SearchOverlay = ({ isActive, onBack, inputRef }) => {
+  return (
+    <div
+      className={`search-overlay ${isActive ? "active" : ""}`}
+      id="search-overlay"
+    >
+      <button
+        id="back-btn"
+        className="back-arrow"
+        onClick={onBack}
+        aria-label="Back"
+      >
+        ←
+      </button>
+      <input
+        ref={inputRef}
+        type="text"
+        placeholder="Search all items..."
+        className="search-field"
+      />
+    </div>
+  );
+};
+
+export default SearchOverlay;
 import { useEffect, useRef, useState } from "react";
 import "./style.css";
 import LeftNav from "./components/LeftNav";
