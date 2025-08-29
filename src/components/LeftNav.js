@@ -3,8 +3,8 @@ const LeftNav = ({ isOpen, closeLeftNav }) => {
   return (
     <div
       id="mySidenav"
-      className={`sidenav ${isOpen ? "open" : ""}`} // toggle style.css class
-      //If isOpen is true → the class will be ".sidenav.open" inside style.css.
+      className={`sidenav ${isOpen ? "open" : ""}`} // goes into LeftNav.css file
+      //If isOpen is true → the class will be ".sidenav.open" inside LeftNav.css.
       //If isOpen is false → the class will just be ".sidenav" inside style.css.
       //The CSS handles the actual width change.
     >
@@ -12,7 +12,9 @@ const LeftNav = ({ isOpen, closeLeftNav }) => {
         href="#"
         className="closebtn"
         onClick={(e) => {
-          e.preventDefault();
+          //an event object is created and passed inside the anonymous function and "e" references it
+          e.preventDefault(); //we use that e to get the event object's "preventDefault()" method
+          //the preventDefault() stops the browser's default action like when going somewhere after clicking a link
           closeLeftNav();
         }}
       >

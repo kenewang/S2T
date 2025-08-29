@@ -51,8 +51,13 @@ export default function App() {
       requestAnimationFrame(() => {
         searchInputRef.current?.focus();
       });
+
+      //requestAnimationFrame is faster and smoother than using setTimeout because the browser can optimize animations and rendering.
+
+      //The ? is a safety check. It’s like saying: “Only try to focus if the input is actually there — otherwise, skip it.”
     }
   }, [searchActive]);
+  //The [searchActive] let's the useEffect run only when the searchActive value changes. When "searchActive" is true, the useEffect code inside its body runs and when "searchActive" is false, the useEffect still runs but does nothing
 
   // ====== outside click for the right sidenav ======
   useEffect(() => {
