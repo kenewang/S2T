@@ -1,10 +1,9 @@
-import { forwardRef } from "react";
 import "./RightNav.css";
-const RightNav = forwardRef(function RightNav({ isOpen }, ref) {
+const RightNav = ({ isOpen, rightNavRef }) => {
   return (
     <div
       id="rightSidenav"
-      ref={ref}
+      ref={rightNavRef}
       className="sidenav right-sidenav"
       style={{ width: isOpen ? "180px" : "0px" }}
       aria-hidden={!isOpen}
@@ -14,5 +13,5 @@ const RightNav = forwardRef(function RightNav({ isOpen }, ref) {
       <a href="#">Option 3</a>
     </div>
   );
-});
+};
 export default RightNav;

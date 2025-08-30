@@ -38,6 +38,8 @@ export default function App() {
     setRightNavOpen(true); //opens the right Nav
     // emulate the tiny delay before attaching listener in vanilla JS
     rightNavWasOpenedAt.current = performance.now(); //store the precise time it took for the right nav to open
+
+    //now rightNavWasOpenedAt is {current: the precise time it took the right nav to open}
   };
   const closeRightNav = () => setRightNavOpen(false); //function definition that closes the right Nav
 
@@ -64,12 +66,13 @@ export default function App() {
     if (!rightNavOpen) return;
 
     const outsideClickListener = (event) => {
-      const target = event.target;
+      const target = event.target; //the exact element you clicked on the page.
       // Allow a brief moment after opening so the initial click doesn't immediately close it
-      const justOpened = performance.now() - rightNavWasOpenedAt.current < 50;
+      const justOpened = performance.now() - rightNavWasOpenedAt.current < 50; //“If the nav was opened just now (within 50ms), ignore outside clicks.
+
       if (justOpened) return;
 
-      const clickedInsideNav = rightNavRef.current?.contains(target);
+      const clickedInsideNav = rightNavRef.current?.contains(target); //if rightNafRef is the same as target (where you clicked), ie the same <div>, return true. else false.
       const clickedMenuImage = target?.closest?.("img");
 
       if (!clickedInsideNav && !clickedMenuImage) {
@@ -85,7 +88,7 @@ export default function App() {
     <div className="App">
       {/* Left and Right navs are always rendered so CSS width transition works */}
       <LeftNav isOpen={leftNavOpen} closeLeftNav={closeLeftNav} />
-      <RightNav ref={rightNavRef} isOpen={rightNavOpen} />
+      <RightNav rightNavRef={rightNavRef} isOpen={rightNavOpen} />
 
       {/* Header + main are hidden while search overlay is active to mimic your JS */}
       {!searchActive && (
