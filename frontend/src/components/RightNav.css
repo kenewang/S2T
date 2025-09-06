@@ -1,0 +1,6 @@
+.right-sidenav {
+  left: auto;
+  right: 0;
+  width: 0;
+  transition: width 0.3s ease;
+}

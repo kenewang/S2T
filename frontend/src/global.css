@@ -1,0 +1,57 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  margin: 0.1rem;
+}
+
+body {
+  border: red dashed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: rgb(234, 220, 203);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4.5rem;
+  border: yellow dashed;
+  padding: 0 1rem;
+}
+
+/* Top Buttons */
+.login-browse {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.login-button,
+.browse-button {
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(248, 248, 248, 0.9);
+  box-shadow: black;
+  color: black;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  flex: 1 1 40%;
+  max-width: 200px;
+}
+
+/* Mobile: hide sidenav on large screens */
+@media screen and (min-width: 451px) {
+  .sidenav {
+    display: none;
+  }
+}
