@@ -29,3 +29,14 @@ button {
   padding: 0.5rem;
   cursor: pointer;
 }
+
+.success-popup {
+  background-color: rgba(248, 248, 248, 0.9);
+  border-radius: 6px;
+  font-size: 1.2rem;
+  width: 60vw;
+}
+
+.success-button-confirm {
+  background-color: rgb(123, 90, 6);
+}

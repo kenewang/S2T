@@ -1,5 +1,7 @@
 import "./Footer.css";
 import { useState, useRef } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Footer = ({
   isLeftNavOpen,
@@ -16,6 +18,38 @@ const Footer = ({
   const textRef = useRef(null);
 
   const maxWords = 350;
+
+  const succesSwal = withReactContent(Swal);
+  const failureSwal = withReactContent(Swal);
+
+  // Call this when you want to show the alert:
+  const showSuccessAlert = () => {
+    succesSwal.fire({
+      title: "Success!",
+      text: "Message Sent",
+      icon: "success",
+      confirmButtonText: "OK",
+      customClass: {
+        popup: "success-popup",
+        title: "success-pop-up-title",
+        confirmButton: "success-button-confirm",
+      },
+    });
+  };
+
+  const showFailureAlert = () => {
+    failureSwal.fire({
+      title: "Failed!",
+      text: "Could Not Send Message",
+      icon: "error",
+      confirmButtonText: "OK",
+      customClass: {
+        popup: "success-popup",
+        title: "success-pop-up-title",
+        confirmButton: "success-button-confirm",
+      },
+    });
+  };
 
   const handleWordsChange = (e) => {
     let value = e.target.value;
@@ -77,13 +111,13 @@ const Footer = ({
     });
 
     if (response.ok) {
-      alert("Email Sent!");
+      showSuccessAlert();
+      setName("");
+      setEmail("");
+      setMessage("");
     } else {
-      alert("Failed to send email");
+      showFailureAlert();
     }
-    setName("");
-    setEmail("");
-    setMessage("");
 
     // you can now do form submission logic here
   };
