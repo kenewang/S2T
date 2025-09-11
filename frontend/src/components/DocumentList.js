@@ -11,6 +11,13 @@ const DocumentList = ({
   closeLeftNav,
   closeRightNav, //this prop is a function ref and we use it to close the right nav
 }) => {
+  const OpenLeft = () => {
+    if (isLeftNavOpen) {
+      closeLeftNav();
+      openRightNav();
+    } else openRightNav();
+  };
+
   const openInNewTab = (url) => {
     if (!isRightNavOpen && !isLeftNavOpen) {
       window.open(url, "_blank", "noopener,noreferrer");
@@ -43,7 +50,7 @@ const DocumentList = ({
               className="three_dot"
               src={menu_icon}
               alt="Options"
-              onClick={openRightNav}
+              onClick={OpenLeft}
             />
             {/* File name */}
             <p className="truncate-middle" onClick={() => openInNewTab(link)}>

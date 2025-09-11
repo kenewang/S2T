@@ -1,13 +1,28 @@
+import { useEffect } from "react";
 import icon from "../svg/iconmonstr-magnifier-lined.svg";
 import "./Header.css";
-const Header = ({ openLeftNav, openSearch, rightNavOpen, closeRightNav }) => {
+const Header = ({
+  isLeftNavOpen,
+  openLeftNav,
+  openSearch,
+  isRightNavOpen,
+  closeRightNav,
+}) => {
   const openSearchIcon = () => {
-    if (!rightNavOpen) {
+    if (!isRightNavOpen) {
       openSearch();
     } else {
       closeRightNav();
     }
   };
+
+  useEffect(() => {
+    if (!isLeftNavOpen) return;
+    else {
+      closeRightNav();
+      openLeftNav();
+    }
+  });
   return (
     <header id="main-header">
       <span

@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+
 const SearchOverlay = ({ isActive, onBack, inputRef }) => {
+  useEffect(() => {
+    if (isActive) {
+      requestAnimationFrame(() => {
+        inputRef.current?.focus();
+      });
+    }
+  }, [isActive, inputRef]);
+
   return (
     <div
       className={`search-overlay ${isActive ? "active" : ""}`}

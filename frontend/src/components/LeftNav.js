@@ -1,5 +1,26 @@
+import { useEffect } from "react";
 import "./LeftNav.css";
 const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleOutsideClick = (event) => {
+      const justOpened =
+        performance.now() - leftNavRef.current?.dataset?.openedAt < 50;
+      if (justOpened) return;
+
+      const clickedInside = leftNavRef.current?.contains(event.target);
+      if (!clickedInside) closeLeftNav();
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [isOpen, closeLeftNav, leftNavRef]);
+
+  // Add a marker when it opens so the effect can skip the first click
+  if (isOpen && leftNavRef.current) {
+    leftNavRef.current.dataset.openedAt = performance.now();
+  }
   return (
     <div
       id="mySidenav"
