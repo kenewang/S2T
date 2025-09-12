@@ -24,6 +24,8 @@ import "./components/DocumentList.css";
 import Footer from "./components/Footer";
 import "./components/Footer.css";
 
+import Login from "./components/Login";
+
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -32,6 +34,8 @@ export default function App() {
   const leftNavRef = useRef(null);
   const rightNavRef = useRef(null);
   const searchInputRef = useRef(null);
+
+  const showSearchLogo = useRef(true); //we are going to hide the search logo in some pages
 
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path, setStoragePath] = useState([]);
@@ -98,10 +102,11 @@ export default function App() {
                     isRightNavOpen={rightNavOpen}
                     closeRightNav={closeRightNav}
                     isLeftNavOpen={leftNavOpen}
+                    showSearchLogo={showSearchLogo}
                   />
 
                   <main id="main-content">
-                    <LoginBrowse />
+                    <LoginBrowse isRightNavOpen={rightNavOpen} />
                     <DocumentList
                       openRightNav={openRightNav}
                       databaseNames={databaseNames}
@@ -129,6 +134,18 @@ export default function App() {
                 inputRef={searchInputRef}
               />
             </div>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <Login
+              isOpen={leftNavOpen}
+              leftNavRef={leftNavRef}
+              openLeftNav={openLeftNav}
+              closeLeftNav={closeLeftNav}
+            />
           }
         />
       </Routes>

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import icon from "../svg/iconmonstr-magnifier-lined.svg";
 import "./Header.css";
 const Header = ({
+  showSearchLogo,
   isLeftNavOpen,
   openLeftNav,
   openSearch,
@@ -20,7 +21,6 @@ const Header = ({
     if (!isLeftNavOpen) return;
     else {
       closeRightNav();
-      openLeftNav();
     }
   });
   return (
@@ -39,7 +39,7 @@ const Header = ({
         onClick={openSearchIcon}
         role="button"
       >
-        <img src={icon} alt="search_icon" />
+        {showSearchLogo && <img src={icon} alt="search_icon" />}
       </div>
       <h2>Share2Teach</h2>
     </header>
