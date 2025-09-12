@@ -1,3 +1,5 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./global.css";
 import "./normalize.css";
@@ -68,59 +70,68 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App">
-      <LeftNav
-        isOpen={leftNavOpen}
-        closeLeftNav={closeLeftNav}
-        leftNavRef={leftNavRef}
-      />
-      <RightNav
-        isOpen={rightNavOpen}
-        rightNavRef={rightNavRef}
-        closeRightNav={closeRightNav}
-        isLeftNavOpen={leftNavOpen}
-        closeLeftNav={closeLeftNav}
-        openRightNav={openRightNav}
-      />
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="App">
+              <LeftNav
+                isOpen={leftNavOpen}
+                closeLeftNav={closeLeftNav}
+                leftNavRef={leftNavRef}
+              />
+              <RightNav
+                isOpen={rightNavOpen}
+                rightNavRef={rightNavRef}
+                closeRightNav={closeRightNav}
+                isLeftNavOpen={leftNavOpen}
+                closeLeftNav={closeLeftNav}
+                openRightNav={openRightNav}
+              />
 
-      {!searchActive && (
-        <>
-          <Header
-            openLeftNav={openLeftNav}
-            openSearch={openSearch}
-            isRightNavOpen={rightNavOpen}
-            closeRightNav={closeRightNav}
-            isLeftNavOpen={leftNavOpen}
-          />
+              {!searchActive && (
+                <>
+                  <Header
+                    openLeftNav={openLeftNav}
+                    openSearch={openSearch}
+                    isRightNavOpen={rightNavOpen}
+                    closeRightNav={closeRightNav}
+                    isLeftNavOpen={leftNavOpen}
+                  />
 
-          <main id="main-content">
-            <LoginBrowse />
-            <DocumentList
-              openRightNav={openRightNav}
-              databaseNames={databaseNames}
-              storage_path={storage_path}
-              isRightNavOpen={rightNavOpen}
-              isLeftNavOpen={leftNavOpen}
-              closeRightNav={closeRightNav}
-              closeLeftNav={closeLeftNav}
-            />
-          </main>
+                  <main id="main-content">
+                    <LoginBrowse />
+                    <DocumentList
+                      openRightNav={openRightNav}
+                      databaseNames={databaseNames}
+                      storage_path={storage_path}
+                      isRightNavOpen={rightNavOpen}
+                      isLeftNavOpen={leftNavOpen}
+                      closeRightNav={closeRightNav}
+                      closeLeftNav={closeLeftNav}
+                    />
+                  </main>
 
-          <Footer
-            isLeftNavOpen={leftNavOpen}
-            closeLeftNav={closeLeftNav}
-            isRightNavOpen={rightNavOpen}
-            closeRightNav={closeRightNav}
-          />
-          <div className="copyright">&copy; 2025 Share2Teach</div>
-        </>
-      )}
+                  <Footer
+                    isLeftNavOpen={leftNavOpen}
+                    closeLeftNav={closeLeftNav}
+                    isRightNavOpen={rightNavOpen}
+                    closeRightNav={closeRightNav}
+                  />
+                  <div className="copyright">&copy; 2025 Share2Teach</div>
+                </>
+              )}
 
-      <SearchOverlay
-        isActive={searchActive}
-        onBack={closeSearch}
-        inputRef={searchInputRef}
-      />
-    </div>
+              <SearchOverlay
+                isActive={searchActive}
+                onBack={closeSearch}
+                inputRef={searchInputRef}
+              />
+            </div>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
