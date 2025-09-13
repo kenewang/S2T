@@ -1,7 +1,9 @@
 header {
   top: 0;
   position: fixed;
-  background-color: rgba(248, 248, 248, 0.9);
+  background-color: #eee8e8;
+
+  box-shadow: 0 0 2px #eee8e8;
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;

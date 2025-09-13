@@ -25,6 +25,7 @@ import Footer from "./components/Footer";
 import "./components/Footer.css";
 
 import Login from "./components/Login";
+import "./components/Login.css";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -35,7 +36,7 @@ export default function App() {
   const rightNavRef = useRef(null);
   const searchInputRef = useRef(null);
 
-  const showSearchLogo = useRef(true); //we are going to hide the search logo in some pages
+  const showSearchLogo = useRef(true); //we are going to hide the search logo on some pages
 
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path, setStoragePath] = useState([]);
@@ -124,7 +125,6 @@ export default function App() {
                     isRightNavOpen={rightNavOpen}
                     closeRightNav={closeRightNav}
                   />
-                  <div className="copyright">&copy; 2025 Share2Teach</div>
                 </>
               )}
 

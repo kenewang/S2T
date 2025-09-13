@@ -1,0 +1,24 @@
+section {
+  margin-inline: 1rem;
+}
+
+body {
+  background: white;
+}
+
+.inputLogin {
+  height: 2.5rem;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.loginCredentials {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.copyright {
+  margin-top: auto;
+}

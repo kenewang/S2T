@@ -6,7 +6,8 @@
   align-items: center;
   background: rgba(248, 248, 248, 0.9);
   padding: 1rem;
-  border: khaki solid;
+  border-radius: 5px;
+  margin: 0;
 }
 
 .document {

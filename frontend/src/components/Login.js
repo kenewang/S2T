@@ -18,6 +18,18 @@ const Login = ({ isOpen, leftNavRef, openLeftNav, closeLeftNav }) => {
         closeLeftNav={closeLeftNav}
         leftNavRef={leftNavRef}
       />
+
+      <section className="login">
+        <form className="loginCredentials">
+          <label>Email</label>
+          <input className="inputLogin" placeholder="Email"></input>
+          <label>Password</label>
+          <input className="inputLogin" placeholder="Password"></input>
+          <button>Log in</button>
+        </form>
+      </section>
+
+      <div className="copyright">&copy; 2025 Share2Teach</div>
     </div>
   );
 };

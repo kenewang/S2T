@@ -16,7 +16,7 @@ footer h1 {
   gap: 1rem;
 }
 
-input {
+.input {
   border-radius: 3px;
   padding-left: 0.4rem; /* moves both text and placeholder */
 }

@@ -138,6 +138,7 @@ const Footer = ({
         <h1>Get In Touch</h1>
         <form className="contact" onSubmit={handleSubmit} noValidate>
           <input
+            className="input"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -146,6 +147,7 @@ const Footer = ({
           ></input>
 
           <input
+            className="input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -166,6 +168,7 @@ const Footer = ({
           </button>
         </form>
       </div>
+      <div className="copyright">&copy; 2025 Share2Teach</div>
     </footer>
   );
 };
