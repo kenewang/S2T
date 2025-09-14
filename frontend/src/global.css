@@ -5,13 +5,18 @@
   padding: 0;
 }
 
-html {
+@font-face {
+  font-family: "MyFont";
+  src: url("./assets/fonts/TwCenMT.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: "MyFont", sans-serif;
 }
 
 main {
