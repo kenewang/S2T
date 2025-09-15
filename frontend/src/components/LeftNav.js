@@ -1,6 +1,12 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LeftNav.css";
 const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
+  const navigate = useNavigate();
+  const goSomeWhere = (path) => {
+    closeLeftNav();
+    navigate(path);
+  };
   useEffect(() => {
     if (!isOpen) return;
 
@@ -21,6 +27,7 @@ const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
   if (isOpen && leftNavRef.current) {
     leftNavRef.current.dataset.openedAt = performance.now();
   }
+
   return (
     <div
       id="mySidenav"
@@ -42,7 +49,15 @@ const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
       >
         ×
       </a>
-      <a href="#">Home</a>
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          goSomeWhere("/");
+        }}
+      >
+        Home
+      </a>
       <a href="#">Browser</a>
     </div>
   );

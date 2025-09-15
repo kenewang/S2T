@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./global.css";
@@ -112,7 +111,10 @@ export default function App() {
                   />
 
                   <main id="main-content">
-                    <LoginBrowse isRightNavOpen={rightNavOpen} />
+                    <LoginBrowse
+                      isRightNavOpen={rightNavOpen}
+                      isLeftNavOpen={leftNavOpen}
+                    />
                     <DocumentList
                       openRightNav={openRightNav}
                       databaseNames={databaseNames}

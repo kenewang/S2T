@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-const LoginBrowse = ({ isRightNavOpen }) => {
+const LoginBrowse = ({ isRightNavOpen, isLeftNavOpen }) => {
   const navigate = useNavigate();
   const goToLogin = () => {
-    if (!isRightNavOpen) navigate("/login");
+    if (!isRightNavOpen && !isLeftNavOpen) navigate("/login");
   };
   return (
     <div className="login-browse">

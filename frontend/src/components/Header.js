@@ -10,7 +10,7 @@ const Header = ({
   closeRightNav,
 }) => {
   const openSearchIcon = () => {
-    if (!isRightNavOpen) {
+    if (!isRightNavOpen && !isLeftNavOpen) {
       openSearch();
     } else {
       closeRightNav();
