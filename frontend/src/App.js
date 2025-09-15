@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import "./global.css";
 import "./normalize.css";
 
+import ScrollToTop from "./components/ScrollToTop";
 import LeftNav from "./components/LeftNav";
 import "./components/LeftNav.css";
 
@@ -79,6 +80,7 @@ export default function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"
