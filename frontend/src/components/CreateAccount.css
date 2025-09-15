@@ -1,43 +1,25 @@
 body {
   background: white;
 }
-
-.login {
+.createAccount {
   margin-inline: 1rem;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.inputLogin {
-  height: 2.5rem;
-  border-radius: 5px;
-  border: 1px solid gray;
-  padding-left: 0.4rem;
-}
-
-.loginCredentials {
+.createAccountCredentials {
   margin-top: 6rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.password_labels {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  white-space: nowrap;
-  margin-top: 0.3rem;
-}
-
-.password_label,
-.forgot_password_label {
-  margin: 0;
-}
-
-.forgot_password_label {
-  cursor: pointer;
+.inputCreateAccount {
+  height: 2.5rem;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-left: 0.4rem;
 }
 
 .divider {
@@ -63,18 +45,13 @@ body {
   margin-left: 0.75em;
 }
 
-.toCreateAccount {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.createAccountLabel {
-  cursor: pointer;
+.loginLabel {
+  text-decoration: none;
   color: blue;
+  cursor: pointer;
 }
 
-.loginFooter {
+.create_account_Footer {
   margin-top: auto;
   display: flex;
   flex-direction: column;
@@ -83,6 +60,6 @@ body {
   text-align: center;
 }
 
-.loginFooter > :first-child {
+.create_account_Footer:first-child {
   cursor: pointer;
 }

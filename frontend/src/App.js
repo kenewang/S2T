@@ -27,6 +27,9 @@ import "./components/Footer.css";
 import Login from "./components/Login";
 import "./components/Login.css";
 
+import CreateAccount from "./components/CreateAccount";
+import "./components/CreateAccount.css";
+
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -141,6 +144,17 @@ export default function App() {
           path="/login"
           element={
             <Login
+              isOpen={leftNavOpen}
+              leftNavRef={leftNavRef}
+              openLeftNav={openLeftNav}
+              closeLeftNav={closeLeftNav}
+            />
+          }
+        />
+        <Route
+          path="/createAccount"
+          element={
+            <CreateAccount
               isOpen={leftNavOpen}
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}

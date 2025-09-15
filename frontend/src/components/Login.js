@@ -1,7 +1,12 @@
 import Header from "./Header";
 import LeftNav from "./LeftNav";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ isOpen, leftNavRef, openLeftNav, closeLeftNav }) => {
+  const navigate = useNavigate();
+  const goToCreateAccount = () => {
+    if (!isOpen) navigate("/createAccount");
+  };
   return (
     <div>
       <Header
@@ -32,13 +37,18 @@ const Login = ({ isOpen, leftNavRef, openLeftNav, closeLeftNav }) => {
         </form>
 
         <div className="divider">or</div>
-        <div className="createAccount">
+        <div className="toCreateAccount">
           <label>New to Share2Teach?</label>
-          <label className="createAccountLabel">Create an Account</label>
+          <label className="createAccountLabel" onClick={goToCreateAccount}>
+            Create an Account
+          </label>
         </div>
       </section>
 
-      <div className="copyright">&copy; 2025 Share2Teach</div>
+      <div className="loginFooter">
+        <p>Contact</p>
+        <p>&copy; 2025 Share2Teach</p>
+      </div>
     </div>
   );
 };

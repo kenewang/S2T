@@ -168,7 +168,7 @@ const Footer = ({
           </button>
         </form>
       </div>
-      <div className="copyright">&copy; 2025 Share2Teach</div>
+      <div className="copyright_App">&copy; 2025 Share2Teach</div>
     </footer>
   );
 };

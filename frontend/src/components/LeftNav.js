@@ -43,9 +43,7 @@ const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
         ×
       </a>
       <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
+      <a href="#">Browser</a>
     </div>
   );
 };
