@@ -5,13 +5,19 @@ const LoginBrowse = ({ isRightNavOpen, isLeftNavOpen }) => {
   const goToLogin = () => {
     if (!isRightNavOpen && !isLeftNavOpen) navigate("/login");
   };
+
+  const gotoSubjects = () => {
+    if (!isRightNavOpen && !isLeftNavOpen) navigate("/subjects");
+  };
   return (
     <div className="login-browse">
       <button onClick={goToLogin} className="login-button">
         Login
       </button>
 
-      <button className="browse-button">Browse</button>
+      <button onClick={gotoSubjects} className="browse-button">
+        Browse
+      </button>
     </div>
   );
 };

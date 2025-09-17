@@ -30,6 +30,8 @@ import "./components/Login.css";
 import CreateAccount from "./components/CreateAccount";
 import "./components/CreateAccount.css";
 
+import Subjects from "./components/Subjects";
+
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -163,6 +165,21 @@ export default function App() {
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
+            />
+          }
+        />
+        <Route
+          path="/subjects"
+          element={
+            <Subjects
+              isOpen={leftNavOpen}
+              leftNavRef={leftNavRef}
+              openLeftNav={openLeftNav}
+              closeLeftNav={closeLeftNav}
+              openSearch={openSearch}
+              isActive={searchActive}
+              onBack={closeSearch}
+              inputRef={searchInputRef}
             />
           }
         />
