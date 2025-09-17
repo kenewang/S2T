@@ -104,6 +104,7 @@ const RightNav = ({ isOpen, closeRightNav, rightNavRef }) => {
       aria-hidden={!isOpen}
     >
       <a
+        className="rightNavAnchor"
         href="#"
         onClick={(e) => {
           e.preventDefault();

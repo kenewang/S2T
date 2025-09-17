@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { Component, useEffect, useRef, useState } from "react";
 import "./global.css";
 import "./normalize.css";
 
@@ -31,6 +31,7 @@ import CreateAccount from "./components/CreateAccount";
 import "./components/CreateAccount.css";
 
 import Subjects from "./components/Subjects";
+import "./components/Subjects.css";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);

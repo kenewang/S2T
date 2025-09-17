@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
@@ -12,15 +13,28 @@ const Subjects = ({
   onBack,
   inputRef,
 }) => {
+  const [subjectNames, setSubjectNames] = useState([]);
+
+  useEffect(() => {
+    const fetchFileSubjectNames = async () => {
+      try {
+        const res = await fetch("http://localhost:8081/files/names");
+        setSubjectNames(await res.json());
+      } catch (error) {
+        console.error("Error fetching subjects", error);
+      }
+    };
+    fetchFileSubjectNames();
+  }, []);
+
   return (
     <div>
       {!isActive && (
         <>
           <Header
-            showSearchLogo={true} // show the search icon
+            showSearchLogo={true}
             isLeftNavOpen={isOpen}
             openLeftNav={openLeftNav}
-            // Pass other props if you need search/right nav to work:
             openSearch={openSearch}
             isRightNavOpen={false}
             closeRightNav={() => {}}
@@ -32,24 +46,24 @@ const Subjects = ({
             leftNavRef={leftNavRef}
           />
 
-          <section>
-            <h1>Subjects</h1>
+          <section className="subjects">
+            <h1 className="heading">Subjects</h1>
             <div className="subject_container">
               <ul>
-                <li>
-                  <a href="#">Mathematics</a>
-                </li>
+                {subjectNames.map((item, i) => (
+                  <li key={i}>
+                    <a className="anchor" href="#">
+                      {item}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </section>
         </>
       )}
 
-      <SearchOverlay
-        isActive={isActive} // ✅ fixed
-        onBack={onBack}
-        inputRef={inputRef}
-      />
+      <SearchOverlay isActive={isActive} onBack={onBack} inputRef={inputRef} />
 
       <div>
         <p>Contact</p>
