@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface FileRepository extends JpaRepository<FileEntity, Long> {
 
-    // Custom query: return only file_name values
-    @Query("SELECT f.fileName FROM FileEntity f")
-    List<String> findAllFileNames();
+    // Custom query: return only a certain amount of file_names from the db
+    @Query(value = "SELECT file_name FROM file LIMIT 4", nativeQuery = true)
+    List<String> findFirst20FileNames();
 
-    // Custom query: return only file links values
-    @Query("SELECT s.storage_path FROM FileEntity s")
-    List<String> findFileLinks();
+    // Custom query: return only a certain amount of file_links from the db
+   @Query(value = "SELECT storage_path FROM file LIMIT 4", nativeQuery = true)
+    List<String> findFirst20FileLinks();
 }

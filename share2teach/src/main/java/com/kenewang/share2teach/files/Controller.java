@@ -30,15 +30,15 @@ public class Controller {
         this.repository = repository;
     }
 
-    @GetMapping("/files/names")
-    public List<String> getFileNames() {
-        return repository.findAllFileNames();
-    }
+  @GetMapping("/files/names")
+public List<String> getFileNames() {
+    return repository.findFirst20FileNames();
+}
 
-    @GetMapping("/files/links")
-    public List<String> getFileLinks() {
-        return repository.findFileLinks();
-    }
+   @GetMapping("/files/links")
+public List<String> getFileLinks() {
+    return repository.findFirst20FileLinks();
+}
 
     @PostMapping("/send-email")
     public String sendEmail(@RequestBody EmailRequest request) {
