@@ -65,7 +65,7 @@ const Subjects = ({
 
       <SearchOverlay isActive={isActive} onBack={onBack} inputRef={inputRef} />
 
-      <div>
+      <div className="subjectsFooter">
         <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>
       </div>
