@@ -18,7 +18,7 @@ const Subjects = ({
   useEffect(() => {
     const fetchFileSubjectNames = async () => {
       try {
-        const res = await fetch("http://localhost:8081/files/names");
+        const res = await fetch("http://localhost:8081/subjects/names");
         setSubjectNames(await res.json());
       } catch (error) {
         console.error("Error fetching subjects", error);

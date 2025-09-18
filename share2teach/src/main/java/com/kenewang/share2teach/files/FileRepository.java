@@ -13,4 +13,6 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
     // Custom query: return only a certain amount of file_links from the db
    @Query(value = "SELECT storage_path FROM file LIMIT 4", nativeQuery = true)
     List<String> findFirst20FileLinks();
+
+   
 }

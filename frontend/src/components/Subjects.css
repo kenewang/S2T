@@ -18,29 +18,24 @@ body {
 .subject_container {
   margin-top: 4rem;
   display: flex;
-
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: flex-start;
 }
 
 .subject_container ul {
-  list-style-type: disc;
-  padding-left: 0.5rem;
   display: flex;
-  flex-wrap: wrap;
-}
 
-.subject_container li {
-  width: 50%; /* two items per row */
-  margin: 0.5rem 0;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+
+  width: 90vw;
 }
 
 .anchor {
   text-decoration: none;
   color: rgb(14, 111, 143);
   font-size: 1.2rem;
-  margin: 0;
-  background: black;
-  padding: 0;
-  height: 0;
+
+  background: snow;
 }

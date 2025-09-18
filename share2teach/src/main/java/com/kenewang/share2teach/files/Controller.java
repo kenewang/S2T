@@ -19,26 +19,37 @@ import jakarta.mail.internet.MimeMessage;
 
 @RestController
 public class Controller {
+     @Autowired
+    private final FileRepository fileRepository;
+    private final Logger logger = Logger.getLogger(Controller.class.getName());
+    private final SubjectRepository subjectRepository;
 
-    private final FileRepository repository;
-     private final Logger logger = Logger.getLogger(Controller.class.getName());
-
-    @Autowired
+    
     private JavaMailSender mailSender;
 
-    public Controller(FileRepository repository) {
-        this.repository = repository;
+   
+  public Controller(FileRepository fileRepository, SubjectRepository subjectRepository) {
+        this.fileRepository = fileRepository;
+        this.subjectRepository = subjectRepository;
     }
 
   @GetMapping("/files/names")
 public List<String> getFileNames() {
-    return repository.findFirst20FileNames();
+    return fileRepository.findFirst20FileNames();
 }
 
    @GetMapping("/files/links")
-public List<String> getFileLinks() {
-    return repository.findFirst20FileLinks();
+    public List<String> getFileLinks() {
+    return fileRepository.findFirst20FileLinks();
+
+   
 }
+
+    @GetMapping("/subjects/names")
+    public List<String> getSubjectNames(){
+        return subjectRepository.findAllSubjectNames();
+
+    }
 
     @PostMapping("/send-email")
     public String sendEmail(@RequestBody EmailRequest request) {
