@@ -1,20 +1,23 @@
 import Header from "./Header";
 import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
-import menu_icon from "../svg/iconmonstr-menu-dot-vertical-filled.svg";
-import file_icon from "../svg/icons8-file-100.png";
+
 import RightNav from "./RightNav";
 import { useState } from "react";
 
+import ScienceDocuments from "./ScienceDocuments";
+import MathematicsDocuments from "./MathematicsDocuments";
+import ProgrammingDocuments from "./ProgrammingDocuments";
+
 const HomePage = ({
-  leftNavRef,
-  rightNavRef,
-  openSearch,
-  databaseNames,
-  storage_path,
-  isActive,
-  onBack,
-  inputRef,
+  leftNavRef, //passed down from App.js
+  rightNavRef, //passed down from App.js
+  openSearch, //passed down from App.js
+  databaseNames, //passed down from App.js
+  storage_path, //passed down from App.js
+  isActive, //passed down from App.js
+  onBack, //passed down from App.js
+  inputRef, //passed down from App.js
 }) => {
   const [home_leftNavOpen, set_home_LeftNavOpen] = useState(false);
   const [home_rightNavOpen, set_home_RightNavOpen] = useState(false);
@@ -25,7 +28,7 @@ const HomePage = ({
   const open_home_RightNav = () => set_home_RightNavOpen(true);
   const close_home_RightNav = () => set_home_RightNavOpen(false);
 
-  const OpenRight = () => {
+  const openRight = () => {
     if (home_leftNavOpen) {
       close_home_LeftNav();
       open_home_RightNav();
@@ -42,7 +45,7 @@ const HomePage = ({
   };
 
   return (
-    <div>
+    <div className="container">
       {!isActive && (
         <>
           <Header
@@ -50,7 +53,7 @@ const HomePage = ({
             isLeftNavOpen={home_leftNavOpen}
             openLeftNav={open_home_LeftNav}
             openSearch={openSearch}
-            isRightNavOpen={false}
+            isRightNavOpen={home_rightNavOpen}
             closeRightNav={close_home_RightNav}
           />
 
@@ -60,48 +63,30 @@ const HomePage = ({
             leftNavRef={leftNavRef}
           />
 
-          <section className="homePage-document-container">
-            {databaseNames.map((item, i) => {
-              const extIndex = item.lastIndexOf(".");
-              const name = extIndex === -1 ? item : item.slice(0, extIndex);
-              const ext = extIndex === -1 ? "" : item.slice(extIndex);
+          <RightNav
+            rightNavRef={rightNavRef}
+            closeRightNav={close_home_RightNav}
+            isOpen={home_rightNavOpen}
+          />
 
-              // pick a storage_path for this file
-              const link = storage_path[i];
-
-              return (
-                <div className="document" key={i}>
-                  <img
-                    className="file_icon"
-                    src={file_icon}
-                    alt="file_icon"
-                    onClick={() => openInNewTab(link)} //use an arrow function to avoid calling the function immediately since this function takes an argument.
-                  />
-                  {/* Three-dot menu */}
-                  <img
-                    className="three_dot"
-                    src={menu_icon}
-                    alt="Options"
-                    onClick={OpenRight}
-                  />
-                  {/* File name */}
-                  <p
-                    className="truncate-middle"
-                    onClick={() => openInNewTab(link)}
-                  >
-                    <span className="start">{name}</span>
-                    <span className="end">{ext}</span>
-                  </p>
-                </div>
-              );
-            })}
-
-            <RightNav
-              rightNavRef={rightNavRef}
-              closeRightNav={close_home_RightNav}
-              isOpen={home_rightNavOpen}
-            />
-          </section>
+          <ScienceDocuments
+            storage_path={storage_path}
+            databaseNames={databaseNames}
+            OpenRight={openRight}
+            openInNewTab={openInNewTab}
+          />
+          <MathematicsDocuments
+            storage_path={storage_path}
+            databaseNames={databaseNames}
+            OpenRight={openRight}
+            openInNewTab={openInNewTab}
+          />
+          <ProgrammingDocuments
+            storage_path={storage_path}
+            databaseNames={databaseNames}
+            OpenRight={openRight}
+            openInNewTab={openInNewTab}
+          />
         </>
       )}
 

@@ -1,0 +1,53 @@
+.programming_head {
+  position: relative;
+  top: 5rem;
+  background: #eee8e8;
+  width: 90%;
+}
+
+.programming_carousel-container {
+  max-width: 350px; /* enough space for 2 documents */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 6rem;
+}
+
+.carousel-viewport {
+  width: 300px; /* 2 * 140px docs + ~20px gap */
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: 0.2s;
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.document {
+  flex: 0 0 140px; /* fixed width for each card */
+  height: 180px;
+  background-color: rgb(210, 204, 153);
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 0.5rem;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
