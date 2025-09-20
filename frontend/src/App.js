@@ -33,6 +33,9 @@ import "./components/CreateAccount.css";
 import Subjects from "./components/Subjects";
 import "./components/Subjects.css";
 
+import HomePage from "./components/HomePage";
+import "./components/HomePage.css";
+
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -60,7 +63,7 @@ export default function App() {
     const fetchNames = async () => {
       try {
         const res = await fetch("http://localhost:8081/files/names");
-        setDatabaseNames(await res.json());
+        setDatabaseNames(await res.json()); //trigger a refresh, this time with the actual file names from the database
       } catch (error) {
         console.error("Error fetching names", error);
       }
@@ -181,6 +184,27 @@ export default function App() {
               isActive={searchActive}
               onBack={closeSearch}
               inputRef={searchInputRef}
+            />
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <HomePage
+              isOpen={leftNavOpen}
+              leftNavRef={leftNavRef}
+              openLeftNav={openLeftNav}
+              closeLeftNav={closeLeftNav}
+              closeRightNav={closeRightNav}
+              openRightNav={openRightNav}
+              openSearch={openSearch}
+              isActive={searchActive}
+              onBack={closeSearch}
+              inputRef={searchInputRef}
+              isRightNavOpen={rightNavOpen}
+              databaseNames={databaseNames}
+              storage_path={storage_path}
+              rightNavRef={rightNavRef}
             />
           }
         />

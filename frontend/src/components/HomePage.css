@@ -1,0 +1,84 @@
+body {
+  background: black;
+}
+
+.homePage-document-container {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  background: rgba(248, 248, 248, 0.9);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-inline: 1rem;
+  min-height: 100vh;
+}
+
+.homePageFooter {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background-color: #eee8e8;
+  text-align: center;
+}
+
+.document {
+  position: relative; /* anchor absolute children */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  height: 180px;
+  background-color: rgb(210, 204, 153);
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.file_icon {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin-top: 0.5rem;
+}
+
+.three_dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.document p.truncate-middle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: auto;
+
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.truncate-middle .start {
+  /* key: don't grow */
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate-middle .end {
+  flex: 0 0 auto;
+  margin-left: 4px;
+}
