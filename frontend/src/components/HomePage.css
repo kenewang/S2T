@@ -18,4 +18,10 @@ body {
   gap: 0.8rem;
   background-color: #eee8e8;
   text-align: center;
+  position: relative;
+  top: 5em;
+}
+
+.homePageFooter > :first-child {
+  cursor: pointer;
 }

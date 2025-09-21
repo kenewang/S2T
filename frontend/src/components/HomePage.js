@@ -45,53 +45,58 @@ const HomePage = ({
   };
 
   return (
-    <div className="container">
-      {!isActive && (
-        <>
-          <Header
-            showSearchLogo={true}
-            isLeftNavOpen={home_leftNavOpen}
-            openLeftNav={open_home_LeftNav}
-            openSearch={openSearch}
-            isRightNavOpen={home_rightNavOpen}
-            closeRightNav={close_home_RightNav}
-          />
+    <div>
+      <section className="container">
+        {!isActive && (
+          <>
+            <Header
+              showSearchLogo={true}
+              isLeftNavOpen={home_leftNavOpen}
+              openLeftNav={open_home_LeftNav}
+              openSearch={openSearch}
+              isRightNavOpen={home_rightNavOpen}
+              closeRightNav={close_home_RightNav}
+            />
 
-          <LeftNav
-            isOpen={home_leftNavOpen}
-            closeLeftNav={close_home_LeftNav}
-            leftNavRef={leftNavRef}
-          />
+            <LeftNav
+              isOpen={home_leftNavOpen}
+              closeLeftNav={close_home_LeftNav}
+              leftNavRef={leftNavRef}
+            />
 
-          <RightNav
-            rightNavRef={rightNavRef}
-            closeRightNav={close_home_RightNav}
-            isOpen={home_rightNavOpen}
-          />
+            <RightNav
+              rightNavRef={rightNavRef}
+              closeRightNav={close_home_RightNav}
+              isOpen={home_rightNavOpen}
+            />
 
-          <ScienceDocuments
-            storage_path={storage_path}
-            databaseNames={databaseNames}
-            OpenRight={openRight}
-            openInNewTab={openInNewTab}
-          />
-          <MathematicsDocuments
-            storage_path={storage_path}
-            databaseNames={databaseNames}
-            OpenRight={openRight}
-            openInNewTab={openInNewTab}
-          />
-          <ProgrammingDocuments
-            storage_path={storage_path}
-            databaseNames={databaseNames}
-            OpenRight={openRight}
-            openInNewTab={openInNewTab}
-          />
-        </>
-      )}
+            <ScienceDocuments
+              storage_path={storage_path}
+              databaseNames={databaseNames}
+              OpenRight={openRight}
+              openInNewTab={openInNewTab}
+            />
+            <MathematicsDocuments
+              storage_path={storage_path}
+              databaseNames={databaseNames}
+              OpenRight={openRight}
+              openInNewTab={openInNewTab}
+            />
+            <ProgrammingDocuments
+              storage_path={storage_path}
+              databaseNames={databaseNames}
+              OpenRight={openRight}
+              openInNewTab={openInNewTab}
+            />
+          </>
+        )}
 
-      <SearchOverlay isActive={isActive} onBack={onBack} inputRef={inputRef} />
-
+        <SearchOverlay
+          isActive={isActive}
+          onBack={onBack}
+          inputRef={inputRef}
+        />
+      </section>
       <div className="homePageFooter">
         <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>

@@ -45,6 +45,8 @@ const DocumentList = ({
               alt="file_icon"
               onClick={() => openInNewTab(link)} //use an arrow function to avoid calling the function immediately since this function takes an argument.
             />
+
+            <p>Rating: 5.0</p>
             {/* Three-dot menu */}
             <img
               className="three_dot"
