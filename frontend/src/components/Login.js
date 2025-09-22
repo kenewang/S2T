@@ -2,24 +2,24 @@ import Header from "./Header";
 import LeftNav from "./LeftNav";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ isOpen, leftNavRef, openLeftNav, closeLeftNav }) => {
+const Login = ({ leftNavOpen, leftNavRef, openLeftNav, closeLeftNav }) => {
   const navigate = useNavigate();
   const goToCreateAccount = () => {
-    if (!isOpen) navigate("/createAccount");
+    if (!leftNavOpen) navigate("/createAccount");
   };
   return (
     <div>
       <Header
         showSearchLogo={false} //hide the search icon
-        isLeftNavOpen={isOpen}
+        leftNavOpen={leftNavOpen}
         openLeftNav={openLeftNav}
         // Pass other props if you need search/right nav to work:
         openSearch={() => {}}
-        isRightNavOpen={false}
+        rightNavOpen={false}
         closeRightNav={() => {}}
       />
       <LeftNav
-        isOpen={isOpen}
+        leftNavOpen={leftNavOpen}
         closeLeftNav={closeLeftNav}
         leftNavRef={leftNavRef}
       />

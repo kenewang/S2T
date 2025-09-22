@@ -26,7 +26,7 @@ const ScienceDocuments = ({
 
   return (
     <>
-      <h2 className="section-heading">Science</h2>
+      <a className="section-heading">Science</a>
 
       <section className="carousel-container">
         <button

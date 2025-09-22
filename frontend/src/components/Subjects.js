@@ -4,14 +4,14 @@ import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
 
 const Subjects = ({
-  isOpen,
+  leftNavOpen,
   leftNavRef,
   openLeftNav,
   closeLeftNav,
   openSearch,
-  isActive,
-  onBack,
-  inputRef,
+  searchActive,
+  closeSearch,
+  searchInputRef,
 }) => {
   const [subjectNames, setSubjectNames] = useState([]);
 
@@ -29,19 +29,19 @@ const Subjects = ({
 
   return (
     <div>
-      {!isActive && (
+      {!searchActive && (
         <>
           <Header
             showSearchLogo={true}
-            isLeftNavOpen={isOpen}
+            leftNavOpen={leftNavOpen}
             openLeftNav={openLeftNav}
             openSearch={openSearch}
-            isRightNavOpen={false}
+            rightNavOpen={false}
             closeRightNav={() => {}}
           />
 
           <LeftNav
-            isOpen={isOpen}
+            leftNavOpen={leftNavOpen}
             closeLeftNav={closeLeftNav}
             leftNavRef={leftNavRef}
           />
@@ -63,7 +63,11 @@ const Subjects = ({
         </>
       )}
 
-      <SearchOverlay isActive={isActive} onBack={onBack} inputRef={inputRef} />
+      <SearchOverlay
+        searchActive={searchActive}
+        closeSearch={closeSearch}
+        searchInputRef={searchInputRef}
+      />
 
       <div className="subjectsFooter">
         <p>Contact</p>

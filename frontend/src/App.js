@@ -35,6 +35,7 @@ import "./components/Subjects.css";
 
 import HomePage from "./components/HomePage";
 import "./components/HomePage.css";
+import SubjectDocuments from "./components/SubjectDocuments";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -75,8 +76,8 @@ export default function App() {
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const res = await fetch("http://localhost:8081/files/ratings");
-        setFileRating(await res.json());
+        const res = await fetch("http://localhost:8081/files/links");
+        setStoragePath(await res.json());
       } catch (error) {
         console.error("Error fetching links", error);
       }
@@ -88,7 +89,7 @@ export default function App() {
     const fetchRatings = async () => {
       try {
         const res = await fetch("http://localhost:8081/files/ratings");
-        setStoragePath(await res.json());
+        setFileRating(await res.json());
       } catch (error) {
         console.error("Error fetching ratings", error);
       }
@@ -105,15 +106,15 @@ export default function App() {
           element={
             <div className="App">
               <LeftNav
-                isOpen={leftNavOpen}
+                leftNavOpen={leftNavOpen}
                 closeLeftNav={closeLeftNav}
                 leftNavRef={leftNavRef}
               />
               <RightNav
-                isOpen={rightNavOpen}
+                rightNavOpen={rightNavOpen}
                 rightNavRef={rightNavRef}
                 closeRightNav={closeRightNav}
-                isLeftNavOpen={leftNavOpen}
+                leftNavOpen={leftNavOpen}
                 closeLeftNav={closeLeftNav}
                 openRightNav={openRightNav}
               />
@@ -123,42 +124,42 @@ export default function App() {
                   <Header
                     openLeftNav={openLeftNav}
                     openSearch={openSearch}
-                    isRightNavOpen={rightNavOpen}
+                    rightNavOpen={rightNavOpen}
                     closeRightNav={closeRightNav}
-                    isLeftNavOpen={leftNavOpen}
+                    leftNavOpen={leftNavOpen}
                     showSearchLogo={showSearchLogo}
                   />
 
                   <main id="main-content">
                     <LoginBrowse
-                      isRightNavOpen={rightNavOpen}
-                      isLeftNavOpen={leftNavOpen}
+                      rightNavOpen={rightNavOpen}
+                      leftNavOpen={leftNavOpen}
                     />
                     <DocumentList
                       openRightNav={openRightNav}
                       databaseNames={databaseNames}
                       storage_path={storage_path}
                       file_rating={file_rating}
-                      isRightNavOpen={rightNavOpen}
-                      isLeftNavOpen={leftNavOpen}
+                      rightNavOpen={rightNavOpen}
+                      leftNavOpen={leftNavOpen}
                       closeRightNav={closeRightNav}
                       closeLeftNav={closeLeftNav}
                     />
                   </main>
 
                   <Footer
-                    isLeftNavOpen={leftNavOpen}
+                    leftNavOpen={leftNavOpen}
                     closeLeftNav={closeLeftNav}
-                    isRightNavOpen={rightNavOpen}
+                    rightNavOpen={rightNavOpen}
                     closeRightNav={closeRightNav}
                   />
                 </>
               )}
 
               <SearchOverlay
-                isActive={searchActive}
-                onBack={closeSearch}
-                inputRef={searchInputRef}
+                searchActive={searchActive}
+                closeSearch={closeSearch}
+                searchInputRef={searchInputRef}
               />
             </div>
           }
@@ -168,7 +169,7 @@ export default function App() {
           path="/login"
           element={
             <Login
-              isOpen={leftNavOpen}
+              leftNavOpen={leftNavOpen}
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
@@ -179,7 +180,7 @@ export default function App() {
           path="/createAccount"
           element={
             <CreateAccount
-              isOpen={leftNavOpen}
+              leftNavOpen={leftNavOpen}
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
@@ -190,14 +191,14 @@ export default function App() {
           path="/subjects"
           element={
             <Subjects
-              isOpen={leftNavOpen}
+              leftNavOpen={leftNavOpen}
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
               openSearch={openSearch}
-              isActive={searchActive}
-              onBack={closeSearch}
-              inputRef={searchInputRef}
+              searchActive={searchActive}
+              closeSearch={closeSearch}
+              searchInputRef={searchInputRef}
             />
           }
         />
@@ -205,20 +206,28 @@ export default function App() {
           path="/home"
           element={
             <HomePage
-              isOpen={leftNavOpen}
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
-              closeRightNav={closeRightNav}
-              openRightNav={openRightNav}
               openSearch={openSearch}
-              isActive={searchActive}
-              onBack={closeSearch}
-              inputRef={searchInputRef}
-              isRightNavOpen={rightNavOpen}
+              searchActive={searchActive}
+              closeSearch={closeSearch}
+              searchInputRef={searchInputRef}
               databaseNames={databaseNames}
               storage_path={storage_path}
               rightNavRef={rightNavRef}
+              file_rating={file_rating}
+            />
+          }
+        />
+        <Route
+          path="/documents"
+          element={
+            <SubjectDocuments
+              leftNavRef={leftNavRef}
+              rightNavRef={rightNavRef}
+              databaseNames={databaseNames}
+              storage_path={storage_path}
               file_rating={file_rating}
             />
           }

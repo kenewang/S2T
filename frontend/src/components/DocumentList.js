@@ -7,20 +7,20 @@ const DocumentList = ({
   databaseNames, //this prop is for an array of file names we get from the database
   storage_path, //this one's for an array of actual file links from the database
   file_rating,
-  isRightNavOpen, //this prop is whether right nav is opened or not
-  isLeftNavOpen,
+  rightNavOpen, //this prop is whether right nav is opened or not
+  leftNavOpen,
   closeLeftNav,
   closeRightNav, //this prop is a function ref and we use it to close the right nav
 }) => {
   const OpenRight = () => {
-    if (isLeftNavOpen) {
+    if (leftNavOpen) {
       closeLeftNav();
       openRightNav();
     } else openRightNav();
   };
 
   const openInNewTab = (url) => {
-    if (!isRightNavOpen && !isLeftNavOpen) {
+    if (!rightNavOpen && !leftNavOpen) {
       window.open(url, "_blank", "noopener,noreferrer");
     } else {
       closeRightNav();

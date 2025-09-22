@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LeftNav.css";
-const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
+const LeftNav = ({ leftNavOpen, closeLeftNav, leftNavRef }) => {
   const navigate = useNavigate();
   const goSomeWhere = (path) => {
     closeLeftNav();
     navigate(path);
   };
   useEffect(() => {
-    if (!isOpen) return;
+    if (!leftNavOpen) return;
 
     const handleOutsideClick = (event) => {
       const justOpened =
@@ -21,10 +21,10 @@ const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
 
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
-  }, [isOpen, closeLeftNav, leftNavRef]);
+  }, [leftNavOpen, closeLeftNav, leftNavRef]);
 
   // Add a marker when it opens so the effect can skip the first click
-  if (isOpen && leftNavRef.current) {
+  if (leftNavOpen && leftNavRef.current) {
     leftNavRef.current.dataset.openedAt = performance.now();
   }
 
@@ -32,7 +32,7 @@ const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
     <div
       id="mySidenav"
       ref={leftNavRef} //we now have a remote to the LeftNav object in the DOM
-      className={`sidenav ${isOpen ? "open" : ""}`} // goes into LeftNav.css file
+      className={`sidenav ${leftNavOpen ? "open" : ""}`} // goes into LeftNav.css file
       //If isOpen is true → the class will be ".sidenav.open" inside LeftNav.css.
       //If isOpen is false → the class will just be ".sidenav" inside style.css.
       //The CSS handles the actual width change.
@@ -58,7 +58,7 @@ const LeftNav = ({ isOpen, closeLeftNav, leftNavRef }) => {
       >
         Home
       </a>
-      <a href="#">Browser</a>
+      <a href="#">Browse</a>
     </div>
   );
 };

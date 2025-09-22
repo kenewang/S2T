@@ -4,10 +4,10 @@ import "./RightNav.css";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import withReactContent from "sweetalert2-react-content";
-const RightNav = ({ isOpen, closeRightNav, rightNavRef }) => {
+const RightNav = ({ rightNavOpen, closeRightNav, rightNavRef }) => {
   const succesSwal = withReactContent(Swal);
   useEffect(() => {
-    if (!isOpen) return;
+    if (!rightNavOpen) return;
 
     const handleOutsideClick = (event) => {
       const justOpened =
@@ -22,9 +22,9 @@ const RightNav = ({ isOpen, closeRightNav, rightNavRef }) => {
 
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
-  }, [isOpen, closeRightNav, rightNavRef]);
+  }, [rightNavOpen, closeRightNav, rightNavRef]);
 
-  if (isOpen && rightNavRef.current) {
+  if (rightNavOpen && rightNavRef.current) {
     rightNavRef.current.dataset.openedAt = performance.now();
   }
 
@@ -100,8 +100,8 @@ const RightNav = ({ isOpen, closeRightNav, rightNavRef }) => {
       id="rightSidenav"
       ref={rightNavRef}
       className="sidenav right-sidenav"
-      style={{ width: isOpen ? "130px" : "0px" }}
-      aria-hidden={!isOpen}
+      style={{ width: rightNavOpen ? "130px" : "0px" }}
+      aria-hidden={!rightNavOpen}
     >
       <a
         className="rightNavAnchor"

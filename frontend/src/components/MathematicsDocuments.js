@@ -26,7 +26,7 @@ const MathematicsDocuments = ({
 
   return (
     <>
-      <h2 className="section-heading">Mathematics</h2>
+      <a className="section-heading">Mathematics</a>
 
       <section className="carousel-container">
         <button

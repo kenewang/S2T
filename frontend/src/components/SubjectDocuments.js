@@ -1,27 +1,22 @@
 import Header from "./Header";
 import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
-
 import RightNav from "./RightNav";
-import { useState } from "react";
+import DocumentList from "./DocumentList";
+import "./SubjectDocuments.css";
+import { useState, useRef } from "react";
 
-import ScienceDocuments from "./ScienceDocuments";
-import MathematicsDocuments from "./MathematicsDocuments";
-import ProgrammingDocuments from "./ProgrammingDocuments";
-
-const HomePage = ({
-  leftNavRef, //passed down from App.js
-  rightNavRef, //passed down from App.js
-  openSearch, //passed down from App.js
-  databaseNames, //passed down from App.js
-  storage_path, //passed down from App.js
-  searchActive, //passed down from App.js
-  closeSearch, //passed down from App.js
-  searchInputRef, //passed down from App.js
-  file_rating,
-}) => {
+const SubjectDocuments = ({ databaseNames, storage_path, file_rating }) => {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
+
+  const searchInputRef = useRef(null);
+  const leftNavRef = useRef(null);
+  const rightNavRef = useRef(null);
+
+  const openSearch = () => setSearchActive(true);
+  const closeSearch = () => setSearchActive(false);
 
   const openLeftNav = () => setLeftNavOpen(true);
   const closeLeftNav = () => setLeftNavOpen(false);
@@ -53,9 +48,10 @@ const HomePage = ({
             <Header
               showSearchLogo={true}
               leftNavOpen={leftNavOpen}
+              rightNavOpen={rightNavOpen}
               openLeftNav={openLeftNav}
               openSearch={openSearch}
-              rightNavOpen={rightNavOpen}
+              openRightNav={openRightNav}
               closeRightNav={closeRightNav}
             />
 
@@ -70,28 +66,18 @@ const HomePage = ({
               closeRightNav={closeRightNav}
               rightNavOpen={rightNavOpen}
             />
-
-            <ScienceDocuments
-              storage_path={storage_path}
-              databaseNames={databaseNames}
-              OpenRight={openRight}
-              openInNewTab={openInNewTab}
-              file_rating={file_rating}
-            />
-            <MathematicsDocuments
-              storage_path={storage_path}
-              databaseNames={databaseNames}
-              OpenRight={openRight}
-              openInNewTab={openInNewTab}
-              file_rating={file_rating}
-            />
-            <ProgrammingDocuments
-              storage_path={storage_path}
-              databaseNames={databaseNames}
-              file_rating={file_rating}
-              OpenRight={openRight}
-              openInNewTab={openInNewTab}
-            />
+            <main className="main-content">
+              <DocumentList
+                openRightNav={openRightNav}
+                databaseNames={databaseNames}
+                storage_path={storage_path}
+                file_rating={file_rating}
+                rightNavOpen={rightNavOpen}
+                leftNavOpen={leftNavOpen}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+              />
+            </main>
           </>
         )}
 
@@ -108,5 +94,4 @@ const HomePage = ({
     </div>
   );
 };
-
-export default HomePage;
+export default SubjectDocuments;

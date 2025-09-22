@@ -3,14 +3,14 @@ import icon from "../svg/iconmonstr-magnifier-lined.svg";
 import "./Header.css";
 const Header = ({
   showSearchLogo,
-  isLeftNavOpen,
+  leftNavOpen,
   openLeftNav,
   openSearch,
-  isRightNavOpen,
+  rightNavOpen,
   closeRightNav,
 }) => {
   const openSearchIcon = () => {
-    if (!isRightNavOpen && !isLeftNavOpen) {
+    if (!rightNavOpen && !leftNavOpen) {
       openSearch();
     } else {
       closeRightNav();
@@ -18,7 +18,7 @@ const Header = ({
   };
 
   useEffect(() => {
-    if (!isLeftNavOpen) return;
+    if (!leftNavOpen) return;
     else {
       closeRightNav();
     }

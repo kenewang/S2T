@@ -3,12 +3,7 @@ import { useState, useRef } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-const Footer = ({
-  isLeftNavOpen,
-  closeLeftNav,
-  isRightNavOpen,
-  closeRightNav,
-}) => {
+const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -71,7 +66,7 @@ const Footer = ({
   const handleSubmit = async (e) => {
     e.preventDefault(); // stop default form behavior
 
-    if (isLeftNavOpen || isRightNavOpen) {
+    if (leftNavOpen || rightNavOpen) {
       closeLeftNav();
       closeRightNav();
       return;
