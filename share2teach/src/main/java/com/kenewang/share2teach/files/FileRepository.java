@@ -14,5 +14,8 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
    @Query(value = "SELECT storage_path FROM file LIMIT 4", nativeQuery = true)
     List<String> findFirst20FileLinks();
 
+    @Query(value = "SELECT rating FROM file LIMIT 4", nativeQuery = true)
+    List<String> findFirst20FileRatings();
+
    
 }

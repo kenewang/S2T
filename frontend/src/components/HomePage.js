@@ -18,6 +18,7 @@ const HomePage = ({
   isActive, //passed down from App.js
   onBack, //passed down from App.js
   inputRef, //passed down from App.js
+  file_rating,
 }) => {
   const [home_leftNavOpen, set_home_LeftNavOpen] = useState(false);
   const [home_rightNavOpen, set_home_RightNavOpen] = useState(false);
@@ -75,16 +76,19 @@ const HomePage = ({
               databaseNames={databaseNames}
               OpenRight={openRight}
               openInNewTab={openInNewTab}
+              file_rating={file_rating}
             />
             <MathematicsDocuments
               storage_path={storage_path}
               databaseNames={databaseNames}
               OpenRight={openRight}
               openInNewTab={openInNewTab}
+              file_rating={file_rating}
             />
             <ProgrammingDocuments
               storage_path={storage_path}
               databaseNames={databaseNames}
+              file_rating={file_rating}
               OpenRight={openRight}
               openInNewTab={openInNewTab}
             />

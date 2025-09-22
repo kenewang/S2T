@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -44,6 +46,15 @@ public List<String> getFileNames() {
 
    
 }
+
+    @GetMapping("/files/ratings")
+    public List<String> getFileRatings(){
+        return fileRepository.findFirst20FileRatings();
+    }
+    public String getMethodName(@RequestParam String param) {
+        return new String();
+    }
+    
 
     @GetMapping("/subjects/names")
     public List<String> getSubjectNames(){

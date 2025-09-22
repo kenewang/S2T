@@ -1,27 +1,96 @@
-body {
+/* Reset and page setup */
+body,
+html {
   background: white;
 }
 
+/* Container for main content */
 .container {
+  /* ensures footer is pushed down */
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: 4rem;
-  min-height: 100vh;
+  top: 3rem;
 }
 
+/* Footer */
 .homePageFooter {
-  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
   background-color: #eee8e8;
   text-align: center;
-  position: relative;
-  top: 5em;
+  margin-top: 5rem;
+  padding: 1rem 0;
 }
 
 .homePageFooter > :first-child {
   cursor: pointer;
+}
+
+/* Section headings (shared across Science, Math, Programming) */
+.section-heading {
+  margin: 2rem 0 1rem 0;
+  background: #eee8e8;
+  width: 90%;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* Carousel container (shared) */
+.carousel-container {
+  max-width: 350px;
+  margin: 0 auto 0 auto; /* centers + 1rem bottom spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Carousel viewport */
+.carousel-viewport {
+  width: 100%; /* responsive */
+  max-width: 300px; /* keeps same size as before */
+  overflow: hidden;
+}
+
+/* Track for moving documents */
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Carousel navigation buttons */
+.carousel-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: 0.2s;
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Individual document card */
+.document {
+  flex: 0 0 140px;
+  height: 180px;
+  background-color: rgb(210, 204, 153);
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.rating {
+  position: relative;
+  top: 0.5rem;
 }

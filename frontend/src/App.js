@@ -49,6 +49,7 @@ export default function App() {
 
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path, setStoragePath] = useState([]);
+  const [file_rating, setFileRating] = useState([]);
 
   const openLeftNav = () => setLeftNavOpen(true);
   const closeLeftNav = () => setLeftNavOpen(false);
@@ -74,13 +75,25 @@ export default function App() {
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const res = await fetch("http://localhost:8081/files/links");
-        setStoragePath(await res.json());
+        const res = await fetch("http://localhost:8081/files/ratings");
+        setFileRating(await res.json());
       } catch (error) {
         console.error("Error fetching links", error);
       }
     };
     fetchLinks();
+  }, []);
+
+  useEffect(() => {
+    const fetchRatings = async () => {
+      try {
+        const res = await fetch("http://localhost:8081/files/ratings");
+        setStoragePath(await res.json());
+      } catch (error) {
+        console.error("Error fetching ratings", error);
+      }
+    };
+    fetchRatings();
   }, []);
 
   return (
@@ -125,6 +138,7 @@ export default function App() {
                       openRightNav={openRightNav}
                       databaseNames={databaseNames}
                       storage_path={storage_path}
+                      file_rating={file_rating}
                       isRightNavOpen={rightNavOpen}
                       isLeftNavOpen={leftNavOpen}
                       closeRightNav={closeRightNav}
@@ -205,6 +219,7 @@ export default function App() {
               databaseNames={databaseNames}
               storage_path={storage_path}
               rightNavRef={rightNavRef}
+              file_rating={file_rating}
             />
           }
         />

@@ -6,6 +6,7 @@ const DocumentList = ({
   openRightNav, //we need this prop to be able to open the right nav when clicking the three dot menu
   databaseNames, //this prop is for an array of file names we get from the database
   storage_path, //this one's for an array of actual file links from the database
+  file_rating,
   isRightNavOpen, //this prop is whether right nav is opened or not
   isLeftNavOpen,
   closeLeftNav,
@@ -36,6 +37,7 @@ const DocumentList = ({
 
         // pick a storage_path for this file
         const link = storage_path[i];
+        const rating = file_rating[i];
 
         return (
           <div className="document" key={i}>
@@ -46,7 +48,9 @@ const DocumentList = ({
               onClick={() => openInNewTab(link)} //use an arrow function to avoid calling the function immediately since this function takes an argument.
             />
 
-            <p>Rating: 5.0</p>
+            <p className="rating">
+              <span className="rating_span">{rating}</span> Rating
+            </p>
             {/* Three-dot menu */}
             <img
               className="three_dot"

@@ -1,10 +1,12 @@
 import menu_icon from "../svg/iconmonstr-menu-dot-vertical-filled.svg";
 import file_icon from "../svg/icons8-file-100.png";
-import "./ScienceDocuments.css";
+import "./HomePage.css";
+
 import { useState } from "react";
-import "./ProgrammingDocuments.css";
+
 const ProgrammingDocuments = ({
   databaseNames,
+  file_rating,
   storage_path,
   OpenRight,
   openInNewTab,
@@ -25,9 +27,9 @@ const ProgrammingDocuments = ({
 
   return (
     <>
-      <h2 className="programming_head">Computer Programming</h2>
+      <h2 className="section-heading">Computer Programming</h2>
 
-      <section className="programming_carousel-container">
+      <section className="carousel-container">
         <button
           className="carousel-btn left"
           onClick={prev}
@@ -48,6 +50,7 @@ const ProgrammingDocuments = ({
               const name = extIndex === -1 ? item : item.slice(0, extIndex);
               const ext = extIndex === -1 ? "" : item.slice(extIndex);
               const link = storage_path[i];
+              const rating = file_rating[i];
 
               return (
                 <div className="document" key={i}>
@@ -57,6 +60,10 @@ const ProgrammingDocuments = ({
                     alt="file_icon"
                     onClick={() => openInNewTab(link)}
                   />
+
+                  <p className="rating">
+                    <span className="rating_span">{rating}</span> Rating
+                  </p>
                   <img
                     className="three_dot"
                     src={menu_icon}

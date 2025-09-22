@@ -20,6 +20,9 @@ public class FileEntity {
     @Column(name = "storage_path")
     private String storage_path;
 
+    @Column(name = "rating")
+    private String file_rating;
+
     // getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -29,4 +32,7 @@ public class FileEntity {
 
     public String getFileLinks() { return storage_path; }
     public void setFileLinks(String storage_path) { this.storage_path = storage_path; }
+
+    public String getFileRatings() {return file_rating;}
+    public void setFileRatings(String file_rating) {this.file_rating = file_rating;}
 }
