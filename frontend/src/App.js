@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Component, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./global.css";
 import "./normalize.css";
+
+import useFiles from "./hooks/useFiles";
 
 import ScrollToTop from "./components/ScrollToTop";
 import LeftNav from "./components/LeftNav";
@@ -48,10 +50,6 @@ export default function App() {
 
   const showSearchLogo = useRef(true); //we are going to hide the search logo on some pages
 
-  const [databaseNames, setDatabaseNames] = useState([]);
-  const [storage_path, setStoragePath] = useState([]);
-  const [file_rating, setFileRating] = useState([]);
-
   const openLeftNav = () => setLeftNavOpen(true);
   const closeLeftNav = () => setLeftNavOpen(false);
 
@@ -61,41 +59,7 @@ export default function App() {
   const openSearch = () => setSearchActive(true);
   const closeSearch = () => setSearchActive(false);
 
-  useEffect(() => {
-    const fetchNames = async () => {
-      try {
-        const res = await fetch("http://localhost:8081/files/names");
-        setDatabaseNames(await res.json()); //trigger a refresh, this time with the actual file names from the database
-      } catch (error) {
-        console.error("Error fetching names", error);
-      }
-    };
-    fetchNames();
-  }, []);
-
-  useEffect(() => {
-    const fetchLinks = async () => {
-      try {
-        const res = await fetch("http://localhost:8081/files/links");
-        setStoragePath(await res.json());
-      } catch (error) {
-        console.error("Error fetching links", error);
-      }
-    };
-    fetchLinks();
-  }, []);
-
-  useEffect(() => {
-    const fetchRatings = async () => {
-      try {
-        const res = await fetch("http://localhost:8081/files/ratings");
-        setFileRating(await res.json());
-      } catch (error) {
-        console.error("Error fetching ratings", error);
-      }
-    };
-    fetchRatings();
-  }, []);
+  const { databaseNames, storage_path, file_rating } = useFiles();
 
   return (
     <Router>
@@ -221,7 +185,7 @@ export default function App() {
           }
         />
         <Route
-          path="/documents"
+          path="/documents/:id"
           element={
             <SubjectDocuments
               leftNavRef={leftNavRef}

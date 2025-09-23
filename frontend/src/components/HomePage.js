@@ -4,7 +4,7 @@ import SearchOverlay from "./SearchOverlay";
 
 import RightNav from "./RightNav";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import ScienceDocuments from "./ScienceDocuments";
 import MathematicsDocuments from "./MathematicsDocuments";
 import ProgrammingDocuments from "./ProgrammingDocuments";
@@ -29,6 +29,8 @@ const HomePage = ({
   const openRightNav = () => setRightNavOpen(true);
   const closeRightNav = () => setRightNavOpen(false);
 
+  const navigate = useNavigate();
+
   const openRight = () => {
     if (leftNavOpen) {
       closeLeftNav();
@@ -43,6 +45,10 @@ const HomePage = ({
       closeRightNav();
       closeLeftNav();
     }
+  };
+
+  const handleClick = (id) => {
+    navigate(`/documents/${id}`); // go to the page with the id
   };
 
   return (
@@ -72,6 +78,7 @@ const HomePage = ({
             />
 
             <ScienceDocuments
+              handleClick={handleClick}
               storage_path={storage_path}
               databaseNames={databaseNames}
               OpenRight={openRight}
@@ -79,6 +86,7 @@ const HomePage = ({
               file_rating={file_rating}
             />
             <MathematicsDocuments
+              handleClick={handleClick}
               storage_path={storage_path}
               databaseNames={databaseNames}
               OpenRight={openRight}
@@ -86,6 +94,7 @@ const HomePage = ({
               file_rating={file_rating}
             />
             <ProgrammingDocuments
+              handleClick={handleClick}
               storage_path={storage_path}
               databaseNames={databaseNames}
               file_rating={file_rating}

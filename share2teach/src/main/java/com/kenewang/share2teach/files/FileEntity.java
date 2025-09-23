@@ -2,6 +2,8 @@ package com.kenewang.share2teach.files;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
@@ -23,16 +25,49 @@ public class FileEntity {
     @Column(name = "rating")
     private String file_rating;
 
+    // Instead of subject as an integer, map it as a relationship
+    @ManyToOne
+    @JoinColumn(name = "subject", referencedColumnName = "subject_id")
+    private SubjectEntity subject;
+
     // getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getFileName() { return fileName; }
-    public void setFileName(String fileName) { this.fileName = fileName; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getFileLinks() { return storage_path; }
-    public void setFileLinks(String storage_path) { this.storage_path = storage_path; }
+    public String getFileName() {
+        return fileName;
+    }
 
-    public String getFileRatings() {return file_rating;}
-    public void setFileRatings(String file_rating) {this.file_rating = file_rating;}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileLinks() {
+        return storage_path;
+    }
+
+    public void setFileLinks(String storage_path) {
+        this.storage_path = storage_path;
+    }
+
+    public String getFileRatings() {
+        return file_rating;
+    }
+
+    public void setFileRatings(String file_rating) {
+        this.file_rating = file_rating;
+    }
+
+    public SubjectEntity getSubject() {
+        return subject;
+    }
+
+    public void setSubject(SubjectEntity subject) {
+        this.subject = subject;
+    }
 }

@@ -9,6 +9,7 @@ const ScienceDocuments = ({
   OpenRight,
   openInNewTab,
   file_rating,
+  handleClick,
 }) => {
   const [startIndex, setStartIndex] = useState(0);
 
@@ -26,7 +27,14 @@ const ScienceDocuments = ({
 
   return (
     <>
-      <a className="section-heading">Science</a>
+      <a
+        className="section-heading"
+        onClick={() => {
+          handleClick("science");
+        }}
+      >
+        Science
+      </a>
 
       <section className="carousel-container">
         <button

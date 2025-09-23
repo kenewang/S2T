@@ -10,6 +10,7 @@ const ProgrammingDocuments = ({
   storage_path,
   OpenRight,
   openInNewTab,
+  handleClick,
 }) => {
   const [startIndex, setStartIndex] = useState(0);
 
@@ -27,7 +28,14 @@ const ProgrammingDocuments = ({
 
   return (
     <>
-      <a className="section-heading">Mathematics</a>
+      <a
+        className="section-heading"
+        onClick={() => {
+          handleClick("science");
+        }}
+      >
+        Computer Programming
+      </a>
 
       <section className="carousel-container">
         <button
