@@ -48,7 +48,7 @@ const HomePage = ({
   };
 
   const handleClick = (id) => {
-    navigate(`/documents/${id}`); // go to the page with the id
+    if (!rightNavOpen && !leftNavOpen) navigate(`/documents/${id}`); // go to the page with the id
   };
 
   return (

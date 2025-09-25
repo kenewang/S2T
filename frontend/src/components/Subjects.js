@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./Header";
 import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
+import { useNavigate } from "react-router-dom";
 
 const Subjects = ({
   leftNavOpen,
@@ -13,7 +14,11 @@ const Subjects = ({
   closeSearch,
   searchInputRef,
 }) => {
+  const navigate = useNavigate();
   const [subjectNames, setSubjectNames] = useState([]);
+  const handleClick = (id) => {
+    navigate(`/documents/${id}`); // go to the page with the id
+  };
 
   useEffect(() => {
     const fetchFileSubjectNames = async () => {
@@ -52,7 +57,13 @@ const Subjects = ({
               <ul>
                 {subjectNames.map((item, i) => (
                   <li key={i}>
-                    <a className="anchor" href="#">
+                    <a
+                      className="anchor"
+                      href="#"
+                      onClick={() => {
+                        handleClick(item.toLowerCase());
+                      }}
+                    >
                       {item}
                     </a>
                   </li>
