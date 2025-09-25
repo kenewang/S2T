@@ -30,7 +30,7 @@ const MathematicsDocuments = ({
       <a
         className="section-heading"
         onClick={() => {
-          handleClick("science");
+          handleClick("mathematics");
         }}
       >
         Mathematics

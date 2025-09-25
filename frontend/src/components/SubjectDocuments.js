@@ -30,52 +30,32 @@ const SubjectDocuments = () => {
   const openRightNav = () => setRightNavOpen(true);
   const closeRightNav = () => setRightNavOpen(false);
 
-  const openRight = () => {
-    if (leftNavOpen) {
-      closeLeftNav();
-      openRightNav();
-    } else openRightNav();
-  };
-
-  const openInNewTab = (url) => {
-    if (!rightNavOpen && !leftNavOpen) {
-      window.open(url, "_blank", "noopener,noreferrer");
-    } else {
-      closeRightNav();
-      closeLeftNav();
-    }
-  };
-
   useEffect(() => {
-    // This will run every time "id" changes
-    if (id === "science") {
-      console.log("First page logic runs here!");
+    const validIds = ["science", "mathematics", "computer programming"];
 
-      const fetchFileNames = async () => {
-        try {
-          const res = await fetch(`http://localhost:8081/files/${id}`);
-          setDatabaseNames(await res.json());
+    if (!validIds.includes(id)) return; // skip if id is not one of the allowed ones
 
-          const res2 = await fetch(`http://localhost:8081/links/${id}`);
-          setStoragePath(await res2.json());
+    const fetchFileNames = async () => {
+      try {
+        const res = await fetch(`http://localhost:8081/files/${id}`);
+        setDatabaseNames(await res.json());
 
-          const res3 = await fetch(`http://localhost:8081/ratings/${id}`);
-          setFileRating(await res3.json());
-        } catch (error) {
-          console.error("Error fetching names", error);
-        }
-      };
-      fetchFileNames();
+        const res2 = await fetch(`http://localhost:8081/links/${id}`);
+        setStoragePath(await res2.json());
 
-      // you can fetch data, call an API, etc.
-    } else if (id === "second") {
-      console.log("Second page logic runs here!");
-    }
-  }, [id]); // dependency: runs when id changes
+        const res3 = await fetch(`http://localhost:8081/ratings/${id}`);
+        setFileRating(await res3.json());
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    fetchFileNames();
+  }, [id]);
 
   return (
     <div>
-      <section className="container">
+      <section className="subject_Container">
         {!searchActive && (
           <>
             <Header
@@ -100,18 +80,16 @@ const SubjectDocuments = () => {
               rightNavOpen={rightNavOpen}
             />
             <main className="main-content">
-              {id === "science" && (
-                <DocumentList
-                  openRightNav={openRightNav}
-                  databaseNames={databaseNames}
-                  storage_path={storage_path_for_fileName}
-                  file_rating={file_rating_for_fileName}
-                  rightNavOpen={rightNavOpen}
-                  leftNavOpen={leftNavOpen}
-                  closeLeftNav={closeLeftNav}
-                  closeRightNav={closeRightNav}
-                />
-              )}
+              <DocumentList
+                openRightNav={openRightNav}
+                databaseNames={databaseNames}
+                storage_path={storage_path_for_fileName}
+                file_rating={file_rating_for_fileName}
+                rightNavOpen={rightNavOpen}
+                leftNavOpen={leftNavOpen}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+              />
             </main>
           </>
         )}
@@ -122,7 +100,7 @@ const SubjectDocuments = () => {
           searchInputRef={searchInputRef}
         />
       </section>
-      <div className="homePageFooter">
+      <div className="subjectDocumentsFooter">
         <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>
       </div>
