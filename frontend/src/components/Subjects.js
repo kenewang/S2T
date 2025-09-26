@@ -59,7 +59,6 @@ const Subjects = ({
                   <li key={i}>
                     <a
                       className="anchor"
-                      href="#"
                       onClick={() => {
                         handleClick(item.toLowerCase());
                       }}

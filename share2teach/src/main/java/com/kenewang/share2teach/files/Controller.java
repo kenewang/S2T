@@ -18,73 +18,70 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.logging.Logger;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
 @RestController
 public class Controller {
-    @Autowired
-    private final FileRepository fileRepository;
+
+    private final FileService fileService;
+    private final SubjectService subjectService;
     private final Logger logger = Logger.getLogger(Controller.class.getName());
-    private final SubjectRepository subjectRepository;
+    private final JavaMailSender mailSender;
 
-    private JavaMailSender mailSender;
-
-    public Controller(FileRepository fileRepository, SubjectRepository subjectRepository) {
-        this.fileRepository = fileRepository;
-        this.subjectRepository = subjectRepository;
+    public Controller(FileService fileService, SubjectService subjectService, JavaMailSender mailSender) {
+        this.fileService = fileService;
+        this.subjectService = subjectService;
+        this.mailSender = mailSender;
     }
 
     @GetMapping("/files/names")
     public List<String> getFileNames() {
-        return fileRepository.findFirst20FileNames();
+        return fileService.getFirst20FileNames();
     }
 
     @GetMapping("/files/links")
     public List<String> getFileLinks() {
-        return fileRepository.findFirst20FileLinks();
-
+        return fileService.getFirst20FileLinks();
     }
 
     @GetMapping("/files/ratings")
     public List<String> getFileRatings() {
-        return fileRepository.findFirst20FileRatings();
+        return fileService.getFirst20FileRatings();
     }
 
     @GetMapping("/subjects/names")
     public List<String> getSubjectNames() {
-        return subjectRepository.findAllSubjectNames();
-
+        return subjectService.getAllSubjectNames();
     }
 
     @GetMapping("/files/{subject}")
     public List<String> getFileNamesBySubject(@PathVariable String subject) {
-        Pageable limit = PageRequest.of(0, 20); // first 20 results
-        return fileRepository.findFileNamesBySubject(subject, limit);
+        return fileService.getFileNamesBySubject(subject);
     }
 
     @GetMapping("/links/{subject}")
     public List<String> getFileLinksBySubject(@PathVariable String subject) {
-        Pageable limit = PageRequest.of(0, 20);
-        return fileRepository.findFileLinksBySubject(subject, limit);
+        return fileService.getFileLinksBySubject(subject);
     }
 
     @GetMapping("/ratings/{subject}")
     public List<String> getFileRatingsBySubject(@PathVariable String subject) {
-        Pageable limit = PageRequest.of(0, 20);
-        return fileRepository.findFileRatingsBySubject(subject, limit);
-    }
-
-    public String getMethodName(@RequestParam String param) {
-        return new String();
+        return fileService.getFileRatingsBySubject(subject);
     }
 
     @PostMapping("/send-email")
     public String sendEmail(@RequestBody EmailRequest request) {
         logger.info("Preparing to send email...");
-
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-            // Set recipient, subject, and HTML content
             helper.setTo("kenewangoganne@gmail.com");
             helper.setSubject("New message from " + request.getName() + " (" + request.getEmail() + ")");
             String htmlContent = "<p><strong>Sender Email:</strong> " + request.getEmail() + "</p>"
@@ -98,11 +95,9 @@ public class Controller {
 
         } catch (MessagingException me) {
             logger.severe("MessagingException: " + me.getMessage());
-            me.printStackTrace();
             return "Error sending email (MessagingException): " + me.getMessage();
         } catch (Exception e) {
             logger.severe("Exception: " + e.getMessage());
-            e.printStackTrace();
             return "Error sending email (Exception): " + e.getMessage();
         }
     }
