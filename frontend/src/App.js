@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useRef, useState } from "react";
+
+import { useRef, useState, useEffect } from "react";
 import "./global.css";
 import "./normalize.css";
 
@@ -60,6 +61,21 @@ export default function App() {
   const closeSearch = () => setSearchActive(false);
 
   const { databaseNames, storage_path, file_rating } = useFiles();
+
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token") //quick trick to turn something into a true/false
+  );
+
+  useEffect(() => {
+    const token = localStorage.getItem("token"); //Check if there’s a saved token in the browser.
+    if (token) {
+      setIsAuthenticated(true); //If a token exists → mark the user as authenticated.
+    }
+  }, []);
+
+  const setAuth = (boolean) => {
+    setIsAuthenticated(boolean);
+  };
 
   return (
     <Router>
@@ -148,6 +164,7 @@ export default function App() {
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
+              setAuth={setAuth}
             />
           }
         />
