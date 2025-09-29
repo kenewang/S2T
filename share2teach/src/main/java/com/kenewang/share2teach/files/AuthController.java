@@ -3,6 +3,8 @@ package com.kenewang.share2teach.files;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.Map;
 
 @RestController
@@ -16,10 +18,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<?> register(@RequestBody RegisterRequest request, HttpSession session) {
         try {
             String jwtToken = userService.registerUser(request);
-            return ResponseEntity.ok().body(Map.of("jwtToken", jwtToken));
+            session.setAttribute("jwtToken", jwtToken);
+
+            return ResponseEntity.ok().body(Map.of("jwtToken", jwtToken, "sessionId", session.getId()));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(Map.of("msg", e.getMessage()));
         } catch (RuntimeException e) {
