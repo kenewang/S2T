@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface FileRepository extends JpaRepository<FileEntity, Long> {
+
+    // custom queries
     @Query(value = "SELECT file_name FROM file LIMIT 10", nativeQuery = true)
     List<String> findFirst20FileNames();
 

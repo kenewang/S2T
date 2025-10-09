@@ -153,6 +153,7 @@ export default function App() {
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
+              setAuth={setAuth}
             />
           }
         />

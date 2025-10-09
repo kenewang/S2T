@@ -17,4 +17,14 @@ public class InputValidator {
             throw new IllegalArgumentException("Invalid Email");
         }
     }
+
+    public void validateLogin(LoginRequest loginRequest) {
+        if (loginRequest.getEmail() == null || loginRequest.getPassword() == null) {
+            throw new IllegalArgumentException("Please provide both email and password");
+        }
+        if (!EMAIL_REGEX.matcher(loginRequest.getEmail()).matches()) {
+            throw new IllegalArgumentException("Invalid Email");
+        }
+    }
+
 }

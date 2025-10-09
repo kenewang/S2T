@@ -42,6 +42,9 @@ public class UserEntity {
 
     private LocalDateTime created_at = LocalDateTime.now();
 
+    @Column(name = "last_login")
+    private LocalDateTime last_login = LocalDateTime.now();
+
     // setters
 
     public void setUser_id(Long user_id) {
@@ -84,6 +87,10 @@ public class UserEntity {
         this.created_at = created_at;
     }
 
+    public void setLast_login(LocalDateTime last_login) {
+        this.last_login = last_login;
+    }
+
     // getters
 
     public Long getUser_id() {
@@ -124,6 +131,10 @@ public class UserEntity {
 
     public LocalDateTime getCreated_at() {
         return created_at;
+    }
+
+    public LocalDateTime getLast_login() {
+        return last_login;
     }
 
 }

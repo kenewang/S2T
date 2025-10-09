@@ -1,5 +1,7 @@
 package com.kenewang.share2teach.files;
 
+import java.time.LocalDateTime;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,12 @@ public class UserService {
     }
 
     public String registerUser(RegisterRequest request) {
-        inputValidator.validateRegister(request);
+        inputValidator.validateRegister(request); // validate
 
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new RuntimeException("User already exists");
+
+            // check if the user already exist
         }
 
         String hashedPassword = passwordEncoder.encode(request.getPassword());
@@ -39,6 +43,34 @@ public class UserService {
         return jwtUtil.generateToken(newUser);
     }
 
+    // Login method
+    public String loginUser(LoginRequest loginRequest) {
+        // Validate input
+        inputValidator.validateLogin(loginRequest);
+
+        // Find user by email
+        UserEntity user = userRepository.findByEmail(loginRequest.getEmail())
+                .orElseThrow(() -> new RuntimeException("Invalid Credentials. User not found."));
+
+        // Check password
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword_hash())) {
+            throw new RuntimeException("Invalid Credentials. Incorrect password.");
+        }
+
+        // Update last login
+        user.setLast_login(LocalDateTime.now());
+        userRepository.save(user);
+
+        // Generate JWT
+        String jwtToken = jwtUtil.generateToken(user);
+
+        // (Optional) Log user action like in Node.js
+        // logUserAction(user.getUser_id(), "login", "User logged in successfully");
+
+        return jwtToken;
+    }
+
+    // verify the token version of the user
     public boolean verifyTokenVersion(Long userId, Integer tokenVersion) {
         return userRepository.findById(userId).map(user -> user.getToken_version().equals(tokenVersion)).orElse(false);
     }
