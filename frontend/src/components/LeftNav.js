@@ -1,12 +1,21 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LeftNav.css";
-const LeftNav = ({ leftNavOpen, closeLeftNav, leftNavRef }) => {
+
+const LeftNav = ({
+  leftNavOpen,
+  closeLeftNav,
+  leftNavRef,
+  isAuthenticated,
+  setAuth,
+}) => {
   const navigate = useNavigate();
+
   const goSomeWhere = (path) => {
     closeLeftNav();
     navigate(path);
   };
+
   useEffect(() => {
     if (!leftNavOpen) return;
 
@@ -28,37 +37,103 @@ const LeftNav = ({ leftNavOpen, closeLeftNav, leftNavRef }) => {
     leftNavRef.current.dataset.openedAt = performance.now();
   }
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:8081/auth/logout", {
+        method: "POST",
+        headers: {
+          jwt_token: localStorage.getItem("token"),
+        },
+      });
+
+      // Handle token expiration
+      if (response.status === 403 || response.status === 401) {
+        localStorage.removeItem("token");
+        setAuth(false);
+        navigate("/");
+        return;
+      }
+
+      const parseRes = await response.json();
+
+      if (response.ok) {
+        localStorage.removeItem("token");
+        setAuth(false);
+        navigate("/");
+      } else {
+        alert(parseRes.msg || "Logout failed");
+      }
+    } catch (err) {
+      console.error("Error logging out:", err.message);
+    }
+  };
+
   return (
     <div
       id="mySidenav"
-      ref={leftNavRef} //we now have a remote to the LeftNav object in the DOM
-      className={`sidenav ${leftNavOpen ? "open" : ""}`} // goes into LeftNav.css file
-      //If isOpen is true → the class will be ".sidenav.open" inside LeftNav.css.
-      //If isOpen is false → the class will just be ".sidenav" inside style.css.
-      //The CSS handles the actual width change.
+      ref={leftNavRef}
+      className={`sidenav ${leftNavOpen ? "open" : ""}`}
     >
+      {/* Show Home & Browse only if NOT authenticated */}
+      {!isAuthenticated && (
+        <>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/");
+            }}
+          >
+            Home
+          </a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/browse");
+            }}
+          >
+            Browse
+          </a>
+        </>
+      )}
+
+      {/* Show Log out only if authenticated */}
+      {isAuthenticated && (
+        <>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/home");
+            }}
+          >
+            Home
+          </a>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              // Add logout logic here
+              handleLogout();
+            }}
+          >
+            Log out
+          </a>
+        </>
+      )}
+
+      {/* Close button */}
       <a
         href="#"
         className="closebtn"
         onClick={(e) => {
-          //an event object is created and passed inside the anonymous function and "e" references it
-          e.preventDefault(); //we use that e to get the event object's "preventDefault()" method
-          //the preventDefault() stops the browser's default action like when going somewhere after clicking a link
+          e.preventDefault();
           closeLeftNav();
         }}
       >
         ×
       </a>
-      <a
-        href="#"
-        onClick={(e) => {
-          e.preventDefault();
-          goSomeWhere("/");
-        }}
-      >
-        Home
-      </a>
-      <a href="#">Browse</a>
     </div>
   );
 };

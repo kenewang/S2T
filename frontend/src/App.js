@@ -8,6 +8,7 @@ import useFiles from "./hooks/useFiles";
 
 import ScrollToTop from "./components/ScrollToTop";
 import LeftNav from "./components/LeftNav";
+
 import "./components/LeftNav.css";
 
 import RightNav from "./components/RightNav";
@@ -89,7 +90,10 @@ export default function App() {
                 leftNavOpen={leftNavOpen}
                 closeLeftNav={closeLeftNav}
                 leftNavRef={leftNavRef}
+                isAuthenticated={isAuthenticated}
+                setAuth={setAuth}
               />
+
               <RightNav
                 rightNavOpen={rightNavOpen}
                 rightNavRef={rightNavRef}
@@ -188,6 +192,8 @@ export default function App() {
           path="/home"
           element={
             <HomePage
+              isAuthenticated={isAuthenticated}
+              setAuth={setAuth}
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
@@ -206,6 +212,8 @@ export default function App() {
           path="/documents/:id"
           element={
             <SubjectDocuments
+              isAuthenticated={isAuthenticated}
+              setAuth={setAuth}
               leftNavRef={leftNavRef}
               rightNavRef={rightNavRef}
               databaseNames={databaseNames}

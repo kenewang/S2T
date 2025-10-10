@@ -3,7 +3,7 @@ import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
 
 import RightNav from "./RightNav";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ScienceDocuments from "./ScienceDocuments";
 import MathematicsDocuments from "./MathematicsDocuments";
@@ -19,6 +19,8 @@ const HomePage = ({
   closeSearch, //passed down from App.js
   searchInputRef, //passed down from App.js
   file_rating,
+  isAuthenticated,
+  setAuth,
 }) => {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -69,6 +71,8 @@ const HomePage = ({
               leftNavOpen={leftNavOpen}
               closeLeftNav={closeLeftNav}
               leftNavRef={leftNavRef}
+              isAuthenticated={isAuthenticated}
+              setAuth={setAuth}
             />
 
             <RightNav

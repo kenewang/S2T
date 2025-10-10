@@ -7,7 +7,7 @@ import "./SubjectDocuments.css";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const SubjectDocuments = () => {
+const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const { id } = useParams();
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path_for_fileName, setStoragePath] = useState([]);
@@ -72,6 +72,8 @@ const SubjectDocuments = () => {
               leftNavOpen={leftNavOpen}
               closeLeftNav={closeLeftNav}
               leftNavRef={leftNavRef}
+              isAuthenticated={isAuthenticated}
+              setAuth={setAuth}
             />
 
             <RightNav
