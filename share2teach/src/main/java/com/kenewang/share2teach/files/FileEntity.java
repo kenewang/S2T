@@ -1,36 +1,40 @@
 package com.kenewang.share2teach.files;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "file", schema = "public")
-
 public class FileEntity {
 
     @Id
-    @Column(name = "file_id") // primary key (must include it)
+    @SequenceGenerator(name = "file_seq", sequenceName = "file_file_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_seq")
+    @Column(name = "file_id")
+
     private Long id;
 
     @Column(name = "file_name")
     private String fileName;
 
     @Column(name = "storage_path")
-    private String storage_path;
+    private String storagePath;
 
     @Column(name = "rating")
-    private String file_rating;
+    private Double fileRating;
 
-    // Instead of subject as an integer, map it as a relationship
     @ManyToOne
     @JoinColumn(name = "subject", referencedColumnName = "subject_id")
     private SubjectEntity subject;
 
-    // getters and setters
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -47,20 +51,20 @@ public class FileEntity {
         this.fileName = fileName;
     }
 
-    public String getFileLinks() {
-        return storage_path;
+    public String getStoragePath() {
+        return storagePath;
     }
 
-    public void setFileLinks(String storage_path) {
-        this.storage_path = storage_path;
+    public void setStoragePath(String storagePath) {
+        this.storagePath = storagePath;
     }
 
-    public String getFileRatings() {
-        return file_rating;
+    public Double getFileRating() {
+        return fileRating;
     }
 
-    public void setFileRatings(String file_rating) {
-        this.file_rating = file_rating;
+    public void setFileRating(Double fileRating) {
+        this.fileRating = fileRating;
     }
 
     public SubjectEntity getSubject() {

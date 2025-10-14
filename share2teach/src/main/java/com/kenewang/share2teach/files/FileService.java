@@ -15,6 +15,10 @@ public class FileService {
         this.fileRepository = fileRepository;
     }
 
+    public List<Long> getFirst20FileIds() {
+        return fileRepository.findFirst20FileIds();
+    }
+
     public List<String> getFirst20FileNames() {
         return fileRepository.findFirst20FileNames();
     }
@@ -23,8 +27,13 @@ public class FileService {
         return fileRepository.findFirst20FileLinks();
     }
 
-    public List<String> getFirst20FileRatings() {
+    public List<Double> getFirst20FileRatings() {
         return fileRepository.findFirst20FileRatings();
+    }
+
+    public List<Long> getFileIdsBySubject(String subject) {
+        Pageable limit = PageRequest.of(0, 20);
+        return fileRepository.findFileIdsBySubject(subject, limit);
     }
 
     public List<String> getFileNamesBySubject(String subject) {
@@ -37,7 +46,7 @@ public class FileService {
         return fileRepository.findFileLinksBySubject(subject, limit);
     }
 
-    public List<String> getFileRatingsBySubject(String subject) {
+    public List<Double> getFileRatingsBySubject(String subject) {
         Pageable limit = PageRequest.of(0, 20);
         return fileRepository.findFileRatingsBySubject(subject, limit);
     }

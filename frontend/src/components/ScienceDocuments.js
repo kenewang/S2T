@@ -2,16 +2,18 @@ import menu_icon from "../svg/iconmonstr-menu-dot-vertical-filled.svg";
 import file_icon from "../svg/icons8-file-100.png";
 import "./HomePage.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const ScienceDocuments = ({
-  databaseNames,
-  storage_path,
-  OpenRight,
+  openRight,
   openInNewTab,
-  file_rating,
+
   handleClick,
 }) => {
   const [startIndex, setStartIndex] = useState(0);
+  const [databaseNames, setDatabaseNames] = useState([]);
+  const [storage_path, setStoragePath] = useState([]);
+  const [file_rating, setFileRating] = useState([]);
+  const [fileIds, setFileId] = useState([]);
 
   const next = () => {
     if (startIndex < databaseNames.length - 2) {
@@ -25,12 +27,34 @@ const ScienceDocuments = ({
     }
   };
 
+  useEffect(() => {
+    const fetchMathFiles = async () => {
+      try {
+        const res = await fetch("http://localhost:8081/files/science");
+        setDatabaseNames(await res.json());
+
+        const res2 = await fetch("http://localhost:8081/links/science");
+        setStoragePath(await res2.json());
+
+        const res3 = await fetch("http://localhost:8081/ratings/science");
+        setFileRating(await res3.json());
+
+        const res4 = await fetch("http://localhost:8081/ids/science");
+        setFileId(await res4.json());
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+
+      fetchMathFiles();
+    };
+  }, []);
+
   return (
     <>
       <a
         className="section-heading"
         onClick={() => {
-          handleClick("science");
+          handleClick("mathematics");
         }}
       >
         Science
@@ -58,6 +82,7 @@ const ScienceDocuments = ({
               const ext = extIndex === -1 ? "" : item.slice(extIndex);
               const link = storage_path[i];
               const rating = file_rating[i];
+              const fileId = fileIds[i]; // 👈 match each name/link/rating with its ID
 
               return (
                 <div className="document" key={i}>
@@ -75,7 +100,7 @@ const ScienceDocuments = ({
                     className="three_dot"
                     src={menu_icon}
                     alt="Options"
-                    onClick={OpenRight}
+                    onClick={() => openRight(fileId)} // 👈 pass fileId
                   />
                   <p
                     className="truncate-middle"

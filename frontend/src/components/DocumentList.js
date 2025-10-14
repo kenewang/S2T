@@ -3,16 +3,19 @@ import file_icon from "../svg/icons8-file-100.png";
 import "./DocumentList.css";
 
 const DocumentList = ({
-  openRightNav, //we need this prop to be able to open the right nav when clicking the three dot menu
-  databaseNames, //this prop is for an array of file names we get from the database
-  storage_path, //this one's for an array of actual file links from the database
+  openRightNav,
+  databaseNames,
+  storage_path,
   file_rating,
-  rightNavOpen, //this prop is whether right nav is opened or not
+  rightNavOpen,
   leftNavOpen,
   closeLeftNav,
-  closeRightNav, //this prop is a function ref and we use it to close the right nav
+  closeRightNav,
+  setActiveFileId, // 👈 added prop
+  fileIds, // 👈 add this array of file IDs fetched from backend
 }) => {
-  const OpenRight = () => {
+  const OpenRight = (fileId) => {
+    setActiveFileId(fileId); // 👈 store the file being rated
     if (leftNavOpen) {
       closeLeftNav();
       openRightNav();
@@ -35,9 +38,9 @@ const DocumentList = ({
         const name = extIndex === -1 ? item : item.slice(0, extIndex);
         const ext = extIndex === -1 ? "" : item.slice(extIndex);
 
-        // pick a storage_path for this file
         const link = storage_path[i];
         const rating = file_rating[i];
+        const fileId = fileIds[i]; // 👈 match each name/link/rating with its ID
 
         return (
           <div className="document" key={i}>
@@ -45,19 +48,21 @@ const DocumentList = ({
               className="file_icon"
               src={file_icon}
               alt="file_icon"
-              onClick={() => openInNewTab(link)} //use an arrow function to avoid calling the function immediately since this function takes an argument.
+              onClick={() => openInNewTab(link)}
             />
 
             <p className="rating">
               <span className="rating_span">{rating}</span> Rating
             </p>
+
             {/* Three-dot menu */}
             <img
               className="three_dot"
               src={menu_icon}
               alt="Options"
-              onClick={OpenRight}
+              onClick={() => OpenRight(fileId)} // 👈 pass fileId
             />
+
             {/* File name */}
             <p className="truncate-middle" onClick={() => openInNewTab(link)}>
               <span className="start">{name}</span>

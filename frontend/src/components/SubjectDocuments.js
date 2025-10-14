@@ -10,8 +10,9 @@ import { useParams } from "react-router-dom";
 const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const { id } = useParams();
   const [databaseNames, setDatabaseNames] = useState([]);
-  const [storage_path_for_fileName, setStoragePath] = useState([]);
-  const [file_rating_for_fileName, setFileRating] = useState([]);
+  const [storage_path, setStoragePath] = useState([]);
+  const [file_rating, setFileRating] = useState([]);
+  const [fileIds, setFileId] = useState([]);
 
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -30,6 +31,10 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const openRightNav = () => setRightNavOpen(true);
   const closeRightNav = () => setRightNavOpen(false);
 
+  const [activeFileId, setActiveFileId] = useState(null);
+
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
   useEffect(() => {
     const validIds = ["science", "mathematics", "computer programming"];
 
@@ -45,13 +50,20 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
 
         const res3 = await fetch(`http://localhost:8081/ratings/${id}`);
         setFileRating(await res3.json());
+
+        const res4 = await fetch(`http://localhost:8081/ids/${id}`);
+        setFileId(await res4.json());
       } catch (error) {
         console.error("Error fetching data", error);
       }
     };
 
     fetchFileNames();
-  }, [id]);
+  }, [id, refreshTrigger]);
+
+  const onRatingSubmitted = () => {
+    setRefreshTrigger((prev) => prev + 1);
+  };
 
   return (
     <div>
@@ -80,17 +92,21 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
               rightNavRef={rightNavRef}
               closeRightNav={closeRightNav}
               rightNavOpen={rightNavOpen}
+              activeFileId={activeFileId}
+              onRatingSubmitted={onRatingSubmitted} // <-- pass callback
             />
             <main className="main-content">
               <DocumentList
                 openRightNav={openRightNav}
                 databaseNames={databaseNames}
-                storage_path={storage_path_for_fileName}
-                file_rating={file_rating_for_fileName}
+                storage_path={storage_path}
+                file_rating={file_rating}
                 rightNavOpen={rightNavOpen}
                 leftNavOpen={leftNavOpen}
-                closeLeftNav={closeLeftNav}
                 closeRightNav={closeRightNav}
+                closeLeftNav={closeLeftNav}
+                fileIds={fileIds} // 👈 must come from backend fetch
+                setActiveFileId={setActiveFileId}
               />
             </main>
           </>

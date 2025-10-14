@@ -21,6 +21,10 @@ const HomePage = ({
   file_rating,
   isAuthenticated,
   setAuth,
+  fileIds,
+  activeFileId,
+  setActiveFileId,
+  onRatingSubmitted,
 }) => {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -33,13 +37,13 @@ const HomePage = ({
 
   const navigate = useNavigate();
 
-  const openRight = () => {
+  const openRight = (fileId) => {
+    setActiveFileId(fileId); // 👈 store the file being rated
     if (leftNavOpen) {
       closeLeftNav();
       openRightNav();
     } else openRightNav();
   };
-
   const openInNewTab = (url) => {
     if (!rightNavOpen && !leftNavOpen) {
       window.open(url, "_blank", "noopener,noreferrer");
@@ -79,31 +83,30 @@ const HomePage = ({
               rightNavRef={rightNavRef}
               closeRightNav={closeRightNav}
               rightNavOpen={rightNavOpen}
+              activeFileId={activeFileId}
+              onRatingSubmitted={onRatingSubmitted} // <-- pass callback
             />
 
             <ScienceDocuments
               handleClick={handleClick}
-              storage_path={storage_path}
-              databaseNames={databaseNames}
               OpenRight={openRight}
               openInNewTab={openInNewTab}
-              file_rating={file_rating}
+              fileIds={fileIds} // 👈 must come from backend fetch
+              setActiveFileId={setActiveFileId}
             />
             <MathematicsDocuments
               handleClick={handleClick}
-              storage_path={storage_path}
-              databaseNames={databaseNames}
               OpenRight={openRight}
               openInNewTab={openInNewTab}
-              file_rating={file_rating}
+              fileIds={fileIds} // 👈 must come from backend fetch
+              setActiveFileId={setActiveFileId}
             />
             <ProgrammingDocuments
               handleClick={handleClick}
-              storage_path={storage_path}
-              databaseNames={databaseNames}
-              file_rating={file_rating}
               OpenRight={openRight}
               openInNewTab={openInNewTab}
+              fileIds={fileIds} // 👈 must come from backend fetch
+              setActiveFileId={setActiveFileId}
             />
           </>
         )}

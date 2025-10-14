@@ -37,7 +37,7 @@ const Login = ({
       const parseRes = await response.json();
 
       if (parseRes.jwtToken) {
-        localStorage.setItem("token", parseRes.jwtToken);
+        localStorage.setItem("token", parseRes.jwtToken); //store jwt token in the browser
         setAuth(true);
         navigate("/home");
       } else {

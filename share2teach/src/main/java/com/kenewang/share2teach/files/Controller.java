@@ -28,6 +28,11 @@ public class Controller {
         this.mailSender = mailSender;
     }
 
+    @GetMapping("/files/ids")
+    public List<Long> getFileIds() {
+        return fileService.getFirst20FileIds();
+    }
+
     @GetMapping("/files/names")
     public List<String> getFileNames() {
         return fileService.getFirst20FileNames();
@@ -39,13 +44,18 @@ public class Controller {
     }
 
     @GetMapping("/files/ratings")
-    public List<String> getFileRatings() {
+    public List<Double> getFileRatings() {
         return fileService.getFirst20FileRatings();
     }
 
     @GetMapping("/subjects/names")
     public List<String> getSubjectNames() {
         return subjectService.getAllSubjectNames();
+    }
+
+    @GetMapping("/ids/{subject}")
+    public List<Long> getFileIdsBySubject(@PathVariable String subject) {
+        return fileService.getFileIdsBySubject(subject);
     }
 
     @GetMapping("/files/{subject}")
@@ -59,7 +69,7 @@ public class Controller {
     }
 
     @GetMapping("/ratings/{subject}")
-    public List<String> getFileRatingsBySubject(@PathVariable String subject) {
+    public List<Double> getFileRatingsBySubject(@PathVariable String subject) {
         return fileService.getFileRatingsBySubject(subject);
     }
 

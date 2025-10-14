@@ -1,13 +1,22 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "./RightNav.css";
-
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import withReactContent from "sweetalert2-react-content";
-const RightNav = ({ rightNavOpen, closeRightNav, rightNavRef }) => {
+
+const RightNav = ({
+  rightNavOpen,
+  closeRightNav,
+  rightNavRef,
+  activeFileId,
+  onRatingSubmitted, // <-- new prop
+}) => {
   const succesSwal = withReactContent(Swal);
+
   useEffect(() => {
-    if (!rightNavOpen) return;
+    if (!rightNavOpen) {
+      return;
+    }
 
     const handleOutsideClick = (event) => {
       const justOpened =
@@ -32,21 +41,21 @@ const RightNav = ({ rightNavOpen, closeRightNav, rightNavRef }) => {
     Swal.fire({
       title: "Rate File!",
       html: `
-      <div id="star-container" style="font-size: 1.5rem; color: gray;">
-        <i class="fa fa-star" data-value="1"></i>
-        <i class="fa fa-star" data-value="2"></i>
-        <i class="fa fa-star" data-value="3"></i>
-        <i class="fa fa-star" data-value="4"></i>
-        <i class="fa fa-star" data-value="5"></i>
-      </div>
-      <button id="submit-rating" class="rating-submit-btn">
-        Submit Rating
-      </button>
-    `,
+        <div id="star-container" style="font-size: 1.5rem; color: gray;">
+          <i class="fa fa-star" data-value="1"></i>
+          <i class="fa fa-star" data-value="2"></i>
+          <i class="fa fa-star" data-value="3"></i>
+          <i class="fa fa-star" data-value="4"></i>
+          <i class="fa fa-star" data-value="5"></i>
+        </div>
+        <button id="submit-rating" class="rating-submit-btn">
+          Submit Rating
+        </button>
+      `,
       showConfirmButton: false,
       customClass: {
-        popup: "rating-popup", // 👈 add custom class to the popup
-        title: "rating-title", // 👈 custom class for the title if you need
+        popup: "rating-popup",
+        title: "rating-title",
       },
       didOpen: () => {
         const stars = Swal.getPopup().querySelectorAll("#star-container i");
@@ -64,16 +73,38 @@ const RightNav = ({ rightNavOpen, closeRightNav, rightNavRef }) => {
 
         const submitBtn = Swal.getPopup().querySelector("#submit-rating");
         if (submitBtn) {
-          submitBtn.addEventListener("click", () => {
+          submitBtn.addEventListener("click", async () => {
             Swal.close();
-            if (selected > 0) {
-              console.log("User rating:", selected);
-              showSuccessAlert();
-              fetch("/api/rating", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ rating: selected }),
-              });
+            if (selected > 0 && activeFileId) {
+              try {
+                const response = await fetch(
+                  "http://localhost:8081/rate-file",
+                  {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      file_id: activeFileId,
+                      rating: selected,
+                    }),
+                  }
+                );
+
+                // check for non-OK responses
+                if (!response.ok) {
+                  console.error("Server returned", response.status);
+                } else {
+                  const data = await response.json();
+                  console.log("Rating response:", data);
+                }
+                showSuccessAlert();
+
+                // Notify parent to refresh data
+                if (typeof onRatingSubmitted === "function") {
+                  onRatingSubmitted();
+                }
+              } catch (error) {
+                console.error("Error submitting rating:", error);
+              }
             }
           });
         }
@@ -92,6 +123,7 @@ const RightNav = ({ rightNavOpen, closeRightNav, rightNavRef }) => {
         title: "success-pop-up-title",
         confirmButton: "success-button-confirm",
       },
+      timer: 2000,
     });
   };
 
@@ -116,4 +148,5 @@ const RightNav = ({ rightNavOpen, closeRightNav, rightNavRef }) => {
     </div>
   );
 };
+
 export default RightNav;

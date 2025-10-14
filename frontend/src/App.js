@@ -46,11 +46,16 @@ export default function App() {
   const [rightNavOpen, setRightNavOpen] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
 
+  const [activeFileId, setActiveFileId] = useState(null);
+
   const leftNavRef = useRef(null);
   const rightNavRef = useRef(null);
   const searchInputRef = useRef(null);
 
   const showSearchLogo = useRef(true); //we are going to hide the search logo on some pages
+
+  // trigger that causes re-fetch / re-render when incremented
+  const [ratingTrigger, setRatingTrigger] = useState(0);
 
   const openLeftNav = () => setLeftNavOpen(true);
   const closeLeftNav = () => setLeftNavOpen(false);
@@ -61,7 +66,8 @@ export default function App() {
   const openSearch = () => setSearchActive(true);
   const closeSearch = () => setSearchActive(false);
 
-  const { databaseNames, storage_path, file_rating } = useFiles();
+  const { databaseNames, storage_path, file_rating, fileIds } =
+    useFiles(ratingTrigger);
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token") //quick trick to turn something into a true/false
@@ -76,6 +82,11 @@ export default function App() {
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
+  };
+
+  // callback passed to RightNav
+  const handleRatingSubmitted = () => {
+    setRatingTrigger((prev) => prev + 1);
   };
 
   return (
@@ -101,6 +112,8 @@ export default function App() {
                 leftNavOpen={leftNavOpen}
                 closeLeftNav={closeLeftNav}
                 openRightNav={openRightNav}
+                activeFileId={activeFileId}
+                onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
               />
 
               {!searchActive && (
@@ -128,6 +141,8 @@ export default function App() {
                       leftNavOpen={leftNavOpen}
                       closeRightNav={closeRightNav}
                       closeLeftNav={closeLeftNav}
+                      fileIds={fileIds} // 👈 must come from backend fetch
+                      setActiveFileId={setActiveFileId}
                     />
                   </main>
 
@@ -201,10 +216,10 @@ export default function App() {
               searchActive={searchActive}
               closeSearch={closeSearch}
               searchInputRef={searchInputRef}
-              databaseNames={databaseNames}
-              storage_path={storage_path}
               rightNavRef={rightNavRef}
-              file_rating={file_rating}
+              activeFileId={activeFileId}
+              fileIds={fileIds} // 👈 must come from backend fetch
+              setActiveFileId={setActiveFileId}
             />
           }
         />
