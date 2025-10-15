@@ -1,13 +1,72 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import DocumentList from "./DocumentList";
 
-const SearchOverlay = ({ searchActive, closeSearch, searchInputRef }) => {
+const SearchOverlay = ({
+  searchActive,
+  closeSearch,
+  searchInputRef,
+  openRightNav,
+  rightNavOpen,
+  leftNavOpen,
+  closeRightNav,
+  closeLeftNav,
+  setActiveFileId,
+}) => {
+  const [query, setQuery] = useState("");
+  const [databaseNames, setDatabaseNames] = useState([]);
+  const [storage_path, setStoragePath] = useState([]);
+  const [file_rating, setFileRating] = useState([]);
+  const [fileIds, setFileId] = useState([]);
+
+  // --- Function to handle searching ---
+  const handleSearch = async () => {
+    if (query.trim() === "") return;
+
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    try {
+      const res = await fetch(
+        `http://localhost:8081/files/search?query=${query}`,
+        { signal }
+      );
+      const data = await res.json();
+
+      setDatabaseNames(data.map((d) => d.fileName));
+      setStoragePath(data.map((d) => d.filePath));
+      setFileRating(data.map((d) => d.fileRating));
+      setFileId(data.map((d) => d.fileId));
+    } catch (err) {
+      if (err.name === "AbortError") console.log("Fetch aborted 👋");
+      else console.error("Fetch error:", err);
+    }
+
+    // return cleanup to abort fetch if needed
+    return () => controller.abort();
+  };
+
+  // --- Handle Enter key ---
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSearch();
+  };
+
+  // --- Focus input when overlay opens ---
   useEffect(() => {
     if (searchActive) {
-      requestAnimationFrame(() => {
-        searchInputRef.current?.focus();
-      });
+      requestAnimationFrame(() => searchInputRef.current?.focus());
     }
   }, [searchActive, searchInputRef]);
+
+  // --- Clear search results when overlay closes ---
+  useEffect(() => {
+    if (!searchActive) {
+      setQuery("");
+      setDatabaseNames([]);
+      setStoragePath([]);
+      setFileRating([]);
+      setFileId([]);
+    }
+  }, [searchActive]);
 
   return (
     <div
@@ -22,14 +81,31 @@ const SearchOverlay = ({ searchActive, closeSearch, searchInputRef }) => {
       >
         ←
       </button>
-      <input
-        ref={searchInputRef} //we need this in order to have the remote control to the <input> element on the page
-        //at first "inputRef" is {current: null} but when React finishes showing the <input> to the screen, inputRef is { current: <input type="text" ... /> }
 
+      <input
+        ref={searchInputRef}
         type="text"
         placeholder="Search all items..."
         className="search-field"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
+
+      <main className="main-content">
+        <DocumentList
+          openRightNav={openRightNav}
+          databaseNames={databaseNames}
+          storage_path={storage_path}
+          file_rating={file_rating}
+          rightNavOpen={rightNavOpen}
+          leftNavOpen={leftNavOpen}
+          closeRightNav={closeRightNav}
+          closeLeftNav={closeLeftNav}
+          fileIds={fileIds}
+          setActiveFileId={setActiveFileId}
+        />
+      </main>
     </div>
   );
 };

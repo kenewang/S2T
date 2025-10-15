@@ -50,4 +50,13 @@ public class FileService {
         Pageable limit = PageRequest.of(0, 20);
         return fileRepository.findFileRatingsBySubject(subject, limit);
     }
+
+    public List<FileSearchResponse> searchFiles(String query) {
+        // Fetch files matching the query
+        List<FileEntity> files = fileRepository.findByFileNameContainingIgnoreCase(query);
+
+        // Convert to DTO
+        return files.stream().map(file -> new FileSearchResponse(file.getId(), file.getFileName(),
+                file.getStoragePath(), file.getFileRating())).toList();
+    }
 }

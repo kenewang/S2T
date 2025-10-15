@@ -46,7 +46,7 @@ const useFetchFiles = (subject, ratingTrigger) => {
     };
 
     fetchFiles();
-  }, [subject, ratingTrigger]); // Re-run whenever subject changes
+  }, [subject, ratingTrigger]); // Re-run whenever subject and ratingTrigger changes
 
   return { databaseNames, storagePath, fileRating, fileIds, loading, error };
 };

@@ -159,6 +159,12 @@ export default function App() {
                 searchActive={searchActive}
                 closeSearch={closeSearch}
                 searchInputRef={searchInputRef}
+                openRightNav={openRightNav}
+                rightNavOpen={rightNavOpen}
+                leftNavOpen={leftNavOpen}
+                closeRightNav={closeRightNav}
+                closeLeftNav={closeLeftNav}
+                setActiveFileId={setActiveFileId}
               />
             </div>
           }

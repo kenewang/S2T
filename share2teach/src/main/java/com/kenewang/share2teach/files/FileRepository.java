@@ -46,4 +46,6 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
     @Query("UPDATE FileEntity f SET f.fileRating = :averageRating WHERE f.id = :fileId")
     void updateAverageRating(@Param("fileId") Long fileId, @Param("averageRating") Double averageRating);
 
+    // Search by file name, case-insensitive
+    List<FileEntity> findByFileNameContainingIgnoreCase(String query);
 }
