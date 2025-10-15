@@ -8,24 +8,29 @@ import { useNavigate } from "react-router-dom";
 import ScienceDocuments from "./ScienceDocuments";
 import MathematicsDocuments from "./MathematicsDocuments";
 import ProgrammingDocuments from "./ProgrammingDocuments";
+import useFetchFiles from "../hooks/useFetchFiles";
 
 const HomePage = ({
   leftNavRef, //passed down from App.js
   rightNavRef, //passed down from App.js
   openSearch, //passed down from App.js
-  databaseNames, //passed down from App.js
-  storage_path, //passed down from App.js
+
   searchActive, //passed down from App.js
   closeSearch, //passed down from App.js
   searchInputRef, //passed down from App.js
-  file_rating,
+
   isAuthenticated,
   setAuth,
-  fileIds,
+
   activeFileId,
   setActiveFileId,
-  onRatingSubmitted,
 }) => {
+  const [ratingTrigger, setRatingTrigger] = useState(0);
+  const scienceData = useFetchFiles("science", ratingTrigger);
+  const mathData = useFetchFiles("mathematics", ratingTrigger);
+
+  const programmingData = useFetchFiles("computer programming", ratingTrigger);
+
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
 
@@ -57,6 +62,10 @@ const HomePage = ({
     if (!rightNavOpen && !leftNavOpen) navigate(`/documents/${id}`); // go to the page with the id
   };
 
+  const handleRatingSubmitted = () => {
+    setRatingTrigger((prev) => prev + 1);
+  };
+
   return (
     <div>
       <section className="container">
@@ -84,30 +93,63 @@ const HomePage = ({
               closeRightNav={closeRightNav}
               rightNavOpen={rightNavOpen}
               activeFileId={activeFileId}
-              onRatingSubmitted={onRatingSubmitted} // <-- pass callback
+              onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
             />
 
-            <ScienceDocuments
-              handleClick={handleClick}
-              OpenRight={openRight}
-              openInNewTab={openInNewTab}
-              fileIds={fileIds} // 👈 must come from backend fetch
-              setActiveFileId={setActiveFileId}
-            />
-            <MathematicsDocuments
-              handleClick={handleClick}
-              OpenRight={openRight}
-              openInNewTab={openInNewTab}
-              fileIds={fileIds} // 👈 must come from backend fetch
-              setActiveFileId={setActiveFileId}
-            />
-            <ProgrammingDocuments
-              handleClick={handleClick}
-              OpenRight={openRight}
-              openInNewTab={openInNewTab}
-              fileIds={fileIds} // 👈 must come from backend fetch
-              setActiveFileId={setActiveFileId}
-            />
+            {scienceData.loading ? (
+              <p>Loading Science files...</p>
+            ) : (
+              <ScienceDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={scienceData.databaseNames}
+                storage_path={scienceData.storagePath}
+                file_rating={scienceData.fileRating}
+                fileIds={scienceData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
+            {mathData.loading ? (
+              <p>Loading Math files...</p>
+            ) : (
+              <MathematicsDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={mathData.databaseNames}
+                storage_path={mathData.storagePath}
+                file_rating={mathData.fileRating}
+                fileIds={mathData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
+            {programmingData.loading ? (
+              <p>Loading Programming files...</p>
+            ) : (
+              <ProgrammingDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={programmingData.databaseNames}
+                storage_path={programmingData.storagePath}
+                file_rating={programmingData.fileRating}
+                fileIds={programmingData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
           </>
         )}
 

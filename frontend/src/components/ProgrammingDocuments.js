@@ -6,14 +6,13 @@ import { useState, useEffect } from "react";
 const ProgrammingDocuments = ({
   openRight,
   openInNewTab,
-
+  databaseNames,
+  storage_path,
+  file_rating,
+  fileIds,
   handleClick,
 }) => {
   const [startIndex, setStartIndex] = useState(0);
-  const [databaseNames, setDatabaseNames] = useState([]);
-  const [storage_path, setStoragePath] = useState([]);
-  const [file_rating, setFileRating] = useState([]);
-  const [fileIds, setFileId] = useState([]);
 
   const next = () => {
     if (startIndex < databaseNames.length - 2) {
@@ -26,28 +25,6 @@ const ProgrammingDocuments = ({
       setStartIndex(startIndex - 1);
     }
   };
-
-  useEffect(() => {
-    const fetchMathFiles = async () => {
-      try {
-        const res = await fetch("http://localhost:8081/files/programming");
-        setDatabaseNames(await res.json());
-
-        const res2 = await fetch("http://localhost:8081/links/programming");
-        setStoragePath(await res2.json());
-
-        const res3 = await fetch("http://localhost:8081/ratings/programming");
-        setFileRating(await res3.json());
-
-        const res4 = await fetch("http://localhost:8081/ids/programming");
-        setFileId(await res4.json());
-      } catch (error) {
-        console.error("Error fetching data", error);
-      }
-
-      fetchMathFiles();
-    };
-  }, []);
 
   return (
     <>
