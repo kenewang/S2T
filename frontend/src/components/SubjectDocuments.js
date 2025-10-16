@@ -95,7 +95,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
               activeFileId={activeFileId}
               onRatingSubmitted={onRatingSubmitted} // <-- pass callback
             />
-            <main className="main-content">
+            <main>
               <DocumentList
                 openRightNav={openRightNav}
                 databaseNames={databaseNames}
@@ -116,6 +116,14 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
           searchActive={searchActive}
           closeSearch={closeSearch}
           searchInputRef={searchInputRef}
+          openRightNav={openRightNav}
+          rightNavOpen={rightNavOpen}
+          leftNavOpen={leftNavOpen}
+          closeRightNav={closeRightNav}
+          closeLeftNav={closeLeftNav}
+          setActiveFileId={setActiveFileId}
+          rightNavRef={rightNavRef}
+          onRatingSubmitted={onRatingSubmitted} // <-- pass callback
         />
       </section>
       <div className="subjectDocumentsFooter">

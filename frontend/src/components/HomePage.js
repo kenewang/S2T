@@ -157,6 +157,14 @@ const HomePage = ({
           searchActive={searchActive}
           closeSearch={closeSearch}
           searchInputRef={searchInputRef}
+          openRightNav={openRightNav}
+          rightNavOpen={rightNavOpen}
+          leftNavOpen={leftNavOpen}
+          closeRightNav={closeRightNav}
+          closeLeftNav={closeLeftNav}
+          setActiveFileId={setActiveFileId}
+          rightNavRef={rightNavRef}
+          onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
         />
       </section>
       <div className="homePageFooter">

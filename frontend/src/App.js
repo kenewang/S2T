@@ -165,6 +165,8 @@ export default function App() {
                 closeRightNav={closeRightNav}
                 closeLeftNav={closeLeftNav}
                 setActiveFileId={setActiveFileId}
+                rightNavRef={rightNavRef}
+                onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
               />
             </div>
           }

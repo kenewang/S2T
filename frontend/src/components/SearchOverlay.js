@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import DocumentList from "./DocumentList";
+import RightNav from "./RightNav";
 
 const SearchOverlay = ({
   searchActive,
@@ -11,6 +12,9 @@ const SearchOverlay = ({
   closeRightNav,
   closeLeftNav,
   setActiveFileId,
+  rightNavRef,
+  activeFileId,
+  onRatingSubmitted,
 }) => {
   const [query, setQuery] = useState("");
   const [databaseNames, setDatabaseNames] = useState([]);
@@ -92,7 +96,15 @@ const SearchOverlay = ({
         onKeyDown={handleKeyDown}
       />
 
-      <main className="main-content">
+      <RightNav
+        rightNavRef={rightNavRef}
+        closeRightNav={closeRightNav}
+        rightNavOpen={rightNavOpen}
+        activeFileId={activeFileId}
+        onRatingSubmitted={onRatingSubmitted} // <-- pass callback
+      />
+
+      <main className="main-stuff">
         <DocumentList
           openRightNav={openRightNav}
           databaseNames={databaseNames}

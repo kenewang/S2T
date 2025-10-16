@@ -41,3 +41,12 @@
 input.search-field {
   touch-action: manipulation;
 }
+
+.main-stuff {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.1rem;
+
+  padding: 0 1rem;
+  background: whitesmoke;
+}

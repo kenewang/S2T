@@ -14,7 +14,7 @@ const DocumentList = ({
   setActiveFileId, // 👈 added prop
   fileIds, // 👈 add this array of file IDs fetched from backend
 }) => {
-  const OpenRight = (fileId) => {
+  const openRight = (fileId) => {
     setActiveFileId(fileId); // 👈 store the file being rated
     if (leftNavOpen) {
       closeLeftNav();
@@ -60,7 +60,7 @@ const DocumentList = ({
               className="three_dot"
               src={menu_icon}
               alt="Options"
-              onClick={() => OpenRight(fileId)} // 👈 pass fileId
+              onClick={() => openRight(fileId)} // 👈 pass fileId
             />
 
             {/* File name */}
