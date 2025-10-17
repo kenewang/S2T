@@ -3,7 +3,7 @@ import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
 
 import RightNav from "./RightNav";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ScienceDocuments from "./ScienceDocuments";
 import MathematicsDocuments from "./MathematicsDocuments";
@@ -13,11 +13,6 @@ import useFetchFiles from "../hooks/useFetchFiles";
 const HomePage = ({
   leftNavRef, //passed down from App.js
   rightNavRef, //passed down from App.js
-  openSearch, //passed down from App.js
-
-  searchActive, //passed down from App.js
-  closeSearch, //passed down from App.js
-  searchInputRef, //passed down from App.js
 
   isAuthenticated,
   setAuth,
@@ -33,12 +28,18 @@ const HomePage = ({
 
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
+
+  const searchInputRef = useRef(null);
 
   const openLeftNav = () => setLeftNavOpen(true);
   const closeLeftNav = () => setLeftNavOpen(false);
 
   const openRightNav = () => setRightNavOpen(true);
   const closeRightNav = () => setRightNavOpen(false);
+
+  const openSearch = () => setSearchActive(true);
+  const closeSearch = () => setSearchActive(false);
 
   const navigate = useNavigate();
 
@@ -165,6 +166,8 @@ const HomePage = ({
           setActiveFileId={setActiveFileId}
           rightNavRef={rightNavRef}
           onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
+          ratingTrigger={ratingTrigger}
+          activeFileId={activeFileId}
         />
       </section>
       <div className="homePageFooter">

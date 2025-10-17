@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "./Header";
 import LeftNav from "./LeftNav";
+import RightNav from "./RightNav";
 import SearchOverlay from "./SearchOverlay";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +14,14 @@ const Subjects = ({
   searchActive,
   closeSearch,
   searchInputRef,
+  openRightNav,
+  rightNavOpen,
+  closeRightNav,
+  setActiveFileId,
+  rightNavRef,
+  onRatingSubmitted,
+  ratingTrigger,
+  activeFileId,
 }) => {
   const navigate = useNavigate();
   const [subjectNames, setSubjectNames] = useState([]);
@@ -51,6 +60,17 @@ const Subjects = ({
             leftNavRef={leftNavRef}
           />
 
+          <RightNav
+            rightNavOpen={rightNavOpen}
+            rightNavRef={rightNavRef}
+            closeRightNav={closeRightNav}
+            leftNavOpen={leftNavOpen}
+            closeLeftNav={closeLeftNav}
+            openRightNav={openRightNav}
+            activeFileId={activeFileId}
+            onRatingSubmitted={onRatingSubmitted}
+          />
+
           <section className="subjects">
             <h1 className="heading">Subjects</h1>
             <div className="subject_container">
@@ -77,6 +97,16 @@ const Subjects = ({
         searchActive={searchActive}
         closeSearch={closeSearch}
         searchInputRef={searchInputRef}
+        openRightNav={openRightNav}
+        rightNavOpen={rightNavOpen}
+        leftNavOpen={leftNavOpen}
+        closeRightNav={closeRightNav}
+        closeLeftNav={closeLeftNav}
+        setActiveFileId={setActiveFileId}
+        rightNavRef={rightNavRef}
+        onRatingSubmitted={onRatingSubmitted} // <-- pass callback
+        ratingTrigger={ratingTrigger}
+        activeFileId={activeFileId}
       />
 
       <div className="subjectsFooter">

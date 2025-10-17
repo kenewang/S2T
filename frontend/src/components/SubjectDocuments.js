@@ -33,7 +33,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
 
   const [activeFileId, setActiveFileId] = useState(null);
 
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [ratingTrigger, setRatingTrigger] = useState(0);
 
   useEffect(() => {
     const validIds = ["science", "mathematics", "computer programming"];
@@ -59,10 +59,10 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
     };
 
     fetchFileNames();
-  }, [id, refreshTrigger]);
+  }, [id, ratingTrigger]);
 
   const onRatingSubmitted = () => {
-    setRefreshTrigger((prev) => prev + 1);
+    setRatingTrigger((prev) => prev + 1);
   };
 
   return (
@@ -124,6 +124,8 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
           setActiveFileId={setActiveFileId}
           rightNavRef={rightNavRef}
           onRatingSubmitted={onRatingSubmitted} // <-- pass callback
+          ratingTrigger={ratingTrigger}
+          activeFileId={activeFileId}
         />
       </section>
       <div className="subjectDocumentsFooter">

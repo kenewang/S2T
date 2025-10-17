@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./RightNav.css";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";

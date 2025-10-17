@@ -167,6 +167,7 @@ export default function App() {
                 setActiveFileId={setActiveFileId}
                 rightNavRef={rightNavRef}
                 onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
+                ratingTrigger={ratingTrigger}
               />
             </div>
           }
@@ -208,6 +209,14 @@ export default function App() {
               searchActive={searchActive}
               closeSearch={closeSearch}
               searchInputRef={searchInputRef}
+              setActiveFileId={setActiveFileId}
+              openRightNav={openRightNav}
+              rightNavOpen={rightNavOpen}
+              closeRightNav={closeRightNav}
+              rightNavRef={rightNavRef}
+              onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
+              ratingTrigger={ratingTrigger}
+              activeFileId={activeFileId}
             />
           }
         />
@@ -220,10 +229,6 @@ export default function App() {
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
-              openSearch={openSearch}
-              searchActive={searchActive}
-              closeSearch={closeSearch}
-              searchInputRef={searchInputRef}
               rightNavRef={rightNavRef}
               activeFileId={activeFileId}
               fileIds={fileIds} // 👈 must come from backend fetch
@@ -237,11 +242,6 @@ export default function App() {
             <SubjectDocuments
               isAuthenticated={isAuthenticated}
               setAuth={setAuth}
-              leftNavRef={leftNavRef}
-              rightNavRef={rightNavRef}
-              databaseNames={databaseNames}
-              storage_path={storage_path}
-              file_rating={file_rating}
             />
           }
         />

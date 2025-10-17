@@ -15,6 +15,7 @@ const SearchOverlay = ({
   rightNavRef,
   activeFileId,
   onRatingSubmitted,
+  ratingTrigger,
 }) => {
   const [query, setQuery] = useState("");
   const [databaseNames, setDatabaseNames] = useState([]);
@@ -44,9 +45,6 @@ const SearchOverlay = ({
       if (err.name === "AbortError") console.log("Fetch aborted 👋");
       else console.error("Fetch error:", err);
     }
-
-    // return cleanup to abort fetch if needed
-    return () => controller.abort();
   };
 
   // --- Handle Enter key ---
@@ -58,8 +56,11 @@ const SearchOverlay = ({
   useEffect(() => {
     if (searchActive) {
       requestAnimationFrame(() => searchInputRef.current?.focus());
+
+      if (query.trim() === "") return; //if query is empty return
+      else handleSearch(); //re fetch from the database
     }
-  }, [searchActive, searchInputRef]);
+  }, [searchActive, searchInputRef, ratingTrigger]);
 
   // --- Clear search results when overlay closes ---
   useEffect(() => {
