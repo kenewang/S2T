@@ -31,7 +31,7 @@ const ScienceDocuments = ({
       <a
         className="section-heading"
         onClick={() => {
-          handleClick("mathematics");
+          handleClick("science");
         }}
       >
         Science

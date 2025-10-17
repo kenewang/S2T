@@ -95,7 +95,9 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
               activeFileId={activeFileId}
               onRatingSubmitted={onRatingSubmitted} // <-- pass callback
             />
-            <main>
+
+            <button className="grade">View By Grade</button>
+            <main className="docs_container">
               <DocumentList
                 openRightNav={openRightNav}
                 databaseNames={databaseNames}
