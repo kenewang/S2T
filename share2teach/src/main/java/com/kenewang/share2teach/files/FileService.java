@@ -59,4 +59,33 @@ public class FileService {
         return files.stream().map(file -> new FileSearchResponse(file.getId(), file.getFileName(),
                 file.getStoragePath(), file.getFileRating())).toList();
     }
+
+    public List<FileEntity> getFilesBySubjectAndGrade(String subjectName, String category) {
+        List<String> grades;
+
+        switch (category.toLowerCase()) {
+        case "primary":
+        case "R - 7":
+            grades = List.of("R", "1", "2", "3", "4", "5", "6", "7");
+            break;
+        case "secondary":
+        case "8 - 12":
+            grades = List.of("8", "9", "10", "11", "12");
+
+            break;
+        case "tertiary":
+        case "higher education":
+            grades = List.of("Higher Education");
+            break;
+        default:
+            grades = List.of();
+
+        }
+
+        System.out.println("Category: " + category);
+        System.out.println("Grades being searched: " + grades);
+
+        return fileRepository.findBySubjectAndGradeNames(subjectName, grades);
+    }
+
 }

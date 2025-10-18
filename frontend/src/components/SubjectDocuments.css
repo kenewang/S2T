@@ -44,5 +44,36 @@
   margin-top: 0.3rem;
 
   padding: 0 1rem;
-  background: rgb(234, 220, 203);
+  background: #eee8e8;
+}
+
+.radio-popup {
+  position: inherit;
+  top: 8rem;
+  width: 60%;
+  height: 30%;
+  background-color: (248, 248, 248, 0.9) !important;
+}
+
+.radio-title {
+  text-align: left;
+
+  color: black;
+  font-weight: 100;
+}
+
+.swal2-radio {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 1.5rem !important;
+  background-color: transparent !important;
+  position: relative;
+
+  right: 1rem;
+}
+
+.swal2-radio label {
+  font-size: 15px !important;
+  color: black;
 }

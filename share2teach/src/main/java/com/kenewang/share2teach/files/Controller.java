@@ -3,6 +3,7 @@ package com.kenewang.share2teach.files;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,6 +80,14 @@ public class Controller {
         return fileService.searchFiles(query);
     }
 
+    @GetMapping("/files/by-subject-grade/{subject}/{category}")
+    public ResponseEntity<List<FileEntity>> getFilesBySubjectAndGrade(@PathVariable String subject,
+            @PathVariable String category) {
+        List<FileEntity> files = fileService.getFilesBySubjectAndGrade(subject, category);
+
+        return ResponseEntity.ok(files);
+    }
+
     @PostMapping("/send-email")
     public String sendEmail(@RequestBody EmailRequest request) {
         logger.info("Preparing to send email...");
@@ -105,4 +114,5 @@ public class Controller {
             return "Error sending email (Exception): " + e.getMessage();
         }
     }
+
 }

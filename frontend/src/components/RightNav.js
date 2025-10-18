@@ -123,7 +123,7 @@ const RightNav = ({
         title: "success-pop-up-title",
         confirmButton: "success-button-confirm",
       },
-      timer: 2000,
+      timer: 2500,
     });
   };
 

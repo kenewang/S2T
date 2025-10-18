@@ -34,6 +34,10 @@ public class FileEntity {
     @JoinColumn(name = "subject", referencedColumnName = "subject_id")
     private SubjectEntity subject;
 
+    @ManyToOne
+    @JoinColumn(name = "grade", referencedColumnName = "grade_id")
+    private GradeEntity grade;
+
     // Getters and setters
     public Long getId() {
         return id;
@@ -73,5 +77,13 @@ public class FileEntity {
 
     public void setSubject(SubjectEntity subject) {
         this.subject = subject;
+    }
+
+    public GradeEntity getGrade() {
+        return grade;
+    }
+
+    public void setGrade(GradeEntity grade) {
+        this.grade = grade;
     }
 }

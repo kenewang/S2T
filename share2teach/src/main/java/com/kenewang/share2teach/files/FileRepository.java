@@ -48,4 +48,12 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
 
     // Search by file name, case-insensitive
     List<FileEntity> findByFileNameContainingIgnoreCase(String query);
+
+    // Make query case-insensitive because Even if values match, Hibernate
+    // comparison is case-sensitive by default.
+    @Query("SELECT f FROM FileEntity f " + "WHERE LOWER(f.subject.subjectName) = LOWER(:subjectName) "
+            + "AND f.grade.gradeName IN :grades")
+    List<FileEntity> findBySubjectAndGradeNames(@Param("subjectName") String subjectName,
+            @Param("grades") List<String> grades);
+
 }

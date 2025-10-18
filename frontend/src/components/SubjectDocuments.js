@@ -6,9 +6,13 @@ import DocumentList from "./DocumentList";
 import "./SubjectDocuments.css";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import React from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const { id } = useParams();
+  const MySwal = withReactContent(Swal);
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path, setStoragePath] = useState([]);
   const [file_rating, setFileRating] = useState([]);
@@ -35,13 +39,47 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
 
   const [ratingTrigger, setRatingTrigger] = useState(0);
 
+  const [selectedGradeRange, setSelectedGradeRange] = useState("");
+
+  useEffect(() => {
+    if (!selectedGradeRange) return;
+
+    const delay = setTimeout(() => {
+      const fetchFilteredFiles = async () => {
+        try {
+          console.log("Fetching filtered files...");
+          const res = await fetch(
+            `http://localhost:8081/files/by-subject-grade/${id}/${selectedGradeRange}`
+          );
+          const files = await res.json();
+
+          setDatabaseNames(files.map((d) => d.fileName));
+          setStoragePath(files.map((d) => d.filePath));
+          setFileRating(files.map((d) => d.fileRating));
+          setFileId(files.map((d) => d.fileId));
+
+          console.log("Fetched filtered files:", files);
+        } catch (err) {
+          console.error("Error fetching filtered files:", err);
+        }
+      };
+
+      fetchFilteredFiles();
+    }, 300);
+
+    return () => clearTimeout(delay);
+  }, [selectedGradeRange, id]);
+
   useEffect(() => {
     const validIds = ["science", "mathematics", "computer programming"];
+    if (!validIds.includes(id)) return;
 
-    if (!validIds.includes(id)) return; // skip if id is not one of the allowed ones
+    // 🧠 skip fetching all files if user has already chosen a grade
+    if (selectedGradeRange) return;
 
-    const fetchFileNames = async () => {
+    const fetchFiles = async () => {
       try {
+        console.log("Fetching all files for subject:", id);
         const res = await fetch(`http://localhost:8081/files/${id}`);
         setDatabaseNames(await res.json());
 
@@ -58,11 +96,39 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
       }
     };
 
-    fetchFileNames();
-  }, [id, ratingTrigger]);
+    fetchFiles();
+  }, [id, ratingTrigger, selectedGradeRange]);
 
   const onRatingSubmitted = () => {
     setRatingTrigger((prev) => prev + 1);
+  };
+
+  const handleSort = async () => {
+    await MySwal.fire({
+      title: "Grade",
+      input: "radio",
+      inputOptions: {
+        primary: "R - 7",
+        secondary: "8 - 12",
+        tertiary: "Higher Education",
+      },
+      showCancelButton: false,
+      showConfirmButton: false,
+      customClass: {
+        popup: "radio-popup",
+        title: "radio-title",
+        confirmButton: "success-button-confirm",
+      },
+      didOpen: () => {
+        const radios = Swal.getPopup().querySelectorAll("input[type=radio]");
+        radios.forEach((radio) => {
+          radio.addEventListener("change", (e) => {
+            setSelectedGradeRange(e.target.value);
+            Swal.close();
+          });
+        });
+      },
+    });
   };
 
   return (
@@ -96,7 +162,9 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
               onRatingSubmitted={onRatingSubmitted} // <-- pass callback
             />
 
-            <button className="grade">View By Grade</button>
+            <button className="grade" onClick={handleSort}>
+              View By Grade
+            </button>
             <main className="docs_container">
               <DocumentList
                 openRightNav={openRightNav}
