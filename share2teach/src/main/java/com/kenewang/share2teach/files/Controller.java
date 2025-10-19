@@ -88,6 +88,12 @@ public class Controller {
         return ResponseEntity.ok(files);
     }
 
+    @GetMapping("/files/by-grade/{category}")
+    public ResponseEntity<List<FileEntity>> getFilesByGrade(@PathVariable String category) {
+        List<FileEntity> files = fileService.getFilesByGrade(category);
+        return ResponseEntity.ok(files);
+    }
+
     @PostMapping("/send-email")
     public String sendEmail(@RequestBody EmailRequest request) {
         logger.info("Preparing to send email...");

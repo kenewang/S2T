@@ -66,7 +66,7 @@ export default function App() {
   const openSearch = () => setSearchActive(true);
   const closeSearch = () => setSearchActive(false);
 
-  const { databaseNames, storage_path, file_rating, fileIds } =
+  const { databaseNames, storage_path, file_rating, fileIds, handlePopUp } =
     useFiles(ratingTrigger);
 
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -132,6 +132,10 @@ export default function App() {
                       rightNavOpen={rightNavOpen}
                       leftNavOpen={leftNavOpen}
                     />
+
+                    <button className="grade_landingPage" onClick={handlePopUp}>
+                      View By Grade
+                    </button>
                     <DocumentList
                       openRightNav={openRightNav}
                       databaseNames={databaseNames}

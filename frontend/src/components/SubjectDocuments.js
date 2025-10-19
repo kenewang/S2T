@@ -6,7 +6,7 @@ import DocumentList from "./DocumentList";
 import "./SubjectDocuments.css";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import React from "react";
+
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -42,6 +42,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const [selectedGradeRange, setSelectedGradeRange] = useState("");
 
   useEffect(() => {
+    // 🧠 skip fetching all files if user has already chosen a grade
     if (!selectedGradeRange) return;
 
     const delay = setTimeout(() => {
@@ -56,7 +57,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
           setDatabaseNames(files.map((d) => d.fileName));
           setStoragePath(files.map((d) => d.filePath));
           setFileRating(files.map((d) => d.fileRating));
-          setFileId(files.map((d) => d.fileId));
+          setFileId(files.map((d) => d.id)); // ✅ use "id" instead of "fileId"
 
           console.log("Fetched filtered files:", files);
         } catch (err) {
@@ -73,9 +74,6 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   useEffect(() => {
     const validIds = ["science", "mathematics", "computer programming"];
     if (!validIds.includes(id)) return;
-
-    // 🧠 skip fetching all files if user has already chosen a grade
-    if (selectedGradeRange) return;
 
     const fetchFiles = async () => {
       try {
@@ -103,7 +101,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
     setRatingTrigger((prev) => prev + 1);
   };
 
-  const handleSort = async () => {
+  const handlePopUp = async () => {
     await MySwal.fire({
       title: "Grade",
       input: "radio",
@@ -117,14 +115,16 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
       customClass: {
         popup: "radio-popup",
         title: "radio-title",
-        confirmButton: "success-button-confirm",
       },
+
       didOpen: () => {
         const radios = Swal.getPopup().querySelectorAll("input[type=radio]");
         radios.forEach((radio) => {
           radio.addEventListener("change", (e) => {
             setSelectedGradeRange(e.target.value);
-            Swal.close();
+            setTimeout(() => {
+              Swal.close();
+            }, 300);
           });
         });
       },
@@ -162,7 +162,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
               onRatingSubmitted={onRatingSubmitted} // <-- pass callback
             />
 
-            <button className="grade" onClick={handleSort}>
+            <button className="grade" onClick={handlePopUp}>
               View By Grade
             </button>
             <main className="docs_container">

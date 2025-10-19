@@ -88,4 +88,29 @@ public class FileService {
         return fileRepository.findBySubjectAndGradeNames(subjectName, grades);
     }
 
+    public List<FileEntity> getFilesByGrade(String category) {
+        List<String> grades;
+
+        switch (category.toLowerCase()) {
+        case "primary":
+        case "R - 7":
+            grades = List.of("R", "1", "2", "3", "4", "5", "6", "7");
+            break;
+        case "secondary":
+        case "8 - 12":
+            grades = List.of("8", "9", "10", "11", "12");
+
+            break;
+        case "tertiary":
+        case "higher education":
+            grades = List.of("Higher Education");
+            break;
+        default:
+            grades = List.of();
+
+        }
+
+        return fileRepository.findByGradeNames(grades);
+    }
+
 }

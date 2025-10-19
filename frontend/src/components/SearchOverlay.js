@@ -40,7 +40,7 @@ const SearchOverlay = ({
       setDatabaseNames(data.map((d) => d.fileName));
       setStoragePath(data.map((d) => d.filePath));
       setFileRating(data.map((d) => d.fileRating));
-      setFileId(data.map((d) => d.fileId));
+      setFileId(data.map((d) => d.id)); // ✅ use "id" instead of "fileId"
     } catch (err) {
       if (err.name === "AbortError") console.log("Fetch aborted 👋");
       else console.error("Fetch error:", err);

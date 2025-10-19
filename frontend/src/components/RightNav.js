@@ -9,14 +9,12 @@ const RightNav = ({
   closeRightNav,
   rightNavRef,
   activeFileId,
-  onRatingSubmitted, // <-- new prop
+  onRatingSubmitted,
 }) => {
   const succesSwal = withReactContent(Swal);
 
   useEffect(() => {
-    if (!rightNavOpen) {
-      return;
-    }
+    if (!rightNavOpen) return;
 
     const handleOutsideClick = (event) => {
       const justOpened =
@@ -38,6 +36,17 @@ const RightNav = ({
   }
 
   const showRatingPopup = () => {
+    // 🛑 SAFEGUARD: prevent opening if no active file is selected
+    if (!activeFileId) {
+      Swal.fire({
+        title: "No file selected",
+        text: "Please click a file's menu (three dots) before rating.",
+        icon: "warning",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
+
     Swal.fire({
       title: "Rate File!",
       html: `
@@ -58,6 +67,7 @@ const RightNav = ({
         title: "rating-title",
       },
       didOpen: () => {
+        console.log("Rating popup opened for file:", activeFileId);
         const stars = Swal.getPopup().querySelectorAll("#star-container i");
         let selected = 0;
 
@@ -75,7 +85,7 @@ const RightNav = ({
         if (submitBtn) {
           submitBtn.addEventListener("click", async () => {
             Swal.close();
-            if (selected > 0 && activeFileId) {
+            if (selected > 0) {
               try {
                 const response = await fetch(
                   "http://localhost:8081/rate-file",
@@ -89,16 +99,15 @@ const RightNav = ({
                   }
                 );
 
-                // check for non-OK responses
                 if (!response.ok) {
                   console.error("Server returned", response.status);
                 } else {
                   const data = await response.json();
                   console.log("Rating response:", data);
                 }
+
                 showSuccessAlert();
 
-                // Notify parent to refresh data
                 if (typeof onRatingSubmitted === "function") {
                   onRatingSubmitted();
                 }

@@ -63,6 +63,23 @@ main {
   text-align: center;
 }
 
+.grade_landingPage {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  box-shadow: black;
+  color: black;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  background: rgba(248, 248, 248, 0.9);
+  border-color: rgba(120, 40, 40, 0.9);
+  border-radius: 4px;
+  margin-bottom: 0.3rem;
+  bottom: 0.1rem;
+}
+
 /* Mobile: hide sidenav on large screens */
 @media screen and (min-width: 451px) {
   .sidenav {
