@@ -1,12 +1,9 @@
-body {
-  background: white;
-}
-
 .login {
   margin-inline: 1rem;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: white !important;
 }
 
 .inputLogin {

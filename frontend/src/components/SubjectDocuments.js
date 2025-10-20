@@ -114,7 +114,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
       inputOptions: {
         primary: "R - 7",
         secondary: "8 - 12",
-        tertiary: "Higher Education",
+        tertiary: "Tertiary",
       },
       showCancelButton: false,
       showConfirmButton: false,

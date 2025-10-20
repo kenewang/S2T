@@ -4,12 +4,22 @@ footer {
   background: rgb(235, 229, 235);
 
   margin-inline: 1rem;
+  padding: 0.5rem;
 }
 
 footer h1 {
   font-size: 1.5rem;
 }
 
+.footer_paragraph {
+  position: relative;
+  top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+strong {
+  font-size: 1.3rem;
+}
 .contact {
   display: flex;
   flex-direction: column;

@@ -74,7 +74,7 @@ public class FileService {
 
             break;
         case "tertiary":
-        case "higher education":
+
             grades = List.of("Higher Education");
             break;
         default:

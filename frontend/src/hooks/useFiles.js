@@ -77,7 +77,7 @@ const useFiles = (ratingTrigger, setNotFound) => {
       inputOptions: {
         primary: "R - 7",
         secondary: "8 - 12",
-        tertiary: "Higher Education",
+        tertiary: "Tertiary",
       },
       showCancelButton: false,
       showConfirmButton: false,

@@ -124,10 +124,16 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
 
   return (
     <footer>
-      <p>
-        editable library catalog, building towards a web page for every book
-        ever published
-      </p>
+      <div>
+        <strong>Share2Teach</strong>{" "}
+        <p className="footer_paragraph">
+          A document-sharing web application built for educators and students.
+          It allows teachers to upload, search, and access approved teaching
+          resources by grade and subject. The platform includes user
+          authentication with role-based access, document approval workflows,
+          and secure file storage using SeaweedFS.
+        </p>
+      </div>
 
       <div>
         <h1>Get In Touch</h1>

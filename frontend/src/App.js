@@ -130,7 +130,7 @@ export default function App() {
                     showSearchLogo={showSearchLogo}
                   />
 
-                  <main id="main-content">
+                  <main className="main-content" id="main-content">
                     <LoginBrowse
                       rightNavOpen={rightNavOpen}
                       leftNavOpen={leftNavOpen}
@@ -160,6 +160,7 @@ export default function App() {
                   )}
 
                   <Footer
+                    className="main-footer"
                     leftNavOpen={leftNavOpen}
                     closeLeftNav={closeLeftNav}
                     rightNavOpen={rightNavOpen}
