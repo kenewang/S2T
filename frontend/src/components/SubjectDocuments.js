@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import NotFound from "./NotFound";
 
 const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const { id } = useParams();
@@ -17,6 +18,8 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const [storage_path, setStoragePath] = useState([]);
   const [file_rating, setFileRating] = useState([]);
   const [fileIds, setFileId] = useState([]);
+
+  const [notFound, setNotFound] = useState(false);
 
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -60,6 +63,9 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
           setFileId(files.map((d) => d.id)); // ✅ use "id" instead of "fileId"
 
           console.log("Fetched filtered files:", files);
+
+          if (files.length === 0) setNotFound(true);
+          else setNotFound(false);
         } catch (err) {
           console.error("Error fetching filtered files:", err);
         }
@@ -182,6 +188,12 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
           </>
         )}
 
+        {notFound && (
+          <>
+            <NotFound />
+          </>
+        )}
+
         <SearchOverlay
           searchActive={searchActive}
           closeSearch={closeSearch}
@@ -198,6 +210,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
           activeFileId={activeFileId}
         />
       </section>
+
       <div className="subjectDocumentsFooter">
         <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>

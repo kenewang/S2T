@@ -40,11 +40,13 @@ import "./components/Subjects.css";
 import HomePage from "./components/HomePage";
 import "./components/HomePage.css";
 import SubjectDocuments from "./components/SubjectDocuments";
+import NotFound from "./components/NotFound";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   const [activeFileId, setActiveFileId] = useState(null);
 
@@ -67,7 +69,7 @@ export default function App() {
   const closeSearch = () => setSearchActive(false);
 
   const { databaseNames, storage_path, file_rating, fileIds, handlePopUp } =
-    useFiles(ratingTrigger);
+    useFiles(ratingTrigger, setNotFound);
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token") //quick trick to turn something into a true/false
@@ -103,6 +105,7 @@ export default function App() {
                 leftNavRef={leftNavRef}
                 isAuthenticated={isAuthenticated}
                 setAuth={setAuth}
+                onRatingSubmitted={handleRatingSubmitted}
               />
 
               <RightNav
@@ -149,6 +152,12 @@ export default function App() {
                       setActiveFileId={setActiveFileId}
                     />
                   </main>
+
+                  {notFound && (
+                    <>
+                      <NotFound />
+                    </>
+                  )}
 
                   <Footer
                     leftNavOpen={leftNavOpen}

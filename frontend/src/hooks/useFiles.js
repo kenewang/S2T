@@ -4,7 +4,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-const useFiles = (ratingTrigger) => {
+const useFiles = (ratingTrigger, setNotFound) => {
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path, setStoragePath] = useState([]);
   const [file_rating, setFileRating] = useState([]);
@@ -26,6 +26,7 @@ const useFiles = (ratingTrigger) => {
         setStoragePath(await linksRes.json());
         setFileRating(await ratingsRes.json());
         setFileId(await idRes.json());
+        setNotFound(false);
       } catch (error) {
         console.error("Error fetching file data", error);
       }
@@ -57,6 +58,9 @@ const useFiles = (ratingTrigger) => {
 
         console.log("Fetched filtered files:", files);
         console.log("file IDs:", fileIds);
+
+        if (files.length === 0) setNotFound(true);
+        else setNotFound(false);
       } catch (err) {
         console.error("Error fetching filtered files:", err);
       }
@@ -65,7 +69,7 @@ const useFiles = (ratingTrigger) => {
     fetchFilteredFiles();
   }, [selectedGradeRange]);
 
-  // 🟨 1. Define the popup inside hook (so it can use setSelectedGradeRange)
+  // Define the popup inside hook (so it can use setSelectedGradeRange)
   const handlePopUp = async () => {
     await MySwal.fire({
       title: "Grade",

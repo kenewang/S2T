@@ -8,11 +8,16 @@ const LeftNav = ({
   leftNavRef,
   isAuthenticated,
   setAuth,
+  onRatingSubmitted,
 }) => {
   const navigate = useNavigate();
 
   const goSomeWhere = (path) => {
     closeLeftNav();
+    if (typeof onRatingSubmitted === "function") {
+      onRatingSubmitted();
+      //this is just to refresh the parent (App.js) when we navigate to it
+    }
     navigate(path);
   };
 

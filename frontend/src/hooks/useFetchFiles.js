@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetchFiles = (subject, ratingTrigger) => {
+const useFetchFiles = (subject, ratingTrigger, setNotFound) => {
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storagePath, setStoragePath] = useState([]);
   const [fileRating, setFileRating] = useState([]);
@@ -32,6 +32,13 @@ const useFetchFiles = (subject, ratingTrigger) => {
           resIds.json(),
         ]);
 
+        // ✅ Handle "no files found"
+        if (names.length === 0) {
+          setNotFound?.(true); // only call if setNotFound is provided
+        } else {
+          setNotFound?.(false);
+        }
+
         // Update state
         setDatabaseNames(names);
         setStoragePath(links);
@@ -40,13 +47,14 @@ const useFetchFiles = (subject, ratingTrigger) => {
       } catch (err) {
         console.error("Error fetching files:", err);
         setError(err);
+        setNotFound?.(true); // If there’s an error, assume nothing found
       } finally {
         setLoading(false);
       }
     };
 
     fetchFiles();
-  }, [subject, ratingTrigger]); // Re-run whenever subject and ratingTrigger changes
+  }, [subject, ratingTrigger]); // Re-run when subject or ratingTrigger changes
 
   return { databaseNames, storagePath, fileRating, fileIds, loading, error };
 };

@@ -9,6 +9,7 @@ import ScienceDocuments from "./ScienceDocuments";
 import MathematicsDocuments from "./MathematicsDocuments";
 import ProgrammingDocuments from "./ProgrammingDocuments";
 import useFetchFiles from "../hooks/useFetchFiles";
+import NotFound from "./NotFound";
 
 const HomePage = ({
   leftNavRef, //passed down from App.js
@@ -21,10 +22,16 @@ const HomePage = ({
   setActiveFileId,
 }) => {
   const [ratingTrigger, setRatingTrigger] = useState(0);
-  const scienceData = useFetchFiles("science", ratingTrigger);
-  const mathData = useFetchFiles("mathematics", ratingTrigger);
+  const [notFound, setNotFound] = useState(false);
+  const scienceData = useFetchFiles("science", ratingTrigger, setNotFound);
 
-  const programmingData = useFetchFiles("computer programming", ratingTrigger);
+  const mathData = useFetchFiles("mathematics", ratingTrigger, setNotFound);
+
+  const programmingData = useFetchFiles(
+    "computer programming",
+    ratingTrigger,
+    setNotFound
+  );
 
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -87,6 +94,7 @@ const HomePage = ({
               leftNavRef={leftNavRef}
               isAuthenticated={isAuthenticated}
               setAuth={setAuth}
+              onRatingSubmitted={handleRatingSubmitted}
             />
 
             <RightNav
@@ -151,6 +159,12 @@ const HomePage = ({
                 openInNewTab={openInNewTab}
               />
             )}
+          </>
+        )}
+
+        {notFound && (
+          <>
+            <NotFound />
           </>
         )}
 
