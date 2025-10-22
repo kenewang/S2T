@@ -41,6 +41,7 @@ import HomePage from "./components/HomePage";
 import "./components/HomePage.css";
 import SubjectDocuments from "./components/SubjectDocuments";
 import NotFound from "./components/NotFound";
+import Faqs from "./components/Faqs";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -256,6 +257,32 @@ export default function App() {
             <SubjectDocuments
               isAuthenticated={isAuthenticated}
               setAuth={setAuth}
+            />
+          }
+        />
+        <Route
+          path="/faqs"
+          element={
+            <Faqs
+              openLeftNav={openLeftNav}
+              openSearch={openSearch}
+              rightNavOpen={rightNavOpen}
+              closeRightNav={closeRightNav}
+              leftNavOpen={leftNavOpen}
+              showSearchLogo={showSearchLogo}
+              closeLeftNav={closeLeftNav}
+              leftNavRef={leftNavRef}
+              isAuthenticated={isAuthenticated}
+              setAuth={setAuth}
+              onRatingSubmitted={handleRatingSubmitted}
+              searchActive={searchActive}
+              closeSearch={closeSearch}
+              searchInputRef={searchInputRef}
+              openRightNav={openRightNav}
+              scloseRightNav={closeRightNav}
+              setActiveFileId={setActiveFileId}
+              rightNavRef={rightNavRef}
+              ratingTrigger={ratingTrigger}
             />
           }
         />

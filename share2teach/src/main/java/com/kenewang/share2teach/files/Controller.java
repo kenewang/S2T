@@ -21,13 +21,16 @@ public class Controller {
 
     private final FileService fileService;
     private final SubjectService subjectService;
+
     private final Logger logger = Logger.getLogger(Controller.class.getName());
     private final JavaMailSender mailSender;
 
     public Controller(FileService fileService, SubjectService subjectService, JavaMailSender mailSender) {
         this.fileService = fileService;
         this.subjectService = subjectService;
+
         this.mailSender = mailSender;
+
     }
 
     @GetMapping("/files/ids")

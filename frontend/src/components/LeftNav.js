@@ -95,10 +95,10 @@ const LeftNav = ({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              goSomeWhere("/browse");
+              goSomeWhere("/faqs");
             }}
           >
-            Browse
+            FAQs
           </a>
         </>
       )}
