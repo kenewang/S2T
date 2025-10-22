@@ -9,6 +9,9 @@ const Faqs = ({
   leftNavOpen,
   closeLeftNav,
   leftNavRef,
+  isAuthenticated,
+  setAuth,
+  onRatingSubmitted,
 
   openLeftNav,
 }) => {
@@ -65,6 +68,9 @@ const Faqs = ({
         leftNavOpen={leftNavOpen}
         closeLeftNav={closeLeftNav}
         leftNavRef={leftNavRef}
+        isAuthenticated={isAuthenticated}
+        setAuth={setAuth}
+        onRatingSubmitted={onRatingSubmitted}
       />
 
       <section className="accordion">

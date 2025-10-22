@@ -42,6 +42,7 @@ import "./components/HomePage.css";
 import SubjectDocuments from "./components/SubjectDocuments";
 import NotFound from "./components/NotFound";
 import Faqs from "./components/Faqs";
+import useBlockBackNavigation from "./hooks/useBlockBackNavigation";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -75,6 +76,8 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token") //quick trick to turn something into a true/false
   );
+
+  useBlockBackNavigation(isAuthenticated);
 
   useEffect(() => {
     const token = localStorage.getItem("token"); //Check if there’s a saved token in the browser.
@@ -264,17 +267,17 @@ export default function App() {
           path="/faqs"
           element={
             <Faqs
-              openLeftNav={openLeftNav}
-              openSearch={openSearch}
-              rightNavOpen={rightNavOpen}
-              closeRightNav={closeRightNav}
               leftNavOpen={leftNavOpen}
-              showSearchLogo={showSearchLogo}
               closeLeftNav={closeLeftNav}
               leftNavRef={leftNavRef}
               isAuthenticated={isAuthenticated}
               setAuth={setAuth}
               onRatingSubmitted={handleRatingSubmitted}
+              openLeftNav={openLeftNav}
+              openSearch={openSearch}
+              rightNavOpen={rightNavOpen}
+              closeRightNav={closeRightNav}
+              showSearchLogo={showSearchLogo}
               searchActive={searchActive}
               closeSearch={closeSearch}
               searchInputRef={searchInputRef}

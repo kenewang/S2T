@@ -1,7 +1,7 @@
 import Header from "./Header";
 import LeftNav from "./LeftNav";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Login = ({
   leftNavOpen,
@@ -47,6 +47,15 @@ const Login = ({
       console.error(err.message);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // If already logged in, redirect to home
+      navigate("/home", { replace: true });
+    }
+  }, [navigate]);
+
   return (
     <div>
       <Header

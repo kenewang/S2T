@@ -1,6 +1,6 @@
 import Header from "./Header";
 import LeftNav from "./LeftNav";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const CreateAccount = ({
   leftNavOpen,
@@ -59,6 +59,14 @@ const CreateAccount = ({
       console.error(err.message);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // If already logged in, redirect to home
+      navigate("/home", { replace: true });
+    }
+  }, [navigate]);
 
   return (
     <div>

@@ -21,6 +21,24 @@ const LeftNav = ({
     navigate(path);
   };
 
+  const blockBackNavigation = () => {
+    // Push a state so the current page becomes the "first" in history
+    window.history.pushState(null, "", window.location.href);
+
+    // Define the handler function separately (so we can remove it later)
+    const handlePopState = () => {
+      window.history.pushState(null, "", window.location.href);
+    };
+
+    // Listen for the back button
+    window.addEventListener("popstate", handlePopState);
+
+    // 🧹 Auto-cleanup listener when the user leaves or reloads
+    window.addEventListener("beforeunload", () => {
+      window.removeEventListener("popstate", handlePopState);
+    });
+  };
+
   useEffect(() => {
     if (!leftNavOpen) return;
 
@@ -56,6 +74,7 @@ const LeftNav = ({
         localStorage.removeItem("token");
         setAuth(false);
         navigate("/");
+        blockBackNavigation(); // 👈 block back navigation
         return;
       }
 
@@ -65,6 +84,7 @@ const LeftNav = ({
         localStorage.removeItem("token");
         setAuth(false);
         navigate("/");
+        blockBackNavigation(); // 👈 block after logout
       } else {
         alert(parseRes.msg || "Logout failed");
       }
@@ -91,6 +111,27 @@ const LeftNav = ({
           >
             Home
           </a>
+
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/subjects");
+            }}
+          >
+            Browse
+          </a>
+
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/login");
+            }}
+          >
+            Login
+          </a>
+
           <a
             href="#"
             onClick={(e) => {
@@ -115,6 +156,17 @@ const LeftNav = ({
           >
             Home
           </a>
+
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/faqs");
+            }}
+          >
+            FAQs
+          </a>
+
           <a
             href="#"
             onClick={(e) => {
