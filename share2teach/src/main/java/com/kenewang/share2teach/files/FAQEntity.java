@@ -1,7 +1,7 @@
 package com.kenewang.share2teach.files;
 
 import jakarta.persistence.Entity;
-import jakarta.annotation.Generated;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;

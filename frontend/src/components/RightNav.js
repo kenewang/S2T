@@ -10,6 +10,7 @@ const RightNav = ({
   rightNavRef,
   activeFileId,
   onRatingSubmitted,
+  isAuthenticated,
 }) => {
   const succesSwal = withReactContent(Swal);
 
@@ -35,11 +36,57 @@ const RightNav = ({
     rightNavRef.current.dataset.openedAt = performance.now();
   }
 
+  const showReportPopup = async () => {
+    const result = await Swal.fire({
+      title: "Report Document",
+      input: "text",
+      inputPlaceholder: "Reason",
+      showCancelButton: true,
+      confirmButtonText: "Submit",
+      allowOutsideClick: false, // ❌ don't close when clicking outside
+      allowEscapeKey: false, // ❌ don't close when
+      // pressing ESC
+
+      customClass: {
+        popup: "rating-popup",
+        title: "rating-title",
+      },
+    });
+
+    if (result.isConfirmed && result.value?.trim()) {
+      console.log("User typed:", result.value);
+      try {
+        const reportRes = await fetch("http://localhost:8081/report/document", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            jwt_token: localStorage.getItem("token"), // ✅ include token if logged in
+          },
+          body: JSON.stringify({
+            file_id: activeFileId,
+            reason: result.value,
+          }),
+        });
+
+        if (!reportRes.ok) {
+          console.error("Server returned", reportRes.status);
+        } else {
+          showSuccessAlertReport();
+        }
+      } catch (error) {
+        console.error("Network error:", error);
+      }
+    } else {
+      console.log("No input or canceled");
+    }
+  };
+
   const showRatingPopup = () => {
     // 🛑 SAFEGUARD: prevent opening if no active file is selected
     if (!activeFileId) {
       Swal.fire({
         title: "No file selected",
+
         text: "Please click a file's menu (three dots) before rating.",
         icon: "warning",
         confirmButtonText: "OK",
@@ -62,6 +109,7 @@ const RightNav = ({
         </button>
       `,
       showConfirmButton: false,
+
       customClass: {
         popup: "rating-popup",
         title: "rating-title",
@@ -92,6 +140,7 @@ const RightNav = ({
                   {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
+
                     body: JSON.stringify({
                       file_id: activeFileId,
                       rating: selected,
@@ -135,6 +184,20 @@ const RightNav = ({
       timer: 2500,
     });
   };
+  const showSuccessAlertReport = () => {
+    succesSwal.fire({
+      title: "Success!",
+      text: "Report Submitted",
+      icon: "success",
+      showConfirmButton: false,
+      customClass: {
+        popup: "success-popup_for_rating",
+        title: "success-pop-up-title",
+        confirmButton: "success-button-confirm",
+      },
+      timer: 2500,
+    });
+  };
 
   return (
     <div
@@ -154,6 +217,18 @@ const RightNav = ({
       >
         Rate
       </a>
+      {isAuthenticated && (
+        <a
+          className="rightNavAnchor"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            showReportPopup();
+          }}
+        >
+          Report
+        </a>
+      )}
     </div>
   );
 };

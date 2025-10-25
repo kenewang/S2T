@@ -120,6 +120,7 @@ export default function App() {
                 closeLeftNav={closeLeftNav}
                 openRightNav={openRightNav}
                 activeFileId={activeFileId}
+                isAuthenticated={isAuthenticated}
                 onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
               />
 
@@ -200,6 +201,7 @@ export default function App() {
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
               setAuth={setAuth}
+              onRatingSubmitted={handleRatingSubmitted}
             />
           }
         />
@@ -235,6 +237,7 @@ export default function App() {
               onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
               ratingTrigger={ratingTrigger}
               activeFileId={activeFileId}
+              isAuthenticated={isAuthenticated}
             />
           }
         />

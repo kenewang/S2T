@@ -103,6 +103,7 @@ const HomePage = ({
               rightNavOpen={rightNavOpen}
               activeFileId={activeFileId}
               onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
+              isAuthenticated={isAuthenticated}
             />
 
             {scienceData.loading ? (

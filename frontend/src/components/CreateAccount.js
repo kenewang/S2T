@@ -8,6 +8,10 @@ const CreateAccount = ({
   openLeftNav,
   closeLeftNav,
   setAuth,
+
+  isAuthenticated,
+
+  onRatingSubmitted,
 }) => {
   const navigate = useNavigate();
   const goToLogin = () => {
@@ -83,6 +87,9 @@ const CreateAccount = ({
         leftNavOpen={leftNavOpen}
         closeLeftNav={closeLeftNav}
         leftNavRef={leftNavRef}
+        isAuthenticated={isAuthenticated}
+        setAuth={setAuth}
+        onRatingSubmitted={onRatingSubmitted}
       />
 
       <section className="createAccount">

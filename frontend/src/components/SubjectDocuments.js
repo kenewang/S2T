@@ -166,6 +166,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
               rightNavOpen={rightNavOpen}
               activeFileId={activeFileId}
               onRatingSubmitted={onRatingSubmitted} // <-- pass callback
+              isAuthenticated={isAuthenticated}
             />
 
             <button className="grade" onClick={handlePopUp}>

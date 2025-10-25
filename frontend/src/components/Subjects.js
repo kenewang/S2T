@@ -22,6 +22,7 @@ const Subjects = ({
   onRatingSubmitted,
   ratingTrigger,
   activeFileId,
+  isAuthenticated,
 }) => {
   const navigate = useNavigate();
   const [subjectNames, setSubjectNames] = useState([]);
@@ -69,6 +70,7 @@ const Subjects = ({
             openRightNav={openRightNav}
             activeFileId={activeFileId}
             onRatingSubmitted={onRatingSubmitted}
+            isAuthenticated={isAuthenticated}
           />
 
           <section className="subjects">
