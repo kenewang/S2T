@@ -82,9 +82,51 @@
   bottom: 0.1rem;
 }
 
-/* Mobile: hide sidenav on large screens */
 @media screen and (min-width: 451px) {
-  .sidenav {
+  html,
+  body {
+    padding: 0.3rem;
+    background: rgb(234, 220, 203) !important;
+  }
+
+  .App {
+    min-height: 100vh;
+    max-width: 55rem;
+    margin: 0 auto;
+
+    font-family: "MyFont", sans-serif;
+    scroll-behavior: smooth;
+    background-color: rgb(234, 220, 203);
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4.2rem;
+
+    padding: 0 1rem;
+    background: rgb(234, 220, 203);
+    margin-bottom: 0.3rem;
+  }
+
+  .grade_landingPage {
+    position: relative;
+    width: 30%;
+    margin: 0 auto;
+
+    box-shadow: black;
+    color: black;
+    border: none;
+    cursor: pointer;
+
+    background: rgba(248, 248, 248, 0.9);
+    border-color: rgba(120, 40, 40, 0.9);
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    bottom: 0.1rem;
+  }
+
+  .login-browse {
     display: none;
   }
 }

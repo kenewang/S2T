@@ -203,8 +203,7 @@ const RightNav = ({
     <div
       id="rightSidenav"
       ref={rightNavRef}
-      className="sidenav right-sidenav"
-      style={{ width: rightNavOpen ? "130px" : "0px" }}
+      className={`sidenav right-sidenav ${rightNavOpen ? "open" : ""}`}
       aria-hidden={!rightNavOpen}
     >
       <a
