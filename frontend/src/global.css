@@ -83,26 +83,24 @@
 }
 
 @media screen and (min-width: 451px) {
-  html,
   body {
-    padding: 0.3rem;
-    background: rgb(234, 220, 203) !important;
+    display: flex;
+    flex-direction: column;
   }
 
   .App {
-    min-height: 100vh;
+    min-height: auto;
     max-width: 55rem;
     margin: 0 auto;
 
     font-family: "MyFont", sans-serif;
     scroll-behavior: smooth;
-    background-color: rgb(234, 220, 203);
+    background-color: rgb(234, 220, 203) !important;
   }
 
   .main-content {
     display: flex;
     flex-direction: column;
-    margin-top: 4.2rem;
 
     padding: 0 1rem;
     background: rgb(234, 220, 203);
@@ -112,7 +110,7 @@
   .grade_landingPage {
     position: relative;
     width: 30%;
-    margin: 0 auto;
+    margin: 0.6rem auto;
 
     box-shadow: black;
     color: black;
@@ -126,7 +124,18 @@
     bottom: 0.1rem;
   }
 
+  .copyright_App {
+    margin-top: 2rem;
+    background-color: #eee8e8;
+    text-align: center;
+  }
+
   .login-browse {
+    display: none;
+  }
+
+  .login-button,
+  .browse-button {
     display: none;
   }
 }

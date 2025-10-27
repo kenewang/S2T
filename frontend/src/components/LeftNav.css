@@ -22,6 +22,7 @@
   color: black;
   display: block;
   transition: 0.2s;
+  margin-left: 1rem;
 }
 
 .sidenav a:hover {
@@ -36,4 +37,25 @@
   transition: width 0.3s ease;
   overflow-x: hidden;
   background-color: #f8f8f8;
+}
+
+@media screen and (min-width: 451px) {
+  .sidenav.open {
+    width: 180px;
+  }
+
+  .sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0; /* default is closed */
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #eee8e8;
+
+    box-shadow: 0 0 2px #eee8e8;
+    z-index: 30;
+    transition: width 0.3s ease;
+    padding-top: 60px;
+  }
 }

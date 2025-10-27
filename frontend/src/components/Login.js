@@ -60,7 +60,7 @@ const Login = ({
   }, [navigate]);
 
   return (
-    <div>
+    <div className="loginWrap">
       <Header
         showSearchLogo={false} //hide the search icon
         leftNavOpen={leftNavOpen}

@@ -75,7 +75,7 @@ const HomePage = ({
   };
 
   return (
-    <div>
+    <div className="homeWrap">
       <section className="container">
         {!searchActive && (
           <>

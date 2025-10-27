@@ -124,7 +124,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
 
   return (
     <footer>
-      <div>
+      <div className="s2t">
         <strong>Share2Teach</strong>{" "}
         <p className="footer_paragraph">
           A document-sharing web application built for educators and students.
@@ -135,7 +135,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
         </p>
       </div>
 
-      <div>
+      <div className="contact-container">
         <h1>Get In Touch</h1>
         <form className="contact" onSubmit={handleSubmit} noValidate>
           <input

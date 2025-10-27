@@ -73,7 +73,7 @@ const CreateAccount = ({
   }, [navigate]);
 
   return (
-    <div>
+    <div className="createAccWrapper">
       <Header
         showSearchLogo={false} //hide the search icon
         leftNavOpen={leftNavOpen}

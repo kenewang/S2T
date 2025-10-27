@@ -48,3 +48,59 @@ body {
   background-color: #eee8e8;
   text-align: center;
 }
+
+@media screen and (min-width: 451px) {
+  .heading {
+    position: relative;
+    top: 4rem;
+    font-size: 2rem;
+    color: rgb(62, 59, 59);
+  }
+
+  .subWrapper {
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+  .subjects {
+    margin-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 55rem;
+  }
+
+  .subject_container {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .subject_container ul {
+    display: flex;
+
+    justify-content: flex-start;
+    gap: 3rem;
+    flex-wrap: wrap;
+
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .anchor {
+    text-decoration: none;
+    color: rgb(14, 111, 143);
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: snow;
+  }
+
+  .subjectsFooter {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: #eee8e8;
+    text-align: center;
+  }
+}

@@ -49,7 +49,7 @@
   }
 
   .rightNavAnchor {
-    text-align: right;
+    text-align: center;
     margin-right: 2rem;
   }
 
@@ -88,6 +88,10 @@
     width: 0;
     transition: width 0.3s ease;
     overflow: hidden; /* optional */
+
+    background-color: #eee8e8;
+
+    box-shadow: 0 0 2px #eee8e8;
   }
 
   .sidenav.right-sidenav.open {

@@ -54,7 +54,7 @@ const Faqs = ({
   }, []); // runs once when component mounts
 
   return (
-    <div>
+    <div className="faqWrapper">
       <Header
         showSearchLogo={false} //hide the search icon
         leftNavOpen={leftNavOpen}

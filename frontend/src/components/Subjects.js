@@ -43,7 +43,7 @@ const Subjects = ({
   }, []);
 
   return (
-    <div>
+    <div className="subWrapper">
       {!searchActive && (
         <>
           <Header

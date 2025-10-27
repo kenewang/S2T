@@ -1,5 +1,7 @@
 import menu_icon from "../svg/iconmonstr-menu-dot-vertical-filled.svg";
 import file_icon from "../svg/icons8-file-100.png";
+import chevLeft from "../svg/icons8-chevron-left-100.png";
+import chevRight from "../svg/icons8-chevron-right-100.png";
 import "./HomePage.css";
 
 import { useState } from "react";
@@ -38,19 +40,19 @@ const ScienceDocuments = ({
       </a>
 
       <section className="carousel-container">
-        <button
+        <img
           className="carousel-btn left"
+          src={chevLeft}
+          alt="Left Chevron"
           onClick={prev}
           disabled={startIndex === 0}
-        >
-          ‹
-        </button>
+        />
 
         <div className="carousel-viewport">
           <div
             className="carousel-track"
             style={{
-              transform: `translateX(-${startIndex * (140 + 16)}px)`, // 140px doc width + 16px gap
+              transform: `translateX(-${startIndex * (150 + 16)}px)`, // 140px doc width + 16px gap
             }}
           >
             {databaseNames.map((item, i) => {
@@ -92,13 +94,13 @@ const ScienceDocuments = ({
           </div>
         </div>
 
-        <button
+        <img
           className="carousel-btn right"
+          src={chevRight}
+          alt="Right Chevron"
           onClick={next}
           disabled={startIndex >= databaseNames.length - 2}
-        >
-          ›
-        </button>
+        />
       </section>
     </>
   );

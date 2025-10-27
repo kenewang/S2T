@@ -83,3 +83,97 @@
 .loginFooter > :first-child {
   cursor: pointer;
 }
+
+@media screen and (min-width: 451px) {
+  .loginWrap {
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+  .login {
+    margin-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: white !important;
+    width: 45%;
+    margin: 0 auto;
+  }
+
+  .inputLogin {
+    height: 2.5rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 0.4rem;
+  }
+
+  .loginCredentials {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .password_labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    margin-top: 0.3rem;
+  }
+
+  .password_label,
+  .forgot_password_label {
+    margin: 0;
+  }
+
+  .forgot_password_label {
+    cursor: pointer;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: black; /* text color */
+    margin: 1em 0;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid black; /* line style */
+  }
+
+  .divider:not(:empty)::before {
+    margin-right: 0.75em;
+  }
+
+  .divider:not(:empty)::after {
+    margin-left: 0.75em;
+  }
+
+  .toCreateAccount {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .createAccountLabel {
+    cursor: pointer;
+    color: blue;
+  }
+
+  .loginFooter {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: #eee8e8;
+    text-align: center;
+  }
+
+  .loginFooter > :first-child {
+    cursor: pointer;
+  }
+}
