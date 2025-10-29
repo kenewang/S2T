@@ -75,7 +75,7 @@
     gap: 1rem;
     justify-content: center;
     align-items: center;
-    background: rgba(248, 248, 248, 0.9);
+    background: transparents !important;
     padding: 1rem;
     border-radius: 5px;
   }

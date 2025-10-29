@@ -83,19 +83,26 @@
 }
 
 @media screen and (min-width: 451px) {
-  body {
-    display: flex;
-    flex-direction: column;
+  /* Basic reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .parent {
+    background-color: rgb(234, 220, 203);
   }
 
   .App {
     min-height: auto;
     max-width: 55rem;
     margin: 0 auto;
-
+    display: flex;
+    flex-direction: column;
     font-family: "MyFont", sans-serif;
     scroll-behavior: smooth;
-    background-color: rgb(234, 220, 203) !important;
+    background-color: rgb(234, 220, 203);
   }
 
   .main-content {
@@ -103,7 +110,7 @@
     flex-direction: column;
 
     padding: 0 1rem;
-    background: rgb(234, 220, 203);
+    background-color: rgb(234, 220, 203);
     margin-bottom: 0.3rem;
   }
 

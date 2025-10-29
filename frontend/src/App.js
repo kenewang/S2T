@@ -102,92 +102,97 @@ export default function App() {
         <Route
           path="/"
           element={
-            <div className="App">
-              <LeftNav
-                leftNavOpen={leftNavOpen}
-                closeLeftNav={closeLeftNav}
-                leftNavRef={leftNavRef}
-                isAuthenticated={isAuthenticated}
-                setAuth={setAuth}
-                onRatingSubmitted={handleRatingSubmitted}
-              />
+            <div className="parent">
+              <div className="App">
+                <LeftNav
+                  leftNavOpen={leftNavOpen}
+                  closeLeftNav={closeLeftNav}
+                  leftNavRef={leftNavRef}
+                  isAuthenticated={isAuthenticated}
+                  setAuth={setAuth}
+                  onRatingSubmitted={handleRatingSubmitted}
+                />
 
-              <RightNav
-                rightNavOpen={rightNavOpen}
-                rightNavRef={rightNavRef}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                closeLeftNav={closeLeftNav}
-                openRightNav={openRightNav}
-                activeFileId={activeFileId}
-                isAuthenticated={isAuthenticated}
-                onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
-              />
+                <RightNav
+                  rightNavOpen={rightNavOpen}
+                  rightNavRef={rightNavRef}
+                  closeRightNav={closeRightNav}
+                  leftNavOpen={leftNavOpen}
+                  closeLeftNav={closeLeftNav}
+                  openRightNav={openRightNav}
+                  activeFileId={activeFileId}
+                  isAuthenticated={isAuthenticated}
+                  onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
+                />
 
-              {!searchActive && (
-                <>
-                  <Header
-                    openLeftNav={openLeftNav}
-                    openSearch={openSearch}
-                    rightNavOpen={rightNavOpen}
-                    closeRightNav={closeRightNav}
-                    leftNavOpen={leftNavOpen}
-                    showSearchLogo={showSearchLogo}
-                  />
-
-                  <main className="main-content" id="main-content">
-                    <LoginBrowse
+                {!searchActive && (
+                  <>
+                    <Header
+                      openLeftNav={openLeftNav}
+                      openSearch={openSearch}
                       rightNavOpen={rightNavOpen}
-                      leftNavOpen={leftNavOpen}
-                    />
-
-                    <button className="grade_landingPage" onClick={handlePopUp}>
-                      View By Grade
-                    </button>
-                    <DocumentList
-                      openRightNav={openRightNav}
-                      databaseNames={databaseNames}
-                      storage_path={storage_path}
-                      file_rating={file_rating}
-                      rightNavOpen={rightNavOpen}
-                      leftNavOpen={leftNavOpen}
                       closeRightNav={closeRightNav}
-                      closeLeftNav={closeLeftNav}
-                      fileIds={fileIds} // 👈 must come from backend fetch
-                      setActiveFileId={setActiveFileId}
+                      leftNavOpen={leftNavOpen}
+                      showSearchLogo={showSearchLogo}
                     />
-                  </main>
 
-                  {notFound && (
-                    <>
-                      <NotFound />
-                    </>
-                  )}
+                    <main className="main-content" id="main-content">
+                      <LoginBrowse
+                        rightNavOpen={rightNavOpen}
+                        leftNavOpen={leftNavOpen}
+                      />
 
-                  <Footer
-                    className="main-footer"
-                    leftNavOpen={leftNavOpen}
-                    closeLeftNav={closeLeftNav}
-                    rightNavOpen={rightNavOpen}
-                    closeRightNav={closeRightNav}
-                  />
-                </>
-              )}
+                      <button
+                        className="grade_landingPage"
+                        onClick={handlePopUp}
+                      >
+                        View By Grade
+                      </button>
+                      <DocumentList
+                        openRightNav={openRightNav}
+                        databaseNames={databaseNames}
+                        storage_path={storage_path}
+                        file_rating={file_rating}
+                        rightNavOpen={rightNavOpen}
+                        leftNavOpen={leftNavOpen}
+                        closeRightNav={closeRightNav}
+                        closeLeftNav={closeLeftNav}
+                        fileIds={fileIds} // 👈 must come from backend fetch
+                        setActiveFileId={setActiveFileId}
+                      />
+                    </main>
 
-              <SearchOverlay
-                searchActive={searchActive}
-                closeSearch={closeSearch}
-                searchInputRef={searchInputRef}
-                openRightNav={openRightNav}
-                rightNavOpen={rightNavOpen}
-                leftNavOpen={leftNavOpen}
-                closeRightNav={closeRightNav}
-                closeLeftNav={closeLeftNav}
-                setActiveFileId={setActiveFileId}
-                rightNavRef={rightNavRef}
-                onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
-                ratingTrigger={ratingTrigger}
-              />
+                    {notFound && (
+                      <>
+                        <NotFound />
+                      </>
+                    )}
+
+                    <Footer
+                      className="main-footer"
+                      leftNavOpen={leftNavOpen}
+                      closeLeftNav={closeLeftNav}
+                      rightNavOpen={rightNavOpen}
+                      closeRightNav={closeRightNav}
+                    />
+                  </>
+                )}
+
+                <SearchOverlay
+                  searchActive={searchActive}
+                  closeSearch={closeSearch}
+                  searchInputRef={searchInputRef}
+                  openRightNav={openRightNav}
+                  rightNavOpen={rightNavOpen}
+                  leftNavOpen={leftNavOpen}
+                  closeRightNav={closeRightNav}
+                  closeLeftNav={closeLeftNav}
+                  setActiveFileId={setActiveFileId}
+                  rightNavRef={rightNavRef}
+                  onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
+                  ratingTrigger={ratingTrigger}
+                />
+              </div>
             </div>
           }
         />

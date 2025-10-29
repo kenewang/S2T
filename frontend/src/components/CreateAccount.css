@@ -68,6 +68,7 @@ body {
   .createAccWrapper {
     max-width: 55rem;
     margin: 0 auto;
+    background: white !important;
   }
   .createAccount {
     display: flex;

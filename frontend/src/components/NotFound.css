@@ -16,3 +16,24 @@
   position: relative;
   bottom: 3rem;
 }
+
+@media screen and (min-width: 451px) {
+  .fileNotFoundIcon {
+    margin: 0.5rem auto;
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    margin-top: 0.5rem;
+  }
+
+  .icon-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 55rem;
+    margin-top: 0.5rem;
+    min-height: 50vh;
+    background: rgb(234, 220, 203);
+    position: relative;
+    bottom: 3rem;
+  }
+}

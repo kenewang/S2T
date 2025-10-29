@@ -177,9 +177,9 @@ html {
     cursor: pointer;
     color: #333;
     transition: 0.2s;
-    width: 20px;
-    height: 30px;
-    margin-inline: 1rem;
+    width: 30px;
+    height: 70px;
+    margin-inline: 0.2rem;
   }
 
   .carousel-btn:disabled {
