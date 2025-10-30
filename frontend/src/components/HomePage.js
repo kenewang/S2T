@@ -81,6 +81,7 @@ const HomePage = ({
           <>
             <Header
               showSearchLogo={true}
+              showUploadIcon={true}
               leftNavOpen={leftNavOpen}
               openLeftNav={openLeftNav}
               openSearch={openSearch}

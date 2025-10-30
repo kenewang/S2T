@@ -115,6 +115,7 @@ html {
     align-items: center;
     position: relative;
     top: 3rem;
+    min-height: 100vh;
   }
 
   /* Footer */
@@ -143,6 +144,7 @@ html {
     font-size: 1.5rem;
     color: blue;
     font-weight: 0;
+    cursor: pointer;
   }
 
   /* Carousel container (shared) */

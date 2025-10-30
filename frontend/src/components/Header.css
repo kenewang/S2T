@@ -46,6 +46,19 @@ header h2 {
   flex-shrink: 0;
 }
 
+.upload-icon {
+  cursor: pointer;
+  background-color: transparent;
+  padding: 10px;
+  flex-shrink: 0;
+}
+
+.upload-icon img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
 @media screen and (min-width: 451px) {
   header {
     top: 0;
@@ -83,16 +96,32 @@ header h2 {
   }
 
   .search-icon {
-    cursor: pointer;
-    background-color: transparent;
-    color: black;
-    padding: 10px;
-    flex-shrink: 0;
+    display: none;
   }
 
   .search-icon img {
-    width: 24px;
-    height: 24px;
+    display: none;
+  }
+
+  .upload-icon {
+    cursor: pointer;
+    background-color: transparent;
+    position: relative;
+    margin-left: 34rem;
+    bottom: 0.1rem;
     flex-shrink: 0;
+  }
+
+  .upload-icon img {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  }
+
+  .upload-icon span {
+    position: relative;
+
+    right: 0.5rem;
+    top: 0.2rem;
   }
 }

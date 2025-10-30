@@ -48,6 +48,7 @@ const Subjects = ({
         <>
           <Header
             showSearchLogo={true}
+            showUploadIcon={false}
             leftNavOpen={leftNavOpen}
             openLeftNav={openLeftNav}
             openSearch={openSearch}

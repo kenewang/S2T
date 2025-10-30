@@ -56,7 +56,8 @@ export default function App() {
   const rightNavRef = useRef(null);
   const searchInputRef = useRef(null);
 
-  const showSearchLogo = useRef(true); //we are going to hide the search logo on some pages
+  const [showSearchLogo, setShowSearchLogo] = useState(true);
+  const [showUploadIcon, setShowUploadIcon] = useState(false);
 
   // trigger that causes re-fetch / re-render when incremented
   const [ratingTrigger, setRatingTrigger] = useState(0);
@@ -134,6 +135,7 @@ export default function App() {
                       closeRightNav={closeRightNav}
                       leftNavOpen={leftNavOpen}
                       showSearchLogo={showSearchLogo}
+                      showUploadIcon={showUploadIcon}
                     />
 
                     <main className="main-content" id="main-content">
@@ -285,7 +287,6 @@ export default function App() {
               openSearch={openSearch}
               rightNavOpen={rightNavOpen}
               closeRightNav={closeRightNav}
-              showSearchLogo={showSearchLogo}
               searchActive={searchActive}
               closeSearch={closeSearch}
               searchInputRef={searchInputRef}

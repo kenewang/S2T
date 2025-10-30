@@ -138,83 +138,85 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   };
 
   return (
-    <div>
-      <section className="subject_Container">
-        {!searchActive && (
-          <>
-            <Header
-              showSearchLogo={true}
-              leftNavOpen={leftNavOpen}
-              rightNavOpen={rightNavOpen}
-              openLeftNav={openLeftNav}
-              openSearch={openSearch}
-              openRightNav={openRightNav}
-              closeRightNav={closeRightNav}
-            />
-
-            <LeftNav
-              leftNavOpen={leftNavOpen}
-              closeLeftNav={closeLeftNav}
-              leftNavRef={leftNavRef}
-              isAuthenticated={isAuthenticated}
-              setAuth={setAuth}
-            />
-
-            <RightNav
-              rightNavRef={rightNavRef}
-              closeRightNav={closeRightNav}
-              rightNavOpen={rightNavOpen}
-              activeFileId={activeFileId}
-              onRatingSubmitted={onRatingSubmitted} // <-- pass callback
-              isAuthenticated={isAuthenticated}
-            />
-
-            <button className="grade" onClick={handlePopUp}>
-              View By Grade
-            </button>
-            <main className="docs_container">
-              <DocumentList
-                openRightNav={openRightNav}
-                databaseNames={databaseNames}
-                storage_path={storage_path}
-                file_rating={file_rating}
-                rightNavOpen={rightNavOpen}
+    <div className="sub-parent">
+      <div>
+        <section className="subject_Container">
+          {!searchActive && (
+            <>
+              <Header
+                showSearchLogo={true}
                 leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                openLeftNav={openLeftNav}
+                openSearch={openSearch}
+                openRightNav={openRightNav}
                 closeRightNav={closeRightNav}
-                closeLeftNav={closeLeftNav}
-                fileIds={fileIds} // 👈 must come from backend fetch
-                setActiveFileId={setActiveFileId}
               />
-            </main>
-          </>
-        )}
 
-        {notFound && (
-          <>
-            <NotFound />
-          </>
-        )}
+              <LeftNav
+                leftNavOpen={leftNavOpen}
+                closeLeftNav={closeLeftNav}
+                leftNavRef={leftNavRef}
+                isAuthenticated={isAuthenticated}
+                setAuth={setAuth}
+              />
 
-        <SearchOverlay
-          searchActive={searchActive}
-          closeSearch={closeSearch}
-          searchInputRef={searchInputRef}
-          openRightNav={openRightNav}
-          rightNavOpen={rightNavOpen}
-          leftNavOpen={leftNavOpen}
-          closeRightNav={closeRightNav}
-          closeLeftNav={closeLeftNav}
-          setActiveFileId={setActiveFileId}
-          rightNavRef={rightNavRef}
-          onRatingSubmitted={onRatingSubmitted} // <-- pass callback
-          ratingTrigger={ratingTrigger}
-          activeFileId={activeFileId}
-        />
-      </section>
+              <RightNav
+                rightNavRef={rightNavRef}
+                closeRightNav={closeRightNav}
+                rightNavOpen={rightNavOpen}
+                activeFileId={activeFileId}
+                onRatingSubmitted={onRatingSubmitted} // <-- pass callback
+                isAuthenticated={isAuthenticated}
+              />
 
-      <div className="subjectDocumentsFooter">
-        <p>Contact</p>
-        <p>&copy; 2025 Share2Teach</p>
+              <button className="grade" onClick={handlePopUp}>
+                View By Grade
+              </button>
+              <main className="docs_container">
+                <DocumentList
+                  openRightNav={openRightNav}
+                  databaseNames={databaseNames}
+                  storage_path={storage_path}
+                  file_rating={file_rating}
+                  rightNavOpen={rightNavOpen}
+                  leftNavOpen={leftNavOpen}
+                  closeRightNav={closeRightNav}
+                  closeLeftNav={closeLeftNav}
+                  fileIds={fileIds} // 👈 must come from backend fetch
+                  setActiveFileId={setActiveFileId}
+                />
+              </main>
+            </>
+          )}
+
+          {notFound && (
+            <>
+              <NotFound />
+            </>
+          )}
+
+          <SearchOverlay
+            searchActive={searchActive}
+            closeSearch={closeSearch}
+            searchInputRef={searchInputRef}
+            openRightNav={openRightNav}
+            rightNavOpen={rightNavOpen}
+            leftNavOpen={leftNavOpen}
+            closeRightNav={closeRightNav}
+            closeLeftNav={closeLeftNav}
+            setActiveFileId={setActiveFileId}
+            rightNavRef={rightNavRef}
+            onRatingSubmitted={onRatingSubmitted} // <-- pass callback
+            ratingTrigger={ratingTrigger}
+            activeFileId={activeFileId}
+          />
+        </section>
+
+        <div className="subjectDocumentsFooter">
+          <p>Contact</p>
+          <p>&copy; 2025 Share2Teach</p>
+        </div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const Login = ({
   closeLeftNav,
   setAuth,
   isAuthenticated,
-
+  showSearchLogo,
   onRatingSubmitted,
 }) => {
   const navigate = useNavigate();

@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import icon from "../svg/iconmonstr-magnifier-lined.svg";
+import uploadIcon from "../svg/icons8-upload-100.png";
 import "./Header.css";
 const Header = ({
   showSearchLogo,
+  showUploadIcon,
   leftNavOpen,
   openLeftNav,
   openSearch,
@@ -39,7 +41,14 @@ const Header = ({
         onClick={openSearchIcon}
         role="button"
       >
+        {console.log(showSearchLogo)}
         {showSearchLogo && <img src={icon} alt="search_icon" />}
+      </div>
+
+      <div className="upload-icon" role="button">
+        {console.log(showUploadIcon)}
+        {showUploadIcon && <span>Upload</span>}
+        {showUploadIcon && <img src={uploadIcon} alt="upload_icon" />}
       </div>
       <h2>Share2Teach</h2>
     </header>
