@@ -43,6 +43,7 @@ import SubjectDocuments from "./components/SubjectDocuments";
 import NotFound from "./components/NotFound";
 import Faqs from "./components/Faqs";
 import useBlockBackNavigation from "./hooks/useBlockBackNavigation";
+import FileUpload from "./components/FileUpload";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -270,6 +271,23 @@ export default function App() {
             <SubjectDocuments
               isAuthenticated={isAuthenticated}
               setAuth={setAuth}
+            />
+          }
+        />
+        <Route
+          path="/home/fileUpload"
+          element={
+            <FileUpload
+              leftNavOpen={leftNavOpen}
+              openLeftNav={openLeftNav}
+              openSearch={openSearch}
+              rightNavOpen={rightNavOpen}
+              closeRightNav={closeRightNav}
+              isAuthenticated={isAuthenticated}
+              setAuth={setAuth}
+              onRatingSubmitted={handleRatingSubmitted}
+              closeLeftNav={closeLeftNav}
+              leftNavRef={leftNavRef}
             />
           }
         />

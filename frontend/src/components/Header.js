@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import icon from "../svg/iconmonstr-magnifier-lined.svg";
 import uploadIcon from "../svg/icons8-upload-100.png";
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 const Header = ({
   showSearchLogo,
   showUploadIcon,
@@ -18,6 +19,8 @@ const Header = ({
       closeRightNav();
     }
   };
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!leftNavOpen) return;
@@ -45,7 +48,13 @@ const Header = ({
         {showSearchLogo && <img src={icon} alt="search_icon" />}
       </div>
 
-      <div className="upload-icon" role="button">
+      <div
+        className="upload-icon"
+        role="button"
+        onClick={() => {
+          navigate("/home/fileUpload");
+        }}
+      >
         {console.log(showUploadIcon)}
         {showUploadIcon && <span>Upload</span>}
         {showUploadIcon && <img src={uploadIcon} alt="upload_icon" />}

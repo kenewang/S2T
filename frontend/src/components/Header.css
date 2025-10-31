@@ -47,16 +47,7 @@ header h2 {
 }
 
 .upload-icon {
-  cursor: pointer;
-  background-color: transparent;
-  padding: 10px;
-  flex-shrink: 0;
-}
-
-.upload-icon img {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
+  display: none;
 }
 
 @media screen and (min-width: 451px) {
@@ -71,8 +62,8 @@ header h2 {
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem;
+    margin: 0 auto;
 
-    gap: 0.5rem;
     z-index: 10;
     max-width: 54.8rem;
   }
@@ -99,28 +90,27 @@ header h2 {
     display: none;
   }
 
-  .search-icon img {
-    display: none;
-  }
-
   .upload-icon {
+    display: flex; /* or inline-flex; flex gives better alignment */
     cursor: pointer;
     background-color: transparent;
     position: relative;
     margin-left: 34rem;
     bottom: 0.1rem;
-    flex-shrink: 0;
+    align-items: center; /* aligns items nicely */
   }
 
   .upload-icon img {
-    position: absolute;
-    width: 20px;
-    height: 20px;
+    display: block; /* ensure visible */
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 0.3rem;
   }
 
   .upload-icon span {
+    display: inline; /* ensure visible */
     position: relative;
-
     right: 0.5rem;
     top: 0.2rem;
   }
