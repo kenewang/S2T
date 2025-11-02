@@ -68,7 +68,7 @@
   margin-left: 4px;
 }
 
-@media screen and (min-width: 451px) {
+@media screen and (min-width: 637px) {
   .document-container {
     display: flex;
     flex-wrap: wrap;

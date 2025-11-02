@@ -78,9 +78,93 @@
   color: black;
 }
 
+@media screen and (min-width: 460px) and (max-width: 637px) {
+  .sub-parent {
+    background-color: rgb(234, 220, 203);
+  }
+  .subject_Container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-bottom: 0.2rem;
+    max-width: 30rem;
+
+    min-height: 100vh;
+  }
+
+  .subjectDocumentsFooter {
+    margin-top: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: #eee8e8;
+    text-align: center;
+    max-width: 30rem;
+  }
+
+  .subjectDocumentsFooter > :first-child {
+    cursor: pointer;
+  }
+
+  .grade {
+    box-shadow: black;
+    color: black;
+    border: none;
+    cursor: pointer;
+
+    width: 30%;
+    margin: 4.2rem auto;
+
+    margin-bottom: 0.3rem;
+    background: rgba(248, 248, 248, 0.9);
+    border-color: rgba(248, 248, 248, 0.9);
+    border-radius: 4px;
+  }
+
+  .docs_container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.3rem auto;
+    max-width: 55rem;
+    padding: 0 1rem;
+    background-color: transparent;
+  }
+
+  .radio-popup {
+    position: inherit;
+    top: 8rem;
+    width: 60%;
+    height: 30%;
+    background-color: (248, 248, 248, 0.9) !important;
+  }
+
+  .radio-title {
+    text-align: left;
+
+    color: black;
+    font-weight: 100;
+  }
+
+  .swal2-radio {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+    background-color: transparent !important;
+    position: relative;
+
+    right: 1rem;
+  }
+
+  .swal2-radio label {
+    font-size: 15px !important;
+    color: black;
+  }
+}
 /*  */
 
-@media screen and (min-width: 451px) {
+@media screen and (min-width: 637px) {
   .sub-parent {
     background-color: rgb(234, 220, 203);
   }

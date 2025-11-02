@@ -101,9 +101,115 @@ html {
   top: 0.5rem;
 }
 
+@media screen and (min-width: 460px) and (max-width: 637px) {
+  .homeWrap {
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+  .container {
+    /* ensures footer is pushed down */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 3rem;
+    min-height: 100vh;
+  }
+
+  /* Footer */
+  .homePageFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: #eee8e8;
+    text-align: center;
+    margin-top: 5rem;
+    padding: 1rem 0;
+  }
+
+  .homePageFooter > :first-child {
+    cursor: pointer;
+  }
+
+  /* Section headings (shared across Science, Math, Programming) */
+  .section-heading {
+    margin: 2rem 0 1rem 0;
+    background: #eee8e8;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-decoration: underline;
+    font-size: 1.5rem;
+    color: blue;
+    font-weight: 0;
+    cursor: pointer;
+  }
+
+  /* Carousel container (shared) */
+  .carousel-container {
+    max-width: 78%; /* allow full width *
+    /* centers + 1rem bottom spacing */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Carousel viewport */
+  .carousel-viewport {
+    width: 100%; /* responsive */
+    max-width: 100%; /* keeps same size as before */
+    overflow: hidden;
+  }
+
+  /* Track for moving documents */
+  .carousel-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  /* Carousel navigation buttons */
+  .carousel-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: 0.2s;
+    width: 30px;
+    height: 70px;
+    margin-inline: 0.2rem;
+  }
+
+  .carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* Individual document card */
+  .document {
+    flex: 0 0 150px;
+    height: 180px;
+
+    background-color: rgb(210, 204, 153);
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .rating {
+    position: relative;
+    top: 0.5rem;
+  }
+}
+
 /*  */
 
-@media screen and (min-width: 451px) {
+@media screen and (min-width: 637px) {
   .homeWrap {
     max-width: 55rem;
     margin: 0 auto;

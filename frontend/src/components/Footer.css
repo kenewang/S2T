@@ -57,7 +57,7 @@ button {
   background-color: rgb(123, 90, 6);
 }
 
-@media screen and (min-width: 451px) {
+@media screen and (min-width: 637px) {
   footer {
     margin-top: auto;
     /*  background: blanchedalmond; */

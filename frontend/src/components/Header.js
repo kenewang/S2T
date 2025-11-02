@@ -38,6 +38,16 @@ const Header = ({
       >
         ☰
       </span>
+
+      <div className="pc-screen-search">
+        <form className="pc-screen-search-form">
+          <input type="text" placeholder="search for" />
+          <button type="submit">Search </button>
+        </form>
+      </div>
+
+      <p className="login-word">Login</p>
+
       <div
         className="search-icon"
         id="search-btn"
@@ -56,10 +66,12 @@ const Header = ({
         }}
       >
         {console.log(showUploadIcon)}
-        {showUploadIcon && <span>Upload</span>}
-        {showUploadIcon && <img src={uploadIcon} alt="upload_icon" />}
+        {/* {showUploadIcon && <span>Upload</span>}
+        {showUploadIcon && <img src={uploadIcon} */}
+        <span>Upload</span>
+        <img src={uploadIcon} alt="upload_icon" />
       </div>
-      <h2>Share2Teach</h2>
+      <h2 className="s2t-heading">Share2Teach</h2>
     </header>
   );
 };

@@ -64,7 +64,79 @@ body {
   cursor: pointer;
 }
 
-@media screen and (min-width: 451px) {
+@media screen and (min-width: 460px) and (max-width: 637px) {
+  .createAccWrapper {
+    max-width: 30rem;
+    margin: 0 auto;
+    background: white !important;
+  }
+  .createAccount {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 20rem;
+    margin: 0 auto;
+  }
+
+  .createAccountCredentials {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .inputCreateAccount {
+    height: 2.5rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 0.4rem;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: black; /* text color */
+    margin: 1em 0;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 2px solid black; /* line style */
+  }
+
+  .divider:not(:empty)::before {
+    margin-right: 0.75em;
+  }
+
+  .divider:not(:empty)::after {
+    margin-left: 0.75em;
+  }
+
+  .loginLabel {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+  }
+
+  .create_account_Footer {
+    margin-top: 5rem;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: #eee8e8;
+    text-align: center;
+  }
+
+  .create_account_Footer:first-child {
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 637px) {
   .createAccWrapper {
     max-width: 55rem;
     margin: 0 auto;
