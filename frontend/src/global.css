@@ -110,6 +110,8 @@
     font-family: "MyFont", sans-serif;
     scroll-behavior: smooth;
     background-color: rgb(234, 220, 203);
+    flex-shrink: 1;
+    min-width: 0;
   }
 }
 

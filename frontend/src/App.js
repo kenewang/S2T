@@ -136,7 +136,7 @@ export default function App() {
                       closeRightNav={closeRightNav}
                       leftNavOpen={leftNavOpen}
                       showSearchLogo={showSearchLogo}
-                      showUploadIcon={showUploadIcon}
+                      showUploadIcon={false}
                     />
 
                     <main className="main-content" id="main-content">

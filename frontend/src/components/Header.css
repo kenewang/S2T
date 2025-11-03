@@ -56,7 +56,8 @@ header {
   display: none;
 }
 
-.login-word {
+.login-word,
+.create-word {
   display: none;
 }
 
@@ -120,7 +121,8 @@ header {
     display: none;
   }
 
-  .login-word {
+  .login-word,
+  .create-word {
     display: none;
   }
 }
@@ -136,23 +138,30 @@ header {
     flex-flow: row nowrap;
     box-shadow: 0 0 2px #eee8e8;
     backdrop-filter: blur(4px);
-    border: solid red;
+
     z-index: 10;
     margin: 0 auto;
-    max-width: 54.8rem;
+    width: 100%; /* ✅ make it responsive */
+    max-width: 54.8rem; /* ✅ cap it */
+    margin: 0 auto; /* ✅ center it */
+    flex-shrink: 1;
+
+    min-width: 0;
   }
 
   .s2t-heading {
-    background: blue;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    flex-shrink: 1;
+
+    min-width: 0;
   }
 
   .menu-icon {
     display: flex;
     flex-shrink: 1;
-    background-color: blue;
+
     min-width: 0;
   }
 
@@ -184,17 +193,59 @@ header {
     min-width: 0;
   }
 
-  .pc-screen-search {
-    display: flex;
-    flex-shrink: 1;
-    background: blue;
-    min-width: 0;
-  }
-
   .login-word {
     display: flex;
     flex-shrink: 1;
-    background: blue;
+    cursor: pointer;
+    min-width: 0;
+  }
+
+  .login-word:hover {
+    color: brown;
+  }
+
+  .pc-screen-search {
+    display: flex;
+    flex-shrink: 1;
+    justify-content: flex-start;
+    position: relative;
+    right: 1rem;
+    min-width: 0;
+  }
+
+  .pc-screen-search-form {
+    background-color: rgb(235, 229, 235);
+    display: flex;
+    border: solid rgb(248, 235, 250);
+    flex-shrink: 1;
+
+    min-width: 0;
+  }
+
+  .pc-screen-search-form input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    width: 12rem;
+  }
+
+  .pc-screen-search-form button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(248, 235, 250);
+    text-overflow: hidden;
+  }
+
+  .pc-screen-search-form img {
+    height: 40px;
+    width: 40px;
+    align-self: center;
+    padding: 10px;
+    color: black;
+    background: white;
+    flex-shrink: 1;
     min-width: 0;
   }
 }

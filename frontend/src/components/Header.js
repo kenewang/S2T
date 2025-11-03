@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import icon from "../svg/iconmonstr-magnifier-lined.svg";
 import uploadIcon from "../svg/icons8-upload-100.png";
+import search from "../svg/icons8-search-50.png";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 const Header = ({
@@ -41,12 +42,22 @@ const Header = ({
 
       <div className="pc-screen-search">
         <form className="pc-screen-search-form">
-          <input type="text" placeholder="search for" />
+          <img src={search} alt="search_icon" />
+          <input type="text" placeholder="search for a document" />
           <button type="submit">Search </button>
         </form>
       </div>
 
-      <p className="login-word">Login</p>
+      <p
+        className="login-word"
+        onClick={() => {
+          navigate("/login");
+        }}
+      >
+        Login
+      </p>
+
+      <p className="create-word">Create Account</p>
 
       <div
         className="search-icon"
@@ -54,7 +65,6 @@ const Header = ({
         onClick={openSearchIcon}
         role="button"
       >
-        {console.log(showSearchLogo)}
         {showSearchLogo && <img src={icon} alt="search_icon" />}
       </div>
 
@@ -66,10 +76,8 @@ const Header = ({
         }}
       >
         {console.log(showUploadIcon)}
-        {/* {showUploadIcon && <span>Upload</span>}
-        {showUploadIcon && <img src={uploadIcon} */}
-        <span>Upload</span>
-        <img src={uploadIcon} alt="upload_icon" />
+        {showUploadIcon && <span>Upload</span>}
+        {showUploadIcon && <img src={uploadIcon} />}
       </div>
       <h2 className="s2t-heading">Share2Teach</h2>
     </header>
