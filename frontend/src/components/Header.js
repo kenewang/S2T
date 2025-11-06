@@ -48,16 +48,17 @@ const Header = ({
         </form>
       </div>
 
-      <p
-        className="login-word"
-        onClick={() => {
-          navigate("/login");
-        }}
-      >
-        Login
-      </p>
+      <div className="login_create">
+        <p
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Log in
+        </p>
 
-      <p className="create-word">Create Account</p>
+        <p>Create Account</p>
+      </div>
 
       <div
         className="search-icon"
