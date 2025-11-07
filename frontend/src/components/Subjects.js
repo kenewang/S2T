@@ -54,6 +54,8 @@ const Subjects = ({
             openSearch={openSearch}
             rightNavOpen={false}
             closeRightNav={() => {}}
+            showLoginCreate={false}
+            showPCSearch={true}
           />
 
           <LeftNav

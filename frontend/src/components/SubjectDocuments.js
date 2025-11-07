@@ -151,6 +151,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
                 openSearch={openSearch}
                 openRightNav={openRightNav}
                 closeRightNav={closeRightNav}
+                showPCSearch={true}
               />
 
               <LeftNav

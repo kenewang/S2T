@@ -102,9 +102,6 @@ const FileUpload = ({
         setAuth={setAuth}
         onRatingSubmitted={onRatingSubmitted}
       />
-      <div className="faq-link">
-        <Link to="/faq">FAQ</Link>
-      </div>
 
       <h2 className="upload_heading">Upload A Document</h2>
 

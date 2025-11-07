@@ -59,6 +59,8 @@ export default function App() {
 
   const [showSearchLogo, setShowSearchLogo] = useState(true);
   const [showUploadIcon, setShowUploadIcon] = useState(false);
+  const [showLoginCreate, setShowLoginCreate] = useState(true);
+  const [showPCSearch, setShowPCSearch] = useState(true);
 
   // trigger that causes re-fetch / re-render when incremented
   const [ratingTrigger, setRatingTrigger] = useState(0);
@@ -136,7 +138,9 @@ export default function App() {
                       closeRightNav={closeRightNav}
                       leftNavOpen={leftNavOpen}
                       showSearchLogo={showSearchLogo}
-                      showUploadIcon={false}
+                      showUploadIcon={showUploadIcon}
+                      showLoginCreate={showLoginCreate}
+                      showPCSearch={showPCSearch}
                     />
 
                     <main className="main-content" id="main-content">

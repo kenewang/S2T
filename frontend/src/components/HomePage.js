@@ -3,13 +3,14 @@ import LeftNav from "./LeftNav";
 import SearchOverlay from "./SearchOverlay";
 
 import RightNav from "./RightNav";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ScienceDocuments from "./ScienceDocuments";
 import MathematicsDocuments from "./MathematicsDocuments";
 import ProgrammingDocuments from "./ProgrammingDocuments";
 import useFetchFiles from "../hooks/useFetchFiles";
 import NotFound from "./NotFound";
+import { jwtDecode } from "jwt-decode";
 
 const HomePage = ({
   leftNavRef, //passed down from App.js
@@ -26,7 +27,7 @@ const HomePage = ({
   const scienceData = useFetchFiles("science", ratingTrigger, setNotFound);
 
   const mathData = useFetchFiles("mathematics", ratingTrigger, setNotFound);
-
+  const [showUploadIcon, setShowUploadIcon] = useState(false);
   const programmingData = useFetchFiles(
     "computer programming",
     ratingTrigger,
@@ -74,6 +75,18 @@ const HomePage = ({
     setRatingTrigger((prev) => prev + 1);
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      const userRole = decoded.role;
+      console.log("User role:", decoded.role);
+      const validRoles = ["admin", "moderator", "educator"];
+      if (!validRoles.includes(userRole)) return;
+      setShowUploadIcon(true);
+    }
+  });
+
   return (
     <div className="homeWrap">
       <section className="container">
@@ -81,12 +94,13 @@ const HomePage = ({
           <>
             <Header
               showSearchLogo={true}
-              showUploadIcon={true}
+              showUploadIcon={showUploadIcon}
               leftNavOpen={leftNavOpen}
               openLeftNav={openLeftNav}
               openSearch={openSearch}
               rightNavOpen={rightNavOpen}
               closeRightNav={closeRightNav}
+              showPCSearch={true}
             />
 
             <LeftNav

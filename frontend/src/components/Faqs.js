@@ -63,6 +63,8 @@ const Faqs = ({
         openSearch={() => {}}
         rightNavOpen={false}
         closeRightNav={() => {}}
+        showLoginCreate={false}
+        showPCSearch={false}
       />
       <LeftNav
         leftNavOpen={leftNavOpen}

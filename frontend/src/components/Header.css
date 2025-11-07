@@ -170,8 +170,9 @@ header {
   .upload-icon {
     display: flex;
     flex-shrink: 1;
-    background: blue;
+
     min-width: 0;
+    cursor: pointer;
   }
 
   .upload-icon img {
@@ -179,7 +180,7 @@ header {
     flex-shrink: 1;
     width: 24px;
     height: 24px;
-    background: red;
+
     min-width: 0;
   }
 
@@ -187,7 +188,7 @@ header {
     display: flex;
     margin-right: 0.5rem;
     flex-shrink: 1;
-    background: blue;
+    margin-top: 0.2rem;
     min-width: 0;
   }
 

@@ -12,6 +12,8 @@ const Header = ({
   openSearch,
   rightNavOpen,
   closeRightNav,
+  showLoginCreate,
+  showPCSearch,
 }) => {
   const openSearchIcon = () => {
     if (!rightNavOpen && !leftNavOpen) {
@@ -40,25 +42,35 @@ const Header = ({
         ☰
       </span>
 
-      <div className="pc-screen-search">
-        <form className="pc-screen-search-form">
-          <img src={search} alt="search_icon" />
-          <input type="text" placeholder="search for a document" />
-          <button type="submit">Search </button>
-        </form>
-      </div>
+      {showPCSearch && (
+        <div className="pc-screen-search">
+          <form className="pc-screen-search-form">
+            <img src={search} alt="search_icon" />
+            <input type="text" placeholder="search for a document" />
+            <button type="submit">Search </button>
+          </form>
+        </div>
+      )}
 
-      <div className="login_create">
-        <p
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          Log in
-        </p>
+      {showLoginCreate && (
+        <div className="login_create">
+          <p
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Log in
+          </p>
 
-        <p>Create Account</p>
-      </div>
+          <p
+            onClick={() => {
+              navigate("/createAccount");
+            }}
+          >
+            Create Account
+          </p>
+        </div>
+      )}
 
       <div
         className="search-icon"
