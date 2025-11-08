@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import LeftNav from "./LeftNav";
 import axios from "axios";
 import "./FileUpload.css";
+import { Navigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const FileUpload = ({
   leftNavOpen,
@@ -29,23 +31,41 @@ const FileUpload = ({
   const [message, setMessage] = useState("");
 
   // Fetch subjects and grades from API on component mount
-  /*   useEffect(() => {
+  useEffect(() => {
     document.title = "Share2Teach"; // Set the tab name to "Share2Teach"
     const fetchSubjectsAndGrades = async () => {
       try {
         const [subjectsRes, gradesRes] = await Promise.all([
-          axios.get("http://localhost:3000/subjects"),
-          axios.get("http://localhost:3000/grades"),
+          fetch("http://localhost:8081/subjects"),
+          fetch("http://localhost:8081/grades"),
         ]);
-        setSubjectsList(subjectsRes.data);
-        setGradesList(gradesRes.data);
+        setSubjectsList(await subjectsRes.json());
+        setGradesList(await gradesRes.json());
       } catch (error) {
         console.error("Error fetching subjects/grades:", error);
       }
     };
 
     fetchSubjectsAndGrades();
-  }, []) */ // Handle file upload form submission
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    try {
+      const decoded = jwtDecode(token);
+      const userRole = decoded.role;
+      const validRoles = ["admin", "moderator", "educator"];
+
+      if (!validRoles.includes(userRole)) {
+        navigate("/home");
+        console.log("navigated!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  // Handle file upload form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -126,8 +146,8 @@ const FileUpload = ({
           >
             <option value="">Select Subject</option>
             {subjectsList.map((sub) => (
-              <option key={sub.subject_id} value={sub.subject_id}>
-                {sub.subject_name}
+              <option key={sub.id} value={sub.id}>
+                {sub.subjectName}
               </option>
             ))}
           </select>
@@ -140,11 +160,22 @@ const FileUpload = ({
           >
             <option value="">Select Grade</option>
             {gradesList.map((gr) => (
-              <option key={gr.grade_id} value={gr.grade_id}>
-                {gr.grade_name}
+              <option key={gr.gradeId} value={gr.gradeId}>
+                {gr.gradeName}
               </option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <label>Keywords:</label>
+          <input
+            type="text"
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+            placeholder="Separate with commas"
+            required
+          />
         </div>
 
         <button className="upload-button" type="submit">

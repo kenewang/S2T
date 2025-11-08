@@ -44,6 +44,7 @@ import NotFound from "./components/NotFound";
 import Faqs from "./components/Faqs";
 import useBlockBackNavigation from "./hooks/useBlockBackNavigation";
 import FileUpload from "./components/FileUpload";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -256,17 +257,19 @@ export default function App() {
         <Route
           path="/home"
           element={
-            <HomePage
-              isAuthenticated={isAuthenticated}
-              setAuth={setAuth}
-              leftNavRef={leftNavRef}
-              openLeftNav={openLeftNav}
-              closeLeftNav={closeLeftNav}
-              rightNavRef={rightNavRef}
-              activeFileId={activeFileId}
-              fileIds={fileIds} // 👈 must come from backend fetch
-              setActiveFileId={setActiveFileId}
-            />
+            <ProtectedRoute>
+              <HomePage
+                isAuthenticated={isAuthenticated}
+                setAuth={setAuth}
+                leftNavRef={leftNavRef}
+                openLeftNav={openLeftNav}
+                closeLeftNav={closeLeftNav}
+                rightNavRef={rightNavRef}
+                activeFileId={activeFileId}
+                fileIds={fileIds} // 👈 must come from backend fetch
+                setActiveFileId={setActiveFileId}
+              />
+            </ProtectedRoute>
           }
         />
         <Route
@@ -281,18 +284,20 @@ export default function App() {
         <Route
           path="/home/fileUpload"
           element={
-            <FileUpload
-              leftNavOpen={leftNavOpen}
-              openLeftNav={openLeftNav}
-              openSearch={openSearch}
-              rightNavOpen={rightNavOpen}
-              closeRightNav={closeRightNav}
-              isAuthenticated={isAuthenticated}
-              setAuth={setAuth}
-              onRatingSubmitted={handleRatingSubmitted}
-              closeLeftNav={closeLeftNav}
-              leftNavRef={leftNavRef}
-            />
+            <ProtectedRoute>
+              <FileUpload
+                leftNavOpen={leftNavOpen}
+                openLeftNav={openLeftNav}
+                openSearch={openSearch}
+                rightNavOpen={rightNavOpen}
+                closeRightNav={closeRightNav}
+                isAuthenticated={isAuthenticated}
+                setAuth={setAuth}
+                onRatingSubmitted={handleRatingSubmitted}
+                closeLeftNav={closeLeftNav}
+                leftNavRef={leftNavRef}
+              />
+            </ProtectedRoute>
           }
         />
         <Route

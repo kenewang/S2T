@@ -21,13 +21,16 @@ public class Controller {
 
     private final FileService fileService;
     private final SubjectService subjectService;
+    private final GradeService gradeService;
 
     private final Logger logger = Logger.getLogger(Controller.class.getName());
     private final JavaMailSender mailSender;
 
-    public Controller(FileService fileService, SubjectService subjectService, JavaMailSender mailSender) {
+    public Controller(FileService fileService, SubjectService subjectService, GradeService gradeService,
+            JavaMailSender mailSender) {
         this.fileService = fileService;
         this.subjectService = subjectService;
+        this.gradeService = gradeService;
 
         this.mailSender = mailSender;
 
@@ -76,6 +79,16 @@ public class Controller {
     @GetMapping("/ratings/{subject}")
     public List<Double> getFileRatingsBySubject(@PathVariable String subject) {
         return fileService.getFileRatingsBySubject(subject);
+    }
+
+    @GetMapping("/grades")
+    public List<GradeEntity> getAllGrades() {
+        return gradeService.getAllGrades();
+    }
+
+    @GetMapping("/subjects")
+    public List<SubjectEntity> getAllSubjects() {
+        return subjectService.getAllSubjects();
     }
 
     @GetMapping("/files/search")
