@@ -19,7 +19,7 @@ const FileUpload = ({
   closeLeftNav,
   leftNavRef,
 }) => {
-  const [file_name, setFileName] = useState("");
+  const [fileName, setFileName] = useState("");
   const [subject, setSubject] = useState("");
   const [grade, setGrade] = useState("");
   const [keywords, setKeywords] = useState("");
@@ -69,24 +69,19 @@ const FileUpload = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file_name", file_name);
+    formData.append("fileName", fileName);
     formData.append("subject", subject);
     formData.append("grade", grade);
     formData.append("keywords", keywords);
     formData.append("file", file);
 
     try {
-      const token = localStorage.getItem("token");
-      const res = await axios.post(
-        "http://localhost:3000/documents",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            jwt_token: token, // Include the JWT token here
-          },
-        }
-      );
+      await fetch("http://localhost:8081/documents/upload", {
+        method: "POST",
+        headers: { jwt_token: localStorage.getItem("token") },
+        body: formData,
+      });
+
       setMessage("File uploaded successfully!");
       setShowSuccessModal(true); // Show success modal
     } catch (error) {
@@ -98,7 +93,6 @@ const FileUpload = ({
   // Handle "OK" button in the success modal
   const handleModalClose = () => {
     setShowSuccessModal(false);
-    navigate("/documents"); // Redirect to DocumentsView
   };
 
   return (
@@ -171,6 +165,7 @@ const FileUpload = ({
           <label>Keywords:</label>
           <input
             type="text"
+            className="keyword-input"
             value={keywords}
             onChange={(e) => setKeywords(e.target.value)}
             placeholder="Separate with commas"

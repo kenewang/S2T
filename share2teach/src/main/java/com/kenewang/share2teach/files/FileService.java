@@ -1,19 +1,40 @@
 package com.kenewang.share2teach.files;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
+import java.util.Map;
 
+import org.springframework.web.reactive.function.BodyInserters;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FileService {
 
     private final FileRepository fileRepository;
+    private final KeywordRepository keywordRepository;
+    private final SubjectRepository subjectRepository;
+    private final GradeRepository gradeRepository;
 
-    public FileService(FileRepository fileRepository) {
+    public FileService(FileRepository fileRepository, KeywordRepository keywordRepository,
+            SubjectRepository subjectRepository, GradeRepository gradeRepository) {
         this.fileRepository = fileRepository;
+        this.keywordRepository = keywordRepository;
+        this.subjectRepository = subjectRepository;
+        this.gradeRepository = gradeRepository;
     }
+    // ===== EXISTING FILE FETCH METHODS =====
 
     public List<Long> getFirst20FileIds() {
         return fileRepository.findFirst20FileIds();
@@ -52,10 +73,7 @@ public class FileService {
     }
 
     public List<FileSearchResponse> searchFiles(String query) {
-        // Fetch files matching the query
         List<FileEntity> files = fileRepository.findByFileNameContainingIgnoreCase(query);
-
-        // Convert to DTO
         return files.stream().map(file -> new FileSearchResponse(file.getId(), file.getFileName(),
                 file.getStoragePath(), file.getFileRating())).toList();
     }
@@ -65,25 +83,20 @@ public class FileService {
 
         switch (category.toLowerCase()) {
         case "primary":
-        case "R - 7":
+        case "r - 7":
             grades = List.of("R", "1", "2", "3", "4", "5", "6", "7");
             break;
         case "secondary":
         case "8 - 12":
             grades = List.of("8", "9", "10", "11", "12");
-
             break;
         case "tertiary":
-
+        case "higher education":
             grades = List.of("Higher Education");
             break;
         default:
             grades = List.of();
-
         }
-
-        System.out.println("Category: " + category);
-        System.out.println("Grades being searched: " + grades);
 
         return fileRepository.findBySubjectAndGradeNames(subjectName, grades);
     }
@@ -93,13 +106,12 @@ public class FileService {
 
         switch (category.toLowerCase()) {
         case "primary":
-        case "R - 7":
+        case "r - 7":
             grades = List.of("R", "1", "2", "3", "4", "5", "6", "7");
             break;
         case "secondary":
         case "8 - 12":
             grades = List.of("8", "9", "10", "11", "12");
-
             break;
         case "tertiary":
         case "higher education":
@@ -107,10 +119,107 @@ public class FileService {
             break;
         default:
             grades = List.of();
-
         }
 
         return fileRepository.findByGradeNames(grades);
     }
 
+    // ===== FILE UPLOAD =====
+
+    public void uploadFile(MultipartFile file, Long subjectId, Long gradeId, String keywords, Long userId)
+            throws IOException {
+
+        // ✅ (1) Check file type
+        String mimeType = file.getContentType();
+        byte[] processedFile = file.getBytes();
+
+        // (Optional) Add watermark depending on type
+        if ("application/pdf".equals(mimeType)) {
+            processedFile = addWatermarkToPDF(processedFile);
+        } else if ("text/plain".equals(mimeType)) {
+            processedFile = addWatermarkToTxt(processedFile);
+        } else {
+            throw new IllegalArgumentException("Unsupported file format");
+        }
+
+        // ✅ (2) Upload to SeaweedFS
+        String seaweedUrl = uploadToSeaweedFS(file.getOriginalFilename(), mimeType, processedFile);
+
+        // ✅ (3) Fetch Subject & Grade entities
+        SubjectEntity subject = subjectRepository.findById(subjectId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid subject ID"));
+
+        GradeEntity grade = gradeRepository.findById(gradeId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid grade ID"));
+
+        // ✅ (4) Save file metadata to database
+        FileEntity fileEntity = new FileEntity();
+        fileEntity.setFileName(file.getOriginalFilename());
+        fileEntity.setStoragePath(seaweedUrl);
+        fileEntity.setFileRating(0.0);
+        fileEntity.setSubject(subject);
+        fileEntity.setGrade(grade);
+        fileRepository.save(fileEntity);
+
+        // ✅ (4) Attach keywords to the file
+        attachKeywordsToFile(fileEntity, keywords);
+    }
+
+    // ===== HELPER METHODS =====
+
+    @Transactional
+    public void attachKeywordsToFile(FileEntity file, String keywordCsv) {
+        List<String> keywordList = Arrays.stream(keywordCsv.split(",")).map(String::trim).filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
+
+        List<KeywordEntity> keywordEntities = new ArrayList<>();
+
+        for (String word : keywordList) {
+            KeywordEntity keyword = keywordRepository.findByKeywordName(word).orElseGet(() -> {
+                KeywordEntity newKeyword = new KeywordEntity();
+                newKeyword.setKeywordName(word);
+                return keywordRepository.save(newKeyword);
+            });
+            keywordEntities.add(keyword);
+        }
+
+        file.setKeywords(keywordEntities);
+        fileRepository.save(file);
+    }
+
+    private String uploadToSeaweedFS(String filename, String mimeType, byte[] fileData) throws IOException {
+        MultipartBodyBuilder body = new MultipartBodyBuilder();
+        body.part("file", new ByteArrayResource(fileData))
+                .header("Content-Disposition", "form-data; name=file; filename=" + filename)
+                .header("Content-Type", mimeType);
+
+        WebClient client = WebClient.create("http://localhost:9333");
+
+        Map<String, Object> responseMap = client.post().uri("/submit")
+                .body(BodyInserters.fromMultipartData(body.build())).retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
+                }).block();
+
+        // 🟢 Log the entire response map to see what SeaweedFS sent back
+        System.out.println("SeaweedFS upload response: " + responseMap);
+
+        if (responseMap != null && responseMap.containsKey("fileUrl")) {
+            String url = responseMap.get("fileUrl").toString();
+            if (!url.startsWith("http")) {
+                url = "http://" + url;
+            }
+            return url;
+        }
+
+        throw new IOException("Failed to upload file to SeaweedFS: missing fileUrl in response");
+    }
+
+    // Dummy watermark methods for now
+    private byte[] addWatermarkToPDF(byte[] file) {
+        return file;
+    }
+
+    private byte[] addWatermarkToTxt(byte[] file) {
+        return file;
+    }
 }

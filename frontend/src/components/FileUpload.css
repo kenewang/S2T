@@ -1,125 +1,145 @@
-/* Container to position the form and heading */
 .file-upload-container {
-  display: flex;
-  flex-direction: column; /* Stack heading and form vertically */
-  justify-content: center; /* Align form and heading at the top */
-  align-items: center;
-  min-height: auto;
-  padding-top: 50px; /* Space above the form to center within the viewport */
+  display: none;
 }
 
-/* Add a container for the FAQ link */
-.faq-link {
-  position: absolute;
-  top: 20px;
-  right: 150px;
-  font-size: 16px;
+@media screen and (min-width: 460px) and (max-width: 637px) {
+  .file-upload-container {
+    display: none;
+  }
 }
 
-/* Style the heading */
-.upload_heading {
-  margin-top: 2.1rem;
-  margin-bottom: 0.8rem;
-  font-size: 24px;
+@media screen and (min-width: 637px) {
+  /* Container to position the form and heading */
+  .file-upload-container {
+    display: flex;
+    flex-direction: column; /* Stack heading and form vertically */
+    justify-content: center; /* Align form and heading at the top */
+    align-items: center;
+    min-height: auto;
+    padding-top: 50px; /* Space above the form to center within the viewport */
+  }
 
-  text-align: center;
-}
+  /* Add a container for the FAQ link */
+  .faq-link {
+    position: absolute;
+    top: 20px;
+    right: 150px;
+    font-size: 16px;
+  }
 
-/* Style the form */
-.upload-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 23rem;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 10px; /* Adjust space between form and heading */
-}
+  /* Style the heading */
+  .upload_heading {
+    margin-top: 2.1rem;
+    margin-bottom: 0.8rem;
+    font-size: 24px;
 
-/* Style the input fields and select dropdowns */
+    text-align: center;
+  }
 
-.file-input {
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 100%;
-}
+  /* Style the form */
+  .upload-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 23rem;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px; /* Adjust space between form and heading */
+  }
 
-select {
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 100%;
-}
+  /* Style the input fields and select dropdowns */
 
-/* Button styling */
-.upload-button {
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
+  .file-input {
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+  }
 
-/* Button hover effect */
-.upload-button:hover {
-  background-color: #45a049;
-}
+  .keyword-input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    width: 70%;
+    margin-left: 1rem;
+  }
 
-/* Style for any messages shown (e.g., success or error messages) */
-.upload-paragraph {
-  font-size: 14px;
-  color: green;
-  margin-top: 10px;
-  text-align: center;
-}
+  select {
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+  }
 
-.upload-paragraph.error {
-  color: red;
-}
+  /* Button styling */
+  .upload-button {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
 
-/* Modal styling */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  /* Button hover effect */
+  .upload-button:hover {
+    background-color: #45a049;
+  }
 
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-}
+  /* Style for any messages shown (e.g., success or error messages) */
+  .upload-paragraph {
+    font-size: 14px;
+    color: green;
+    margin-top: 10px;
+    text-align: center;
+  }
 
-.modal-content p {
-  margin-bottom: 20px;
-}
+  .upload-paragraph.error {
+    color: red;
+  }
 
-.modal-content button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+  /* Modal styling */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.modal-content button:hover {
-  background-color: #45a049;
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .modal-content p {
+    margin-bottom: 20px;
+  }
+
+  .modal-content button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .modal-content button:hover {
+    background-color: #45a049;
+  }
 }

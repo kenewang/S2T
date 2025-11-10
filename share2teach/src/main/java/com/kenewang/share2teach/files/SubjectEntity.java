@@ -8,18 +8,28 @@ import jakarta.persistence.Column;
 @Entity
 @Table(name = "subject", schema = "public")
 
-public class SubjectEntity{
+public class SubjectEntity {
     @Id
-    @Column(name = "subject_id") // primary kPey (must include it)
+    @Column(name = "subject_id") // primary key (must include it)
     private Long id;
 
     @Column(name = "subject_name")
     private String subjectName;
 
-    //getters and setters
-    public Long getId(){return id;}
-    public void setId(Long id){this.id = id;}
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
 
-    public String getSubjectName() { return subjectName; }
-    public void setSubjectName(String subjectName) { this.subjectName = subjectName; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
 }

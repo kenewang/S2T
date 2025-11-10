@@ -5,9 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
+
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 
 @Entity
@@ -15,8 +21,7 @@ import jakarta.persistence.Column;
 public class FileEntity {
 
     @Id
-    @SequenceGenerator(name = "file_seq", sequenceName = "file_file_id_seq", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
 
     private Long id;
@@ -37,6 +42,11 @@ public class FileEntity {
     @ManyToOne
     @JoinColumn(name = "grade", referencedColumnName = "grade_id")
     private GradeEntity grade;
+
+    @ManyToMany
+    @JoinTable(name = "file_keyword", schema = "public", joinColumns = @JoinColumn(name = "file_id"), inverseJoinColumns = @JoinColumn(name = "keyword_id"))
+
+    private List<KeywordEntity> keywords = new ArrayList<>();
 
     // Getters and setters
     public Long getId() {
@@ -85,5 +95,13 @@ public class FileEntity {
 
     public void setGrade(GradeEntity grade) {
         this.grade = grade;
+    }
+
+    public List<KeywordEntity> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<KeywordEntity> keywords) {
+        this.keywords = keywords;
     }
 }
