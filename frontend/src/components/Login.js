@@ -1,4 +1,4 @@
-import Header from "./Header";
+import HeaderV2 from "./HeaderV2";
 import LeftNav from "./LeftNav";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -61,16 +61,13 @@ const Login = ({
 
   return (
     <div className="loginWrap">
-      <Header
-        showSearchLogo={false} //hide the search icon
+      <HeaderV2
         leftNavOpen={leftNavOpen}
         openLeftNav={openLeftNav}
         // Pass other props if you need search/right nav to work:
         openSearch={() => {}}
         rightNavOpen={false}
         closeRightNav={() => {}}
-        showLoginCreate={false}
-        showPCSearch={false}
       />
       <LeftNav
         leftNavOpen={leftNavOpen}

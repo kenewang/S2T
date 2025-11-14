@@ -169,7 +169,7 @@ header {
     backdrop-filter: blur(4px);
 
     z-index: 10;
-    margin: 0 auto;
+
     width: 100%; /* ✅ make it responsive */
     max-width: 54.8rem; /* ✅ cap it */
     margin: 0 auto; /* ✅ center it */
