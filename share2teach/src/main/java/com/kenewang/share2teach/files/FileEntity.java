@@ -14,6 +14,8 @@ import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 
 @Entity
@@ -43,6 +45,7 @@ public class FileEntity {
     @JoinColumn(name = "grade", referencedColumnName = "grade_id")
     private GradeEntity grade;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "file_keyword", schema = "public", joinColumns = @JoinColumn(name = "file_id"), inverseJoinColumns = @JoinColumn(name = "keyword_id"))
 

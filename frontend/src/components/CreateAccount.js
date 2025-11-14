@@ -35,7 +35,6 @@ const CreateAccount = ({
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    console.log("Form submitted");
 
     try {
       const body = { email, password, fname, lname, username };
@@ -46,7 +45,7 @@ const CreateAccount = ({
 
       const response = await fetch("http://localhost:8081/auth/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" }, //This tells the Spring Boot server that the stuff in the body is in json format
+        headers: { "Content-Type": "application/json" }, //This tells  Spring Boot server that the stuff in the body is in json format
         body: JSON.stringify(body),
       });
 

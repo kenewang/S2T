@@ -41,8 +41,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             // if jwt_token is there, do the following:
             try {
-                Claims claims = jwtUtil.validateToken(token); // Validate the token using JwtUtil
-                Long userId = Long.parseLong(claims.getSubject()); // Extract the userId (from the token subject).
+                Claims claims = jwtUtil.validateToken(token); // Validate the token inside the JwtUtil class using the
+                                                              // method "validateToken"
+                Long userId = Long.parseLong(claims.getSubject()); // Extract the userId
                 Integer tokenVersion = (Integer) claims.get("token_version"); // Extract the token_version (from the
                                                                               // token claims).
 

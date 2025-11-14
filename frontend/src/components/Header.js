@@ -4,6 +4,7 @@ import uploadIcon from "../svg/icons8-upload-100.png";
 import search from "../svg/icons8-search-50.png";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+
 const Header = ({
   showSearchLogo,
   showUploadIcon,
@@ -31,8 +32,12 @@ const Header = ({
       closeRightNav();
     }
   });
+
   return (
-    <header id="main-header">
+    <header
+      className={showUploadIcon ? "big-header" : "small-header"}
+      id="main-header"
+    >
       <span
         className="menu-icon"
         onClick={openLeftNav} //call the function "openLeftNav" when the hamburger menu is clicked
@@ -43,10 +48,20 @@ const Header = ({
       </span>
 
       {showPCSearch && (
-        <div className="pc-screen-search">
-          <form className="pc-screen-search-form">
+        <div
+          className={
+            showUploadIcon ? "pc-screen-search_logged" : "pc-screen-search"
+          }
+        >
+          <form
+            className={
+              showUploadIcon
+                ? "pc-screen-search-form_logged"
+                : "pc-screen-search-form"
+            }
+          >
             <img src={search} alt="search_icon" />
-            <input type="text" placeholder="search for a document" />
+            <input type="text" placeholder="Search for a document" />
             <button type="submit">Search </button>
           </form>
         </div>
@@ -81,6 +96,10 @@ const Header = ({
         {showSearchLogo && <img src={icon} alt="search_icon" />}
       </div>
 
+      <div className="file-moderation" role="button">
+        {showUploadIcon && <span>File Moderation</span>}
+      </div>
+
       <div
         className="upload-icon"
         role="button"
@@ -88,11 +107,15 @@ const Header = ({
           navigate("/home/fileUpload");
         }}
       >
-        {console.log(showUploadIcon)}
-        {showUploadIcon && <span>Upload</span>}
+        {showUploadIcon && <span className="upload">Upload</span>}
         {showUploadIcon && <img src={uploadIcon} />}
       </div>
-      <h2 className="s2t-heading">Share2Teach</h2>
+
+      <h2
+        className={showUploadIcon ? "s2t-heading-open" : "s2t-heading-closed"}
+      >
+        Share2Teach
+      </h2>
     </header>
   );
 };
