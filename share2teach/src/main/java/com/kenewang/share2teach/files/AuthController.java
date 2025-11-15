@@ -22,6 +22,13 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
+    @GetMapping("/verify-token")
+    public ResponseEntity<Boolean> verifyToken(@RequestParam Long userId, @RequestParam Integer tokenVersion) {
+
+        boolean isValid = userService.verifyTokenVersion(userId, tokenVersion);
+        return ResponseEntity.ok(isValid);
+    }
+
     @PostMapping("/register")
 
     // @ResponseEntiry sends a response back to the client (Postman, React frontend,

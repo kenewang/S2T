@@ -44,6 +44,7 @@ import NotFound from "./components/NotFound";
 import Faqs from "./components/Faqs";
 import useBlockBackNavigation from "./hooks/useBlockBackNavigation";
 import FileUpload from "./components/FileUpload";
+import FileModeration from "./components/FileModeration";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -282,10 +283,30 @@ export default function App() {
           }
         />
         <Route
-          path="/home/fileUpload"
+          path="/home/fileupload"
           element={
             <ProtectedRoute>
               <FileUpload
+                leftNavOpen={leftNavOpen}
+                openLeftNav={openLeftNav}
+                openSearch={openSearch}
+                rightNavOpen={rightNavOpen}
+                closeRightNav={closeRightNav}
+                isAuthenticated={isAuthenticated}
+                setAuth={setAuth}
+                onRatingSubmitted={handleRatingSubmitted}
+                closeLeftNav={closeLeftNav}
+                leftNavRef={leftNavRef}
+              />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/home/filemoderation"
+          element={
+            <ProtectedRoute>
+              <FileModeration
                 leftNavOpen={leftNavOpen}
                 openLeftNav={openLeftNav}
                 openSearch={openSearch}

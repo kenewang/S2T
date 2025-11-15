@@ -101,6 +101,10 @@ public class FileService {
         return fileRepository.findBySubjectAndGradeNames(subjectName, grades);
     }
 
+    public List<FileEntity> getPendingDocuments() {
+        return fileRepository.findPendingDocuments();
+    }
+
     public List<FileEntity> getFilesByGrade(String category) {
         List<String> grades;
 

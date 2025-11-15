@@ -2,6 +2,7 @@ package com.kenewang.share2teach.files;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -108,6 +109,16 @@ public class Controller {
     public ResponseEntity<List<FileEntity>> getFilesByGrade(@PathVariable String category) {
         List<FileEntity> files = fileService.getFilesByGrade(category);
         return ResponseEntity.ok(files);
+    }
+
+    @GetMapping("/files/pending")
+    public ResponseEntity<?> getPendingDocuments() {
+        try {
+            List<FileEntity> pendingDocs = fileService.getPendingDocuments();
+            return ResponseEntity.ok(pendingDocs);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("error", e.getMessage()));
+        }
     }
 
     @PostMapping("/send-email")

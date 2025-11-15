@@ -178,6 +178,17 @@ header {
     min-width: 0;
   }
 
+  .s2t_heading {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 1;
+    margin-left: auto;
+
+    min-width: 0;
+    cursor: pointer;
+  }
+
   .s2t-heading-open {
     overflow: hidden;
     text-overflow: ellipsis;

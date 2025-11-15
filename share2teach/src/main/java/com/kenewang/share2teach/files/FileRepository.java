@@ -24,6 +24,9 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
     @Query(value = "SELECT rating FROM file LIMIT 10", nativeQuery = true)
     List<Double> findFirst20FileRatings();
 
+    @Query("SELECT f FROM FileEntity f WHERE f.status = 'pending'")
+    List<FileEntity> findPendingDocuments();
+
     @Query("""
             SELECT f.id FROM FileEntity f WHERE LOWER(f.subject.subjectName) = LOWER(:subjectName)
             """)

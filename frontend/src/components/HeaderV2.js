@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./HeaderV2.css";
 const HeaderV2 = ({
   leftNavOpen,
@@ -25,6 +25,13 @@ const HeaderV2 = ({
     }
   });
 
+  const locationObj = useLocation();
+  const currentPath = locationObj.pathname;
+
+  const paths = ["/home/filemoderation", "/home", "/home/fileupload", "/faqs"];
+
+  let location = paths.includes(currentPath);
+
   return (
     <div className="head">
       {" "}
@@ -36,25 +43,38 @@ const HeaderV2 = ({
       >
         ☰
       </span>
-      <div className="shortcuts">
-        <p
-          onClick={() => {
-            navigate("/subjects");
-          }}
-        >
-          Browse
-        </p>
-        <p
-          onClick={() => {
-            navigate("/faqs");
-          }}
-        >
-          FAQS
-        </p>
-      </div>
+      {!location && (
+        <div className="shortcuts">
+          <p
+            onClick={() => {
+              navigate("/subjects");
+            }}
+          >
+            Browse
+          </p>
+          <p
+            onClick={() => {
+              navigate("/faqs");
+            }}
+          >
+            FAQS
+          </p>
+        </div>
+      )}
+      {location && (
+        <div className="shortcuts">
+          <p
+            onClick={() => {
+              navigate("/faqs");
+            }}
+          >
+            FAQS
+          </p>
+        </div>
+      )}
       <h2
         onClick={() => {
-          navigate("/");
+          navigate("/home");
         }}
       >
         Share2Teach

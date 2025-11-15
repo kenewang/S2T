@@ -1,28 +1,64 @@
 import { Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
+  const [isValid, setIsValid] = useState(null);
 
-  if (!token) return <Navigate to="/" replace />;
+  useEffect(() => {
+    const validate = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setIsValid(false);
+        return;
+      }
 
-  try {
-    const decoded = jwtDecode(token);
+      try {
+        const decoded = jwtDecode(token);
+        const currentTime = Date.now() / 1000; // in seconds
 
-    const currentTime = Date.now() / 1000; // seconds
+        // 1. Check expiry
+        if (decoded.exp && decoded.exp < currentTime) {
+          localStorage.removeItem("token");
+          setIsValid(false);
+          return;
+        }
 
-    if (decoded.exp && decoded.exp < currentTime) {
-      // Token expired
-      localStorage.removeItem("token");
-      return <Navigate to="/" replace />;
-    }
+        // 2. Check token version
+        const userId = Number(decoded.sub);
+        const tokenVersion = Number(decoded.token_version);
 
-    return children;
-  } catch (err) {
-    console.error("Invalid token:", err);
-    localStorage.removeItem("token");
-    return <Navigate to="/" replace />;
-  }
+        const res = await fetch(
+          `http://localhost:8081/auth/verify-token?userId=${userId}&tokenVersion=${tokenVersion}`
+        );
+
+        {
+          console.log("Checking token");
+          console.log(localStorage);
+        }
+        const versionValid = await res.json();
+
+        if (!versionValid) {
+          // mismatch, remove token
+          localStorage.removeItem("token");
+          setIsValid(false);
+        } else {
+          setIsValid(true);
+        }
+      } catch (err) {
+        console.error("Invalid token:", err);
+        localStorage.removeItem("token");
+        setIsValid(false);
+      }
+    };
+
+    validate();
+  }, []);
+
+  // While checking, return nothing or loader
+  if (isValid === null) return null;
+
+  return isValid ? children : <Navigate to="/" replace />;
 };
 
 export default ProtectedRoute;

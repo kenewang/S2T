@@ -45,6 +45,9 @@ public class FileEntity {
     @JoinColumn(name = "grade", referencedColumnName = "grade_id")
     private GradeEntity grade;
 
+    @Column(name = "status")
+    private String status;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "file_keyword", schema = "public", joinColumns = @JoinColumn(name = "file_id"), inverseJoinColumns = @JoinColumn(name = "keyword_id"))
@@ -102,6 +105,14 @@ public class FileEntity {
 
     public List<KeywordEntity> getKeywords() {
         return keywords;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setKeywords(List<KeywordEntity> keywords) {

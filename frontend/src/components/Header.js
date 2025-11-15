@@ -3,7 +3,7 @@ import icon from "../svg/iconmonstr-magnifier-lined.svg";
 import uploadIcon from "../svg/icons8-upload-100.png";
 import search from "../svg/icons8-search-50.png";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = ({
   showSearchLogo,
@@ -16,6 +16,13 @@ const Header = ({
   showLoginCreate,
   showPCSearch,
 }) => {
+  const locationObj = useLocation();
+  const currentPath = locationObj.pathname;
+
+  const paths = ["/home/filemoderation", "/home", "/home/fileupload", "/faqs"];
+
+  let location = paths.includes(currentPath);
+
   const openSearchIcon = () => {
     if (!rightNavOpen && !leftNavOpen) {
       openSearch();
@@ -96,7 +103,13 @@ const Header = ({
         {showSearchLogo && <img src={icon} alt="search_icon" />}
       </div>
 
-      <div className="file-moderation" role="button">
+      <div
+        className="file-moderation"
+        onClick={() => {
+          navigate("/home/filemoderation");
+        }}
+        role="button"
+      >
         {showUploadIcon && <span>File Moderation</span>}
       </div>
 
@@ -104,18 +117,30 @@ const Header = ({
         className="upload-icon"
         role="button"
         onClick={() => {
-          navigate("/home/fileUpload");
+          navigate("/home/fileupload");
         }}
       >
         {showUploadIcon && <span className="upload">Upload</span>}
         {showUploadIcon && <img src={uploadIcon} />}
       </div>
 
-      <h2
-        className={showUploadIcon ? "s2t-heading-open" : "s2t-heading-closed"}
-      >
-        Share2Teach
-      </h2>
+      {location && (
+        <h2
+          className="s2t_heading"
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
+          Share2Teach
+        </h2>
+      )}
+      {!location && (
+        <h2
+          className={showUploadIcon ? "s2t-heading-open" : "s2t-heading-closed"}
+        >
+          Share2Teach
+        </h2>
+      )}
     </header>
   );
 };
