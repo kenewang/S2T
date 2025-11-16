@@ -45,6 +45,10 @@ public class FileEntity {
     @JoinColumn(name = "grade", referencedColumnName = "grade_id")
     private GradeEntity grade;
 
+    @ManyToOne
+    @JoinColumn(name = "uploaded_by", referencedColumnName = "user_id")
+    private UserEntity uploadedBy;
+
     @Column(name = "status")
     private String status;
 
@@ -77,6 +81,14 @@ public class FileEntity {
 
     public void setStoragePath(String storagePath) {
         this.storagePath = storagePath;
+    }
+
+    public UserEntity getUploadedBy() {
+        return uploadedBy;
+    }
+
+    public void setUploadedBy(UserEntity uploadedBy) {
+        this.uploadedBy = uploadedBy;
     }
 
     public Double getFileRating() {

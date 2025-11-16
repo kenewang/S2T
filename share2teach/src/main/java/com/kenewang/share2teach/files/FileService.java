@@ -26,13 +26,15 @@ public class FileService {
     private final KeywordRepository keywordRepository;
     private final SubjectRepository subjectRepository;
     private final GradeRepository gradeRepository;
+    private final UserRepository userRepository;
 
     public FileService(FileRepository fileRepository, KeywordRepository keywordRepository,
-            SubjectRepository subjectRepository, GradeRepository gradeRepository) {
+            SubjectRepository subjectRepository, GradeRepository gradeRepository, UserRepository userRepository) {
         this.fileRepository = fileRepository;
         this.keywordRepository = keywordRepository;
         this.subjectRepository = subjectRepository;
         this.gradeRepository = gradeRepository;
+        this.userRepository = userRepository;
     }
     // ===== EXISTING FILE FETCH METHODS =====
 
@@ -156,6 +158,8 @@ public class FileService {
         GradeEntity grade = gradeRepository.findById(gradeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid grade ID"));
 
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
         // ✅ (4) Save file metadata to database
         FileEntity fileEntity = new FileEntity();
         fileEntity.setFileName(file.getOriginalFilename());
@@ -163,6 +167,8 @@ public class FileService {
         fileEntity.setFileRating(0.0);
         fileEntity.setSubject(subject);
         fileEntity.setGrade(grade);
+        fileEntity.setUploadedBy(user);
+        fileEntity.setStatus("pending");
         fileRepository.save(fileEntity);
 
         // ✅ (4) Attach keywords to the file

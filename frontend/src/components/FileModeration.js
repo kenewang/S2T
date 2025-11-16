@@ -1,7 +1,7 @@
 import HeaderV2 from "./HeaderV2";
 import "./FileModeration.css";
 import LeftNav from "./LeftNav";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
@@ -11,7 +11,6 @@ const FileModeration = ({
   rightNavOpen,
   closeRightNav,
   leftNavOpen,
-
   isAuthenticated,
   setAuth,
   onRatingSubmitted,
@@ -19,24 +18,18 @@ const FileModeration = ({
   leftNavRef,
 }) => {
   const [documents, setDocuments] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loadingMessage, setLoadingMessage] = useState("");
-
-  const [userRole, setUserRole] = useState("");
-
-  const [moderationAction, setModerationAction] = useState(null); // 'approve' or 'reject'
-  const [docToModerate, setDocToModerate] = useState(null);
   const navigate = useNavigate();
-  const handleView = (path) => {
-    window.open(path, "_blank");
+  const [refresh, setRefresh] = useState(0);
+
+  const handleRefresh = () => {
+    setRefresh((prev) => prev + 1);
   };
 
-  const toggleModerationButtons = (fileId) => {
-    setShowModerationButtons((prev) => (prev === fileId ? null : fileId));
-  };
-
-  const [showModerationButtons, setShowModerationButtons] = useState(null); // To toggle moderation buttons
-
+  /** -------------------------------
+   *   MAIN MODERATION HANDLER
+   *   (NO state dependency)
+   * --------------------------------
+   */
   const handleModerationAction = async (fileId, action) => {
     const readableAction = action === "approved" ? "Approve" : "Reject";
 
@@ -59,52 +52,47 @@ const FileModeration = ({
     });
 
     if (result.isConfirmed) {
-      setDocToModerate(fileId);
-      setModerationAction(action);
-      await handleModerateDocument(); // 👉 call the moderation function
+      await submitModeration(fileId, action);
     }
   };
 
-  const handleModerateDocument = async () => {
+  /** ----------------------------------------
+   *     SEND MODERATION REQUEST
+   *     (fileId + action passed directly)
+   * -----------------------------------------
+   */
+  const submitModeration = async (fileId, action) => {
     try {
-      setLoading(true);
-      setLoadingMessage(
-        `${
-          moderationAction === "approved" ? "Approving" : "Rejecting"
-        } document...`
-      );
-
-      const res = await fetch("http://localhost:8081/moderate-document", {
+      const res = await fetch("http://localhost:8081/moderation/document", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           jwt_token: localStorage.getItem("token"),
         },
         body: JSON.stringify({
-          file_id: docToModerate,
-          action: moderationAction,
+          id: fileId,
+          action: action,
           comments: null,
         }),
       });
 
       const data = await res.json();
-      setLoading(false);
 
       if (res.ok) {
+        // Update local UI
         setDocuments((prevDocs) =>
           prevDocs.map((doc) =>
-            doc.id === docToModerate
-              ? { ...doc, status: moderationAction }
-              : doc
+            doc.id === fileId ? { ...doc, status: action } : doc
           )
         );
 
         Swal.fire({
           title: "Success!",
-          text: `Document ${moderationAction} successfully.`,
+          text: `Document ${action} successfully.`,
           icon: "success",
           confirmButtonText: "OK",
         });
+        handleRefresh();
       } else {
         Swal.fire({
           title: "Error",
@@ -118,7 +106,8 @@ const FileModeration = ({
         });
       }
     } catch (err) {
-      console.error("Error moderating document:", err.message);
+      console.error("Error moderating document:", err);
+
       Swal.fire({
         title: "Error",
         text: "Error moderating document",
@@ -132,14 +121,16 @@ const FileModeration = ({
     }
   };
 
+  /** -------------------------------
+   *   LOAD ONLY PENDING FILES
+   * --------------------------------
+   */
   useEffect(() => {
-    document.title = "Share2Teach"; // Set the tab name to "Share2Teach"
+    document.title = "Share2Teach";
 
     const fetchPendingDocuments = async () => {
       try {
-        // Fetch only pending documents from /pending-documents
         const response = await fetch("http://localhost:8081/files/pending");
-
         const data = await response.json();
         setDocuments(data);
       } catch (error) {
@@ -148,7 +139,7 @@ const FileModeration = ({
     };
 
     fetchPendingDocuments();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="file-moderation-container">
@@ -174,37 +165,38 @@ const FileModeration = ({
           <tr>
             <th>File Name</th>
             <th>Status</th>
-            <th></th> {/* Column for action buttons */}
+            <th></th>
           </tr>
         </thead>
+
         <tbody>
           {documents.map((doc) => (
             <tr key={doc.id}>
               <td>{doc.fileName}</td>
               <td>{doc.status}</td>
+
               <td>
                 <div className="action-container">
                   <button
                     className="view-button"
-                    onClick={() => handleView(doc.storagePath)}
+                    onClick={() => window.open(doc.storagePath, "_blank")}
                   >
                     View
                   </button>
 
-                  <>
-                    <button
-                      className="approve-button"
-                      onClick={() => handleModerationAction(doc.id, "approved")}
-                    >
-                      Approve
-                    </button>
-                    <button
-                      className="reject-button"
-                      onClick={() => handleModerationAction(doc.id, "rejected")}
-                    >
-                      Reject
-                    </button>
-                  </>
+                  <button
+                    className="approve-button"
+                    onClick={() => handleModerationAction(doc.id, "approved")}
+                  >
+                    Approve
+                  </button>
+
+                  <button
+                    className="reject-button"
+                    onClick={() => handleModerationAction(doc.id, "rejected")}
+                  >
+                    Reject
+                  </button>
                 </div>
               </td>
             </tr>
