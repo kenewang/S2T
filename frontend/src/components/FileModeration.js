@@ -3,6 +3,7 @@ import "./FileModeration.css";
 import LeftNav from "./LeftNav";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const FileModeration = ({
   openLeftNav,
@@ -23,7 +24,6 @@ const FileModeration = ({
 
   const [userRole, setUserRole] = useState("");
 
-  const [showModerationDialog, setShowModerationDialog] = useState(false);
   const [moderationAction, setModerationAction] = useState(null); // 'approve' or 'reject'
   const [docToModerate, setDocToModerate] = useState(null);
   const navigate = useNavigate();
@@ -37,10 +37,32 @@ const FileModeration = ({
 
   const [showModerationButtons, setShowModerationButtons] = useState(null); // To toggle moderation buttons
 
-  const handleModerationAction = (fileId, action) => {
-    setDocToModerate(fileId);
-    setModerationAction(action);
-    setShowModerationDialog(true);
+  const handleModerationAction = async (fileId, action) => {
+    const readableAction = action === "approved" ? "Approve" : "Reject";
+
+    const result = await Swal.fire({
+      title: `${readableAction} Document`,
+      text: `Are you sure you want to ${readableAction.toLowerCase()} this document?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      reverseButtons: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+
+      customClass: {
+        popup: "moderatePopUp",
+        title: "moderatePopUp-title",
+        icon: "moderatePopUp-warning-icon",
+      },
+    });
+
+    if (result.isConfirmed) {
+      setDocToModerate(fileId);
+      setModerationAction(action);
+      await handleModerateDocument(); // 👉 call the moderation function
+    }
   };
 
   const handleModerateDocument = async () => {
@@ -51,6 +73,7 @@ const FileModeration = ({
           moderationAction === "approved" ? "Approving" : "Rejecting"
         } document...`
       );
+
       const res = await fetch("http://localhost:8081/moderate-document", {
         method: "POST",
         headers: {
@@ -60,30 +83,52 @@ const FileModeration = ({
         body: JSON.stringify({
           file_id: docToModerate,
           action: moderationAction,
-          comments: null, // Optional comments can be added if required
+          comments: null,
         }),
       });
 
       const data = await res.json();
       setLoading(false);
-      setShowModerationDialog(false);
 
       if (res.ok) {
         setDocuments((prevDocs) =>
           prevDocs.map((doc) =>
-            doc.file_id === docToModerate
+            doc.id === docToModerate
               ? { ...doc, status: moderationAction }
               : doc
           )
         );
-        alert(`Document ${moderationAction} successfully!`);
+
+        Swal.fire({
+          title: "Success!",
+          text: `Document ${moderationAction} successfully.`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
       } else {
-        alert(data.msg || "Failed to moderate document");
+        Swal.fire({
+          title: "Error",
+          text: data.msg || "Failed to moderate document",
+          icon: "error",
+          customClass: {
+            popup: "moderatePopUpError",
+            title: "moderatePopUpError-title",
+            icon: "moderatePopUp-error-icon",
+          },
+        });
       }
     } catch (err) {
       console.error("Error moderating document:", err.message);
-      setLoading(false);
-      alert("Error moderating document");
+      Swal.fire({
+        title: "Error",
+        text: "Error moderating document",
+        icon: "error",
+        customClass: {
+          popup: "moderatePopUpError",
+          title: "moderatePopUpError-title",
+          icon: "moderatePopUp-error-icon",
+        },
+      });
     }
   };
 
@@ -92,11 +137,8 @@ const FileModeration = ({
 
     const fetchPendingDocuments = async () => {
       try {
-        const token = localStorage.getItem("token");
-        let response;
-
         // Fetch only pending documents from /pending-documents
-        response = await fetch("http://localhost:8081/files/pending");
+        const response = await fetch("http://localhost:8081/files/pending");
 
         const data = await response.json();
         setDocuments(data);
@@ -144,53 +186,31 @@ const FileModeration = ({
                 <div className="action-container">
                   <button
                     className="view-button"
-                    onClick={() => handleView(doc.storage_path)}
+                    onClick={() => handleView(doc.storagePath)}
                   >
                     View
                   </button>
-                  <span
-                    className="three-dots"
-                    onClick={() => toggleModerationButtons(doc.file_id)}
-                  >
-                    &#x22EE;
-                  </span>
-                  {showModerationButtons === doc.file_id && (
-                    <>
-                      <button
-                        className="approve-button"
-                        onClick={() =>
-                          handleModerationAction(doc.file_id, "approved")
-                        }
-                      >
-                        Approve
-                      </button>
-                      <button
-                        className="reject-button"
-                        onClick={() =>
-                          handleModerationAction(doc.file_id, "rejected")
-                        }
-                      >
-                        Reject
-                      </button>
-                    </>
-                  )}
+
+                  <>
+                    <button
+                      className="approve-button"
+                      onClick={() => handleModerationAction(doc.id, "approved")}
+                    >
+                      Approve
+                    </button>
+                    <button
+                      className="reject-button"
+                      onClick={() => handleModerationAction(doc.id, "rejected")}
+                    >
+                      Reject
+                    </button>
+                  </>
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {/* Show confirmation dialog for moderation */}
-      {showModerationDialog && (
-        <div className="confirm-moderation-dialog">
-          <div className="confirm-moderation-content">
-            <p>Are you sure you want to {moderationAction} this document?</p>
-            <button onClick={handleModerateDocument}>Yes</button>
-            <button onClick={() => setShowModerationDialog(false)}>No</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

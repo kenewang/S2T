@@ -79,6 +79,7 @@ const Login = ({
       />
 
       <section className="login">
+        <h2 className="login_heading">Log In</h2>
         <form className="loginCredentials" onSubmit={onSubmitForm}>
           <label>Email</label>
           <input
@@ -101,7 +102,6 @@ const Login = ({
           ></input>
           <button>Log in</button>
         </form>
-
         <div className="divider">or</div>
         <div className="toCreateAccount">
           <label>New to Share2Teach?</label>

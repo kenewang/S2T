@@ -188,6 +188,16 @@
     margin: 0 auto;
     background: white !important;
   }
+
+  .login_heading {
+    margin-top: 5rem;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(87, 84, 84);
+  }
+
   .login {
     margin-inline: 1rem;
     display: flex;
@@ -206,7 +216,7 @@
   }
 
   .loginCredentials {
-    margin-top: 6rem;
+    margin-top: 1.2rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

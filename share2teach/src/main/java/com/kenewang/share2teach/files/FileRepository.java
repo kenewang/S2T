@@ -12,16 +12,16 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
 
     // custom queries
 
-    @Query(value = "SELECT file_id FROM file LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT file_id FROM file WHERE status = 'approved' LIMIT 10", nativeQuery = true)
     List<Long> findFirst20FileIds();
 
-    @Query(value = "SELECT file_name FROM file LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT file_name FROM file WHERE status = 'approved' LIMIT 10", nativeQuery = true)
     List<String> findFirst20FileNames();
 
-    @Query(value = "SELECT storage_path FROM file LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT storage_path FROM file WHERE status = 'approved' LIMIT 10", nativeQuery = true)
     List<String> findFirst20FileLinks();
 
-    @Query(value = "SELECT rating FROM file LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT rating FROM file WHERE status = 'approved' LIMIT 10", nativeQuery = true)
     List<Double> findFirst20FileRatings();
 
     @Query("SELECT f FROM FileEntity f WHERE f.status = 'pending'")
