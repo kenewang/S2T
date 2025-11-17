@@ -112,7 +112,6 @@ const Login = ({
       </section>
 
       <div className="loginFooter">
-        <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>
       </div>
     </div>
