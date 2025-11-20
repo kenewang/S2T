@@ -1,0 +1,22 @@
+.reports-container {
+  display: none;
+}
+
+@media screen and (min-width: 510px) and (max-width: 890px) {
+  .reports-container {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 890px) {
+  .reports-container {
+    display: flex;
+    flex-direction: column; /* Stack heading and form vertically */
+    justify-content: center; /* Align form and heading at the top */
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 50px; /* Space above the form to center within the viewport */
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+}

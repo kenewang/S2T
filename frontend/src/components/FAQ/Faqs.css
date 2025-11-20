@@ -222,6 +222,8 @@
     gap: 0.8rem;
     background-color: #eee8e8;
     text-align: center;
+    max-width: 50rem;
+    margin: 0 auto;
   }
 
   .faqFooter p {

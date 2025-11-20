@@ -85,7 +85,7 @@ const HomePage = ({
       if (!validRoles.includes(userRole)) return;
       setShowUploadIcon(true);
     }
-  });
+  }, []);
 
   return (
     <div className="homeWrap">

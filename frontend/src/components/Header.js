@@ -125,7 +125,15 @@ const Header = ({
       </div>
 
       <div className="reports" role="button">
-        {showUploadIcon && <span>Reports</span>}
+        {showUploadIcon && (
+          <span
+            onClick={() => {
+              navigate("/home/reports");
+            }}
+          >
+            Reports
+          </span>
+        )}
       </div>
 
       {location && (

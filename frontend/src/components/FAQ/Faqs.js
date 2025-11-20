@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import Header from "./Header";
-import LeftNav from "./LeftNav";
+import FaqHeader from "./FaqHeader";
+import LeftNav from "../LeftNav";
 
 import "./Faqs.css";
 
@@ -12,13 +12,21 @@ const Faqs = ({
   isAuthenticated,
   setAuth,
   onRatingSubmitted,
-
   openLeftNav,
+  openSearch,
+  rightNavOpen,
+  closeRightNav,
+  searchActive,
+  closeSearch,
+  searchInputRef,
+  openRightNav,
+  setActiveFileId,
+  rightNavRef,
+  ratingTrigger,
 }) => {
   const [items, setItems] = useState([]);
 
   const [openIndex, setOpenIndex] = useState(null);
-
   const toggleItem = (index) => {
     if (openIndex === index) {
       setOpenIndex(null); // if the clicked item is already open, close it
@@ -55,16 +63,12 @@ const Faqs = ({
 
   return (
     <div className="faqWrapper">
-      <Header
-        showSearchLogo={false} //hide the search icon
+      <FaqHeader
         leftNavOpen={leftNavOpen}
         openLeftNav={openLeftNav}
-        // Pass other props if you need search/right nav to work:
-        openSearch={() => {}}
-        rightNavOpen={false}
-        closeRightNav={() => {}}
-        showLoginCreate={false}
-        showPCSearch={false}
+        openSearch={openSearch}
+        rightNavOpen={rightNavOpen}
+        closeRightNav={closeRightNav}
       />
       <LeftNav
         leftNavOpen={leftNavOpen}

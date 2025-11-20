@@ -42,11 +42,13 @@ import HomePage from "./components/HomePage";
 import "./components/HomePage.css";
 import SubjectDocuments from "./components/SubjectDocuments";
 import NotFound from "./components/NotFound";
-import Faqs from "./components/Faqs";
+import Faqs from "./components/FAQ/Faqs";
 import useBlockBackNavigation from "./hooks/useBlockBackNavigation";
 import FileUpload from "./components/FileUpload";
 import FileModeration from "./components/FileModeration";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Reports from "./components/Reports";
+import "./components/Reports.css";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -302,6 +304,25 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/home/reports"
+          element={
+            <ProtectedRoute>
+              <Reports
+                leftNavOpen={leftNavOpen}
+                openLeftNav={openLeftNav}
+                openSearch={openSearch}
+                rightNavOpen={rightNavOpen}
+                closeRightNav={closeRightNav}
+                isAuthenticated={isAuthenticated}
+                setAuth={setAuth}
+                onRatingSubmitted={handleRatingSubmitted}
+                closeLeftNav={closeLeftNav}
+                leftNavRef={leftNavRef}
+              />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/home/filemoderation"
@@ -340,7 +361,6 @@ export default function App() {
               closeSearch={closeSearch}
               searchInputRef={searchInputRef}
               openRightNav={openRightNav}
-              scloseRightNav={closeRightNav}
               setActiveFileId={setActiveFileId}
               rightNavRef={rightNavRef}
               ratingTrigger={ratingTrigger}

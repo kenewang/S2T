@@ -284,6 +284,8 @@ header {
     flex-shrink: 1;
     margin-top: 0.2rem;
     min-width: 0;
+
+    cursor: pointer;
   }
 
   .login_create {
