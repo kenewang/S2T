@@ -99,7 +99,6 @@ const Faqs = ({
       </section>
 
       <div className="faqFooter">
-        <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>
       </div>
     </div>

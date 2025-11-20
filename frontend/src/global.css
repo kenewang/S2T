@@ -75,7 +75,8 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 100%;
+  width: 45%;
+  margin: 0 auto;
   box-shadow: black;
   color: black;
   border: none;
@@ -89,7 +90,7 @@
 }
 
 /* Tablets */
-@media screen and (min-width: 460px) and (max-width: 637px) {
+@media screen and (min-width: 510px) and (max-width: 890px) {
   /* Basic reset */
   * {
     box-sizing: border-box;
@@ -103,7 +104,7 @@
 
   .App {
     min-height: auto;
-    max-width: 30rem;
+    max-width: 35rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -113,9 +114,26 @@
     flex-shrink: 1;
     min-width: 0;
   }
+
+  .grade_landingPage {
+    position: relative;
+    width: 45%;
+    margin: 0 auto;
+
+    box-shadow: black;
+    color: black;
+    border: none;
+    cursor: pointer;
+
+    background: rgba(248, 248, 248, 0.9);
+    border-color: rgba(120, 40, 40, 0.9);
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    bottom: 0.1rem;
+  }
 }
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 890px) {
   /* Basic reset */
   * {
     box-sizing: border-box;

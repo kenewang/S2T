@@ -201,7 +201,6 @@ const HomePage = ({
         />
       </section>
       <div className="homePageFooter">
-        <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>
       </div>
     </div>

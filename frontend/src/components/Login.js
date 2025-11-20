@@ -2,6 +2,8 @@ import HeaderV2 from "./HeaderV2";
 import LeftNav from "./LeftNav";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import eye from "../svg/eye.png";
+import eyeOff from "../svg/eyeOff.png";
 
 const Login = ({
   leftNavOpen,
@@ -13,9 +15,15 @@ const Login = ({
   showSearchLogo,
   onRatingSubmitted,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
   const goToCreateAccount = () => {
     if (!leftNavOpen) navigate("/createAccount");
+  };
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
   };
 
   const [inputs, setInputs] = useState({ email: "", password: "" });
@@ -95,11 +103,19 @@ const Login = ({
           </div>
           <input
             className="inputLogin"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
             name="password"
             onChange={onChange}
           ></input>
+
+          <img
+            className="hide-unhide"
+            src={showPassword ? eye : eyeOff}
+            onClick={togglePassword}
+            alt="toggle visibility"
+          />
           <button>Log in</button>
         </form>
         <div className="divider">or</div>

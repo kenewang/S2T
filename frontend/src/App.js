@@ -5,6 +5,7 @@ import "./global.css";
 import "./normalize.css";
 
 import useFiles from "./hooks/useFiles";
+import "./hooks/useFiles.css";
 
 import ScrollToTop from "./components/ScrollToTop";
 import LeftNav from "./components/LeftNav";

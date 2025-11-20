@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import "./useFiles.css";
+import "sweetalert2/dist/sweetalert2.min.css";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
@@ -84,6 +86,7 @@ const useFiles = (ratingTrigger, setNotFound) => {
       customClass: {
         popup: "radio-popup",
         title: "radio-title",
+        input: "options",
       },
       didOpen: () => {
         const radios = Swal.getPopup().querySelectorAll("input[type=radio]");

@@ -93,9 +93,9 @@
   padding: 1rem;
 }
 
-@media screen and (min-width: 460px) and (max-width: 637px) {
+@media screen and (min-width: 510px) and (max-width: 890px) {
   .loginWrap {
-    max-width: 30rem;
+    max-width: 35rem;
     margin: 0 auto;
     background: white !important;
   }
@@ -197,7 +197,7 @@
   }
 }
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 890px) {
   html {
     background-color: white !important;
   }
@@ -289,6 +289,13 @@
   .createAccountLabel {
     cursor: pointer;
     color: blue;
+  }
+
+  .hide-unhide {
+    width: 25px;
+    position: relative;
+
+    cursor: pointer;
   }
 
   .loginFooter {

@@ -121,6 +121,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
       customClass: {
         popup: "radio-popup",
         title: "radio-title",
+        input: "options",
       },
 
       didOpen: () => {
@@ -215,7 +216,6 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
         </section>
 
         <div className="subjectDocumentsFooter">
-          <p>Contact</p>
           <p>&copy; 2025 Share2Teach</p>
         </div>
       </div>

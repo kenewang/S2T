@@ -203,6 +203,10 @@ const FileModeration = ({
           ))}
         </tbody>
       </table>
+
+      <div className="moderationFooter">
+        <p>&copy; 2025 Share2Teach</p>
+      </div>
     </div>
   );
 };

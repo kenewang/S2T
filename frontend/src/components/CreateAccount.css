@@ -64,9 +64,9 @@ body {
   cursor: pointer;
 }
 
-@media screen and (min-width: 460px) and (max-width: 637px) {
+@media screen and (min-width: 510px) and (max-width: 890px) {
   .createAccWrapper {
-    max-width: 30rem;
+    max-width: 35rem;
     margin: 0 auto;
     background: white !important;
   }
@@ -136,7 +136,7 @@ body {
   }
 }
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 890px) {
   .createAccWrapper {
     max-width: 55rem;
     margin: 0 auto;

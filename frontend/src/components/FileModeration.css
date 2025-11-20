@@ -2,21 +2,23 @@
   display: none;
 }
 
-@media screen and (min-width: 460px) and (max-width: 637px) {
+@media screen and (min-width: 510px) and (max-width: 890px) {
   .file-moderation-container {
     display: none;
   }
 }
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 890px) {
   /* Container to position the form and heading */
   .file-moderation-container {
     display: flex;
     flex-direction: column; /* Stack heading and form vertically */
     justify-content: center; /* Align form and heading at the top */
     align-items: center;
-    min-height: auto;
+    min-height: 100vh;
     padding-top: 50px; /* Space above the form to center within the viewport */
+    max-width: 55rem;
+    margin: 0 auto;
   }
 
   /* Add a container for the FAQ link */
@@ -286,5 +288,18 @@
     position: relative !important;
     top: 1rem !important;
     background-color: snow !important;
+  }
+
+  .moderationFooter {
+    background-color: #eee8e8;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: auto;
+    padding: 1rem 0;
+    width: 53rem;
+  }
+
+  .moderationFooter p {
+    padding: 1rem;
   }
 }

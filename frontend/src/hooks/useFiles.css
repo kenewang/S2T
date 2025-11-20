@@ -1,0 +1,51 @@
+.radio-popup {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  min-width: 25vw;
+  height: auto !important;
+}
+
+.radio-title {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.options {
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 510px) and (max-width: 890px) {
+  .radio-popup {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    min-width: 30vw !important;
+    max-width: 35vw !important;
+  }
+
+  .radio-title {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  .options {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 890px) {
+  .radio-popup {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    min-width: 20vw !important;
+    max-width: 25vw !important;
+  }
+
+  .radio-title {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  .options {
+    margin: 0 auto;
+  }
+}

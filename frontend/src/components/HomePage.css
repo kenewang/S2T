@@ -25,8 +25,8 @@ html {
   padding: 1rem 0;
 }
 
-.homePageFooter > :first-child {
-  cursor: pointer;
+.homePageFooter p {
+  padding: 1rem;
 }
 
 /* Section headings (shared across Science, Math, Programming) */
@@ -101,9 +101,9 @@ html {
   top: 0.5rem;
 }
 
-@media screen and (min-width: 460px) and (max-width: 637px) {
+@media screen and (min-width: 510px) and (max-width: 890px) {
   .homeWrap {
-    max-width: 30rem;
+    max-width: 45rem;
     margin: 0 auto;
   }
   .container {
@@ -118,24 +118,24 @@ html {
 
   /* Footer */
   .homePageFooter {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
     background-color: #eee8e8;
     text-align: center;
+    margin: 0 auto;
     margin-top: 5rem;
     padding: 1rem 0;
+    max-width: 35rem;
   }
 
-  .homePageFooter > :first-child {
-    cursor: pointer;
+  .homePageFooter p {
+    padding: 1rem;
   }
 
   /* Section headings (shared across Science, Math, Programming) */
   .section-heading {
     margin: 2rem 0 1rem 0;
     background: #eee8e8;
-    width: 100%;
+    min-width: 29rem;
+    max-width: 73%;
     padding: 0.5rem;
     border-radius: 4px;
     text-decoration: underline;
@@ -147,7 +147,7 @@ html {
 
   /* Carousel container (shared) */
   .carousel-container {
-    max-width: 78%; /* allow full width *
+    max-width: 75%; /* allow full width *
     /* centers + 1rem bottom spacing */
     display: flex;
     align-items: center;
@@ -209,7 +209,7 @@ html {
 
 /*  */
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 890px) {
   .homeWrap {
     max-width: 55rem;
     margin: 0 auto;
@@ -233,17 +233,18 @@ html {
     text-align: center;
     margin-top: 5rem;
     padding: 1rem 0;
+    max-width: 55rem;
   }
 
-  .homePageFooter > :first-child {
-    cursor: pointer;
+  .homePageFooter p {
+    padding: 1rem;
   }
-
   /* Section headings (shared across Science, Math, Programming) */
   .section-heading {
     margin: 2rem 0 1rem 0;
     background: #eee8e8;
-    width: 100%;
+
+    max-width: 100%;
     padding: 0.5rem;
     border-radius: 4px;
     text-decoration: underline;

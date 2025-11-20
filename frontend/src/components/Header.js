@@ -124,6 +124,10 @@ const Header = ({
         {showUploadIcon && <img src={uploadIcon} />}
       </div>
 
+      <div className="reports" role="button">
+        {showUploadIcon && <span>Reports</span>}
+      </div>
+
       {location && (
         <h2
           className="s2t_heading"
