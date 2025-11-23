@@ -2,21 +2,24 @@
   display: none;
 }
 
-@media screen and (min-width: 460px) and (max-width: 637px) {
+@media screen and (min-width: 510px) and (max-width: 890px) {
   .file-upload-container {
     display: none;
   }
 }
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 890px) {
   /* Container to position the form and heading */
   .file-upload-container {
     display: flex;
     flex-direction: column; /* Stack heading and form vertically */
     justify-content: center; /* Align form and heading at the top */
     align-items: center;
-    min-height: auto;
+    min-height: 100vh;
+
     padding-top: 50px; /* Space above the form to center within the viewport */
+    max-width: 55rem;
+    margin: 0 auto;
   }
 
   /* Add a container for the FAQ link */
@@ -141,5 +144,17 @@
 
   .modal-content button:hover {
     background-color: #45a049;
+  }
+
+  .uploadFooter {
+    margin-top: auto;
+
+    background-color: #eee8e8;
+    text-align: center;
+    width: 50rem;
+  }
+
+  .uploadFooter p {
+    padding: 1rem;
   }
 }

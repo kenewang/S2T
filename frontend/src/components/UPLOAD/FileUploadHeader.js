@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import uploadIcon from "../../svg/icons8-upload-100.png";
-import "./FileModerationHeader.css";
-const FileModerationHeader = ({
+
+import "./FileUploadHeader.css";
+const FileUploadHeader = ({
   leftNavOpen,
   openLeftNav,
   openSearch,
@@ -27,26 +27,23 @@ const FileModerationHeader = ({
   });
 
   return (
-    <div className="file-moderation-head">
+    <div className="file-upload-head">
       {" "}
       <span
-        className="f-moderation-hamburger"
+        className="f-upload-hamburger"
         onClick={openLeftNav} //call the function "openLeftNav" when the hamburger menu is clicked
         aria-label="Open menu"
         role="button"
       >
         ☰
       </span>
-      <div className="f-moderation-shortcuts">
+      <div className="f-upload-shortcuts">
         <p
-          className="faq-upload-icon"
-          role="button"
           onClick={() => {
-            navigate("/home/fileupload");
+            navigate("/home/filemoderation");
           }}
         >
-          <span>Upload</span>
-          <img src={uploadIcon} alt="Upload Icon" />
+          File Moderation
         </p>
         <p
           onClick={() => {
@@ -75,4 +72,4 @@ const FileModerationHeader = ({
   );
 };
 
-export default FileModerationHeader;
+export default FileUploadHeader;

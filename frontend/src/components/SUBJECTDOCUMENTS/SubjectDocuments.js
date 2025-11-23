@@ -155,7 +155,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   return (
     <div className="sub-parent">
       <div>
-        <section className="subject_Container">
+        <section className="subject-Container">
           {!searchActive && (
             <>
               <SDHeader

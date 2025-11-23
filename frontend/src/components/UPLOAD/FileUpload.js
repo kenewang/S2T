@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import LeftNav from "./LeftNav";
-import axios from "axios";
+import FileUploadHeader from "./FileUploadHeader";
+import LeftNav from "../LeftNav";
+
 import "./FileUpload.css";
-import { Navigate } from "react-router-dom";
+
 import { jwtDecode } from "jwt-decode";
 
 const FileUpload = ({
@@ -98,7 +98,7 @@ const FileUpload = ({
   return (
     <div className="file-upload-container">
       {/* Add a link to the FAQ page in the top right */}
-      <Header
+      <FileUploadHeader
         showSearchLogo={false}
         showUploadIcon={false}
         leftNavOpen={leftNavOpen}
@@ -187,6 +187,9 @@ const FileUpload = ({
           </div>
         </div>
       )}
+      <div className="uploadFooter">
+        <p>&copy; 2025 Share2Teach</p>
+      </div>
     </div>
   );
 };

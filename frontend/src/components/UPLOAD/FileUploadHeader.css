@@ -1,4 +1,4 @@
-.file-moderation-head {
+.file-upload-head {
   top: 0;
   position: fixed;
   background-color: #eee8e8;
@@ -16,7 +16,7 @@
   z-index: 10;
 }
 
-.file-moderation-head h2 {
+.file-upload-head h2 {
   margin: 0;
   margin-right: 1rem;
   margin-left: 0;
@@ -25,7 +25,7 @@
   white-space: nowrap;
 }
 
-.f-moderation-hamburger {
+.f-upload-hamburger {
   font-size: 30px;
   cursor: pointer;
   background-color: transparent;
@@ -34,13 +34,13 @@
   flex-shrink: 0;
 }
 
-.f-moderation-shortcuts {
+.f-upload-shortcuts {
   display: none;
 }
 
 /* Tablets */
 @media screen and (min-width: 510px) and (max-width: 890px) {
-  .file-moderation-head {
+  .file-upload-head {
     top: 0;
     position: fixed;
     background-color: #eee8e8;
@@ -58,7 +58,7 @@
     z-index: 10;
   }
 
-  .file-moderation-head h2 {
+  .file-upload-head h2 {
     margin: 0;
     margin-right: 1rem;
     margin-left: 0;
@@ -67,7 +67,7 @@
     white-space: nowrap;
   }
 
-  .f-moderation-hamburger {
+  .f-upload-hamburger {
     font-size: 30px;
     cursor: pointer;
     background-color: transparent;
@@ -76,13 +76,13 @@
     flex-shrink: 0;
   }
 
-  .f-moderation-shortcuts {
+  .f-upload-shortcuts {
     display: none;
   }
 }
 
 @media screen and (min-width: 890px) {
-  .file-moderation-head {
+  .file-upload-head {
     top: 0;
     position: fixed;
     background-color: #eee8e8;
@@ -102,7 +102,7 @@
 
     min-width: 0;
   }
-  .file-moderation-head h2 {
+  .file-upload-head h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -112,7 +112,7 @@
     margin-right: 0;
   }
 
-  .f-moderation-shortcuts {
+  .f-upload-shortcuts {
     display: flex;
 
     align-items: center;
@@ -123,17 +123,16 @@
     margin-left: auto;
   }
 
-  .f-moderation-shortcuts p {
+  .f-upload-shortcuts p {
     cursor: pointer;
   }
 
-  .f-moderation-shortcuts p:hover {
+  .f-upload-shortcuts p:hover {
     color: navy;
     font-size: 20px;
-    text-decoration: underline;
   }
 
-  .f-moderation-hamburger {
+  .f-upload-hamburger {
     display: flex;
     flex-shrink: 1;
     margin-right: 1rem;

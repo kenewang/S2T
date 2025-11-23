@@ -13,6 +13,7 @@
   gap: 0.8rem;
   background-color: #eee8e8;
   text-align: center;
+  margin: 0 auto;
 }
 
 .subjectDocumentsFooter p {
@@ -160,25 +161,22 @@
   .sub-parent {
     background-color: rgb(234, 220, 203);
   }
-  .subject_Container {
+  .subject-Container {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-
-    max-width: 55rem;
+    max-width: 60rem;
 
     min-height: 100vh;
   }
 
   .subjectDocumentsFooter {
     margin-top: auto;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+    max-width: 50rem !important;
+    margin: 0 auto !important;
+
     background-color: #eee8e8;
     text-align: center;
-    max-width: 52rem;
   }
 
   .subjectDocumentsFooter p {

@@ -37,7 +37,7 @@ import SubjectDocuments from "./components/SUBJECTDOCUMENTS/SubjectDocuments";
 import NotFound from "./components/NotFound";
 import Faqs from "./components/FAQ/Faqs";
 import useBlockBackNavigation from "./hooks/useBlockBackNavigation";
-import FileUpload from "./components/FileUpload";
+import FileUpload from "./components/UPLOAD/FileUpload";
 import FileModeration from "./components/FILEMODERATION/FileModeration";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Reports from "./components/REPORTS/Reports";

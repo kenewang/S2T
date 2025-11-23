@@ -22,7 +22,6 @@ html {
   background-color: #eee8e8;
   text-align: center;
   margin-top: 5rem;
-  padding: 1rem 0;
 }
 
 .homePageFooter p {
@@ -122,7 +121,7 @@ html {
     text-align: center;
     margin: 0 auto;
     margin-top: 5rem;
-    padding: 1rem 0;
+
     max-width: 30rem;
   }
 
@@ -226,14 +225,11 @@ html {
 
   /* Footer */
   .homePageFooter {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
     background-color: #eee8e8;
     text-align: center;
     margin: 0 auto;
     margin-top: 5rem;
-    padding: 1rem 0;
+
     max-width: 50rem;
   }
 
