@@ -29,26 +29,23 @@ import "./components/DocumentList.css";
 import Footer from "./components/Footer";
 import "./components/Footer.css";
 
-import Login from "./components/Login";
-import "./components/Login.css";
+import Login from "./components/LOGIN/Login";
 
-import CreateAccount from "./components/CreateAccount";
-import "./components/CreateAccount.css";
-
-import Subjects from "./components/Subjects";
-import "./components/Subjects.css";
-
-import HomePage from "./components/HomePage";
-import "./components/HomePage.css";
-import SubjectDocuments from "./components/SubjectDocuments";
+import HomePage from "./components/HOMEPAGE/HomePage";
+import "./components/HOMEPAGE/HomePage.css";
+import SubjectDocuments from "./components/SUBJECTDOCUMENTS/SubjectDocuments";
 import NotFound from "./components/NotFound";
 import Faqs from "./components/FAQ/Faqs";
 import useBlockBackNavigation from "./hooks/useBlockBackNavigation";
 import FileUpload from "./components/FileUpload";
-import FileModeration from "./components/FileModeration";
+import FileModeration from "./components/FILEMODERATION/FileModeration";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Reports from "./components/Reports";
-import "./components/Reports.css";
+import Reports from "./components/REPORTS/Reports";
+
+import Subjects from "./components/SUBJECTS/Subjects";
+import "./components/SUBJECTS/Subjects.css";
+import CreateAccount from "./components/REGISTER/CreateAccount";
+import "./components/REGISTER/CreateAccount.css";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -160,18 +157,20 @@ export default function App() {
                       >
                         View By Grade
                       </button>
-                      <DocumentList
-                        openRightNav={openRightNav}
-                        databaseNames={databaseNames}
-                        storage_path={storage_path}
-                        file_rating={file_rating}
-                        rightNavOpen={rightNavOpen}
-                        leftNavOpen={leftNavOpen}
-                        closeRightNav={closeRightNav}
-                        closeLeftNav={closeLeftNav}
-                        fileIds={fileIds} // 👈 must come from backend fetch
-                        setActiveFileId={setActiveFileId}
-                      />
+                      {!notFound && (
+                        <DocumentList
+                          openRightNav={openRightNav}
+                          databaseNames={databaseNames}
+                          storage_path={storage_path}
+                          file_rating={file_rating}
+                          rightNavOpen={rightNavOpen}
+                          leftNavOpen={leftNavOpen}
+                          closeRightNav={closeRightNav}
+                          closeLeftNav={closeLeftNav}
+                          fileIds={fileIds} // 👈 must come from backend fetch
+                          setActiveFileId={setActiveFileId}
+                        />
+                      )}
                     </main>
 
                     {notFound && (
@@ -239,6 +238,7 @@ export default function App() {
           element={
             <Subjects
               leftNavOpen={leftNavOpen}
+              showSearchLogo={showSearchLogo}
               leftNavRef={leftNavRef}
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}

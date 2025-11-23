@@ -68,7 +68,7 @@
   margin-left: 4px;
 }
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 890px) {
   .document-container {
     display: flex;
     flex-wrap: wrap;
@@ -78,6 +78,7 @@
     background: transparents !important;
     padding: 1rem;
     border-radius: 5px;
+    max-width: 40rem;
   }
 
   .document {

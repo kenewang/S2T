@@ -1,9 +1,10 @@
-import HeaderV2 from "./HeaderV2";
-import LeftNav from "./LeftNav";
+import LoginHeader from "./LoginHeader";
+import LeftNav from "../LeftNav";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import eye from "../svg/eye.png";
-import eyeOff from "../svg/eyeOff.png";
+import eye from "../../svg/eye.png";
+import eyeOff from "../../svg/eyeOff.png";
+import "./Login.css";
 
 const Login = ({
   leftNavOpen,
@@ -69,7 +70,7 @@ const Login = ({
 
   return (
     <div className="loginWrap">
-      <HeaderV2
+      <LoginHeader
         leftNavOpen={leftNavOpen}
         openLeftNav={openLeftNav}
         // Pass other props if you need search/right nav to work:
@@ -101,21 +102,24 @@ const Login = ({
             <label className="password_label">Password</label>
             <label className="forgot_password_label">Forgot password?</label>
           </div>
-          <input
-            className="inputLogin"
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            name="password"
-            onChange={onChange}
-          ></input>
+          <div className="password_input_wrap">
+            <input
+              className="inputLogin"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              name="password"
+              onChange={onChange}
+            ></input>
 
-          <img
-            className="hide-unhide"
-            src={showPassword ? eye : eyeOff}
-            onClick={togglePassword}
-            alt="toggle visibility"
-          />
+            <img
+              className="hide-unhide"
+              src={showPassword ? eye : eyeOff}
+              onClick={togglePassword}
+              alt="toggle visibility"
+            />
+          </div>
+
           <button>Log in</button>
         </form>
         <div className="divider">or</div>

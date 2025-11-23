@@ -123,7 +123,7 @@ html {
     margin: 0 auto;
     margin-top: 5rem;
     padding: 1rem 0;
-    max-width: 35rem;
+    max-width: 30rem;
   }
 
   .homePageFooter p {
@@ -135,7 +135,7 @@ html {
     margin: 2rem 0 1rem 0;
     background: #eee8e8;
     min-width: 29rem;
-    max-width: 73%;
+    max-width: 78%;
     padding: 0.5rem;
     border-radius: 4px;
     text-decoration: underline;
@@ -231,9 +231,10 @@ html {
     gap: 0.8rem;
     background-color: #eee8e8;
     text-align: center;
+    margin: 0 auto;
     margin-top: 5rem;
     padding: 1rem 0;
-    max-width: 55rem;
+    max-width: 50rem;
   }
 
   .homePageFooter p {

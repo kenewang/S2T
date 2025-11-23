@@ -6,7 +6,7 @@ body {
   position: relative;
   top: 4rem;
   font-size: 1.5rem;
-  color: rgb(62, 59, 59);
+  color: rgb(87, 84, 84);
 }
 .subjects {
   display: flex;
@@ -47,6 +47,11 @@ body {
   gap: 0.8rem;
   background-color: #eee8e8;
   text-align: center;
+  margin: 0 auto;
+}
+
+.subjectsFooter p {
+  padding: 1rem;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
@@ -54,7 +59,7 @@ body {
     position: relative;
     top: 4rem;
     font-size: 2rem;
-    color: rgb(62, 59, 59);
+    color: rgb(87, 84, 84);
   }
 
   .subWrapper {
@@ -101,6 +106,12 @@ body {
     gap: 0.8rem;
     background-color: #eee8e8;
     text-align: center;
+    margin: 0 auto;
+    max-width: 32rem;
+  }
+
+  .subjectsFooter p {
+    padding: 1rem;
   }
 }
 @media screen and (min-width: 890px) {
@@ -108,7 +119,7 @@ body {
     position: relative;
     top: 4rem;
     font-size: 2rem;
-    color: rgb(62, 59, 59);
+    color: rgb(87, 84, 84);
   }
 
   .subWrapper {
@@ -151,9 +162,14 @@ body {
   .subjectsFooter {
     margin-top: auto;
     display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
+
     background-color: #eee8e8;
     text-align: center;
+    margin: 0 auto;
+    max-width: 50rem;
+  }
+
+  .subjectsFooter p {
+    padding: 1rem;
   }
 }

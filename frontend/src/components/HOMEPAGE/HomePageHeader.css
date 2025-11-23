@@ -1,4 +1,4 @@
-.home-big-header {
+.homepage-big-header {
   top: 0;
   position: fixed;
   background-color: #eee8e8;
@@ -17,7 +17,33 @@
   z-index: 10;
 }
 
-.home-s2t-heading {
+.homepage-small-header {
+  top: 0;
+  position: fixed;
+  background-color: #eee8e8;
+
+  box-shadow: 0 0 2px #eee8e8;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+.homepage-para,
+.homepage-shortcuts,
+.homepage-pc-screen-search,
+.homepage-pc-screen-search-allowed {
+  display: none;
+}
+
+.homepage-s2t-heading {
   margin: 0;
   margin-right: 1rem;
   margin-left: 0;
@@ -26,7 +52,7 @@
   white-space: nowrap;
 }
 
-.home-menu-icon {
+.homepage-menu-icon {
   font-size: 30px;
   cursor: pointer;
   background-color: transparent;
@@ -49,17 +75,9 @@
   flex-shrink: 0;
 }
 
-.home-pc-screen-search {
-  display: none;
-}
-
-.home-login-create {
-  display: none;
-}
-
 /* Tablets */
 @media screen and (min-width: 510px) and (max-width: 890px) {
-  .home-big-header {
+  .homepage-big-header {
     top: 0;
     position: fixed;
     background-color: #eee8e8;
@@ -72,11 +90,35 @@
     margin: 0 auto;
     z-index: 10;
     width: 100%;
-    max-width: 30rem;
+    max-width: 40rem;
     min-width: 0;
   }
 
-  .home-s2t-heading {
+  .homepage-small-header {
+    top: 0;
+    position: fixed;
+    background-color: #eee8e8;
+
+    display: flex;
+
+    flex-flow: row nowrap;
+    box-shadow: 0 0 2px #eee8e8;
+    backdrop-filter: blur(4px);
+    margin: 0 auto;
+    z-index: 10;
+    width: 100%;
+    max-width: 40rem;
+    min-width: 0;
+  }
+
+  .homepage-para,
+  .homepage-shortcuts,
+  .homepage-pc-screen-search,
+  .homepage-pc-screen-search-allowed {
+    display: none;
+  }
+
+  .homepage-s2t-heading {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -87,7 +129,7 @@
     cursor: pointer;
   }
 
-  .home-menu-icon {
+  .homepage-menu-icon {
     font-size: 30px;
     cursor: pointer;
     background-color: transparent;
@@ -109,18 +151,27 @@
     height: 24px;
     flex-shrink: 0;
   }
-
-  .home-pc-screen-search {
-    display: none;
-  }
-
-  .home-login-create {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 890px) {
-  .home-big-header {
+  .homepage-big-header {
+    top: 0;
+    position: fixed;
+    background-color: #eee8e8;
+
+    display: flex;
+    gap: 1rem;
+    flex-flow: row nowrap;
+    box-shadow: 0 0 2px #eee8e8;
+    backdrop-filter: blur(4px);
+    margin: 0 auto;
+    z-index: 10;
+    width: 100%;
+    max-width: 60rem;
+    min-width: 0;
+  }
+
+  .homepage-small-header {
     top: 0;
     position: fixed;
     background-color: #eee8e8;
@@ -133,23 +184,22 @@
     margin: 0 auto;
     z-index: 10;
     width: 100%;
-    max-width: 58rem;
+    max-width: 55rem;
     min-width: 0;
   }
 
-  .home-s2t-heading {
+  .homepage-s2t-heading {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
     flex-shrink: 1;
 
+    margin-right: 0;
     min-width: 0;
     cursor: pointer;
-    margin-right: 0;
   }
 
-  .home-menu-icon {
+  .homepage-menu-icon {
     display: flex;
     flex-shrink: 1;
     margin-right: 1rem;
@@ -160,40 +210,54 @@
     display: none;
   }
 
-  .home-login-create {
+  .homepage-shortcuts {
     display: flex;
-    position: relative;
+
     align-items: center;
-
-    gap: 3.1rem;
-    right: 1.6rem;
-    margin-inline-start: 3rem;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    white-space: nowrap;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-left: auto;
+    position: relative;
+    right: 1rem;
   }
 
-  .home-login-create p {
-    text-align: center;
+  .homepage-shortcuts p {
     cursor: pointer;
-    font-weight: 500;
   }
 
-  .home-login-create p:hover {
+  .homepage-shortcuts p:hover {
     color: navy;
     font-size: 20px;
   }
 
-  .home-pc-screen-search {
+  .homepage-para {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    right: 3rem;
+  }
+
+  .homepage-para:hover {
+    color: navy;
+    font-size: 20px;
+  }
+
+  .homepage-pc-screen-search {
     display: flex;
     flex-shrink: 1;
     justify-content: flex-start;
 
     position: relative;
-
+    right: 0.5rem;
     border: solid rgb(244, 226, 244);
     border-radius: 4px;
     min-width: 0;
   }
 
-  .home-pc-screen-search-form {
+  .homepage-pc-screen-search-form {
     background-color: rgb(235, 229, 235);
     display: flex;
     border-radius: 8px;
@@ -203,7 +267,7 @@
     min-width: 0;
   }
 
-  .home-pc-screen-search-form input {
+  .homepage-pc-screen-search-form input {
     flex: 1;
     min-width: 0;
     border: none;
@@ -213,12 +277,12 @@
     border-bottom-left-radius: 4px;
   }
 
-  .home-pc-screen-search-form input::placeholder {
+  .homepage-pc-screen-search-form input::placeholder {
     text-align: justify;
     font-size: 1rem;
   }
 
-  .home-pc-screen-search-form button {
+  .homepage-pc-screen-search-form button {
     border: none;
     outline: none;
     cursor: pointer;
@@ -226,7 +290,7 @@
     text-overflow: hidden;
   }
 
-  .home-pc-screen-search-form img {
+  .homepage-pc-screen-search-form img {
     height: 40px;
     width: 40px;
     align-self: center;
@@ -237,7 +301,53 @@
     min-width: 0;
   }
 
-  .pc-screen-search-form_logged img {
+  .homepage-pc-screen-search-allowed {
+    display: flex;
+    flex-shrink: 1;
+    justify-content: flex-start;
+
+    position: relative;
+
+    border: solid rgb(244, 226, 244);
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+
+  .homepage-pc-screen-search-form-allowed {
+    background-color: rgb(235, 229, 235);
+    display: flex;
+
+    border-radius: 8px;
+    flex-shrink: 1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    min-width: 0;
+  }
+
+  .homepage-pc-screen-search-form-allowed input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    width: 18rem;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .homepage-pc-screen-search-form-allowed input::placeholder {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .homepage-pc-screen-search-form-allowed button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(248, 235, 250);
+    text-overflow: hidden;
+  }
+
+  .homepage-pc-screen-search-form-allowed img {
     height: 40px;
     width: 40px;
     align-self: center;

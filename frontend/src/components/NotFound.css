@@ -1,39 +1,60 @@
 .fileNotFoundIcon {
   position: relative;
-  left: 2.8rem;
-  max-width: 80%;
-  max-height: 50%;
+  min-width: 15rem;
+  max-height: 70vh;
   object-fit: contain;
-  margin-top: 0.5rem;
+  left: 1.5rem;
 }
 
 .icon-container {
   display: flex;
   flex-direction: column;
+
   margin-top: 0.5rem;
   min-height: 50vh;
   background: rgb(234, 220, 203);
   position: relative;
-  bottom: 3rem;
+  margin: 0 auto;
+  max-width: 80vw;
+  background-color: transparent;
 }
 
-@media screen and (min-width: 451px) {
+@media screen and (min-width: 510px) and (max-width: 890px) {
   .fileNotFoundIcon {
-    margin: 0.5rem auto;
-    width: 100%;
-    max-height: 80vh;
+    min-width: 25rem;
+    max-height: 70vh;
     object-fit: contain;
-    margin-top: 0.5rem;
+    position: relative;
+    left: 2.5rem;
   }
 
   .icon-container {
-    display: flex;
-    flex-direction: column;
-    max-width: 55rem;
-    margin-top: 0.5rem;
+    max-width: 30rem;
+
     min-height: 50vh;
-    background: rgb(234, 220, 203);
+    /*  background: rgb(234, 220, 203); */
+    background-color: transparent;
     position: relative;
-    bottom: 3rem;
+
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 890px) {
+  .fileNotFoundIcon {
+    margin: 1rem auto;
+    min-width: 40rem;
+    max-height: 70vh;
+  }
+
+  .icon-container {
+    max-width: 40rem;
+
+    min-height: 50vh;
+    /*  background: rgb(234, 220, 203); */
+    background-color: transparent;
+    position: relative;
+    top: 1rem;
+    margin: 0 auto;
   }
 }

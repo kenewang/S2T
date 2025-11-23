@@ -1,15 +1,16 @@
-import Header from "./Header";
-import LeftNav from "./LeftNav";
-import SearchOverlay from "./SearchOverlay";
-import RightNav from "./RightNav";
-import DocumentList from "./DocumentList";
+import SDHeader from "./SDHeader";
+import LeftNav from "../LeftNav";
+import SearchOverlay from "../SearchOverlay";
+import RightNav from "../RightNav";
+import DocumentList from "../DocumentList";
 import "./SubjectDocuments.css";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import NotFound from "./NotFound";
+import NotFound from "../NotFound";
+import { jwtDecode } from "jwt-decode";
 
 const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const [storage_path, setStoragePath] = useState([]);
   const [file_rating, setFileRating] = useState([]);
   const [fileIds, setFileId] = useState([]);
+  const [showUploadIcon, setShowUploadIcon] = useState(false);
 
   const [notFound, setNotFound] = useState(false);
 
@@ -43,6 +45,18 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const [ratingTrigger, setRatingTrigger] = useState(0);
 
   const [selectedGradeRange, setSelectedGradeRange] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      const userRole = decoded.role;
+      console.log("User role:", decoded.role);
+      const validRoles = ["admin", "moderator", "educator"];
+      if (!validRoles.includes(userRole)) return;
+      setShowUploadIcon(true);
+    }
+  }, []);
 
   useEffect(() => {
     // 🧠 skip fetching all files if user has already chosen a grade
@@ -144,7 +158,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
         <section className="subject_Container">
           {!searchActive && (
             <>
-              <Header
+              <SDHeader
                 showSearchLogo={true}
                 leftNavOpen={leftNavOpen}
                 rightNavOpen={rightNavOpen}
@@ -153,6 +167,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
                 openRightNav={openRightNav}
                 closeRightNav={closeRightNav}
                 showPCSearch={true}
+                showUploadIcon={showUploadIcon}
               />
 
               <LeftNav
@@ -176,18 +191,20 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
                 View By Grade
               </button>
               <main className="docs_container">
-                <DocumentList
-                  openRightNav={openRightNav}
-                  databaseNames={databaseNames}
-                  storage_path={storage_path}
-                  file_rating={file_rating}
-                  rightNavOpen={rightNavOpen}
-                  leftNavOpen={leftNavOpen}
-                  closeRightNav={closeRightNav}
-                  closeLeftNav={closeLeftNav}
-                  fileIds={fileIds} // 👈 must come from backend fetch
-                  setActiveFileId={setActiveFileId}
-                />
+                {!notFound && (
+                  <DocumentList
+                    openRightNav={openRightNav}
+                    databaseNames={databaseNames}
+                    storage_path={storage_path}
+                    file_rating={file_rating}
+                    rightNavOpen={rightNavOpen}
+                    leftNavOpen={leftNavOpen}
+                    closeRightNav={closeRightNav}
+                    closeLeftNav={closeLeftNav}
+                    fileIds={fileIds} // 👈 must come from backend fetch
+                    setActiveFileId={setActiveFileId}
+                  />
+                )}
               </main>
             </>
           )}

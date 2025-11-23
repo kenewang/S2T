@@ -1,5 +1,5 @@
-import menu_icon from "../svg/iconmonstr-menu-dot-vertical-filled.svg";
-import file_icon from "../svg/icons8-file-100.png";
+import menu_icon from "../../svg/iconmonstr-menu-dot-vertical-filled.svg";
+import file_icon from "../../svg/icons8-file-100.png";
 import "./HomePage.css";
 
 import { useState } from "react";

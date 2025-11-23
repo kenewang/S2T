@@ -1,6 +1,6 @@
-import HeaderV2 from "./HeaderV2";
+import FileModerationHeader from "./FileModerationHeader";
 import "./FileModeration.css";
-import LeftNav from "./LeftNav";
+import LeftNav from "../LeftNav";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
@@ -143,7 +143,7 @@ const FileModeration = ({
 
   return (
     <div className="file-moderation-container">
-      <HeaderV2
+      <FileModerationHeader
         leftNavOpen={leftNavOpen}
         openLeftNav={openLeftNav}
         openSearch={openSearch}

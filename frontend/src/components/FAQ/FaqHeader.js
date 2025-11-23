@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import uploadIcon from "../../svg/icons8-upload-100.png";
 import { jwtDecode } from "jwt-decode";
 
@@ -20,6 +20,7 @@ const FaqHeader = ({
   };
 
   const [isAllowed, setIsAllowed] = useState(false);
+  const [forOpenAccess, setForOpenAccess] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const FaqHeader = ({
     else {
       closeRightNav();
     }
-  });
+  }, [leftNavOpen]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -36,15 +37,23 @@ const FaqHeader = ({
       const userRole = decoded.role;
       console.log("User role:", decoded.role);
       const validRoles = ["admin", "moderator", "educator"];
-      if (!validRoles.includes(userRole)) return;
+      if (userRole === "open-access") {
+        setForOpenAccess(true);
+
+        return;
+      }
+
+      if (!validRoles.includes(userRole)) {
+        return;
+      }
       setIsAllowed(true);
     }
-  });
+  }, []);
 
   return (
     <div className="faqHead-Wrapper">
       <span
-        className="hamburger"
+        className="faqHead-hamburger"
         onClick={openLeftNav}
         aria-label="Open menu"
         role="button"
@@ -52,7 +61,46 @@ const FaqHeader = ({
         ☰
       </span>
 
-      {!isAllowed && <h2 className="heading-not-allowed">Share2Teach</h2>}
+      {forOpenAccess && (
+        <h2
+          onClick={() => {
+            navigate("/home");
+          }}
+          className="heading-allowed-open-access"
+        >
+          Share2Teach
+        </h2>
+      )}
+
+      {!isAllowed && !forOpenAccess && (
+        <>
+          <div className="FaqHeader-Login-Create">
+            <p
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Log in
+            </p>
+
+            <p
+              onClick={() => {
+                navigate("/createAccount");
+              }}
+            >
+              Create Account
+            </p>
+          </div>
+          <h2
+            onClick={() => {
+              navigate("/");
+            }}
+            className="heading-not-allowed"
+          >
+            Share2Teach
+          </h2>
+        </>
+      )}
 
       {isAllowed && (
         <>

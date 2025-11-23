@@ -1,5 +1,5 @@
-import Header from "./Header";
-import LeftNav from "./LeftNav";
+import CreateAccountHeader from "./CreateAccountHeader";
+import LeftNav from "../LeftNav";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const CreateAccount = ({
@@ -73,13 +73,12 @@ const CreateAccount = ({
 
   return (
     <div className="createAccWrapper">
-      <Header
+      <CreateAccountHeader
         showSearchLogo={false} //hide the search icon
         leftNavOpen={leftNavOpen}
         openLeftNav={openLeftNav}
         // Pass other props if you need search/right nav to work:
-        openSearch={() => {}}
-        rightNavOpen={false}
+
         closeRightNav={() => {}}
         showLoginCreate={false}
         showPCSearch={false}
@@ -94,6 +93,7 @@ const CreateAccount = ({
       />
 
       <section className="createAccount">
+        <h2 className="register-heading">Create Account</h2>
         <form className="createAccountCredentials" onSubmit={onSubmitForm}>
           <label>First Name</label>
           <input
@@ -158,7 +158,6 @@ const CreateAccount = ({
       </section>
 
       <div className="create_account_Footer">
-        <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>
       </div>
     </div>

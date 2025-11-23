@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Header from "./Header";
-import LeftNav from "./LeftNav";
-import RightNav from "./RightNav";
-import SearchOverlay from "./SearchOverlay";
+import SubjectsHeader from "./SubjectsHeader";
+import LeftNav from "../LeftNav";
+import RightNav from "../RightNav";
+import SearchOverlay from "../SearchOverlay";
 import { useNavigate } from "react-router-dom";
 
 const Subjects = ({
@@ -23,6 +23,7 @@ const Subjects = ({
   ratingTrigger,
   activeFileId,
   isAuthenticated,
+  showSearchLogo,
 }) => {
   const navigate = useNavigate();
   const [subjectNames, setSubjectNames] = useState([]);
@@ -46,16 +47,13 @@ const Subjects = ({
     <div className="subWrapper">
       {!searchActive && (
         <>
-          <Header
-            showSearchLogo={true}
-            showUploadIcon={false}
+          <SubjectsHeader
             leftNavOpen={leftNavOpen}
             openLeftNav={openLeftNav}
             openSearch={openSearch}
             rightNavOpen={false}
             closeRightNav={() => {}}
-            showLoginCreate={true}
-            showPCSearch={true}
+            showSearchLogo={showSearchLogo}
           />
 
           <LeftNav
@@ -115,7 +113,6 @@ const Subjects = ({
       />
 
       <div className="subjectsFooter">
-        <p>Contact</p>
         <p>&copy; 2025 Share2Teach</p>
       </div>
     </div>

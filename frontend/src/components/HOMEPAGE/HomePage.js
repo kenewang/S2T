@@ -1,15 +1,15 @@
-import Header from "./Header";
-import LeftNav from "./LeftNav";
-import SearchOverlay from "./SearchOverlay";
+import HomePageHeader from "./HomePageHeader";
+import LeftNav from "../LeftNav";
+import SearchOverlay from "../SearchOverlay";
 
-import RightNav from "./RightNav";
+import RightNav from "../RightNav";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ScienceDocuments from "./ScienceDocuments";
 import MathematicsDocuments from "./MathematicsDocuments";
 import ProgrammingDocuments from "./ProgrammingDocuments";
-import useFetchFiles from "../hooks/useFetchFiles";
-import NotFound from "./NotFound";
+import useFetchFiles from "../../hooks/useFetchFiles";
+import NotFound from "../NotFound";
 import { jwtDecode } from "jwt-decode";
 
 const HomePage = ({
@@ -92,7 +92,7 @@ const HomePage = ({
       <section className="container">
         {!searchActive && (
           <>
-            <Header
+            <HomePageHeader
               showSearchLogo={true}
               showUploadIcon={showUploadIcon}
               leftNavOpen={leftNavOpen}

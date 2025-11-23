@@ -1,6 +1,6 @@
-import HeaderV2 from "./HeaderV2";
-import "./FileModeration.css";
-import LeftNav from "./LeftNav";
+import ReportsHeader from "./ReportsHeader";
+import "./Reports.css";
+import LeftNav from "../LeftNav";
 
 const Reports = ({
   openLeftNav,
@@ -16,7 +16,7 @@ const Reports = ({
 }) => {
   return (
     <div className="reports-container">
-      <HeaderV2
+      <ReportsHeader
         leftNavOpen={leftNavOpen}
         openLeftNav={openLeftNav}
         openSearch={openSearch}

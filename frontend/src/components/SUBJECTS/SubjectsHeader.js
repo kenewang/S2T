@@ -1,20 +1,18 @@
 import { useEffect } from "react";
-import icon from "../svg/iconmonstr-magnifier-lined.svg";
-
-import search from "../svg/icons8-search-50.png";
-import "./Header.css";
+import icon from "../../svg/iconmonstr-magnifier-lined.svg";
+import uploadIcon from "../../svg/icons8-upload-100.png";
+import search from "../../svg/icons8-search-50.png";
+import "./SubjectsHeader.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Header = ({
+const SubjectsHeader = ({
   showSearchLogo,
-  showUploadIcon,
+
   leftNavOpen,
   openLeftNav,
   openSearch,
   rightNavOpen,
   closeRightNav,
-  showLoginCreate,
-  showPCSearch,
 }) => {
   const openSearchIcon = () => {
     if (!rightNavOpen && !leftNavOpen) {
@@ -34,9 +32,9 @@ const Header = ({
   });
 
   return (
-    <header className="home-big-header" id="main-header">
+    <header className="subjects-header" id="main-header">
       <span
-        className="home-menu-icon"
+        className="subjectHeader-menu-icon"
         onClick={openLeftNav} //call the function "openLeftNav" when the hamburger menu is clicked
         aria-label="Open menu"
         role="button"
@@ -44,15 +42,15 @@ const Header = ({
         ☰
       </span>
 
-      <div className="home-pc-screen-search">
-        <form className="home-pc-screen-search-form">
+      <div className="subject-pc-screen-search">
+        <form className="subject-pc-screen-search-form">
           <img src={search} alt="search_icon" />
           <input type="text" placeholder="Search for a document" />
           <button type="submit">Search </button>
         </form>
       </div>
 
-      <div className="home-login-create">
+      <div className="subjects-login-create">
         <p
           onClick={() => {
             navigate("/login");
@@ -68,13 +66,12 @@ const Header = ({
         >
           Create Account
         </p>
-
         <p
           onClick={() => {
-            navigate("/subjects");
+            navigate("/faqs");
           }}
         >
-          Browse
+          Faqs
         </p>
       </div>
 
@@ -88,9 +85,9 @@ const Header = ({
       </div>
 
       <h2
-        className="home-s2t-heading"
+        className="subjects-s2t-heading"
         onClick={() => {
-          navigate("/home");
+          navigate("/");
         }}
       >
         Share2Teach
@@ -99,4 +96,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default SubjectsHeader;

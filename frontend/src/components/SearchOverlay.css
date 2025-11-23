@@ -89,7 +89,7 @@ input.search-field {
   }
 
   .search-field {
-    max-width: 35rem;
+    max-width: 30rem;
     padding: 1rem;
     border: 1px solid #aaa;
     border-radius: 6px;
