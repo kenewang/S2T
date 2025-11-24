@@ -1,4 +1,4 @@
-.subject_Container {
+.subject-container {
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
@@ -20,7 +20,7 @@
   padding: 1rem;
 }
 
-.grade {
+.sd-grade {
   position: relative;
   width: 30%;
   margin: 0 auto;
@@ -38,7 +38,7 @@
   bottom: 0.1rem;
 }
 
-.docs_container {
+.docs-container {
   display: flex;
   flex-direction: column;
   margin-top: 0.3rem;
@@ -77,12 +77,12 @@
   .sub-parent {
     background-color: rgb(234, 220, 203);
   }
-  .subject_Container {
+  .subject-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     margin-bottom: 0.2rem;
-    max-width: 35rem;
+    max-width: 40rem;
 
     min-height: 100vh;
   }
@@ -102,7 +102,7 @@
     padding: 1rem;
   }
 
-  .grade {
+  .sd-grade {
     position: relative;
     width: 30%;
     margin: 0 auto;
@@ -120,7 +120,7 @@
     bottom: 0.1rem;
   }
 
-  .docs_container {
+  .docs-container {
     display: flex;
     flex-direction: column;
     margin: 0.3rem auto;
@@ -160,20 +160,20 @@
 @media screen and (min-width: 890px) {
   .sub-parent {
     background-color: rgb(234, 220, 203);
-  }
-  .subject-Container {
     margin: 0 auto;
+  }
+  .subject-container {
     display: flex;
     flex-direction: column;
     max-width: 60rem;
-
     min-height: 100vh;
+    margin: 0 auto;
   }
 
   .subjectDocumentsFooter {
     margin-top: auto;
-    max-width: 50rem !important;
-    margin: 0 auto !important;
+    max-width: 50rem;
+    margin: 0 auto;
 
     background-color: #eee8e8;
     text-align: center;
@@ -183,7 +183,7 @@
     padding: 1rem;
   }
 
-  .grade {
+  .sd-grade {
     position: relative;
     width: 30%;
     margin: 0 auto;
@@ -201,7 +201,7 @@
     bottom: 0.1rem;
   }
 
-  .docs_container {
+  .docs-container {
     display: flex;
     flex-direction: column;
     margin: 0.3rem auto;

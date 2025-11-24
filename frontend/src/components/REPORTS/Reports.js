@@ -32,6 +32,9 @@ const Reports = ({
         setAuth={setAuth}
         onRatingSubmitted={onRatingSubmitted}
       />
+      <div className="reportsFooter">
+        <p>&copy; 2025 Share2Teach</p>
+      </div>
     </div>
   );
 };

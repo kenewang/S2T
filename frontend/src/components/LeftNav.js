@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LeftNav.css";
+import { jwtDecode } from "jwt-decode";
 
 const LeftNav = ({
   leftNavOpen,
@@ -11,6 +12,7 @@ const LeftNav = ({
   onRatingSubmitted,
 }) => {
   const navigate = useNavigate();
+  const [allowedRole, setAllowedRole] = useState(false);
 
   const goSomeWhere = (path) => {
     closeLeftNav();
@@ -38,6 +40,18 @@ const LeftNav = ({
       window.removeEventListener("popstate", handlePopState);
     });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      const userRole = decoded.role;
+      console.log("User role:", decoded.role);
+      const validRoles = ["admin", "moderator", "educator"];
+      if (!validRoles.includes(userRole)) return;
+      setAllowedRole(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!leftNavOpen) return;
@@ -103,71 +117,78 @@ const LeftNav = ({
       {!isAuthenticated && (
         <>
           <a
+            className="s-anchor"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               goSomeWhere("/");
             }}
           >
-            Home
+            • Home
           </a>
 
           <a
+            className="s-anchor"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               goSomeWhere("/subjects");
             }}
           >
-            Browse
+            • Browse
           </a>
 
           <a
+            className="s-anchor"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               goSomeWhere("/login");
             }}
           >
-            Login
+            • Login
           </a>
 
           <a
+            className="s-anchor"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               goSomeWhere("/faqs");
             }}
           >
-            FAQs
+            • FAQs
           </a>
         </>
       )}
 
       {/* Show Log out only if authenticated */}
-      {isAuthenticated && (
+      {isAuthenticated && !allowedRole && (
         <>
           <a
+            className="s-anchor"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               goSomeWhere("/home");
             }}
           >
-            Home
+            • Home
           </a>
 
           <a
+            className="s-anchor"
             href="#"
             onClick={(e) => {
               e.preventDefault();
               goSomeWhere("/faqs");
             }}
           >
-            FAQs
+            • FAQs
           </a>
 
           <a
+            className="s-anchor"
             href="#"
             onClick={(e) => {
               e.preventDefault();
@@ -175,22 +196,77 @@ const LeftNav = ({
               handleLogout();
             }}
           >
-            Log out
+            • Log out
           </a>
         </>
       )}
+      {isAuthenticated && allowedRole && (
+        <>
+          <a
+            className="s-anchor"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/home");
+            }}
+          >
+            • Home
+          </a>
 
-      {/* Close button */}
-      <a
-        href="#"
-        className="closebtn"
-        onClick={(e) => {
-          e.preventDefault();
-          closeLeftNav();
-        }}
-      >
-        ×
-      </a>
+          <a
+            className="s-anchor"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/faqs");
+            }}
+          >
+            • FAQs
+          </a>
+          <a
+            className="bigScreen-anchor"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/home/reports");
+            }}
+          >
+            • Reports
+          </a>
+          <a
+            className="bigScreen-anchor"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/home/report/home/fileupload");
+            }}
+          >
+            • Upload
+          </a>
+          <a
+            className="bigScreen-anchor"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goSomeWhere("/home/filemoderation");
+            }}
+          >
+            • File Moderation
+          </a>
+
+          <a
+            className="s-anchor"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              // Add logout logic here
+              handleLogout();
+            }}
+          >
+            • Log out
+          </a>
+        </>
+      )}
     </div>
   );
 };

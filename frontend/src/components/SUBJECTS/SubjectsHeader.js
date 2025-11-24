@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import icon from "../../svg/iconmonstr-magnifier-lined.svg";
-import uploadIcon from "../../svg/icons8-upload-100.png";
+
 import search from "../../svg/icons8-search-50.png";
 import "./SubjectsHeader.css";
 import { useNavigate, useLocation } from "react-router-dom";

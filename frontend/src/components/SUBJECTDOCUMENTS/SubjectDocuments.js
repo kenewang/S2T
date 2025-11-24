@@ -155,7 +155,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   return (
     <div className="sub-parent">
       <div>
-        <section className="subject-Container">
+        <section className="subject-container">
           {!searchActive && (
             <>
               <SDHeader
@@ -187,10 +187,10 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
                 isAuthenticated={isAuthenticated}
               />
 
-              <button className="grade" onClick={handlePopUp}>
+              <button className="sd-grade" onClick={handlePopUp}>
                 View By Grade
               </button>
-              <main className="docs_container">
+              <main className="docs-container">
                 {!notFound && (
                   <DocumentList
                     openRightNav={openRightNav}

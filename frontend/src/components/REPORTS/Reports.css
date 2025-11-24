@@ -19,4 +19,18 @@
     max-width: 55rem;
     margin: 0 auto;
   }
+
+  .reportsFooter {
+    margin-top: auto !important;
+    background-color: #eee8e8;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 5rem;
+
+    width: 50rem;
+  }
+
+  .reportsFooter p {
+    padding: 1rem;
+  }
 }
