@@ -214,7 +214,7 @@ const RightNav = ({
           showRatingPopup();
         }}
       >
-        Rate
+        • Rate
       </a>
       {isAuthenticated && (
         <a
@@ -225,7 +225,7 @@ const RightNav = ({
             showReportPopup();
           }}
         >
-          Report
+          • Report
         </a>
       )}
     </div>

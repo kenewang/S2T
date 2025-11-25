@@ -238,7 +238,7 @@ const LeftNav = ({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              goSomeWhere("/home/report/home/fileupload");
+              goSomeWhere("/home/fileupload");
             }}
           >
             • Upload
