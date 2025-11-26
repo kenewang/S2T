@@ -5,16 +5,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/report")
+@RequestMapping("/reports")
 public class ReportController {
 
     private final ReportService reportService;
 
     public ReportController(ReportService reportService) {
         this.reportService = reportService;
+    }
+
+    @GetMapping("/pending")
+    public ResponseEntity<?> getPendingReports() {
+        try {
+            List<ReportDTO> reports = reportService.getPendingReports();
+            return ResponseEntity.ok(reports);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Server error: " + e.getMessage());
+        }
     }
 
     @PostMapping("/document")
@@ -44,4 +55,5 @@ public class ReportController {
             return ResponseEntity.status(500).body(Map.of("msg", "Server error", "error", e.getMessage()));
         }
     }
+
 }

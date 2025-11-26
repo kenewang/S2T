@@ -1,6 +1,7 @@
 package com.kenewang.share2teach.files;
 
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class ReportService {
@@ -29,5 +30,12 @@ public class ReportService {
         report.setStatus("pending");
 
         reportRepository.save(report);
+    }
+
+    public List<ReportDTO> getPendingReports() {
+        return reportRepository.findAllPendingReports().stream()
+                .map(r -> new ReportDTO(r.getReportId(), r.getFile().getId(), r.getReason(), r.getStatus(),
+                        r.getCreated_at(), r.getReporter().getFname(), r.getReporter().getLname()))
+                .toList();
     }
 }

@@ -56,17 +56,20 @@ const RightNav = ({
     if (result.isConfirmed && result.value?.trim()) {
       console.log("User typed:", result.value);
       try {
-        const reportRes = await fetch("http://localhost:8081/report/document", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            jwt_token: localStorage.getItem("token"), // ✅ include token if logged in
-          },
-          body: JSON.stringify({
-            file_id: activeFileId,
-            reason: result.value,
-          }),
-        });
+        const reportRes = await fetch(
+          "http://localhost:8081/reports/document",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              jwt_token: localStorage.getItem("token"), // ✅ include token if logged in
+            },
+            body: JSON.stringify({
+              file_id: activeFileId,
+              reason: result.value,
+            }),
+          }
+        );
 
         if (!reportRes.ok) {
           console.error("Server returned", reportRes.status);
