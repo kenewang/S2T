@@ -192,4 +192,52 @@
   .sidenav.right-sidenav.open {
     width: 180px;
   }
+
+  /* delete success pop up */
+  .delete-popup {
+    background: #f9f9f9;
+    border-radius: 6px;
+    width: 19rem;
+    height: 19rem;
+    margin: 0 auto;
+  }
+
+  .delete-popup-title {
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+  }
+
+  .delete-popup-warning-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 0.7rem;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    top: 1rem;
+    background-color: snow;
+  }
+
+  /* delete success pop up error*/
+  .delete-popup-error {
+    background: #f9f9f9 !important;
+    border-radius: 6px !important;
+    width: 20rem !important;
+    height: 20rem !important;
+    margin: 0 auto !important;
+  }
+
+  .delete-popup-error-title {
+    margin-top: 0.2rem !important;
+    font-size: 1.5rem !important;
+  }
+
+  .delete-popup-error-icon {
+    font-size: 0.8rem !important;
+    margin: 0 auto !important;
+
+    position: relative !important;
+    top: 1rem !important;
+    background-color: snow !important;
+  }
 }

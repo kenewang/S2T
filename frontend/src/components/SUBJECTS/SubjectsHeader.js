@@ -88,6 +88,7 @@ const SubjectsHeader = ({
         className="subjects-s2t-heading"
         onClick={() => {
           navigate("/");
+          window.location.reload();
         }}
       >
         Share2Teach

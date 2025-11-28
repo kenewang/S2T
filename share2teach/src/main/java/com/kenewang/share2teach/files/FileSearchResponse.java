@@ -5,12 +5,14 @@ public class FileSearchResponse {
     private String fileName;
     private String filePath;
     private Double fileRating;
+    private String gradeName;
 
-    public FileSearchResponse(Long id, String fileName, String filePath, Double fileRating) {
+    public FileSearchResponse(Long id, String fileName, String filePath, Double fileRating, String gradeName) {
         this.id = id;
         this.fileName = fileName;
         this.filePath = filePath;
         this.fileRating = fileRating;
+        this.gradeName = gradeName;
     }
 
     // Getters only (setters optional)
@@ -29,4 +31,9 @@ public class FileSearchResponse {
     public Double getFileRating() {
         return fileRating;
     }
+
+    public String getGradeName() {
+        return gradeName;
+    }
+
 }

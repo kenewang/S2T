@@ -157,4 +157,47 @@
   .uploadFooter p {
     padding: 1rem;
   }
+
+  /* pop up for upload success */
+
+  .upload-popup-success {
+    background: #f9f9f9 !important;
+    border-radius: 6px !important;
+    width: 20rem !important;
+    height: 20rem !important;
+    margin: 0 auto !important;
+  }
+
+  .upload-popup-success-title {
+    margin-top: 0.2rem !important;
+    font-size: 1.5rem !important;
+  }
+
+  .upload-popup-warning-icon {
+    font-size: 0.7rem !important;
+  }
+
+  /* pop up for upload error */
+
+  .upload-popup-error {
+    background: #f9f9f9 !important;
+    border-radius: 6px !important;
+    width: 20rem !important;
+    height: 20rem !important;
+    margin: 0 auto !important;
+  }
+
+  .upload-popup-error-title {
+    margin-top: 0.2rem !important;
+    font-size: 1.5rem !important;
+  }
+
+  .upload-popup-error-icon {
+    font-size: 0.8rem !important;
+    margin: 0 auto !important;
+
+    position: relative !important;
+    top: 1rem !important;
+    background-color: snow !important;
+  }
 }

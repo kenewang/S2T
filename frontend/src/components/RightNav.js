@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./RightNav.css";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import withReactContent from "sweetalert2-react-content";
+import { jwtDecode } from "jwt-decode";
 
 const RightNav = ({
   rightNavOpen,
@@ -12,7 +13,20 @@ const RightNav = ({
   onRatingSubmitted,
   isAuthenticated,
 }) => {
+  const [allowed, setAllowed] = useState(false);
   const succesSwal = withReactContent(Swal);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      const userRole = decoded.role;
+      console.log("User role:", decoded.role);
+      const validRoles = ["admin", "moderator", "educator"];
+      if (!validRoles.includes(userRole)) return;
+      setAllowed(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!rightNavOpen) return;
@@ -35,6 +49,86 @@ const RightNav = ({
   if (rightNavOpen && rightNavRef.current) {
     rightNavRef.current.dataset.openedAt = performance.now();
   }
+
+  const handleDeleteAction = async (fileId) => {
+    const result = await Swal.fire({
+      title: "Delete Document",
+      text: "Are you sure you want to Delete this document?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      reverseButtons: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+
+      customClass: {
+        popup: "moderatePopUp",
+        title: "moderatePopUp-title",
+        icon: "moderatePopUp-warning-icon",
+      },
+    });
+
+    if (result.isConfirmed) {
+      await deleteFile(fileId);
+    }
+  };
+
+  const deleteFile = async (fileId) => {
+    try {
+      const res = await fetch(`http://localhost:8081/file/${fileId}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Update local UI
+
+        Swal.fire({
+          title: "Success!",
+          text: "Document Deleted Successfully.",
+          icon: "success",
+          confirmButtonText: "OK",
+          customClass: {
+            popup: "delete-popup",
+            title: "delete-popup-title",
+            icon: "delete-popup-warning-icon",
+          },
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "Failed to Delete Document",
+          icon: "error",
+          customClass: {
+            popup: "delete-popup-error",
+            title: "delete-popup-error-title",
+            icon: "delete-popup-error-icon",
+          },
+        }).then(() => {
+          window.location.reload();
+        });
+      }
+    } catch (err) {
+      console.error("Error moderating document:", err);
+
+      Swal.fire({
+        title: "Error",
+        text: "Error Deleting Document",
+        icon: "error",
+        customClass: {
+          popup: "delete-popup-error",
+          title: "delete-popup-error-title",
+          icon: "delete-popup-error-icon",
+        },
+      }).then(() => {
+        window.location.reload();
+      });
+    }
+  };
 
   const showReportPopup = async () => {
     const result = await Swal.fire({
@@ -229,6 +323,18 @@ const RightNav = ({
           }}
         >
           • Report
+        </a>
+      )}
+      {allowed && (
+        <a
+          className="rightNavAnchor"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handleDeleteAction(activeFileId);
+          }}
+        >
+          • Delete
         </a>
       )}
     </div>

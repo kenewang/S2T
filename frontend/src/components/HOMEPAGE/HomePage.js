@@ -11,7 +11,13 @@ import ProgrammingDocuments from "./ProgrammingDocuments";
 import useFetchFiles from "../../hooks/useFetchFiles";
 import NotFound from "../NotFound";
 import { jwtDecode } from "jwt-decode";
-
+import ArtsDocuments from "./ArtsDocuments";
+import ChemistryDocuments from "./ChemistryDocuments";
+import HistoryDocuments from "./HistoryDocuments";
+import ManagementDocuments from "./ManagementDocuments";
+import DesignDocuments from "./DesignDocuments";
+import PsychologyDocuments from "./PsychologyDocuments";
+import FinanceDocuments from "./FinanceDocuments";
 const HomePage = ({
   leftNavRef, //passed down from App.js
   rightNavRef, //passed down from App.js
@@ -33,6 +39,22 @@ const HomePage = ({
     ratingTrigger,
     setNotFound
   );
+
+  const artsData = useFetchFiles("arts", ratingTrigger, setNotFound);
+  const chemistryData = useFetchFiles("chemistry", ratingTrigger, setNotFound);
+  const historyData = useFetchFiles("history", ratingTrigger, setNotFound);
+  const managementData = useFetchFiles(
+    "management",
+    ratingTrigger,
+    setNotFound
+  );
+  const designData = useFetchFiles("design", ratingTrigger, setNotFound);
+  const psychologyData = useFetchFiles(
+    "psychology",
+    ratingTrigger,
+    setNotFound
+  );
+  const financeData = useFetchFiles("finance", ratingTrigger, setNotFound);
 
   const [leftNavOpen, setLeftNavOpen] = useState(false);
   const [rightNavOpen, setRightNavOpen] = useState(false);
@@ -139,6 +161,78 @@ const HomePage = ({
                 openInNewTab={openInNewTab}
               />
             )}
+            {designData.loading ? (
+              <p>Loading Design files...</p>
+            ) : (
+              <DesignDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={designData.databaseNames}
+                storage_path={designData.storagePath}
+                file_rating={designData.fileRating}
+                fileIds={designData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
+            {managementData.loading ? (
+              <p>Loading Management files...</p>
+            ) : (
+              <ManagementDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={managementData.databaseNames}
+                storage_path={managementData.storagePath}
+                file_rating={managementData.fileRating}
+                fileIds={managementData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
+            {psychologyData.loading ? (
+              <p>Loading Psychology files...</p>
+            ) : (
+              <PsychologyDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={psychologyData.databaseNames}
+                storage_path={psychologyData.storagePath}
+                file_rating={psychologyData.fileRating}
+                fileIds={psychologyData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
+            {historyData.loading ? (
+              <p>Loading History files...</p>
+            ) : (
+              <HistoryDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={historyData.databaseNames}
+                storage_path={historyData.storagePath}
+                file_rating={historyData.fileRating}
+                fileIds={historyData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
             {mathData.loading ? (
               <p>Loading Math files...</p>
             ) : (
@@ -157,6 +251,42 @@ const HomePage = ({
                 openInNewTab={openInNewTab}
               />
             )}
+            {chemistryData.loading ? (
+              <p>Loading Chemistry files...</p>
+            ) : (
+              <ChemistryDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={chemistryData.databaseNames}
+                storage_path={chemistryData.storagePath}
+                file_rating={chemistryData.fileRating}
+                fileIds={chemistryData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
+            {financeData.loading ? (
+              <p>Loading Finance files...</p>
+            ) : (
+              <FinanceDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={financeData.databaseNames}
+                storage_path={financeData.storagePath}
+                file_rating={financeData.fileRating}
+                fileIds={financeData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
             {programmingData.loading ? (
               <p>Loading Programming files...</p>
             ) : (
@@ -170,6 +300,24 @@ const HomePage = ({
                 storage_path={programmingData.storagePath}
                 file_rating={programmingData.fileRating}
                 fileIds={programmingData.fileIds}
+                handleClick={handleClick}
+                openRight={openRight}
+                openInNewTab={openInNewTab}
+              />
+            )}
+            {artsData.loading ? (
+              <p>Loading Arts files...</p>
+            ) : (
+              <ArtsDocuments
+                openRightNav={openRightNav}
+                closeLeftNav={closeLeftNav}
+                closeRightNav={closeRightNav}
+                leftNavOpen={leftNavOpen}
+                rightNavOpen={rightNavOpen}
+                databaseNames={artsData.databaseNames}
+                storage_path={artsData.storagePath}
+                file_rating={artsData.fileRating}
+                fileIds={artsData.fileIds}
                 handleClick={handleClick}
                 openRight={openRight}
                 openInNewTab={openInNewTab}

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -132,6 +133,22 @@ public class Controller {
             return ResponseEntity.ok(pendingDocs);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // ========FILE DELETION==================
+    @DeleteMapping("file/{id}")
+    public ResponseEntity<?> deleteDocument(@PathVariable Long id) {
+        try {
+            fileService.deleteFile(id);
+
+            return ResponseEntity.ok(Map.of("message", "Document deleted successfully"));
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(404).body(Map.of("error", e.getMessage()));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("error", "Server error"));
         }
     }
 

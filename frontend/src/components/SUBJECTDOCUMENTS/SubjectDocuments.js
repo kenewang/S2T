@@ -92,7 +92,18 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   }, [selectedGradeRange, id]);
 
   useEffect(() => {
-    const validIds = ["science", "mathematics", "computer programming", "arts"];
+    const validIds = [
+      "science",
+      "mathematics",
+      "computer programming",
+      "arts",
+      "history",
+      "chemistry",
+      "management",
+      "design",
+      "psychology",
+      "finance",
+    ];
     if (!validIds.includes(id)) return;
 
     const fetchFiles = async () => {

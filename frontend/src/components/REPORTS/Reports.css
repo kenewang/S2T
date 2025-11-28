@@ -90,4 +90,22 @@
   .view-button:hover {
     background-color: #0056b3;
   }
+
+  /* pop up for successfully resolving a report */
+  .resolve-popup-success {
+    background: #f9f9f9 !important;
+    border-radius: 6px !important;
+    width: 20rem !important;
+    height: 20rem !important;
+    margin: 0 auto !important;
+  }
+
+  .resolve-popup-success-title {
+    margin-top: 0.2rem !important;
+    font-size: 1.5rem !important;
+  }
+
+  .resolve-popup-warning-icon {
+    font-size: 0.7rem !important;
+  }
 }

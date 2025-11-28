@@ -41,6 +41,7 @@ import FileUpload from "./components/UPLOAD/FileUpload";
 import FileModeration from "./components/FILEMODERATION/FileModeration";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Reports from "./components/REPORTS/Reports";
+import Results from "./components/Results";
 
 import Subjects from "./components/SUBJECTS/Subjects";
 import "./components/SUBJECTS/Subjects.css";
@@ -75,6 +76,9 @@ export default function App() {
 
   const openSearch = () => setSearchActive(true);
   const closeSearch = () => setSearchActive(false);
+
+  const [hideElements, setHideElements] = useState(false);
+  const [value, setValue] = useState("");
 
   const { databaseNames, storage_path, file_rating, fileIds, handlePopUp } =
     useFiles(ratingTrigger, setNotFound);
@@ -143,49 +147,71 @@ export default function App() {
                       showUploadIcon={showUploadIcon}
                       showLoginCreate={showLoginCreate}
                       showPCSearch={showPCSearch}
+                      setHideElements={setHideElements}
+                      onRatingSubmitted={handleRatingSubmitted}
+                      setValue={setValue}
                     />
 
-                    <main className="main-content" id="main-content">
-                      <LoginBrowse
-                        rightNavOpen={rightNavOpen}
-                        leftNavOpen={leftNavOpen}
-                      />
-
-                      <button
-                        className="grade_landingPage"
-                        onClick={handlePopUp}
-                      >
-                        View By Grade
-                      </button>
-                      {!notFound && (
-                        <DocumentList
-                          openRightNav={openRightNav}
-                          databaseNames={databaseNames}
-                          storage_path={storage_path}
-                          file_rating={file_rating}
+                    {!hideElements && (
+                      <main className="main-content" id="main-content">
+                        <LoginBrowse
                           rightNavOpen={rightNavOpen}
                           leftNavOpen={leftNavOpen}
-                          closeRightNav={closeRightNav}
-                          closeLeftNav={closeLeftNav}
-                          fileIds={fileIds} // 👈 must come from backend fetch
-                          setActiveFileId={setActiveFileId}
                         />
-                      )}
-                    </main>
 
-                    {notFound && (
+                        <button
+                          className="grade_landingPage"
+                          onClick={handlePopUp}
+                        >
+                          View By Grade
+                        </button>
+                        {!notFound && (
+                          <DocumentList
+                            openRightNav={openRightNav}
+                            databaseNames={databaseNames}
+                            storage_path={storage_path}
+                            file_rating={file_rating}
+                            rightNavOpen={rightNavOpen}
+                            leftNavOpen={leftNavOpen}
+                            closeRightNav={closeRightNav}
+                            closeLeftNav={closeLeftNav}
+                            fileIds={fileIds} // 👈 must come from backend fetch
+                            setActiveFileId={setActiveFileId}
+                          />
+                        )}
+                      </main>
+                    )}
+                    {notFound && !hideElements && (
                       <>
                         <NotFound />
                       </>
                     )}
 
-                    <Footer
-                      className="main-footer"
-                      leftNavOpen={leftNavOpen}
-                      closeLeftNav={closeLeftNav}
-                      rightNavOpen={rightNavOpen}
-                      closeRightNav={closeRightNav}
-                    />
+                    {!hideElements && (
+                      <Footer
+                        className="main-footer"
+                        leftNavOpen={leftNavOpen}
+                        closeLeftNav={closeLeftNav}
+                        rightNavOpen={rightNavOpen}
+                        closeRightNav={closeRightNav}
+                      />
+                    )}
+
+                    {hideElements && (
+                      <Results
+                        openRightNav={openRightNav}
+                        databaseNames={databaseNames}
+                        storage_path={storage_path}
+                        file_rating={file_rating}
+                        rightNavOpen={rightNavOpen}
+                        leftNavOpen={leftNavOpen}
+                        closeRightNav={closeRightNav}
+                        closeLeftNav={closeLeftNav}
+                        fileIds={fileIds} // 👈 must come from backend fetch
+                        setActiveFileId={setActiveFileId}
+                        value={value}
+                      />
+                    )}
                   </>
                 )}
 

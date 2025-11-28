@@ -76,8 +76,11 @@ public class FileService {
 
     public List<FileSearchResponse> searchFiles(String query) {
         List<FileEntity> files = fileRepository.findByFileNameContainingIgnoreCase(query);
-        return files.stream().map(file -> new FileSearchResponse(file.getId(), file.getFileName(),
-                file.getStoragePath(), file.getFileRating())).toList();
+        return files.stream()
+                .map(file -> new FileSearchResponse(file.getId(), file.getFileName(), file.getStoragePath(),
+                        file.getFileRating(), file.getGrade() != null ? file.getGrade().getGradeName() : "N/A" // include
+                                                                                                               // grade
+                )).toList();
     }
 
     public List<FileEntity> getFilesBySubjectAndGrade(String subjectName, String category) {
@@ -154,6 +157,7 @@ public class FileService {
         SubjectEntity subject = subjectRepository.findById(subjectId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid subject ID"));
 
+        System.out.println(subject);
         GradeEntity grade = gradeRepository.findById(gradeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid grade ID"));
 
@@ -240,6 +244,14 @@ public class FileService {
         }
 
         return path;
+    }
+
+    // =======FILE DELETION===================
+    public void deleteFile(Long id) {
+        FileEntity file = fileRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Document not found"));
+
+        fileRepository.delete(file);
     }
 
 }

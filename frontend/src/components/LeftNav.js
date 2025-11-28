@@ -122,6 +122,7 @@ const LeftNav = ({
             onClick={(e) => {
               e.preventDefault();
               goSomeWhere("/");
+              window.location.reload();
             }}
           >
             • Home

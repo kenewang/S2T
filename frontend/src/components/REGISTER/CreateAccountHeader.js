@@ -46,6 +46,7 @@ const CreateAccountHeader = ({
       <h2
         onClick={() => {
           navigate("/home");
+          window.location.reload();
         }}
       >
         Share2Teach

@@ -88,9 +88,14 @@ const FileModeration = ({
 
         Swal.fire({
           title: "Success!",
-          text: `Document ${action} successfully.`,
+          text: "Document Approved Successfully.",
           icon: "success",
           confirmButtonText: "OK",
+          customClass: {
+            popup: "moderatePopUp",
+            title: "moderatePopUp-title",
+            icon: "moderatePopUp-warning-icon",
+          },
         });
         handleRefresh();
       } else {

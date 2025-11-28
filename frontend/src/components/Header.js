@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import icon from "../svg/iconmonstr-magnifier-lined.svg";
 
 import search from "../svg/icons8-search-50.png";
@@ -13,9 +13,10 @@ const Header = ({
   openSearch,
   rightNavOpen,
   closeRightNav,
-  showLoginCreate,
-  showPCSearch,
+  setHideElements,
+  setValue,
 }) => {
+  const [searchValue, setSearchValue] = useState("");
   const openSearchIcon = () => {
     if (!rightNavOpen && !leftNavOpen) {
       openSearch();
@@ -33,6 +34,30 @@ const Header = ({
     }
   });
 
+  const runSearch = () => {
+    const value = searchValue.trim();
+
+    if (value !== "") {
+      setHideElements(true);
+      setValue(value);
+      console.log("Searching for:", value);
+    } else {
+      console.log("No text");
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    runSearch();
+  };
+
+  const handleEnterPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      runSearch();
+    }
+  };
+
   return (
     <header className="home-big-header" id="main-header">
       <span
@@ -45,10 +70,18 @@ const Header = ({
       </span>
 
       <div className="home-pc-screen-search">
-        <form className="home-pc-screen-search-form">
+        <form className="home-pc-screen-search-form" onSubmit={handleSubmit}>
           <img src={search} alt="search_icon" />
-          <input type="text" placeholder="Search for a document" />
-          <button type="submit">Search </button>
+
+          <input
+            type="text"
+            placeholder="Search for a document"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            onKeyDown={handleEnterPress}
+          />
+
+          <button type="submit">Search</button>
         </form>
       </div>
 
@@ -91,6 +124,7 @@ const Header = ({
         className="home-s2t-heading"
         onClick={() => {
           navigate("/home");
+          window.location.reload();
         }}
       >
         Share2Teach

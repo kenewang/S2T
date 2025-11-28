@@ -59,13 +59,16 @@ const Reports = ({
       const data = await res.json();
 
       if (res.ok) {
-        // Update local UI
-
         Swal.fire({
           title: "Success!",
           text: `${action} successfully.`,
           icon: "success",
           confirmButtonText: "OK",
+          customClass: {
+            popup: "resolve-popup-success",
+            title: "resolve-popup-success-title",
+            icon: "resolve-popup-warning-icon",
+          },
         });
         handleRefresh();
       } else {

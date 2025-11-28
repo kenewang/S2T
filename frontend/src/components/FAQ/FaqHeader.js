@@ -94,6 +94,7 @@ const FaqHeader = ({
           <h2
             onClick={() => {
               navigate("/");
+              window.location.reload();
             }}
             className="heading-not-allowed"
           >

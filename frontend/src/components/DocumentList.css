@@ -21,8 +21,9 @@
   border: 1px solid black;
   border-radius: 6px;
   padding: 0.5rem;
-  text-align: center;
+  text-align: justify;
   cursor: pointer;
+  font-size: x-small;
 }
 
 .file_icon {
@@ -52,6 +53,7 @@
 
   padding: 2px 4px;
   border-radius: 4px;
+  font-size: x-small;
 }
 
 .truncate-middle .start {
@@ -75,7 +77,7 @@
     gap: 1rem;
     justify-content: center;
     align-items: center;
-    background: transparents !important;
+    background: rgba(248, 248, 248, 0.9);
     padding: 1rem;
     border-radius: 5px;
     max-width: 40rem;
@@ -92,8 +94,9 @@
     border: 1px solid black;
     border-radius: 6px;
     padding: 0.5rem;
-    text-align: center;
+    text-align: justify;
     cursor: pointer;
+    font-size: x-small;
   }
 
   .file_icon {
@@ -123,6 +126,7 @@
 
     padding: 2px 4px;
     border-radius: 4px;
+    font-size: x-small;
   }
 
   .truncate-middle .start {
