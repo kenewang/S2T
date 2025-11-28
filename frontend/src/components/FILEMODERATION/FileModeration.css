@@ -290,6 +290,12 @@
     background-color: snow !important;
   }
 
+  .no-p-files {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+  }
+
   .moderationFooter {
     background-color: #eee8e8;
     text-align: center;

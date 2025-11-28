@@ -2,6 +2,7 @@ import ReportsHeader from "./ReportsHeader";
 import "./Reports.css";
 import LeftNav from "../LeftNav";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const Reports = ({
   openLeftNav,
@@ -16,7 +17,110 @@ const Reports = ({
   leftNavRef,
 }) => {
   const [reports, setReports] = useState([]);
-  const [showModerationButtons, setShowModerationButtons] = useState(null); // Track which report shows moderation buttons
+  const [refresh, setRefresh] = useState(0);
+
+  const handleRefresh = () => {
+    setRefresh((prev) => prev + 1);
+  };
+
+  const handleView = async (fileId) => {
+    try {
+      const response = await fetch(`http://localhost:8081/file-path/${fileId}`);
+
+      if (!response.ok) {
+        alert("Failed to retrieve file path");
+        return;
+      }
+
+      const data = await response.json();
+      const storagePath = data.storage_path;
+
+      // Open the file in a new tab
+      window.open(storagePath, "_blank");
+    } catch (err) {
+      console.error("Error fetching file path:", err.message);
+      alert("Error fetching file path");
+    }
+  };
+
+  const submitModeration = async (reportId, action) => {
+    try {
+      const res = await fetch("http://localhost:8081/reports/moderate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          reportId,
+          action,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Update local UI
+
+        Swal.fire({
+          title: "Success!",
+          text: `${action} successfully.`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        handleRefresh();
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: data.msg || "Failed to moderate document",
+          icon: "error",
+          customClass: {
+            popup: "moderatePopUpError",
+            title: "moderatePopUpError-title",
+            icon: "moderatePopUp-error-icon",
+          },
+        });
+      }
+    } catch (err) {
+      console.error("Error moderating document:", err);
+
+      Swal.fire({
+        title: "Error",
+        text: "Error moderating document",
+        icon: "error",
+        customClass: {
+          popup: "moderatePopUpError",
+          title: "moderatePopUpError-title",
+          icon: "moderatePopUp-error-icon",
+        },
+      });
+    }
+  };
+
+  const handleModerateReport = async (fileId, action) => {
+    const readableAction = action === "Resolved" ? "Resolve" : "Reject";
+
+    const result = await Swal.fire({
+      title: `${readableAction} Document`,
+      text: `Are you sure you want to ${readableAction.toLowerCase()} this document?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      reverseButtons: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+
+      customClass: {
+        popup: "moderatePopUp",
+        title: "moderatePopUp-title",
+        icon: "moderatePopUp-warning-icon",
+      },
+    });
+
+    if (result.isConfirmed) {
+      await submitModeration(fileId, action);
+    }
+  };
 
   useEffect(() => {
     document.title = "Share2Teach"; // Set the tab name to "Share2Teach"
@@ -38,11 +142,7 @@ const Reports = ({
     };
 
     fetchReports();
-  }, []);
-
-  const toggleModerationButtons = (report_id) => {
-    setShowModerationButtons((prev) => (prev === report_id ? null : report_id));
-  };
+  }, [refresh]);
 
   return (
     <div className="reports-container">
@@ -91,38 +191,28 @@ const Reports = ({
                   <div className="action-container">
                     <button
                       className="view-button"
-                      /* onClick={() => handleView(report.fileId)} */
+                      onClick={() => handleView(report.fileId)}
                     >
-                      View fileId
+                      View
                     </button>
-                    <span
-                      className="three-dots"
-                      onClick={() => toggleModerationButtons(report.reportId)}
-                    >
-                      &#x22EE;
-                    </span>
-                    {showModerationButtons === report.reportId && (
-                      <>
-                        <button
-                          className="approve-button"
-                          style={{ backgroundColor: "green", color: "white" }} // Resolve button style
-                          /* onClick={() =>
-                            handleModerateReport(report.reportId, "resolved")
-                          } */
-                        >
-                          Resolve
-                        </button>
-                        <button
-                          className="reject-button"
-                          style={{ backgroundColor: "red", color: "white" }} // Reject button style
-                          /* onClick={() =>
-                            handleModerateReport(report.reportId, "rejected")
-                          } */
-                        >
-                          Reject
-                        </button>
-                      </>
-                    )}
+                    <>
+                      <button
+                        className="r-approve-button"
+                        onClick={() =>
+                          handleModerateReport(report.reportId, "Resolved")
+                        }
+                      >
+                        Resolve
+                      </button>
+                      <button
+                        className="r-reject-button"
+                        onClick={() =>
+                          handleModerateReport(report.reportId, "Rejected")
+                        }
+                      >
+                        Reject
+                      </button>
+                    </>
                   </div>
                 </td>
               </tr>

@@ -140,13 +140,12 @@ public class FileService {
         byte[] processedFile = file.getBytes();
 
         // (Optional) Add watermark depending on type
-        if ("application/pdf".equals(mimeType)) {
-            processedFile = addWatermarkToPDF(processedFile);
-        } else if ("text/plain".equals(mimeType)) {
-            processedFile = addWatermarkToTxt(processedFile);
-        } else {
-            throw new IllegalArgumentException("Unsupported file format");
-        }
+        /*
+         * if ("application/pdf".equals(mimeType)) { processedFile =
+         * addWatermarkToPDF(processedFile); } else if ("text/plain".equals(mimeType)) {
+         * processedFile = addWatermarkToTxt(processedFile); } else { throw new
+         * IllegalArgumentException("Unsupported file format"); }
+         */
 
         // ✅ (2) Upload to SeaweedFS
         String seaweedUrl = uploadToSeaweedFS(file.getOriginalFilename(), mimeType, processedFile);
@@ -232,4 +231,15 @@ public class FileService {
     private byte[] addWatermarkToTxt(byte[] file) {
         return file;
     }
+
+    public String getFileStoragePath(Long fileId) {
+        String path = fileRepository.findStoragePathByFileId(fileId);
+
+        if (path == null) {
+            throw new IllegalArgumentException("File not found");
+        }
+
+        return path;
+    }
+
 }

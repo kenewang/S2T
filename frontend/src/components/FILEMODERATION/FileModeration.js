@@ -170,37 +170,43 @@ const FileModeration = ({
         </thead>
 
         <tbody>
-          {documents.map((doc) => (
-            <tr key={doc.id}>
-              <td>{doc.fileName}</td>
-              <td>{doc.status}</td>
+          {documents.length > 0 ? (
+            documents.map((doc) => (
+              <tr key={doc.id}>
+                <td>{doc.fileName}</td>
+                <td>{doc.status}</td>
 
-              <td>
-                <div className="action-container">
-                  <button
-                    className="view-button"
-                    onClick={() => window.open(doc.storagePath, "_blank")}
-                  >
-                    View
-                  </button>
+                <td>
+                  <div className="action-container">
+                    <button
+                      className="view-button"
+                      onClick={() => window.open(doc.storagePath, "_blank")}
+                    >
+                      View
+                    </button>
 
-                  <button
-                    className="approve-button"
-                    onClick={() => handleModerationAction(doc.id, "approved")}
-                  >
-                    Approve
-                  </button>
+                    <button
+                      className="approve-button"
+                      onClick={() => handleModerationAction(doc.id, "approved")}
+                    >
+                      Approve
+                    </button>
 
-                  <button
-                    className="reject-button"
-                    onClick={() => handleModerationAction(doc.id, "rejected")}
-                  >
-                    Reject
-                  </button>
-                </div>
-              </td>
+                    <button
+                      className="reject-button"
+                      onClick={() => handleModerationAction(doc.id, "rejected")}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td className="no-p-files">No Files files to Moderate</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
 

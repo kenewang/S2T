@@ -37,6 +37,20 @@ public class Controller {
 
     }
 
+    @GetMapping("/file-path/{fileId}")
+    public ResponseEntity<?> getFilePath(@PathVariable Long fileId) {
+        try {
+            String storagePath = fileService.getFileStoragePath(fileId);
+            return ResponseEntity.ok(Map.of("storage_path", storagePath));
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(404).body(Map.of("msg", "File not found"));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("msg", "Server error"));
+        }
+    }
+
     @GetMapping("/files/ids")
     public List<Long> getFileIds() {
         return fileService.getFirst20FileIds();

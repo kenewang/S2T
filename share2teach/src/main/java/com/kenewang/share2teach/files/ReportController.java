@@ -56,4 +56,20 @@ public class ReportController {
         }
     }
 
+    @PostMapping("/moderate")
+
+    public ResponseEntity<?> moderateReport(@RequestBody ModerateReportRequest request) {
+        try {
+            ReportEntity updated = reportService.moderateReport(request.getReportId(), request.getAction());
+
+            return ResponseEntity.ok(Map.of("msg", "Report has been " + request.getAction() + ".", "report", updated));
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(404).body(Map.of("msg", e.getMessage()));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("msg", "Server error"));
+        }
+    }
+
 }

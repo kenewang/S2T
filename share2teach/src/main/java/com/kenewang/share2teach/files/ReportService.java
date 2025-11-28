@@ -38,4 +38,13 @@ public class ReportService {
                         r.getCreated_at(), r.getReporter().getFname(), r.getReporter().getLname()))
                 .toList();
     }
+
+    public ReportEntity moderateReport(Long reportId, String action) {
+
+        ReportEntity report = reportRepository.findById(reportId)
+                .orElseThrow(() -> new IllegalArgumentException("Report not found"));
+
+        report.setStatus(action);
+        return reportRepository.save(report);
+    }
 }

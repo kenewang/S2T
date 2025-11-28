@@ -64,4 +64,7 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
     @Query("SELECT f FROM FileEntity f JOIN f.grade g WHERE LOWER(g.gradeName) IN :grades")
     List<FileEntity> findByGradeNames(@Param("grades") List<String> grades);
 
+    @Query("SELECT f.storagePath FROM FileEntity f WHERE f.id = :fileId")
+    String findStoragePathByFileId(@Param("fileId") Long fileId);
+
 }

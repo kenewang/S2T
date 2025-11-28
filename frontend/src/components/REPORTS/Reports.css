@@ -38,6 +38,22 @@
     font-weight: bold;
   }
 
+  .r-approve-button {
+    padding: 2.5px 10px;
+    background-color: lightgreen;
+    border: solid lightgreen;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .r-reject-button {
+    padding: 2.5px 10px;
+    background-color: lightcoral;
+    border: solid lightcoral;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
   .reportsFooter {
     margin-top: auto !important;
     background-color: #eee8e8;

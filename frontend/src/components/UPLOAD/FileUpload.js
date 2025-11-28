@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FileUploadHeader from "./FileUploadHeader";
 import LeftNav from "../LeftNav";
+import Swal from "sweetalert2";
 
 import "./FileUpload.css";
 
@@ -29,7 +30,11 @@ const FileUpload = ({
   const navigate = useNavigate();
   const [showSuccessModal, setShowSuccessModal] = useState(false); // Modal visibility state
   const [message, setMessage] = useState("");
+  const [refresh, setRefresh] = useState(0);
 
+  const handleRefresh = () => {
+    setRefresh((prev) => prev + 1);
+  };
   // Fetch subjects and grades from API on component mount
   useEffect(() => {
     document.title = "Share2Teach"; // Set the tab name to "Share2Teach"
@@ -63,7 +68,7 @@ const FileUpload = ({
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [refresh]);
 
   // Handle file upload form submission
   const handleSubmit = async (e) => {
@@ -76,14 +81,29 @@ const FileUpload = ({
     formData.append("file", file);
 
     try {
-      await fetch("http://localhost:8081/documents/upload", {
+      const res = await fetch("http://localhost:8081/documents/upload", {
         method: "POST",
         headers: { jwt_token: localStorage.getItem("token") },
         body: formData,
       });
 
-      setMessage("File uploaded successfully!");
-      setShowSuccessModal(true); // Show success modal
+      /*  setMessage("File uploaded successfully!");
+      setShowSuccessModal(true);  */
+
+      if (!res.ok) {
+        const err = await res.text();
+        console.error("Upload error:", err);
+        Swal.fire("Error", "Failed to upload file", "error");
+        return;
+      }
+
+      Swal.fire({
+        title: "Success!",
+        text: "File Uploaded  successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      handleRefresh();
     } catch (error) {
       console.error("Error uploading file:", error);
       setMessage("Error uploading file!");
@@ -91,9 +111,9 @@ const FileUpload = ({
   };
 
   // Handle "OK" button in the success modal
-  const handleModalClose = () => {
+  /*  const handleModalClose = () => {
     setShowSuccessModal(false);
-  };
+  }; */
 
   return (
     <div className="file-upload-container">
@@ -179,14 +199,14 @@ const FileUpload = ({
       </form>
 
       {/* Success Modal */}
-      {showSuccessModal && (
+      {/*   {showSuccessModal && (
         <div className="modal">
           <div className="modal-content">
             <p className="upload-paragraph">{message}</p>
             <button onClick={handleModalClose}>OK</button>
           </div>
         </div>
-      )}
+      )} */}
       <div className="uploadFooter">
         <p>&copy; 2025 Share2Teach</p>
       </div>
