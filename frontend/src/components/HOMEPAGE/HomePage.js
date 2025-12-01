@@ -18,6 +18,7 @@ import ManagementDocuments from "./ManagementDocuments";
 import DesignDocuments from "./DesignDocuments";
 import PsychologyDocuments from "./PsychologyDocuments";
 import FinanceDocuments from "./FinanceDocuments";
+import HSResults from "./HSResults";
 const HomePage = ({
   leftNavRef, //passed down from App.js
   rightNavRef, //passed down from App.js
@@ -71,6 +72,9 @@ const HomePage = ({
   const openSearch = () => setSearchActive(true);
   const closeSearch = () => setSearchActive(false);
 
+  const [hideElements, setHideElements] = useState(false);
+  const [value, setValue] = useState("");
+
   const navigate = useNavigate();
 
   const openRight = (fileId) => {
@@ -123,6 +127,8 @@ const HomePage = ({
               rightNavOpen={rightNavOpen}
               closeRightNav={closeRightNav}
               showPCSearch={true}
+              setHideElements={setHideElements}
+              setValue={setValue}
             />
 
             <LeftNav
@@ -142,186 +148,189 @@ const HomePage = ({
               onRatingSubmitted={handleRatingSubmitted} // <-- pass callback
               isAuthenticated={isAuthenticated}
             />
-
-            {scienceData.loading ? (
-              <p>Loading Science files...</p>
-            ) : (
-              <ScienceDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={scienceData.databaseNames}
-                storage_path={scienceData.storagePath}
-                file_rating={scienceData.fileRating}
-                fileIds={scienceData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {designData.loading ? (
-              <p>Loading Design files...</p>
-            ) : (
-              <DesignDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={designData.databaseNames}
-                storage_path={designData.storagePath}
-                file_rating={designData.fileRating}
-                fileIds={designData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {managementData.loading ? (
-              <p>Loading Management files...</p>
-            ) : (
-              <ManagementDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={managementData.databaseNames}
-                storage_path={managementData.storagePath}
-                file_rating={managementData.fileRating}
-                fileIds={managementData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {psychologyData.loading ? (
-              <p>Loading Psychology files...</p>
-            ) : (
-              <PsychologyDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={psychologyData.databaseNames}
-                storage_path={psychologyData.storagePath}
-                file_rating={psychologyData.fileRating}
-                fileIds={psychologyData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {historyData.loading ? (
-              <p>Loading History files...</p>
-            ) : (
-              <HistoryDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={historyData.databaseNames}
-                storage_path={historyData.storagePath}
-                file_rating={historyData.fileRating}
-                fileIds={historyData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {mathData.loading ? (
-              <p>Loading Math files...</p>
-            ) : (
-              <MathematicsDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={mathData.databaseNames}
-                storage_path={mathData.storagePath}
-                file_rating={mathData.fileRating}
-                fileIds={mathData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {chemistryData.loading ? (
-              <p>Loading Chemistry files...</p>
-            ) : (
-              <ChemistryDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={chemistryData.databaseNames}
-                storage_path={chemistryData.storagePath}
-                file_rating={chemistryData.fileRating}
-                fileIds={chemistryData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {financeData.loading ? (
-              <p>Loading Finance files...</p>
-            ) : (
-              <FinanceDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={financeData.databaseNames}
-                storage_path={financeData.storagePath}
-                file_rating={financeData.fileRating}
-                fileIds={financeData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {programmingData.loading ? (
-              <p>Loading Programming files...</p>
-            ) : (
-              <ProgrammingDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={programmingData.databaseNames}
-                storage_path={programmingData.storagePath}
-                file_rating={programmingData.fileRating}
-                fileIds={programmingData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
-            )}
-            {artsData.loading ? (
-              <p>Loading Arts files...</p>
-            ) : (
-              <ArtsDocuments
-                openRightNav={openRightNav}
-                closeLeftNav={closeLeftNav}
-                closeRightNav={closeRightNav}
-                leftNavOpen={leftNavOpen}
-                rightNavOpen={rightNavOpen}
-                databaseNames={artsData.databaseNames}
-                storage_path={artsData.storagePath}
-                file_rating={artsData.fileRating}
-                fileIds={artsData.fileIds}
-                handleClick={handleClick}
-                openRight={openRight}
-                openInNewTab={openInNewTab}
-              />
+            {!hideElements && (
+              <>
+                {scienceData.loading ? (
+                  <p>Loading Science files...</p>
+                ) : (
+                  <ScienceDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={scienceData.databaseNames}
+                    storage_path={scienceData.storagePath}
+                    file_rating={scienceData.fileRating}
+                    fileIds={scienceData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {designData.loading ? (
+                  <p>Loading Design files...</p>
+                ) : (
+                  <DesignDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={designData.databaseNames}
+                    storage_path={designData.storagePath}
+                    file_rating={designData.fileRating}
+                    fileIds={designData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {managementData.loading ? (
+                  <p>Loading Management files...</p>
+                ) : (
+                  <ManagementDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={managementData.databaseNames}
+                    storage_path={managementData.storagePath}
+                    file_rating={managementData.fileRating}
+                    fileIds={managementData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {psychologyData.loading ? (
+                  <p>Loading Psychology files...</p>
+                ) : (
+                  <PsychologyDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={psychologyData.databaseNames}
+                    storage_path={psychologyData.storagePath}
+                    file_rating={psychologyData.fileRating}
+                    fileIds={psychologyData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {historyData.loading ? (
+                  <p>Loading History files...</p>
+                ) : (
+                  <HistoryDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={historyData.databaseNames}
+                    storage_path={historyData.storagePath}
+                    file_rating={historyData.fileRating}
+                    fileIds={historyData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {mathData.loading ? (
+                  <p>Loading Math files...</p>
+                ) : (
+                  <MathematicsDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={mathData.databaseNames}
+                    storage_path={mathData.storagePath}
+                    file_rating={mathData.fileRating}
+                    fileIds={mathData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {chemistryData.loading ? (
+                  <p>Loading Chemistry files...</p>
+                ) : (
+                  <ChemistryDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={chemistryData.databaseNames}
+                    storage_path={chemistryData.storagePath}
+                    file_rating={chemistryData.fileRating}
+                    fileIds={chemistryData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {financeData.loading ? (
+                  <p>Loading Finance files...</p>
+                ) : (
+                  <FinanceDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={financeData.databaseNames}
+                    storage_path={financeData.storagePath}
+                    file_rating={financeData.fileRating}
+                    fileIds={financeData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {programmingData.loading ? (
+                  <p>Loading Programming files...</p>
+                ) : (
+                  <ProgrammingDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={programmingData.databaseNames}
+                    storage_path={programmingData.storagePath}
+                    file_rating={programmingData.fileRating}
+                    fileIds={programmingData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+                {artsData.loading ? (
+                  <p>Loading Arts files...</p>
+                ) : (
+                  <ArtsDocuments
+                    openRightNav={openRightNav}
+                    closeLeftNav={closeLeftNav}
+                    closeRightNav={closeRightNav}
+                    leftNavOpen={leftNavOpen}
+                    rightNavOpen={rightNavOpen}
+                    databaseNames={artsData.databaseNames}
+                    storage_path={artsData.storagePath}
+                    file_rating={artsData.fileRating}
+                    fileIds={artsData.fileIds}
+                    handleClick={handleClick}
+                    openRight={openRight}
+                    openInNewTab={openInNewTab}
+                  />
+                )}
+              </>
             )}
           </>
         )}
@@ -347,10 +356,25 @@ const HomePage = ({
           ratingTrigger={ratingTrigger}
           activeFileId={activeFileId}
         />
+
+        {hideElements && (
+          <HSResults
+            openRightNav={openRightNav}
+            rightNavOpen={rightNavOpen}
+            leftNavOpen={leftNavOpen}
+            closeRightNav={closeRightNav}
+            closeLeftNav={closeLeftNav}
+            setActiveFileId={setActiveFileId}
+            value={value}
+          />
+        )}
       </section>
-      <div className="homePageFooter">
-        <p>&copy; 2025 Share2Teach</p>
-      </div>
+
+      {!hideElements && (
+        <div className="homePageFooter">
+          <p>&copy; 2025 Share2Teach</p>
+        </div>
+      )}
     </div>
   );
 };

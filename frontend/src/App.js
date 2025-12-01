@@ -200,14 +200,10 @@ export default function App() {
                     {hideElements && (
                       <Results
                         openRightNav={openRightNav}
-                        databaseNames={databaseNames}
-                        storage_path={storage_path}
-                        file_rating={file_rating}
                         rightNavOpen={rightNavOpen}
                         leftNavOpen={leftNavOpen}
                         closeRightNav={closeRightNav}
                         closeLeftNav={closeLeftNav}
-                        fileIds={fileIds} // 👈 must come from backend fetch
                         setActiveFileId={setActiveFileId}
                         value={value}
                       />

@@ -67,7 +67,7 @@ const FileModeration = ({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          jwt_token: localStorage.getItem("token"),
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           id: fileId,

@@ -79,7 +79,7 @@ const LeftNav = ({
       const response = await fetch("http://localhost:8081/auth/logout", {
         method: "POST",
         headers: {
-          jwt_token: localStorage.getItem("token"),
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 

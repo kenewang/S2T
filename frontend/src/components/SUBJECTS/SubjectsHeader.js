@@ -1,19 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import icon from "../../svg/iconmonstr-magnifier-lined.svg";
 
 import search from "../../svg/icons8-search-50.png";
 import "./SubjectsHeader.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SubjectsHeader = ({
   showSearchLogo,
-
+  setHideElements,
+  setValue,
   leftNavOpen,
   openLeftNav,
   openSearch,
   rightNavOpen,
   closeRightNav,
 }) => {
+  const [searchValue, setSearchValue] = useState("");
   const openSearchIcon = () => {
     if (!rightNavOpen && !leftNavOpen) {
       openSearch();
@@ -31,6 +33,30 @@ const SubjectsHeader = ({
     }
   });
 
+  const runSearch = () => {
+    const value = searchValue.trim();
+
+    if (value !== "") {
+      setHideElements(true);
+      setValue(value);
+      console.log("Searching for:", value);
+    } else {
+      console.log("No text");
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    runSearch();
+  };
+
+  const handleEnterPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      runSearch();
+    }
+  };
+
   return (
     <header className="subjects-header" id="main-header">
       <span
@@ -43,9 +69,15 @@ const SubjectsHeader = ({
       </span>
 
       <div className="subject-pc-screen-search">
-        <form className="subject-pc-screen-search-form">
+        <form className="subject-pc-screen-search-form" onSubmit={handleSubmit}>
           <img src={search} alt="search_icon" />
-          <input type="text" placeholder="Search for a document" />
+          <input
+            type="text"
+            placeholder="Search for a document"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            onKeyDown={handleEnterPress}
+          />
           <button type="submit">Search </button>
         </form>
       </div>

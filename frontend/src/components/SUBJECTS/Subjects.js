@@ -4,6 +4,7 @@ import LeftNav from "../LeftNav";
 import RightNav from "../RightNav";
 import SearchOverlay from "../SearchOverlay";
 import { useNavigate } from "react-router-dom";
+import Results from "../Results";
 
 const Subjects = ({
   leftNavOpen,
@@ -27,6 +28,8 @@ const Subjects = ({
 }) => {
   const navigate = useNavigate();
   const [subjectNames, setSubjectNames] = useState([]);
+  const [hideElements, setHideElements] = useState(false);
+  const [value, setValue] = useState("");
   const handleClick = (id) => {
     navigate(`/documents/${id}`); // go to the page with the id
   };
@@ -54,6 +57,8 @@ const Subjects = ({
             rightNavOpen={false}
             closeRightNav={() => {}}
             showSearchLogo={showSearchLogo}
+            setHideElements={setHideElements}
+            setValue={setValue}
           />
 
           <LeftNav
@@ -74,25 +79,39 @@ const Subjects = ({
             isAuthenticated={isAuthenticated}
           />
 
-          <section className="subjects">
-            <h1 className="heading">Subjects</h1>
-            <div className="subject_container">
-              <ul>
-                {subjectNames.map((item, i) => (
-                  <li key={i}>
-                    <a
-                      className="anchor"
-                      onClick={() => {
-                        handleClick(item.toLowerCase());
-                      }}
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
+          {!hideElements && (
+            <section className="subjects">
+              <h1 className="heading">Subjects</h1>
+              <div className="subject_container">
+                <ul>
+                  {subjectNames.map((item, i) => (
+                    <li key={i}>
+                      <a
+                        className="anchor"
+                        onClick={() => {
+                          handleClick(item.toLowerCase());
+                        }}
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          )}
+
+          {hideElements && (
+            <Results
+              openRightNav={openRightNav}
+              rightNavOpen={rightNavOpen}
+              leftNavOpen={leftNavOpen}
+              closeRightNav={closeRightNav}
+              closeLeftNav={closeLeftNav}
+              setActiveFileId={setActiveFileId}
+              value={value}
+            />
+          )}
         </>
       )}
 
@@ -112,9 +131,11 @@ const Subjects = ({
         activeFileId={activeFileId}
       />
 
-      <div className="subjectsFooter">
-        <p>&copy; 2025 Share2Teach</p>
-      </div>
+      {!hideElements && (
+        <div className="subjectsFooter">
+          <p>&copy; 2025 Share2Teach</p>
+        </div>
+      )}
     </div>
   );
 };

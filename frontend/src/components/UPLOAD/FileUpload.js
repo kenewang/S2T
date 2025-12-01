@@ -77,7 +77,9 @@ const FileUpload = ({
     try {
       const res = await fetch("http://localhost:8081/documents/upload", {
         method: "POST",
-        headers: { jwt_token: localStorage.getItem("token") },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         body: formData,
       });
 

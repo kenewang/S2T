@@ -228,13 +228,11 @@ public class FileService {
     }
 
     // Dummy watermark methods for now
-    private byte[] addWatermarkToPDF(byte[] file) {
-        return file;
-    }
-
-    private byte[] addWatermarkToTxt(byte[] file) {
-        return file;
-    }
+    /*
+     * private byte[] addWatermarkToPDF(byte[] file) { return file; }
+     * 
+     * private byte[] addWatermarkToTxt(byte[] file) { return file; }
+     */
 
     public String getFileStoragePath(Long fileId) {
         String path = fileRepository.findStoragePathByFileId(fileId);

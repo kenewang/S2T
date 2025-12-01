@@ -156,7 +156,7 @@ const RightNav = ({
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              jwt_token: localStorage.getItem("token"), // ✅ include token if logged in
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
               file_id: activeFileId,

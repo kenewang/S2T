@@ -1,0 +1,67 @@
+.h-results-container {
+  display: none;
+}
+
+@media screen and (min-width: 890px) {
+  .h-results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-inline-start: 5rem !important;
+    background: rgba(248, 248, 248, 0.9);
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: 40rem;
+    margin: 0 auto !important;
+    margin-top: 2rem !important;
+  }
+
+  /* Each item is a clean horizontal layout */
+  .h-result-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  /* Icon column */
+  .h-result-file-icon {
+    width: 120px;
+    height: 120px;
+    background-color: rgb(210, 204, 153);
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .h-result-file-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+  }
+
+  /* Right column (file info + button) */
+  .h-file-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .h-file-title {
+    font-weight: bold;
+  }
+
+  .h-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+}

@@ -32,12 +32,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             // handled.
             throws ServletException, IOException {
 
-        String token = request.getHeader("jwt_token");
+        String authHeader = request.getHeader("Authorization");
         // Looks at the HTTP request header for jwt_token.
         // If the token is there → check it.
         // If not → just let the request pass (maybe it’s a public endpoint).
 
-        if (token != null) {
+        if (authHeader != null && authHeader.startsWith("Bearer")) {
+            String token = authHeader.substring(7);
 
             // if jwt_token is there, do the following:
             try {
