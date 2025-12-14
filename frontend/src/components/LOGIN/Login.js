@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import eye from "../../svg/eye.png";
 import eyeOff from "../../svg/eyeOff.png";
 import "./Login.css";
+import Swal from "sweetalert2";
 
 const Login = ({
   leftNavOpen,
@@ -13,10 +14,12 @@ const Login = ({
   closeLeftNav,
   setAuth,
   isAuthenticated,
-  showSearchLogo,
+
   onRatingSubmitted,
 }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [showPassword, setShowPassword] = useState(false);
+  const [forgotPasswordMessage, setForgotPasswordMessage] = useState("");
 
   const navigate = useNavigate();
   const goToCreateAccount = () => {
@@ -40,10 +43,11 @@ const Login = ({
     try {
       const body = { email, password };
 
-      const response = await fetch("http://localhost:8081/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
+        credentials: "include", // Important for cookies/sessions
       });
 
       const parseRes = await response.json();
@@ -53,14 +57,52 @@ const Login = ({
         setAuth(true);
         navigate("/home");
       } else {
-        alert(parseRes.msg || "Login failed");
+        Swal.fire({
+          title: "Error",
+          text: "Login Failed",
+          icon: "error",
+          customClass: {
+            popup: "login-popup-error",
+            title: "login-popup-error-title",
+            icon: "login-popup-error-icon",
+          },
+        });
       }
     } catch (err) {
+      Swal.fire({
+        title: "Error",
+        text: "Login Failed",
+        icon: "error",
+        customClass: {
+          popup: "login-popup-error",
+          title: "login-popup-error-title",
+          icon: "login-popup-error-icon",
+        },
+      });
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    try {
+      const response = await fetch(`${API_URL}/auth/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+        credentials: "include", // Important for cookies/sessions
+      });
+
+      const parseRes = await response.json();
+      setForgotPasswordMessage(
+        parseRes.msg || "Password reset link sent to your email!"
+      );
+    } catch (err) {
       console.error(err.message);
+      setForgotPasswordMessage("Error sending password reset link.");
     }
   };
 
   useEffect(() => {
+    document.title = "Share2Teach - Log In";
     const token = localStorage.getItem("token");
     if (token) {
       // If already logged in, redirect to home
@@ -97,10 +139,16 @@ const Login = ({
             value={email}
             name="email"
             onChange={onChange}
+            required
           ></input>
           <div className="password_labels">
             <label className="password_label">Password</label>
-            <label className="forgot_password_label">Forgot password?</label>
+            <label
+              className="forgot_password_label"
+              onClick={handleForgotPassword}
+            >
+              Forgot password?
+            </label>
           </div>
           <div className="password_input_wrap">
             <input
@@ -110,6 +158,8 @@ const Login = ({
               value={password}
               name="password"
               onChange={onChange}
+              required
+              autoComplete="new-password"
             ></input>
 
             <img
@@ -119,6 +169,10 @@ const Login = ({
               alt="toggle visibility"
             />
           </div>
+
+          {forgotPasswordMessage && (
+            <p className="forgot-password-message">{forgotPasswordMessage}</p>
+          )}
 
           <button>Log in</button>
         </form>

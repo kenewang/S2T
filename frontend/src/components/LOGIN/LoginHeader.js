@@ -7,6 +7,7 @@ const LoginHeader = ({
   openSearch,
   rightNavOpen,
   closeRightNav,
+  isAuthenticated,
 }) => {
   const openSearchIcon = () => {
     if (!rightNavOpen && !leftNavOpen) {
@@ -24,6 +25,16 @@ const LoginHeader = ({
       closeRightNav();
     }
   });
+
+  const goHome = () => {
+    if (isAuthenticated) {
+      navigate("/home");
+      window.location.reload();
+    } else {
+      navigate("/");
+      window.location.reload();
+    }
+  };
 
   return (
     <div className="login-head">
@@ -54,8 +65,7 @@ const LoginHeader = ({
       </div>
       <h2
         onClick={() => {
-          navigate("/home");
-          window.location.reload();
+          goHome();
         }}
       >
         Share2Teach

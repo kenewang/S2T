@@ -28,16 +28,53 @@ const FileUpload = ({
   const [subjectsList, setSubjectsList] = useState([]);
   const [gradesList, setGradesList] = useState([]);
   const navigate = useNavigate();
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  const API_URL = process.env.REACT_APP_API_URL;
+
+  /* Prevent user from uploading large files early */
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (!selectedFile) return;
+
+    const maxSize = 10 * 1024 * 1024; // 10MB
+
+    if (selectedFile.size > maxSize) {
+      Swal.fire({
+        title: "Error",
+        text: "File is too large! Maximum allowed size is 10MB.",
+        icon: "error",
+        customClass: {
+          popup: "upload-popup-error",
+          title: "upload-popup-error-title",
+          icon: "upload-popup-error-icon",
+        },
+      });
+
+      setFile(null);
+      return;
+    }
+
+    setFile(selectedFile);
+  };
 
   // Fetch subjects and grades from API on component mount
   useEffect(() => {
-    document.title = "Share2Teach"; // Set the tab name to "Share2Teach"
+    document.title = "Share2Teach";
+
     const fetchSubjectsAndGrades = async () => {
       try {
         const [subjectsRes, gradesRes] = await Promise.all([
-          fetch("http://localhost:8081/subjects"),
-          fetch("http://localhost:8081/grades"),
+          fetch(`${API_URL}/subjects`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/grades`, {
+            method: "GET",
+          }),
         ]);
+
         setSubjectsList(await subjectsRes.json());
         setGradesList(await gradesRes.json());
       } catch (error) {
@@ -49,6 +86,7 @@ const FileUpload = ({
   }, []);
 
   useEffect(() => {
+    document.title = "Share2Teach - File Upload";
     const token = localStorage.getItem("token");
     try {
       const decoded = jwtDecode(token);
@@ -67,6 +105,9 @@ const FileUpload = ({
   // Handle file upload form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setIsUploading(true);
+    setUploadProgress(0);
     const formData = new FormData();
     formData.append("fileName", fileName);
     formData.append("subject", subject);
@@ -75,7 +116,19 @@ const FileUpload = ({
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8081/documents/upload", {
+      // Simulated progress bar animation
+      const fakeProgress = setInterval(() => {
+        setUploadProgress((prev) => {
+          if (prev >= 90) {
+            clearInterval(fakeProgress);
+            return 90;
+          }
+          return prev + 5;
+        });
+      }, 100);
+
+      // Perform upload request
+      const res = await fetch(`${API_URL}/documents/upload`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -83,7 +136,13 @@ const FileUpload = ({
         body: formData,
       });
 
+      clearInterval(fakeProgress);
+
+      // Finish progress bar
+      setUploadProgress(100);
+
       if (!res.ok) {
+        setIsUploading(false);
         const err = await res.text();
         console.error("Upload error:", err);
         Swal.fire({
@@ -101,6 +160,9 @@ const FileUpload = ({
         return;
       }
 
+      setIsUploading(false);
+      setUploadProgress(0);
+
       Swal.fire({
         title: "Success!",
         text: "File Uploaded Successfully.",
@@ -112,10 +174,16 @@ const FileUpload = ({
           icon: "upload-popup-warning-icon",
         },
       }).then(() => {
-        window.location.reload();
+        // Hide progress bar
+
+        // Allow UI to update before reload
+        setTimeout(() => {
+          window.location.reload();
+        }, 100); // 300ms works perfectly
       });
     } catch (error) {
       console.error("Error uploading file:", error);
+      setIsUploading(false);
     }
   };
 
@@ -152,7 +220,7 @@ const FileUpload = ({
           <input
             className="file-input"
             type="file"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={handleFileChange}
             required
           />
         </div>
@@ -198,9 +266,24 @@ const FileUpload = ({
         </div>
 
         <button className="upload-button" type="submit">
-          Submit
+          Upload
         </button>
       </form>
+
+      {isUploading && (
+        <div className="upload-overlay">
+          <div className="progress-container">
+            <h3>Uploading...</h3>
+            <div className="progress-bar">
+              <div
+                className="progress-fill"
+                style={{ width: `${uploadProgress}%` }}
+              ></div>
+            </div>
+            <p>{uploadProgress}%</p>
+          </div>
+        </div>
+      )}
 
       <div className="uploadFooter">
         <p>&copy; 2025 Share2Teach</p>

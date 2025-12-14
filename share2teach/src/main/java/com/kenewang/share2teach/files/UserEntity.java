@@ -45,7 +45,21 @@ public class UserEntity {
     @Column(name = "last_login")
     private LocalDateTime last_login = LocalDateTime.now();
 
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
+    @Column(name = "reset_password_expires")
+    private Long resetPasswordExpires; // store as UNIX timestamp (ms)
+
     // setters
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public Long getResetPasswordExpires() {
+        return resetPasswordExpires;
+    }
 
     public void setUser_id(Long user_id) {
         this.user_id = user_id;
@@ -89,6 +103,14 @@ public class UserEntity {
 
     public void setLast_login(LocalDateTime last_login) {
         this.last_login = last_login;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
+    public void setResetPasswordExpires(Long resetPasswordExpires) {
+        this.resetPasswordExpires = resetPasswordExpires;
     }
 
     // getters

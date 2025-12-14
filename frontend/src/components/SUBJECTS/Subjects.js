@@ -30,14 +30,16 @@ const Subjects = ({
   const [subjectNames, setSubjectNames] = useState([]);
   const [hideElements, setHideElements] = useState(false);
   const [value, setValue] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL;
   const handleClick = (id) => {
     navigate(`/documents/${id}`); // go to the page with the id
   };
 
   useEffect(() => {
+    document.title = "Share2Teach - Subjects";
     const fetchFileSubjectNames = async () => {
       try {
-        const res = await fetch("http://localhost:8081/subjects/names");
+        const res = await fetch(`${API_URL}/subjects/names`);
         setSubjectNames(await res.json());
       } catch (error) {
         console.error("Error fetching subjects", error);

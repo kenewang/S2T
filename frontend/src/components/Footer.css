@@ -46,14 +46,35 @@ button {
   cursor: pointer;
 }
 
-.success-popup {
+.email-success-popup {
   background-color: rgba(248, 248, 248, 0.9);
-  border-radius: 6px;
-  font-size: 1.2rem;
-  width: 60vw;
+  width: 65vw;
+  height: 55vh;
+  margin: 0 auto;
 }
 
-.success-button-confirm {
+.email-success-pop-up-title {
+  margin-top: 0.2rem;
+  font-size: 1.5rem;
+}
+
+.email-success-button-confirm {
+  background-color: rgb(123, 90, 6);
+}
+
+.email-failure-popup {
+  background-color: rgba(248, 248, 248, 0.9);
+  width: 65vw;
+  height: 55vh;
+  margin: 0 auto;
+}
+
+.email-failure-pop-up-title {
+  margin-top: 0.2rem;
+  font-size: 1.5rem;
+}
+
+.email-button-confirm-failure {
   background-color: rgb(123, 90, 6);
 }
 
@@ -111,6 +132,38 @@ button {
     resize: none;
     box-sizing: border-box;
   }
+
+  .email-success-popup {
+    background-color: rgba(248, 248, 248, 0.9);
+    width: 21rem;
+    height: 21rem;
+    margin: 0 auto;
+  }
+
+  .email-success-pop-up-title {
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+  }
+
+  .email-success-button-confirm {
+    background-color: rgb(123, 90, 6);
+  }
+
+  .email-failure-popup {
+    background-color: rgba(248, 248, 248, 0.9);
+    width: 21rem;
+    height: 21rem;
+    margin: 0 auto;
+  }
+
+  .email-failure-pop-up-title {
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+  }
+
+  .email-button-confirm-failure {
+    background-color: rgb(123, 90, 6);
+  }
 }
 
 @media screen and (min-width: 890px) {
@@ -130,6 +183,7 @@ button {
     position: relative;
     top: 0.5rem;
     font-size: 1.2rem;
+    padding: 1rem;
   }
 
   .contact-container {
@@ -166,5 +220,37 @@ button {
   textarea {
     resize: none;
     box-sizing: border-box;
+  }
+
+  .email-success-popup {
+    background-color: rgba(248, 248, 248, 0.9);
+    width: 23rem;
+    height: 23rem;
+    margin: 0 auto;
+  }
+
+  .email-success-pop-up-title {
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+  }
+
+  .email-success-button-confirm {
+    background-color: rgb(123, 90, 6);
+  }
+
+  .email-failure-popup {
+    background-color: rgba(248, 248, 248, 0.9);
+    width: 23rem;
+    height: 23rem;
+    margin: 0 auto;
+  }
+
+  .email-failure-pop-up-title {
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+  }
+
+  .email-button-confirm-failure {
+    background-color: rgb(123, 90, 6);
   }
 }

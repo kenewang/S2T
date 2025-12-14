@@ -4,7 +4,7 @@ import "./CreateAccountHeader.css";
 const CreateAccountHeader = ({
   leftNavOpen,
   openLeftNav,
-
+  isAuthenticated,
   closeRightNav,
 }) => {
   const navigate = useNavigate();
@@ -15,6 +15,16 @@ const CreateAccountHeader = ({
       closeRightNav();
     }
   });
+
+  const goHome = () => {
+    if (isAuthenticated) {
+      navigate("/home");
+      window.location.reload();
+    } else {
+      navigate("/");
+      window.location.reload();
+    }
+  };
 
   return (
     <div className="register-wrapper">
@@ -45,8 +55,7 @@ const CreateAccountHeader = ({
       </div>
       <h2
         onClick={() => {
-          navigate("/home");
-          window.location.reload();
+          goHome();
         }}
       >
         Share2Teach

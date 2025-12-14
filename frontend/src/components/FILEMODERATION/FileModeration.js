@@ -1,7 +1,7 @@
 import FileModerationHeader from "./FileModerationHeader";
 import "./FileModeration.css";
 import LeftNav from "../LeftNav";
-import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
@@ -18,8 +18,10 @@ const FileModeration = ({
   leftNavRef,
 }) => {
   const [documents, setDocuments] = useState([]);
-  const navigate = useNavigate();
+
   const [refresh, setRefresh] = useState(0);
+
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleRefresh = () => {
     setRefresh((prev) => prev + 1);
@@ -63,7 +65,7 @@ const FileModeration = ({
    */
   const submitModeration = async (fileId, action) => {
     try {
-      const res = await fetch("http://localhost:8081/moderation/document", {
+      const res = await fetch(`${API_URL}/moderation/document`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,11 +133,11 @@ const FileModeration = ({
    * --------------------------------
    */
   useEffect(() => {
-    document.title = "Share2Teach";
+    document.title = "Share2Teach - File Moderation";
 
     const fetchPendingDocuments = async () => {
       try {
-        const response = await fetch("http://localhost:8081/files/pending");
+        const response = await fetch(`${API_URL}/files/pending`);
         const data = await response.json();
         setDocuments(data);
       } catch (error) {

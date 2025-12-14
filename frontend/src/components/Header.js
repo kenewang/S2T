@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = ({
   showSearchLogo,
-  showUploadIcon,
+
   leftNavOpen,
   openLeftNav,
   openSearch,
@@ -15,6 +15,7 @@ const Header = ({
   closeRightNav,
   setHideElements,
   setValue,
+  isAuthenticated,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const openSearchIcon = () => {
@@ -49,6 +50,16 @@ const Header = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     runSearch();
+  };
+
+  const goHome = () => {
+    if (isAuthenticated) {
+      navigate("/home");
+      window.location.reload();
+    } else {
+      navigate("/");
+      window.location.reload();
+    }
   };
 
   const handleEnterPress = (e) => {
@@ -123,8 +134,7 @@ const Header = ({
       <h2
         className="home-s2t-heading"
         onClick={() => {
-          navigate("/home");
-          window.location.reload();
+          goHome();
         }}
       >
         Share2Teach

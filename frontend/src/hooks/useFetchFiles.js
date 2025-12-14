@@ -7,6 +7,7 @@ const useFetchFiles = (subject, ratingTrigger, setNotFound) => {
   const [fileIds, setFileIds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (!subject) return; // Don't fetch if no subject is provided
@@ -17,11 +18,20 @@ const useFetchFiles = (subject, ratingTrigger, setNotFound) => {
         setError(null);
 
         // Fetch all four in parallel for better performance
+
         const [resNames, resLinks, resRatings, resIds] = await Promise.all([
-          fetch(`http://localhost:8081/files/${subject}`),
-          fetch(`http://localhost:8081/links/${subject}`),
-          fetch(`http://localhost:8081/ratings/${subject}`),
-          fetch(`http://localhost:8081/ids/${subject}`),
+          fetch(`${API_URL}/files/${subject}`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/links/${subject}`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/ratings/${subject}`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/ids/${subject}`, {
+            method: "GET",
+          }),
         ]);
 
         // Parse responses

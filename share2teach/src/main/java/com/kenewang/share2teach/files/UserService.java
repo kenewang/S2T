@@ -3,6 +3,7 @@ package com.kenewang.share2teach.files;
 import java.time.LocalDateTime;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,12 +11,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final InputValidator inputValidator;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder; // <- inject it
 
-    public UserService(UserRepository userRepository, JwtUtil jwtUtil, InputValidator inputValidator) {
+    public UserService(UserRepository userRepository, JwtUtil jwtUtil, InputValidator inputValidator,
+            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;
         this.inputValidator = inputValidator;
+        this.passwordEncoder = passwordEncoder; // <- assign the injected mock in tests
     }
 
     public String registerUser(RegisterRequest request) {
@@ -36,7 +39,7 @@ public class UserService {
         newUser.setPassword_hash(hashedPassword);
         newUser.setEmail(request.getEmail());
         newUser.setIs_active(true);
-        newUser.setRole("open-access");
+        newUser.setRole("educator");
 
         userRepository.save(newUser);
 
@@ -50,11 +53,11 @@ public class UserService {
 
         // Find user by email
         UserEntity user = userRepository.findByEmail(loginRequest.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid Credentials. User not found."));
+                .orElseThrow(() -> new RuntimeException("Invalid Credentials."));
 
         // Check password
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword_hash())) {
-            throw new RuntimeException("Invalid Credentials. Incorrect password.");
+            throw new RuntimeException("Invalid Credentials.");
         }
 
         // Update last login

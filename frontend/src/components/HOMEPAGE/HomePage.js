@@ -19,6 +19,7 @@ import DesignDocuments from "./DesignDocuments";
 import PsychologyDocuments from "./PsychologyDocuments";
 import FinanceDocuments from "./FinanceDocuments";
 import HSResults from "./HSResults";
+import useBlockBackNavigation from "../../hooks/useBlockBackNavigation";
 const HomePage = ({
   leftNavRef, //passed down from App.js
   rightNavRef, //passed down from App.js
@@ -36,7 +37,7 @@ const HomePage = ({
   const mathData = useFetchFiles("mathematics", ratingTrigger, setNotFound);
   const [showUploadIcon, setShowUploadIcon] = useState(false);
   const programmingData = useFetchFiles(
-    "computer programming",
+    "programming",
     ratingTrigger,
     setNotFound
   );
@@ -93,6 +94,8 @@ const HomePage = ({
     }
   };
 
+  useBlockBackNavigation(isAuthenticated);
+
   const handleClick = (id) => {
     if (!rightNavOpen && !leftNavOpen) navigate(`/documents/${id}`); // go to the page with the id
   };
@@ -102,6 +105,7 @@ const HomePage = ({
   };
 
   useEffect(() => {
+    document.title = "Share2Teach";
     const token = localStorage.getItem("token");
     if (token) {
       const decoded = jwtDecode(token);

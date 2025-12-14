@@ -16,15 +16,10 @@ const Faqs = ({
   openSearch,
   rightNavOpen,
   closeRightNav,
-  searchActive,
-  closeSearch,
-  searchInputRef,
-  openRightNav,
-  setActiveFileId,
-  rightNavRef,
-  ratingTrigger,
 }) => {
   const [items, setItems] = useState([]);
+
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const [openIndex, setOpenIndex] = useState(null);
   const toggleItem = (index) => {
@@ -36,11 +31,16 @@ const Faqs = ({
   };
 
   useEffect(() => {
+    document.title = "Share2Teach - FAQs";
     const fetchFaqs = async () => {
       try {
         const [questionsRes, answersRes] = await Promise.all([
-          fetch("http://localhost:8081/faqs/questions"),
-          fetch("http://localhost:8081/faqs/answers"),
+          fetch(`${API_URL}/faqs/questions`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/faqs/answers`, {
+            method: "GET",
+          }),
         ]);
 
         const questions = await questionsRes.json();

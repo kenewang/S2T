@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
      * 
      * • If no user exists with that email → the Optional will be empty (not null).
      */
+
+    Optional<UserEntity> findByResetPasswordToken(String token);
+
 }

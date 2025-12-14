@@ -13,6 +13,7 @@ const LeftNav = ({
 }) => {
   const navigate = useNavigate();
   const [allowedRole, setAllowedRole] = useState(false);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const goSomeWhere = (path) => {
     closeLeftNav();
@@ -46,7 +47,7 @@ const LeftNav = ({
     if (token) {
       const decoded = jwtDecode(token);
       const userRole = decoded.role;
-      console.log("User role:", decoded.role);
+
       const validRoles = ["admin", "moderator", "educator"];
       if (!validRoles.includes(userRole)) return;
       setAllowedRole(true);
@@ -76,10 +77,11 @@ const LeftNav = ({
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:8081/auth/logout", {
+      const response = await fetch(`${API_URL}/auth/logout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          credentials: "include", // Important for cookies/sessions
         },
       });
 

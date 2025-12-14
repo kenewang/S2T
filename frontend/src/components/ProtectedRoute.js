@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ children }) => {
   const [isValid, setIsValid] = useState(null);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const validate = async () => {
@@ -29,13 +30,13 @@ const ProtectedRoute = ({ children }) => {
         const tokenVersion = Number(decoded.token_version);
 
         const res = await fetch(
-          `http://localhost:8081/auth/verify-token?userId=${userId}&tokenVersion=${tokenVersion}`
+          `${API_URL}/auth/verify-token?userId=${userId}&tokenVersion=${tokenVersion}`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
         );
 
-        {
-          console.log("Checking token");
-          console.log(localStorage);
-        }
         const versionValid = await res.json();
 
         if (!versionValid) {

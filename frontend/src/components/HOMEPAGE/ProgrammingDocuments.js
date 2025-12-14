@@ -31,7 +31,7 @@ const ProgrammingDocuments = ({
       <a
         className="section-heading"
         onClick={() => {
-          handleClick("computer programming");
+          handleClick("programming");
         }}
       >
         Programming

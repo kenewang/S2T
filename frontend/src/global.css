@@ -60,7 +60,7 @@
   margin: 0 auto;
 }
 
-.copyright_App {
+.copyright-App {
   margin-top: 2rem;
   background-color: #eee8e8;
   text-align: center;
@@ -182,10 +182,11 @@
     bottom: 0.1rem;
   }
 
-  .copyright_App {
+  .copyright-App {
     margin-top: 2rem;
     background-color: #eee8e8;
     text-align: center;
+    padding: 1rem;
   }
 
   .login-browse {

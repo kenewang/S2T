@@ -17,6 +17,8 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
   const succesSwal = withReactContent(Swal);
   const failureSwal = withReactContent(Swal);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   // Call this when you want to show the alert:
   const showSuccessAlert = () => {
     succesSwal.fire({
@@ -25,9 +27,9 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
       icon: "success",
       confirmButtonText: "OK",
       customClass: {
-        popup: "success-popup",
-        title: "success-pop-up-title",
-        confirmButton: "success-button-confirm",
+        popup: "email-success-popup",
+        title: "email-success-pop-up-title",
+        confirmButton: "email-success-button-confirm",
       },
     });
   };
@@ -39,9 +41,9 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
       icon: "error",
       confirmButtonText: "OK",
       customClass: {
-        popup: "success-popup",
-        title: "success-pop-up-title",
-        confirmButton: "success-button-confirm",
+        popup: "email-failure-popup",
+        title: "email-failure-pop-up-title",
+        confirmButton: "email-button-confirm-failure",
       },
     });
   };
@@ -99,7 +101,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
       message
     );
 
-    const response = await fetch("http://localhost:8081/send-email", {
+    const response = await fetch(`${API_URL}/send-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, message }),
@@ -128,8 +130,8 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
         <strong>Share2Teach</strong>{" "}
         <p className="footer_paragraph">
           A document-sharing web application built for educators and students.
-          It allows teachers to upload, search, and access approved teaching
-          resources by grade and subject. The platform includes user
+          It allows authorized users to upload, search, and access approved
+          teaching resources by grade and subject. The platform includes user
           authentication with role-based access, document approval workflows,
           and secure file storage using SeaweedFS.
         </p>
@@ -169,7 +171,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
           </button>
         </form>
       </div>
-      <div className="copyright_App">&copy; 2025 Share2Teach</div>
+      <div className="copyright-App">&copy; 2025 Share2Teach</div>
     </footer>
   );
 };

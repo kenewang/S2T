@@ -12,16 +12,25 @@ const useFiles = (ratingTrigger, setNotFound) => {
   const [file_rating, setFileRating] = useState([]);
   const [fileIds, setFileId] = useState([]);
   const [selectedGradeRange, setSelectedGradeRange] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL;
 
   // 🟩 Fetch all files normally (when rating changes)
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [namesRes, linksRes, ratingsRes, idRes] = await Promise.all([
-          fetch("http://localhost:8081/files/names"),
-          fetch("http://localhost:8081/files/links"),
-          fetch("http://localhost:8081/files/ratings"),
-          fetch("http://localhost:8081/files/ids"),
+          fetch(`${API_URL}/files/names`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/files/links`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/files/ratings`, {
+            method: "GET",
+          }),
+          fetch(`${API_URL}/files/ids`, {
+            method: "GET",
+          }),
         ]);
 
         setDatabaseNames(await namesRes.json());
@@ -48,13 +57,13 @@ const useFiles = (ratingTrigger, setNotFound) => {
       try {
         console.log("Fetching filtered files...");
         const res = await fetch(
-          `http://localhost:8081/files/by-grade/${selectedGradeRange}`,
+          `${API_URL}/files/by-grade/${selectedGradeRange}`,
           { signal }
         );
         const files = await res.json();
 
         setDatabaseNames(files.map((d) => d.fileName));
-        setStoragePath(files.map((d) => d.filePath));
+        setStoragePath(files.map((d) => d.storagePath));
         setFileRating(files.map((d) => d.fileRating));
         setFileId(files.map((d) => d.id)); // ✅ use "id" instead of "fileId"
 

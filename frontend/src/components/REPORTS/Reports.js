@@ -19,13 +19,15 @@ const Reports = ({
   const [reports, setReports] = useState([]);
   const [refresh, setRefresh] = useState(0);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const handleRefresh = () => {
     setRefresh((prev) => prev + 1);
   };
 
   const handleView = async (fileId) => {
     try {
-      const response = await fetch(`http://localhost:8081/file-path/${fileId}`);
+      const response = await fetch(`${API_URL}/file-path/${fileId}`);
 
       if (!response.ok) {
         alert("Failed to retrieve file path");
@@ -45,7 +47,7 @@ const Reports = ({
 
   const submitModeration = async (reportId, action) => {
     try {
-      const res = await fetch("http://localhost:8081/reports/moderate", {
+      const res = await fetch(`${API_URL}/reports/moderate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,12 +128,12 @@ const Reports = ({
   };
 
   useEffect(() => {
-    document.title = "Share2Teach"; // Set the tab name to "Share2Teach"
+    document.title = "Share2Teach - Reports"; // Set the tab name to "Share2Teach"
     const fetchReports = async () => {
       try {
         let response;
 
-        response = await fetch("http://localhost:8081/reports/pending");
+        response = await fetch(`${API_URL}/reports/pending`);
 
         if (!response.ok) {
           console.error("Server returned:", response.status);

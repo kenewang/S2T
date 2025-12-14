@@ -23,6 +23,8 @@ const SearchOverlay = ({
   const [file_rating, setFileRating] = useState([]);
   const [fileIds, setFileId] = useState([]);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   // --- Function to handle searching ---
   const handleSearch = async () => {
     if (query.trim() === "") return;
@@ -31,10 +33,9 @@ const SearchOverlay = ({
     const signal = controller.signal;
 
     try {
-      const res = await fetch(
-        `http://localhost:8081/files/search?query=${query}`,
-        { signal }
-      );
+      const res = await fetch(`${API_URL}/files/search?query=${query}`, {
+        signal,
+      });
       const data = await res.json();
 
       setDatabaseNames(data.map((d) => d.fileName));

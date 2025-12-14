@@ -1,5 +1,6 @@
 package com.kenewang.share2teach.files;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.PageRequest;
@@ -83,6 +84,8 @@ public class FileService {
                 )).toList();
     }
 
+    // =======Get Files by Subject and Grade==================
+
     public List<FileEntity> getFilesBySubjectAndGrade(String subjectName, String category) {
         List<String> grades;
 
@@ -97,7 +100,7 @@ public class FileService {
             break;
         case "tertiary":
         case "higher education":
-            grades = List.of("Higher Education");
+            grades = List.of("tertiary");
             break;
         default:
             grades = List.of();
@@ -124,7 +127,7 @@ public class FileService {
             break;
         case "tertiary":
         case "higher education":
-            grades = List.of("Higher Education");
+            grades = List.of("tertiary");
             break;
         default:
             grades = List.of();
@@ -200,20 +203,23 @@ public class FileService {
         fileRepository.save(file);
     }
 
+    @Value("${seaweed.master.url}")
+    private String seaweedMasterUrl; // Inject from application.properties
+
     private String uploadToSeaweedFS(String filename, String mimeType, byte[] fileData) throws IOException {
         MultipartBodyBuilder body = new MultipartBodyBuilder();
         body.part("file", new ByteArrayResource(fileData))
                 .header("Content-Disposition", "form-data; name=file; filename=" + filename)
                 .header("Content-Type", mimeType);
 
-        WebClient client = WebClient.create("http://localhost:9333");
+        // Use the injected URL instead of hardcoding
+        WebClient client = WebClient.create(seaweedMasterUrl);
 
         Map<String, Object> responseMap = client.post().uri("/submit")
                 .body(BodyInserters.fromMultipartData(body.build())).retrieve()
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {
                 }).block();
 
-        // 🟢 Log the entire response map to see what SeaweedFS sent back
         System.out.println("SeaweedFS upload response: " + responseMap);
 
         if (responseMap != null && responseMap.containsKey("fileUrl")) {
@@ -233,6 +239,8 @@ public class FileService {
      * 
      * private byte[] addWatermarkToTxt(byte[] file) { return file; }
      */
+
+    // ====Get File Storage Path using fileId========
 
     public String getFileStoragePath(Long fileId) {
         String path = fileRepository.findStoragePathByFileId(fileId);

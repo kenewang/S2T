@@ -42,6 +42,7 @@ import FileModeration from "./components/FILEMODERATION/FileModeration";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Reports from "./components/REPORTS/Reports";
 import Results from "./components/Results";
+import ResetPassword from "./components/ResetPassword";
 
 import Subjects from "./components/SUBJECTS/Subjects";
 import "./components/SUBJECTS/Subjects.css";
@@ -90,6 +91,7 @@ export default function App() {
   useBlockBackNavigation(isAuthenticated);
 
   useEffect(() => {
+    document.title = "Share2Teach";
     const token = localStorage.getItem("token"); //Check if there’s a saved token in the browser.
     if (token) {
       setIsAuthenticated(true); //If a token exists → mark the user as authenticated.
@@ -144,12 +146,12 @@ export default function App() {
                       closeRightNav={closeRightNav}
                       leftNavOpen={leftNavOpen}
                       showSearchLogo={showSearchLogo}
-                      showUploadIcon={showUploadIcon}
                       showLoginCreate={showLoginCreate}
                       showPCSearch={showPCSearch}
                       setHideElements={setHideElements}
                       onRatingSubmitted={handleRatingSubmitted}
                       setValue={setValue}
+                      isAuthenticated={isAuthenticated}
                     />
 
                     {!hideElements && (
@@ -240,6 +242,7 @@ export default function App() {
               closeLeftNav={closeLeftNav}
               setAuth={setAuth}
               onRatingSubmitted={handleRatingSubmitted}
+              isAuthenticated={isAuthenticated}
             />
           }
         />
@@ -252,9 +255,13 @@ export default function App() {
               openLeftNav={openLeftNav}
               closeLeftNav={closeLeftNav}
               setAuth={setAuth}
+              isAuthenticated={isAuthenticated}
             />
           }
         />
+
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+
         <Route
           path="/subjects"
           element={

@@ -18,6 +18,8 @@ const CreateAccount = ({
     if (!leftNavOpen) navigate("/login");
   };
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -43,10 +45,11 @@ const CreateAccount = ({
             const body = {email: email, password: password, Fname: Fname, Lname: Lname, username: username };
       */
 
-      const response = await fetch("http://localhost:8081/auth/register", {
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" }, //This tells  Spring Boot server that the stuff in the body is in json format
         body: JSON.stringify(body),
+        credentials: "include", // Important for cookies/sessions
       });
 
       const parseRes = await response.json();
@@ -64,6 +67,7 @@ const CreateAccount = ({
   };
 
   useEffect(() => {
+    document.title = "Share2Teach - Create Account";
     const token = localStorage.getItem("token");
     if (token) {
       // If already logged in, redirect to home
@@ -103,6 +107,7 @@ const CreateAccount = ({
             onChange={onChange}
             value={fname}
             name="fname"
+            required
           ></input>
 
           <label>Last Name</label>
@@ -114,6 +119,7 @@ const CreateAccount = ({
             placeholder="Last Name"
             onChange={onChange}
             value={lname}
+            required
           ></input>
           <label>Username</label>
 
@@ -124,6 +130,7 @@ const CreateAccount = ({
             placeholder="Username"
             onChange={onChange}
             value={username}
+            required
           ></input>
           <label>Emai</label>
 
@@ -134,16 +141,19 @@ const CreateAccount = ({
             placeholder="Email"
             value={email}
             onChange={onChange}
+            required
           ></input>
           <label>Password</label>
 
           <input
-            type="text"
+            type="password"
             name="password"
             className="inputCreateAccount"
             placeholder="Password"
             value={password}
             onChange={onChange}
+            autoComplete="new-password"
+            required
           ></input>
           <button type="submit">Create Account</button>
         </form>

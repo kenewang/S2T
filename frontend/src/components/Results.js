@@ -11,6 +11,7 @@ const Results = ({
   value,
 }) => {
   const [searchResults, setSearchResults] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   // Open the right panel for a specific file
   const openRight = (fileId) => {
@@ -40,9 +41,7 @@ const Results = ({
   // Fetch search results from the backend
   const searchDocuments = async (query) => {
     try {
-      const res = await fetch(
-        `http://localhost:8081/files/search?query=${query}`
-      );
+      const res = await fetch(`${API_URL}/files/search?query=${query}`);
 
       if (!res.ok) {
         console.error("Search failed");

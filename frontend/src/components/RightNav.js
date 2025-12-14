@@ -16,12 +16,14 @@ const RightNav = ({
   const [allowed, setAllowed] = useState(false);
   const succesSwal = withReactContent(Swal);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       const decoded = jwtDecode(token);
       const userRole = decoded.role;
-      console.log("User role:", decoded.role);
+
       const validRoles = ["admin", "moderator", "educator"];
       if (!validRoles.includes(userRole)) return;
       setAllowed(true);
@@ -76,7 +78,7 @@ const RightNav = ({
 
   const deleteFile = async (fileId) => {
     try {
-      const res = await fetch(`http://localhost:8081/file/${fileId}`, {
+      const res = await fetch(`${API_URL}/file/${fileId}`, {
         method: "DELETE",
       });
 
@@ -150,20 +152,17 @@ const RightNav = ({
     if (result.isConfirmed && result.value?.trim()) {
       console.log("User typed:", result.value);
       try {
-        const reportRes = await fetch(
-          "http://localhost:8081/reports/document",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: JSON.stringify({
-              file_id: activeFileId,
-              reason: result.value,
-            }),
-          }
-        );
+        const reportRes = await fetch(`${API_URL}/reports/document`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            file_id: activeFileId,
+            reason: result.value,
+          }),
+        });
 
         if (!reportRes.ok) {
           console.error("Server returned", reportRes.status);
@@ -232,18 +231,15 @@ const RightNav = ({
             Swal.close();
             if (selected > 0) {
               try {
-                const response = await fetch(
-                  "http://localhost:8081/rate-file",
-                  {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                const response = await fetch(`${API_URL}/rate-file`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
 
-                    body: JSON.stringify({
-                      file_id: activeFileId,
-                      rating: selected,
-                    }),
-                  }
-                );
+                  body: JSON.stringify({
+                    file_id: activeFileId,
+                    rating: selected,
+                  }),
+                });
 
                 if (!response.ok) {
                   console.error("Server returned", response.status);

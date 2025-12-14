@@ -46,12 +46,15 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
 
   const [selectedGradeRange, setSelectedGradeRange] = useState("");
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
+    document.title = "Share2Teach";
     const token = localStorage.getItem("token");
     if (token) {
       const decoded = jwtDecode(token);
       const userRole = decoded.role;
-      console.log("User role:", decoded.role);
+
       const validRoles = ["admin", "moderator", "educator"];
       if (!validRoles.includes(userRole)) return;
       setShowUploadIcon(true);
@@ -67,12 +70,12 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
         try {
           console.log("Fetching filtered files...");
           const res = await fetch(
-            `http://localhost:8081/files/by-subject-grade/${id}/${selectedGradeRange}`
+            `${API_URL}/files/by-subject-grade/${id}/${selectedGradeRange}`
           );
           const files = await res.json();
 
           setDatabaseNames(files.map((d) => d.fileName));
-          setStoragePath(files.map((d) => d.filePath));
+          setStoragePath(files.map((d) => d.storagePath));
           setFileRating(files.map((d) => d.fileRating));
           setFileId(files.map((d) => d.id)); // ✅ use "id" instead of "fileId"
 
@@ -95,7 +98,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
     const validIds = [
       "science",
       "mathematics",
-      "computer programming",
+      "programming",
       "arts",
       "history",
       "chemistry",
@@ -109,16 +112,16 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
     const fetchFiles = async () => {
       try {
         console.log("Fetching all files for subject:", id);
-        const res = await fetch(`http://localhost:8081/files/${id}`);
+        const res = await fetch(`${API_URL}/files/${id}`);
         setDatabaseNames(await res.json());
 
-        const res2 = await fetch(`http://localhost:8081/links/${id}`);
+        const res2 = await fetch(`${API_URL}/links/${id}`);
         setStoragePath(await res2.json());
 
-        const res3 = await fetch(`http://localhost:8081/ratings/${id}`);
+        const res3 = await fetch(`${API_URL}/ratings/${id}`);
         setFileRating(await res3.json());
 
-        const res4 = await fetch(`http://localhost:8081/ids/${id}`);
+        const res4 = await fetch(`${API_URL}/ids/${id}`);
         setFileId(await res4.json());
       } catch (error) {
         console.error("Error fetching data", error);
