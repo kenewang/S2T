@@ -155,7 +155,9 @@ const CreateAccount = ({
             autoComplete="new-password"
             required
           ></input>
-          <button type="submit">Create Account</button>
+          <button className="reg-button" type="submit">
+            Create Account
+          </button>
         </form>
 
         <div className="divider">or</div>

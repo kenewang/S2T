@@ -93,9 +93,9 @@ const useFiles = (ratingTrigger, setNotFound) => {
       showCancelButton: false,
       showConfirmButton: false,
       customClass: {
-        popup: "radio-popup",
-        title: "radio-title",
-        input: "options",
+        popup: "popup-grades",
+        title: "popup-grades-title",
+        input: "popup-grades-options",
       },
       didOpen: () => {
         const radios = Swal.getPopup().querySelectorAll("input[type=radio]");

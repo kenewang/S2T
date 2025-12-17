@@ -174,7 +174,7 @@ const Login = ({
             <p className="forgot-password-message">{forgotPasswordMessage}</p>
           )}
 
-          <button>Log in</button>
+          <button className="log-in-button">Log in</button>
         </form>
         <div className="divider">or</div>
         <div className="toCreateAccount">

@@ -307,5 +307,6 @@
 
   .moderationFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 }

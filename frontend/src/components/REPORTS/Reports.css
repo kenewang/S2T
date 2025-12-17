@@ -66,6 +66,7 @@
 
   .reportsFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 
   .no-reports {

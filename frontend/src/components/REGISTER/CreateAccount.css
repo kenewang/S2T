@@ -71,6 +71,17 @@ body {
 
 .create_account_Footer p {
   padding: 1rem;
+  font-weight: 600;
+}
+
+.reg-button {
+  font-weight: 600;
+  background-color: #eee8e8;
+  min-width: 100%;
+  box-shadow: black;
+  color: black;
+  padding: 0.5rem 1.5rem;
+  border: none;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
@@ -152,6 +163,17 @@ body {
 
   .create_account_Footer:first-child {
     cursor: pointer;
+    font-weight: 600;
+  }
+
+  .reg-button {
+    font-weight: 600;
+    background-color: #eee8e8;
+    min-width: 100%;
+    box-shadow: black;
+    color: black;
+    padding: 0.5rem 1.5rem;
+    border: none;
   }
 }
 
@@ -234,5 +256,16 @@ body {
 
   .create_account_Footer:first-child {
     cursor: pointer;
+    font-weight: 600;
+  }
+
+  .reg-button {
+    font-weight: 600;
+    background-color: #eee8e8;
+    min-width: 100%;
+    box-shadow: black;
+    color: black;
+    padding: 0.5rem 1.5rem;
+    border: none;
   }
 }

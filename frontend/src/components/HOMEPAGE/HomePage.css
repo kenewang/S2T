@@ -11,7 +11,7 @@ html {
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: 3rem;
+  top: 3.5rem;
 }
 
 /* Footer */
@@ -26,6 +26,7 @@ html {
 
 .homePageFooter p {
   padding: 1rem;
+  font-weight: 600;
 }
 
 /* Section headings (shared across Science, Math, Programming) */
@@ -127,6 +128,7 @@ html {
 
   .homePageFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 
   /* Section headings (shared across Science, Math, Programming) */
@@ -220,7 +222,7 @@ html {
     flex-direction: column;
     align-items: center;
     position: relative;
-    top: 3rem;
+    top: 3.5rem;
     min-height: 100vh;
     margin: 0 auto;
   }
@@ -233,6 +235,7 @@ html {
     margin-top: 5rem;
 
     max-width: 50rem;
+    font-weight: 600;
   }
 
   .homePageFooter p {

@@ -23,10 +23,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  font-weight: bold;
 }
 
 .login-hamburger {
-  font-size: 30px;
+  font-size: 40px;
   cursor: pointer;
   background-color: transparent;
   color: black;

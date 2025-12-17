@@ -1,0 +1,14 @@
+[build]
+  base = "."
+  publish = "build"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://api.share2teach.site/api/:splat"
+  status = 200
+  force = true
+
+[dev]
+  command = "npm start"
+  targetPort = 3000
+  port = 8888

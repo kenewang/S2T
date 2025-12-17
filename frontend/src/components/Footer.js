@@ -166,7 +166,11 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
             ref={textRef}
           ></textarea>
 
-          <button type="submit" onClick={handleSubmit}>
+          <button
+            className="e-submit-button"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Send Message
           </button>
         </form>

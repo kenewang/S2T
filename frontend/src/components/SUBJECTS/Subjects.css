@@ -52,6 +52,7 @@ body {
 
 .subjectsFooter p {
   padding: 1rem;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
@@ -112,6 +113,7 @@ body {
 
   .subjectsFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 }
 @media screen and (min-width: 890px) {
@@ -171,5 +173,6 @@ body {
 
   .subjectsFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 }

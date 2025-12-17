@@ -38,6 +38,7 @@
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
+  margin-top: 0.8rem;
   margin-bottom: 1rem;
 }
 
@@ -51,6 +52,7 @@
   cursor: pointer;
   border-radius: 4px;
   font-size: 1rem;
+  font-weight: 600;
   flex: 1 1;
   max-width: 300px;
   text-align: center;
@@ -64,6 +66,7 @@
   margin-top: 2rem;
   background-color: #eee8e8;
   text-align: center;
+  font-weight: 600;
 }
 
 .grade_landingPage {
@@ -82,8 +85,25 @@
   border-radius: 4px;
   margin-bottom: 0.3rem;
   bottom: 0.1rem;
+  padding: 0.5rem;
+  font-weight: 600;
 }
 
+.popup-grades {
+  background: #f9f9f9;
+
+  border-radius: 6px;
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.popup-grades-title {
+  margin-bottom: 0.8rem;
+}
+
+.popup-grades-options {
+  margin: 0 auto;
+}
 /* Tablets */
 @media screen and (min-width: 510px) and (max-width: 890px) {
   /* Basic reset */
@@ -110,6 +130,35 @@
     min-width: 0;
   }
 
+  .login-browse {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 0.5rem;
+  }
+
+  .login-button,
+  .browse-button {
+    padding: 0.5rem 1.5rem;
+    background-color: rgba(248, 248, 248, 0.9);
+    box-shadow: black;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    flex: 1 1;
+    max-width: 300px;
+    text-align: center;
+    text-decoration: none;
+
+    margin: 0 auto;
+  }
+
   .grade_landingPage {
     position: relative;
     width: 45%;
@@ -124,7 +173,31 @@
     border-color: rgba(120, 40, 40, 0.9);
     border-radius: 4px;
     margin-bottom: 0.3rem;
-    bottom: 0.1rem;
+    bottom: 0.3rem;
+    padding: 0.5rem;
+  }
+
+  .popup-grades {
+    background: #f9f9f9;
+
+    border-radius: 6px;
+    width: 40vw;
+    margin: 0 auto;
+  }
+
+  .popup-grades-title {
+    margin-bottom: 0.8rem;
+  }
+
+  .popup-grades-options {
+    margin: 0 auto;
+  }
+
+  .copyright-App {
+    margin-top: 2rem;
+    background-color: #eee8e8;
+    text-align: center;
+    font-weight: 600;
   }
 }
 
@@ -139,6 +212,8 @@
   .parent {
     background-color: rgb(234, 220, 203);
     min-height: 100vh;
+    position: relative;
+    bottom: 0.6rem;
   }
 
   .App {
@@ -151,6 +226,8 @@
     font-family: "MyFont", sans-serif;
     scroll-behavior: smooth;
     background-color: rgb(234, 220, 203);
+    position: relative;
+    top: 1.2rem;
   }
 
   .main-content {
@@ -180,6 +257,8 @@
     border-radius: 4px;
     margin-bottom: 0.3rem;
     bottom: 0.1rem;
+    padding: 0.5rem;
+    font-weight: normal;
   }
 
   .copyright-App {
@@ -196,5 +275,21 @@
   .login-button,
   .browse-button {
     display: none;
+  }
+
+  .popup-grades {
+    background: #f9f9f9;
+
+    border-radius: 6px;
+    width: 25vw;
+    margin: 0 auto;
+  }
+
+  .popup-grades-title {
+    margin-bottom: 0.8rem;
+  }
+
+  .popup-grades-options {
+    margin: 0 auto;
   }
 }

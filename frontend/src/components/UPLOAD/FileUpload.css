@@ -158,6 +158,7 @@
 
   .uploadFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 
   /* pop up for upload success */

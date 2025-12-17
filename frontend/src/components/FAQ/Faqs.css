@@ -4,6 +4,7 @@
 
   position: relative;
   z-index: 1;
+  margin-bottom: 1rem !important;
 }
 
 .accordion-item {
@@ -67,6 +68,7 @@
 
 .faqFooter p {
   padding: 1rem;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
@@ -145,6 +147,7 @@
 
   .faqFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 }
 
@@ -227,5 +230,6 @@
 
   .faqFooter p {
     padding: 1rem;
+    font-weight: 600;
   }
 }

@@ -41,11 +41,6 @@ textarea {
   border: 1px solid gray;
 }
 
-button {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
 .email-success-popup {
   background-color: rgba(248, 248, 248, 0.9);
   width: 65vw;
@@ -76,6 +71,19 @@ button {
 
 .email-button-confirm-failure {
   background-color: rgb(123, 90, 6);
+}
+
+.e-submit-button {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: rgba(248, 248, 248, 0.9);
+  box-shadow: black;
+  color: black;
+  border: solid gray;
+  border-radius: 3px;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
@@ -128,6 +136,7 @@ button {
     margin: 0 auto;
     text-align: justify;
   }
+
   textarea {
     resize: none;
     box-sizing: border-box;
@@ -163,6 +172,19 @@ button {
 
   .email-button-confirm-failure {
     background-color: rgb(123, 90, 6);
+  }
+
+  .e-submit-button {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: rgba(248, 248, 248, 0.9);
+    box-shadow: black;
+    color: black;
+    border: solid gray;
+    border-radius: 3px;
   }
 }
 
@@ -252,5 +274,18 @@ button {
 
   .email-button-confirm-failure {
     background-color: rgb(123, 90, 6);
+  }
+
+  .e-submit-button {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: rgba(248, 248, 248, 0.9);
+    box-shadow: black;
+    color: black;
+    border: solid gray;
+    border-radius: 3px;
   }
 }
