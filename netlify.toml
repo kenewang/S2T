@@ -9,7 +9,13 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [dev]
-  command = "npm start"
+  command = "npm --prefix frontend start"
   targetPort = 3000
   port = 8888
+  
