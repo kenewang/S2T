@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children }) => {
         const tokenVersion = Number(decoded.token_version);
 
         const res = await fetch(
-          `${API_URL}/auth/verify-token?userId=${userId}&tokenVersion=${tokenVersion}`,
+          `${API_URL}/api/auth/verify-token?userId=${userId}&tokenVersion=${tokenVersion}`,
           {
             method: "GET",
             credentials: "include",

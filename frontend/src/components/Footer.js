@@ -101,7 +101,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
       message
     );
 
-    const response = await fetch(`${API_URL}/send-email`, {
+    const response = await fetch(`${API_URL}/api/send-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, message }),

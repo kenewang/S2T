@@ -35,10 +35,10 @@ const Faqs = ({
     const fetchFaqs = async () => {
       try {
         const [questionsRes, answersRes] = await Promise.all([
-          fetch(`${API_URL}/faqs/questions`, {
+          fetch(`${API_URL}/api/faqs/questions`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/faqs/answers`, {
+          fetch(`${API_URL}/api/faqs/answers`, {
             method: "GET",
           }),
         ]);

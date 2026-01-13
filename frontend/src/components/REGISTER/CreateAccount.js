@@ -45,7 +45,7 @@ const CreateAccount = ({
             const body = {email: email, password: password, Fname: Fname, Lname: Lname, username: username };
       */
 
-      const response = await fetch(`${API_URL}/auth/register`, {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" }, //This tells  Spring Boot server that the stuff in the body is in json format
         body: JSON.stringify(body),

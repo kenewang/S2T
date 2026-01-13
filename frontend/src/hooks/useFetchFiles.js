@@ -20,16 +20,16 @@ const useFetchFiles = (subject, ratingTrigger, setNotFound) => {
         // Fetch all four in parallel for better performance
 
         const [resNames, resLinks, resRatings, resIds] = await Promise.all([
-          fetch(`${API_URL}/files/${subject}`, {
+          fetch(`${API_URL}/api/files/${subject}`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/links/${subject}`, {
+          fetch(`${API_URL}/api/links/${subject}`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/ratings/${subject}`, {
+          fetch(`${API_URL}/api/ratings/${subject}`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/ids/${subject}`, {
+          fetch(`${API_URL}/api/ids/${subject}`, {
             method: "GET",
           }),
         ]);

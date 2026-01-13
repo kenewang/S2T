@@ -43,7 +43,7 @@ const Login = ({
     try {
       const body = { email, password };
 
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -84,7 +84,7 @@ const Login = ({
 
   const handleForgotPassword = async () => {
     try {
-      const response = await fetch(`${API_URL}/auth/forgot-password`, {
+      const response = await fetch(`${API_URL}/api/auth/forgot-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

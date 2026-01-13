@@ -33,7 +33,7 @@ const SearchOverlay = ({
     const signal = controller.signal;
 
     try {
-      const res = await fetch(`${API_URL}/files/search?query=${query}`, {
+      const res = await fetch(`${API_URL}/api/files/search?query=${query}`, {
         signal,
       });
       const data = await res.json();

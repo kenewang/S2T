@@ -67,10 +67,10 @@ const FileUpload = ({
     const fetchSubjectsAndGrades = async () => {
       try {
         const [subjectsRes, gradesRes] = await Promise.all([
-          fetch(`${API_URL}/subjects`, {
+          fetch(`${API_URL}/api/subjects`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/grades`, {
+          fetch(`${API_URL}/api/grades`, {
             method: "GET",
           }),
         ]);
@@ -128,7 +128,7 @@ const FileUpload = ({
       }, 100);
 
       // Perform upload request
-      const res = await fetch(`${API_URL}/documents/upload`, {
+      const res = await fetch(`${API_URL}/api/documents/upload`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

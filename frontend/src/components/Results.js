@@ -41,7 +41,7 @@ const Results = ({
   // Fetch search results from the backend
   const searchDocuments = async (query) => {
     try {
-      const res = await fetch(`${API_URL}/files/search?query=${query}`);
+      const res = await fetch(`${API_URL}/api/files/search?query=${query}`);
 
       if (!res.ok) {
         console.error("Search failed");

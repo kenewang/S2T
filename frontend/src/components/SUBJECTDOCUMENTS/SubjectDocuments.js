@@ -70,7 +70,7 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
         try {
           console.log("Fetching filtered files...");
           const res = await fetch(
-            `${API_URL}/files/by-subject-grade/${id}/${selectedGradeRange}`
+            `${API_URL}/api/files/by-subject-grade/${id}/${selectedGradeRange}`
           );
           const files = await res.json();
 
@@ -112,16 +112,16 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
     const fetchFiles = async () => {
       try {
         console.log("Fetching all files for subject:", id);
-        const res = await fetch(`${API_URL}/files/${id}`);
+        const res = await fetch(`${API_URL}/api/files/${id}`);
         setDatabaseNames(await res.json());
 
-        const res2 = await fetch(`${API_URL}/links/${id}`);
+        const res2 = await fetch(`${API_URL}/api/links/${id}`);
         setStoragePath(await res2.json());
 
-        const res3 = await fetch(`${API_URL}/ratings/${id}`);
+        const res3 = await fetch(`${API_URL}/api/ratings/${id}`);
         setFileRating(await res3.json());
 
-        const res4 = await fetch(`${API_URL}/ids/${id}`);
+        const res4 = await fetch(`${API_URL}/api/ids/${id}`);
         setFileId(await res4.json());
       } catch (error) {
         console.error("Error fetching data", error);

@@ -65,7 +65,7 @@ const FileModeration = ({
    */
   const submitModeration = async (fileId, action) => {
     try {
-      const res = await fetch(`${API_URL}/moderation/document`, {
+      const res = await fetch(`${API_URL}/api/moderation/document`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -137,7 +137,7 @@ const FileModeration = ({
 
     const fetchPendingDocuments = async () => {
       try {
-        const response = await fetch(`${API_URL}/files/pending`);
+        const response = await fetch(`${API_URL}/api/files/pending`);
         const data = await response.json();
         setDocuments(data);
       } catch (error) {

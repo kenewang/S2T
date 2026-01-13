@@ -49,6 +49,9 @@ public class AuthController {
         }
     }
 
+
+    
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         try {
@@ -66,6 +69,8 @@ public class AuthController {
             return ResponseEntity.status(500).body(Map.of("msg", "Server error"));
         }
     }
+
+
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletRequest request, HttpSession session) {

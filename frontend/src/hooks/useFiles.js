@@ -19,16 +19,16 @@ const useFiles = (ratingTrigger, setNotFound) => {
     const fetchData = async () => {
       try {
         const [namesRes, linksRes, ratingsRes, idRes] = await Promise.all([
-          fetch(`${API_URL}/files/names`, {
+          fetch(`${API_URL}/api/files/names`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/files/links`, {
+          fetch(`${API_URL}/api/files/links`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/files/ratings`, {
+          fetch(`${API_URL}/api/files/ratings`, {
             method: "GET",
           }),
-          fetch(`${API_URL}/files/ids`, {
+          fetch(`${API_URL}/api/files/ids`, {
             method: "GET",
           }),
         ]);
@@ -57,7 +57,7 @@ const useFiles = (ratingTrigger, setNotFound) => {
       try {
         console.log("Fetching filtered files...");
         const res = await fetch(
-          `${API_URL}/files/by-grade/${selectedGradeRange}`,
+          `${API_URL}/api/files/by-grade/${selectedGradeRange}`,
           { signal }
         );
         const files = await res.json();

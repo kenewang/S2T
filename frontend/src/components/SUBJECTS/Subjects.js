@@ -39,7 +39,7 @@ const Subjects = ({
     document.title = "Share2Teach - Subjects";
     const fetchFileSubjectNames = async () => {
       try {
-        const res = await fetch(`${API_URL}/subjects/names`);
+        const res = await fetch(`${API_URL}/api/subjects/names`);
         setSubjectNames(await res.json());
       } catch (error) {
         console.error("Error fetching subjects", error);

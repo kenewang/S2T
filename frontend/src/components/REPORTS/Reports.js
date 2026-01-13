@@ -27,7 +27,7 @@ const Reports = ({
 
   const handleView = async (fileId) => {
     try {
-      const response = await fetch(`${API_URL}/file-path/${fileId}`);
+      const response = await fetch(`${API_URL}/api/file-path/${fileId}`);
 
       if (!response.ok) {
         alert("Failed to retrieve file path");
@@ -47,7 +47,7 @@ const Reports = ({
 
   const submitModeration = async (reportId, action) => {
     try {
-      const res = await fetch(`${API_URL}/reports/moderate`, {
+      const res = await fetch(`${API_URL}/api/reports/moderate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +133,7 @@ const Reports = ({
       try {
         let response;
 
-        response = await fetch(`${API_URL}/reports/pending`);
+        response = await fetch(`${API_URL}/api/reports/pending`);
 
         if (!response.ok) {
           console.error("Server returned:", response.status);

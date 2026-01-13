@@ -78,7 +78,7 @@ const RightNav = ({
 
   const deleteFile = async (fileId) => {
     try {
-      const res = await fetch(`${API_URL}/file/${fileId}`, {
+      const res = await fetch(`${API_URL}/api/file/${fileId}`, {
         method: "DELETE",
       });
 
@@ -152,7 +152,7 @@ const RightNav = ({
     if (result.isConfirmed && result.value?.trim()) {
       console.log("User typed:", result.value);
       try {
-        const reportRes = await fetch(`${API_URL}/reports/document`, {
+        const reportRes = await fetch(`${API_URL}/api/reports/document`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -231,7 +231,7 @@ const RightNav = ({
             Swal.close();
             if (selected > 0) {
               try {
-                const response = await fetch(`${API_URL}/rate-file`, {
+                const response = await fetch(`${API_URL}/api/rate-file`, {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
 
