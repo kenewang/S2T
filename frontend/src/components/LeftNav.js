@@ -79,9 +79,9 @@ const LeftNav = ({
     try {
       const response = await fetch(`${API_URL}/api/auth/logout`, {
         method: "POST",
+        credentials: "include", // Important for cookies/sessions
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          credentials: "include", // Important for cookies/sessions
         },
       });
 
