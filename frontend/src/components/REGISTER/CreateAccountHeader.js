@@ -43,7 +43,7 @@ const CreateAccountHeader = ({
             navigate("/subjects");
           }}
         >
-          Browse
+          BROWSE
         </p>
         <p
           onClick={() => {

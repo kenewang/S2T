@@ -24,7 +24,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
+  letter-spacing: 1px;
   font-weight: bold;
 }
 
@@ -76,6 +76,7 @@
     width: 100%;
     max-width: 30rem;
     min-width: 0;
+    border-radius: 10px;
   }
 
   .home-s2t-heading {
@@ -87,6 +88,8 @@
     margin-right: 0;
     min-width: 0;
     cursor: pointer;
+    height: 2rem;
+    letter-spacing: 1px;
   }
 
   .home-menu-icon {
@@ -137,6 +140,9 @@
     width: 100%;
     max-width: 60rem;
     min-width: 0;
+    height: 4.5rem;
+
+    border-radius: 10px;
   }
 
   .home-s2t-heading {
@@ -149,6 +155,8 @@
     min-width: 0;
     cursor: pointer;
     margin-right: 0;
+    letter-spacing: 1px;
+    height: 2rem;
   }
 
   .home-menu-icon {
@@ -175,57 +183,70 @@
   .home-login-create p {
     text-align: center;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 550;
+    letter-spacing: 1px;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    color: black;
+    font-size: 0.8rem;
   }
 
   .home-login-create p:hover {
-    color: navy;
-    font-size: 20px;
+    background-color: snow;
+    cursor: pointer;
   }
 
   .home-pc-screen-search {
     display: flex;
     flex-shrink: 1;
     justify-content: flex-start;
+    border: 1px solid;
+    border-radius: 20px;
 
+    border-color: hsla(289, 29%, 81%, 0.819);
     position: relative;
 
-    border: solid rgb(244, 226, 244);
-    border-radius: 4px;
     min-width: 0;
   }
 
   .home-pc-screen-search-form {
     background-color: rgb(235, 229, 235);
     display: flex;
-    border-radius: 8px;
+    border-color: hsla(289, 29%, 81%, 0.819);
     flex-shrink: 1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 20px;
     min-width: 0;
   }
 
   .home-pc-screen-search-form input {
     flex: 1;
     min-width: 0;
-    border: none;
+
     outline: none;
     width: 11rem;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border: 1px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
   }
 
   .home-pc-screen-search-form input::placeholder {
     text-align: justify;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 
   .home-pc-screen-search-form button {
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: rgb(248, 235, 250);
+    background-color: transparent;
     text-overflow: hidden;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 4px;
+    color: black;
   }
 
   .home-pc-screen-search-form img {
@@ -234,7 +255,7 @@
     align-self: center;
     padding: 10px;
     color: black;
-    background: white;
+    background: transparent;
     flex-shrink: 1;
     min-width: 0;
   }
@@ -245,7 +266,7 @@
     align-self: center;
     padding: 10px;
     color: black;
-    background: white;
+    background: transparent;
     flex-shrink: 1;
     min-width: 0;
   }

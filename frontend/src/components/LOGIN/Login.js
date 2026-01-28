@@ -130,19 +130,19 @@ const Login = ({
       />
 
       <section className="login">
-        <h2 className="login_heading">Log In</h2>
+        <h2 className="login_heading">Login</h2>
         <form className="loginCredentials" onSubmit={onSubmitForm}>
-          <label>Email</label>
+          <label className="login-labels">Email</label>
           <input
             className="inputLogin"
-            placeholder="Email"
+            placeholder=""
             value={email}
             name="email"
             onChange={onChange}
             required
           ></input>
           <div className="password_labels">
-            <label className="password_label">Password</label>
+            <label className="login-labels">Password</label>
             <label
               className="forgot_password_label"
               onClick={handleForgotPassword}
@@ -154,7 +154,7 @@ const Login = ({
             <input
               className="inputLogin"
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder=""
               value={password}
               name="password"
               onChange={onChange}
@@ -175,14 +175,14 @@ const Login = ({
           )}
 
           <button className="log-in-button">Log in</button>
+          <div className="divider">or</div>
+          <div className="toCreateAccount">
+            <label>New to Share2Teach?</label>
+            <label className="createAccountLabel" onClick={goToCreateAccount}>
+              Create an Account
+            </label>
+          </div>
         </form>
-        <div className="divider">or</div>
-        <div className="toCreateAccount">
-          <label>New to Share2Teach?</label>
-          <label className="createAccountLabel" onClick={goToCreateAccount}>
-            Create an Account
-          </label>
-        </div>
       </section>
 
       <div className="loginFooter">

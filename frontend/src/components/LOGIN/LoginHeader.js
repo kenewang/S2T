@@ -48,20 +48,22 @@ const LoginHeader = ({
         ☰
       </span>
       <div className="login-shortcuts">
-        <p
+        <button
+          className="s-cuts"
           onClick={() => {
             navigate("/subjects");
           }}
         >
-          Browse
-        </p>
-        <p
+          BROWSE
+        </button>
+        <button
+          className="s-cuts"
           onClick={() => {
             navigate("/faqs");
           }}
         >
           FAQS
-        </p>
+        </button>
       </div>
       <h2
         onClick={() => {

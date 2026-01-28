@@ -82,7 +82,7 @@ const Header = ({
 
       <div className="home-pc-screen-search">
         <form className="home-pc-screen-search-form" onSubmit={handleSubmit}>
-          <img src={search} alt="search_icon" />
+          <img className="s-img" src={search} alt="search_icon" />
 
           <input
             type="text"
@@ -102,7 +102,7 @@ const Header = ({
             navigate("/login");
           }}
         >
-          Log In
+          LOG IN
         </p>
 
         <p
@@ -110,7 +110,7 @@ const Header = ({
             navigate("/createAccount");
           }}
         >
-          Create Account
+          CREATE ACCOUNT
         </p>
 
         <p
@@ -118,7 +118,7 @@ const Header = ({
             navigate("/subjects");
           }}
         >
-          Browse
+          BROWSE
         </p>
       </div>
 

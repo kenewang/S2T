@@ -15,11 +15,14 @@ footer h1 {
 .footer_paragraph {
   position: relative;
   top: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  letter-spacing: normal;
+  text-align: justify;
 }
 
 strong {
   font-size: 1.3rem;
+  letter-spacing: 1px;
 }
 
 .contact {
@@ -28,17 +31,29 @@ strong {
   gap: 1rem;
 }
 
-.input {
-  border-radius: 3px;
-  padding-left: 0.4rem; /* moves both text and placeholder */
+.f-input {
   height: 2.5rem;
-  border: 1px solid gray;
+  border-radius: 20px;
+  border: 2px solid #eee8e8;
+  padding-left: 0.8rem;
+}
+
+.f-input:focus {
+  border-color: #8c09ff63;
+  outline: none;
 }
 
 textarea {
   padding: 0.4rem;
+  padding-left: 0.8rem;
   height: 8rem;
-  border: 1px solid gray;
+  border: 2px solid #eee8e8;
+  border-radius: 15px;
+}
+
+textarea:focus {
+  border-color: #8c09ff63;
+  outline: none;
 }
 
 .email-success-popup {
@@ -77,13 +92,18 @@ textarea {
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
-  padding: 0.5rem;
+  padding: 10px;
   cursor: pointer;
   background-color: rgba(248, 248, 248, 0.9);
   box-shadow: black;
   color: black;
-  border: solid gray;
-  border-radius: 3px;
+  border: 1px solid hsla(289, 29%, 81%, 0.819);
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+.f-s2t {
+  letter-spacing: 1px;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
@@ -103,6 +123,7 @@ textarea {
     position: relative;
     top: 0.5rem;
     font-size: 1.2rem;
+    letter-spacing: normal;
   }
 
   .contact-container {
@@ -116,6 +137,7 @@ textarea {
 
   strong {
     font-size: 1.3rem;
+    letter-spacing: 1px;
   }
 
   .contact {
@@ -124,22 +146,38 @@ textarea {
     gap: 1rem;
   }
 
-  .input {
-    border-radius: 3px;
-    padding-left: 0.4rem; /* moves both text and placeholder */
+  .f-input {
+    border-radius: 20px;
+    border: 2px solid #eee8e8;
+    padding-left: 0.8rem;
     height: 2.5rem;
-    border: 1px solid gray;
   }
 
-  .s2t {
+  .f-input:focus {
+    border-color: #8c09ff63;
+    outline: none;
+  }
+
+  .f-s2t {
     width: 70%;
     margin: 0 auto;
     text-align: justify;
+    letter-spacing: 1px;
   }
 
   textarea {
     resize: none;
     box-sizing: border-box;
+    padding: 0.4rem;
+    padding-left: 0.8rem;
+    height: 8rem;
+    border: 2px solid #eee8e8;
+    border-radius: 15px;
+  }
+
+  textarea:focus {
+    border-color: #8c09ff63;
+    outline: none;
   }
 
   .email-success-popup {
@@ -178,13 +216,14 @@ textarea {
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
-    padding: 0.5rem;
+    padding: 10px;
     cursor: pointer;
     background-color: rgba(248, 248, 248, 0.9);
     box-shadow: black;
     color: black;
-    border: solid gray;
-    border-radius: 3px;
+    border: 1px solid hsla(289, 29%, 81%, 0.819);
+    border-radius: 20px;
+    letter-spacing: 1px;
   }
 }
 
@@ -206,6 +245,7 @@ textarea {
     top: 0.5rem;
     font-size: 1.2rem;
     padding: 1rem;
+    letter-spacing: normal;
   }
 
   .contact-container {
@@ -219,6 +259,7 @@ textarea {
 
   strong {
     font-size: 1.3rem;
+    letter-spacing: 1px;
   }
 
   .contact {
@@ -227,21 +268,38 @@ textarea {
     gap: 1rem;
   }
 
-  .input {
-    border-radius: 3px;
-    padding-left: 0.4rem; /* moves both text and placeholder */
+  .f-input {
+    border-radius: 20px;
+    padding-left: 0.8rem; /* moves both text and placeholder */
     height: 2.5rem;
-    border: 1px solid gray;
+    border: 2px solid #eee8e8;
   }
 
-  .s2t {
+  .f-input:focus {
+    border-color: #8c09ff63;
+    outline: none;
+  }
+
+  .f-s2t {
     width: 70%;
     margin: 0 auto;
     text-align: justify;
+    letter-spacing: 1px;
   }
+
   textarea {
     resize: none;
     box-sizing: border-box;
+    padding: 0.4rem;
+    padding-left: 0.8rem;
+    height: 8rem;
+    border: 2px solid #eee8e8;
+    border-radius: 15px;
+  }
+
+  textarea:focus {
+    border-color: #8c09ff63;
+    outline: none;
   }
 
   .email-success-popup {
@@ -280,12 +338,13 @@ textarea {
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
-    padding: 0.5rem;
+    padding: 10px;
     cursor: pointer;
     background-color: rgba(248, 248, 248, 0.9);
     box-shadow: black;
     color: black;
-    border: solid gray;
-    border-radius: 3px;
+    border: 1px solid hsla(289, 29%, 81%, 0.819);
+    border-radius: 20px;
+    letter-spacing: 1px;
   }
 }

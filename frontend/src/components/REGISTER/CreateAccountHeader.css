@@ -23,7 +23,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
+  letter-spacing: 1px;
   font-weight: bold;
 }
 
@@ -58,6 +58,7 @@
     max-width: 35rem;
     margin: 0 auto;
     z-index: 10;
+    border-radius: 10px;
   }
 
   .register-wrapper h2 {
@@ -67,7 +68,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
+    height: 2rem;
+    letter-spacing: 1px;
     font-weight: bold;
   }
 
@@ -105,7 +107,11 @@
     flex-shrink: 1;
 
     min-width: 0;
+
+    height: 4.5rem;
+    border-radius: 10px;
   }
+
   .register-wrapper h2 {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -114,6 +120,8 @@
     cursor: pointer;
     margin-right: 0;
     min-width: 0;
+    letter-spacing: 1px;
+    height: 2rem;
   }
 
   .register-shortcuts {
@@ -129,11 +137,18 @@
 
   .register-shortcuts p {
     cursor: pointer;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    font-weight: 550;
+    letter-spacing: 2px;
+    color: dark black;
+    font-size: 0.8rem;
   }
 
   .register-shortcuts p:hover {
-    color: navy;
-    font-size: 20px;
+    background-color: snow;
   }
 
   .register-hamburger {

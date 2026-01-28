@@ -99,57 +99,57 @@ const CreateAccount = ({
       <section className="createAccount">
         <h2 className="register-heading">Create Account</h2>
         <form className="createAccountCredentials" onSubmit={onSubmitForm}>
-          <label>First Name</label>
+          <label className="c-labels">First Name</label>
           <input
             type="text"
             className="inputCreateAccount"
-            placeholder="First Name"
+            placeholder=""
             onChange={onChange}
             value={fname}
             name="fname"
             required
           ></input>
 
-          <label>Last Name</label>
+          <label className="c-labels">Last Name</label>
 
           <input
             type="text"
             name="lname"
             className="inputCreateAccount"
-            placeholder="Last Name"
+            placeholder=""
             onChange={onChange}
             value={lname}
             required
           ></input>
-          <label>Username</label>
+          <label className="c-labels">Username</label>
 
           <input
             type="text"
             name="username"
             className="inputCreateAccount"
-            placeholder="Username"
+            placeholder=""
             onChange={onChange}
             value={username}
             required
           ></input>
-          <label>Emai</label>
+          <label className="c-labels">Emai</label>
 
           <input
             type="text"
             name="email"
             className="inputCreateAccount"
-            placeholder="Email"
+            placeholder=""
             value={email}
             onChange={onChange}
             required
           ></input>
-          <label>Password</label>
+          <label className="c-labels">Password</label>
 
           <input
             type="password"
             name="password"
             className="inputCreateAccount"
-            placeholder="Password"
+            placeholder=""
             value={password}
             onChange={onChange}
             autoComplete="new-password"
@@ -158,15 +158,15 @@ const CreateAccount = ({
           <button className="reg-button" type="submit">
             Create Account
           </button>
-        </form>
 
-        <div className="divider">or</div>
-        <div className="toCreateAccount">
-          <label>Already have an account?</label>
-          <label className="loginLabel" onClick={goToLogin}>
-            Log in
-          </label>
-        </div>
+          <div className="divider">or</div>
+          <div className="toCreateAccount">
+            <label>Already have an account?</label>
+            <label className="loginLabel" onClick={goToLogin}>
+              Log in
+            </label>
+          </div>
+        </form>
       </section>
 
       <div className="create_account_Footer">

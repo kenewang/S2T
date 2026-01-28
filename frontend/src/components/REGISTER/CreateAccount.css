@@ -6,6 +6,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 3rem auto;
+  width: 70%;
 }
 
 .register-heading {
@@ -14,21 +16,33 @@ body {
   font-size: 1.8rem;
   font-weight: 600;
   text-align: center;
-  color: rgb(87, 84, 84);
+  color: black;
+  letter-spacing: 1px;
 }
 
 .createAccountCredentials {
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  border: 1px solid;
+  border-color: hsla(289, 29%, 81%, 0.819);
+  padding: 20px 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
 .inputCreateAccount {
   height: 2.5rem;
-  border-radius: 5px;
-  border: 1px solid gray;
-  padding-left: 0.4rem;
+  border-radius: 20px;
+  border: 2px solid #eee8e8;
+  padding-left: 0.8rem;
+  min-width: 100%;
+}
+
+.inputCreateAccount:focus {
+  border-color: #8c09ff63;
+  outline: none;
 }
 
 .divider {
@@ -43,7 +57,7 @@ body {
 .divider::after {
   content: "";
   flex: 1;
-  border-bottom: 2px solid black; /* line style */
+  border-bottom: 2px solid #8c09ff63 !important; /* line style */
 }
 
 .divider:not(:empty)::before {
@@ -58,6 +72,7 @@ body {
   text-decoration: none;
   color: blue;
   cursor: pointer;
+  margin-bottom: 2rem;
 }
 
 .create_account_Footer {
@@ -72,18 +87,24 @@ body {
 .create_account_Footer p {
   padding: 1rem;
   font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .reg-button {
   font-weight: 600;
-  background-color: #eee8e8;
+  background-color: #8c09ff63;
   min-width: 100%;
-  box-shadow: black;
+  box-shadow: 0 0 2px #eee8e8;
   color: black;
-  padding: 0.5rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   border: none;
+  border-radius: 20px;
+  letter-spacing: 1px;
 }
 
+.c-labels {
+  margin-left: 0.8rem;
+}
 @media screen and (min-width: 510px) and (max-width: 890px) {
   .createAccWrapper {
     max-width: 35rem;
@@ -97,15 +118,16 @@ body {
     font-size: 1.8rem;
     font-weight: 600;
     text-align: center;
-    color: rgb(87, 84, 84);
+    color: black;
+    letter-spacing: 1px;
   }
 
   .createAccount {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    max-width: 20rem;
-    margin: 0 auto;
+    width: 50%;
+    margin: 3rem auto;
   }
 
   .createAccountCredentials {
@@ -113,13 +135,24 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    border: 1px solid;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    padding: 20px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.25);
   }
 
   .inputCreateAccount {
     height: 2.5rem;
-    border-radius: 5px;
-    border: 1px solid gray;
-    padding-left: 0.4rem;
+    border-radius: 20px;
+    border: 2px solid #eee8e8;
+    padding-left: 0.8rem;
+    min-width: 100%;
+  }
+
+  .inputCreateAccount:focus {
+    border-color: #8c09ff63;
+    outline: none;
   }
 
   .divider {
@@ -134,7 +167,7 @@ body {
   .divider::after {
     content: "";
     flex: 1;
-    border-bottom: 2px solid black; /* line style */
+    border-bottom: 2px solid #8c09ff63 !important; /* line style */
   }
 
   .divider:not(:empty)::before {
@@ -149,6 +182,7 @@ body {
     text-decoration: none;
     color: blue;
     cursor: pointer;
+    margin-bottom: 2rem;
   }
 
   .create_account_Footer {
@@ -164,16 +198,30 @@ body {
   .create_account_Footer:first-child {
     cursor: pointer;
     font-weight: 600;
+    color: black;
+    letter-spacing: 1px;
   }
 
   .reg-button {
+    margin-top: 0.5rem;
     font-weight: 600;
-    background-color: #eee8e8;
+    background-color: #8c09ff63;
     min-width: 100%;
-    box-shadow: black;
+    box-shadow: 0 0 2px #eee8e8;
     color: black;
-    padding: 0.5rem 1.5rem;
+    padding: 0.6rem 1.5rem;
     border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+
+  .reg-button:hover {
+    background-color: #8c09ff63;
+  }
+
+  .c-labels {
+    margin-left: 0.8rem;
   }
 }
 
@@ -190,29 +238,42 @@ body {
     font-size: 1.8rem;
     font-weight: 600;
     text-align: center;
-    color: rgb(87, 84, 84);
+    color: black;
+    letter-spacing: 1px;
   }
 
   .createAccount {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 45%;
-    margin: 0 auto;
+    width: 40%;
+    margin: 3rem auto;
   }
 
   .createAccountCredentials {
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    border: 1px solid;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    padding: 30px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.25);
   }
 
   .inputCreateAccount {
     height: 2.5rem;
-    border-radius: 5px;
-    border: 1px solid gray;
-    padding-left: 0.4rem;
+    border-radius: 20px;
+    border: 2px solid #eee8e8;
+    padding-left: 0.8rem;
+    min-width: 100%;
+  }
+
+  .inputCreateAccount:focus {
+    border-color: #8c09ff63;
+    outline: none;
   }
 
   .divider {
@@ -227,7 +288,7 @@ body {
   .divider::after {
     content: "";
     flex: 1;
-    border-bottom: 2px solid black; /* line style */
+    border-bottom: 2px solid #8c09ff63 !important; /* line style */
   }
 
   .divider:not(:empty)::before {
@@ -239,9 +300,10 @@ body {
   }
 
   .loginLabel {
-    text-decoration: none;
-    color: blue;
     cursor: pointer;
+    color: blue;
+    margin-bottom: 2rem;
+    font-size: 1rem;
   }
 
   .create_account_Footer {
@@ -257,15 +319,31 @@ body {
   .create_account_Footer:first-child {
     cursor: pointer;
     font-weight: 600;
+    color: black;
+    letter-spacing: 1px;
   }
 
   .reg-button {
+    margin-top: 0.5rem;
     font-weight: 600;
-    background-color: #eee8e8;
+    background-color: #8c09ff63;
+
+    box-shadow: 0 0 2px #eee8e8;
     min-width: 100%;
-    box-shadow: black;
+
     color: black;
-    padding: 0.5rem 1.5rem;
-    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+
+  .reg-button:hover {
+    background-color: #8c09ff63;
+  }
+
+  .c-labels {
+    margin-left: 0.8rem;
+    font-size: 1rem;
   }
 }

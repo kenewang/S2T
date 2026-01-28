@@ -126,7 +126,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
 
   return (
     <footer>
-      <div className="s2t">
+      <div className="f-s2t">
         <strong>Share2Teach</strong>{" "}
         <p className="footer_paragraph">
           A document-sharing web application built for educators and students.
@@ -141,7 +141,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
         <h1>Get In Touch</h1>
         <form className="contact" onSubmit={handleSubmit} noValidate>
           <input
-            className="input"
+            className="f-input"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -150,7 +150,7 @@ const Footer = ({ leftNavOpen, closeLeftNav, rightNavOpen, closeRightNav }) => {
           ></input>
 
           <input
-            className="input"
+            className="f-input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
