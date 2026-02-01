@@ -80,7 +80,7 @@ const FaqHeader = ({
                 navigate("/login");
               }}
             >
-              Log in
+              LOG IN
             </p>
 
             <p
@@ -88,7 +88,7 @@ const FaqHeader = ({
                 navigate("/createAccount");
               }}
             >
-              Create Account
+              CREATE ACCOUNT
             </p>
           </div>
           <h2
@@ -107,30 +107,32 @@ const FaqHeader = ({
         <>
           <div className="faq-shortcuts">
             <p
+              className="a-shortcuts"
               onClick={() => {
                 navigate("/home/filemoderation");
               }}
             >
-              File Moderation
+              FILE MODERATION
             </p>
 
             <p
-              className="faq-upload-icon"
+              className="a-shortcuts"
               role="button"
               onClick={() => {
                 navigate("/home/fileupload");
               }}
             >
-              <span>Upload</span>
-              <img src={uploadIcon} alt="Upload Icon" />
+              UPLOAD
+              {/*  <img src={uploadIcon} alt="Upload Icon" /> */}
             </p>
 
             <p
+              className="a-shortcuts"
               onClick={() => {
                 navigate("/home/reports");
               }}
             >
-              Reports
+              REPORTS
             </p>
           </div>
 

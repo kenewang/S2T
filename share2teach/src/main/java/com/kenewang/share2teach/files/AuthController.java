@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     private final UserService userService;
@@ -49,9 +49,6 @@ public class AuthController {
         }
     }
 
-
-    
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         try {
@@ -69,8 +66,6 @@ public class AuthController {
             return ResponseEntity.status(500).body(Map.of("msg", "Server error"));
         }
     }
-
-
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletRequest request, HttpSession session) {

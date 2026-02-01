@@ -3,9 +3,11 @@ package com.kenewang.share2teach.files;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 public class FAQController {
 
     private final FAQService faqService;

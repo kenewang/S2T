@@ -43,14 +43,14 @@ const FileUploadHeader = ({
             navigate("/home/filemoderation");
           }}
         >
-          File Moderation
+          FILE MODERATION
         </p>
         <p
           onClick={() => {
             navigate("/faqs");
           }}
         >
-          FAQs
+          FAQS
         </p>
 
         <p
@@ -58,7 +58,7 @@ const FileUploadHeader = ({
             navigate("/home/reports");
           }}
         >
-          Reports
+          REPORTS
         </p>
       </div>
       <h2

@@ -45,15 +45,14 @@ const FileModerationHeader = ({
             navigate("/home/fileupload");
           }}
         >
-          <span>Upload</span>
-          <img src={uploadIcon} alt="Upload Icon" />
+          UPLOAD
         </p>
         <p
           onClick={() => {
             navigate("/faqs");
           }}
         >
-          FAQs
+          FAQS
         </p>
 
         <p
@@ -61,7 +60,7 @@ const FileModerationHeader = ({
             navigate("/home/reports");
           }}
         >
-          Reports
+          REPORTS
         </p>
       </div>
       <h2

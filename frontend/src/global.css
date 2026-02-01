@@ -48,12 +48,12 @@
   background-color: rgba(248, 248, 248, 0.9);
   box-shadow: black;
   color: black;
-  border: 2px solid;
+
   border: 1px solid;
   cursor: pointer;
   border-radius: 20px;
   border-color: hsla(289, 29%, 81%, 0.819);
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 600;
   flex: 1 1;
   max-width: 300px;
@@ -61,7 +61,7 @@
   text-decoration: none;
   position: relative;
   top: 0.5rem;
-  margin: 0 auto;
+
   letter-spacing: 1px;
 }
 
@@ -73,11 +73,11 @@
   letter-spacing: 1px;
 }
 
-.grade_landingPage {
+.grade-landingPage {
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 45%;
+  width: inherit;
   margin: 0 auto;
   box-shadow: black;
   color: black;
@@ -89,26 +89,13 @@
   border-radius: 20px;
   margin-bottom: 0.3rem;
   bottom: 0.1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1.5rem;
   font-weight: 600;
   letter-spacing: 1px;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
-.popup-grades {
-  background: #f9f9f9;
-
-  border-radius: 6px;
-  width: 70vw;
-  margin: 0 auto;
-}
-
-.popup-grades-title {
-  margin-bottom: 0.8rem;
-}
-
-.popup-grades-options {
-  margin: 0 auto;
-}
 /* Tablets */
 @media screen and (min-width: 510px) and (max-width: 890px) {
   /* Basic reset */
@@ -155,19 +142,18 @@
     cursor: pointer;
     border-radius: 20px;
     border-color: hsla(289, 29%, 81%, 0.819);
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 600;
     flex: 1 1;
     max-width: 300px;
     text-align: center;
     text-decoration: none;
     letter-spacing: 1px;
-    margin: 0 auto;
   }
 
-  .grade_landingPage {
+  .grade-landingPage {
     position: relative;
-    width: 45%;
+    width: inherit;
     margin: 0 auto;
 
     box-shadow: black;
@@ -180,24 +166,9 @@
     border-radius: 20px;
     margin-bottom: 0.3rem;
     bottom: 0.3rem;
-    padding: 0.5rem;
+    padding: 0.5rem 1.5rem;
+
     letter-spacing: 1px;
-  }
-
-  .popup-grades {
-    background: #f9f9f9;
-
-    border-radius: 6px;
-    width: 40vw;
-    margin: 0 auto;
-  }
-
-  .popup-grades-title {
-    margin-bottom: 0.8rem;
-  }
-
-  .popup-grades-options {
-    margin: 0 auto;
   }
 
   .copyright-App {
@@ -248,25 +219,31 @@
     margin-bottom: 0.3rem;
   }
 
-  .grade_landingPage {
+  .grade-landingPage {
     position: relative;
-    min-width: 22rem;
+    width: 12rem !important;
     display: inline-block;
 
-    margin: 0.6rem auto;
+    margin: 0.5rem auto;
 
     box-shadow: black;
     color: black;
     border: none;
     cursor: pointer;
-
+    border: 1px solid;
     background: rgba(248, 248, 248, 0.9);
-    border-color: rgba(120, 40, 40, 0.9);
-    border-radius: 4px;
-    margin-bottom: 0.3rem;
-    bottom: 0.1rem;
-    padding: 0.5rem;
+    border-color: rgba(248, 248, 248, 0.9);
+    border-radius: 50px !important;
+    margin-bottom: 0.1rem;
+    bottom: 0.3rem;
+    padding: 10px;
     font-weight: normal;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .grade-landingPage:hover {
+    background-color: snow;
   }
 
   .copyright-App {
@@ -284,21 +261,5 @@
   .login-button,
   .browse-button {
     display: none;
-  }
-
-  .popup-grades {
-    background: #f9f9f9;
-
-    border-radius: 6px;
-    width: 25vw;
-    margin: 0 auto;
-  }
-
-  .popup-grades-title {
-    margin-bottom: 0.8rem;
-  }
-
-  .popup-grades-options {
-    margin: 0 auto;
   }
 }

@@ -12,11 +12,11 @@ const LoginBrowse = ({ rightNavOpen, leftNavOpen }) => {
   return (
     <div className="login-browse">
       <button onClick={goToLogin} className="login-button">
-        Login
+        LOGIN
       </button>
 
       <button onClick={gotoSubjects} className="browse-button">
-        Browse
+        BROWSE
       </button>
     </div>
   );

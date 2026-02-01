@@ -127,7 +127,7 @@ const LeftNav = ({
               window.location.reload();
             }}
           >
-            • Home
+            HOME
           </a>
 
           <a
@@ -138,7 +138,7 @@ const LeftNav = ({
               goSomeWhere("/subjects");
             }}
           >
-            • Browse
+            BROWSE
           </a>
 
           <a
@@ -149,7 +149,7 @@ const LeftNav = ({
               goSomeWhere("/login");
             }}
           >
-            • Login
+            LOGIN
           </a>
 
           <a
@@ -160,7 +160,7 @@ const LeftNav = ({
               goSomeWhere("/faqs");
             }}
           >
-            • FAQs
+            FAQS
           </a>
         </>
       )}
@@ -176,7 +176,7 @@ const LeftNav = ({
               goSomeWhere("/home");
             }}
           >
-            • Home
+            HOME
           </a>
 
           <a
@@ -187,7 +187,7 @@ const LeftNav = ({
               goSomeWhere("/faqs");
             }}
           >
-            • FAQs
+            FAQS
           </a>
 
           <a
@@ -199,7 +199,7 @@ const LeftNav = ({
               handleLogout();
             }}
           >
-            • Log out
+            LOG OUT
           </a>
         </>
       )}
@@ -213,7 +213,7 @@ const LeftNav = ({
               goSomeWhere("/home");
             }}
           >
-            • Home
+            HOME
           </a>
 
           <a
@@ -224,7 +224,7 @@ const LeftNav = ({
               goSomeWhere("/faqs");
             }}
           >
-            • FAQs
+            FAQS
           </a>
           <a
             className="bigScreen-anchor"
@@ -234,7 +234,7 @@ const LeftNav = ({
               goSomeWhere("/home/reports");
             }}
           >
-            • Reports
+            REPORTS
           </a>
           <a
             className="bigScreen-anchor"
@@ -244,7 +244,7 @@ const LeftNav = ({
               goSomeWhere("/home/fileupload");
             }}
           >
-            • Upload
+            UPLOAD
           </a>
           <a
             className="bigScreen-anchor"
@@ -254,7 +254,7 @@ const LeftNav = ({
               goSomeWhere("/home/filemoderation");
             }}
           >
-            • File Moderation
+            FILE MODERATION
           </a>
 
           <a
@@ -266,7 +266,7 @@ const LeftNav = ({
               handleLogout();
             }}
           >
-            • Log out
+            LOG OUT
           </a>
         </>
       )}

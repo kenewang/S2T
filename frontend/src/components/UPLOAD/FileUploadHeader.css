@@ -101,6 +101,10 @@
     flex-shrink: 1;
 
     min-width: 0;
+
+    height: 4.5rem;
+
+    border-radius: 10px;
   }
   .file-upload-head h2 {
     overflow: hidden;
@@ -110,6 +114,8 @@
     cursor: pointer;
     min-width: 0;
     margin-right: 0;
+    letter-spacing: 1px;
+    height: 2rem;
   }
 
   .f-upload-shortcuts {
@@ -124,12 +130,20 @@
   }
 
   .f-upload-shortcuts p {
+    text-align: center;
     cursor: pointer;
+    font-weight: 550;
+    letter-spacing: 1px;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    color: black;
+    font-size: 0.8rem;
   }
 
   .f-upload-shortcuts p:hover {
-    color: navy;
-    font-size: 20px;
+    background-color: snow;
   }
 
   .f-upload-hamburger {

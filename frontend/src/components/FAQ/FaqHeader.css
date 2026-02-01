@@ -118,6 +118,7 @@
     flex-shrink: 1;
 
     min-width: 0;
+    height: 4.5rem;
   }
 
   .heading-allowed {
@@ -127,7 +128,8 @@
     flex-shrink: 1;
     cursor: pointer;
     min-width: 0;
-
+    letter-spacing: 1px;
+    height: 2rem;
     margin-right: 0 !important;
   }
 
@@ -138,6 +140,8 @@
     flex-shrink: 1;
     cursor: pointer;
     min-width: 0;
+    letter-spacing: 1px;
+    height: 2rem;
     margin-left: auto !important;
     margin-right: 0 !important;
   }
@@ -151,6 +155,8 @@
     min-width: 0;
     margin-left: auto;
 
+    letter-spacing: 1px;
+    height: 2rem;
     margin-right: 0 !important;
   }
 
@@ -166,13 +172,21 @@
     margin-left: auto;
   }
 
-  .faq-shortcuts p {
+  .a-shortcuts {
     cursor: pointer;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    background-color: transparent;
+    font-weight: 550;
+    letter-spacing: 2px;
+    color: black;
+    font-size: 0.8rem;
   }
 
-  .faq-shortcuts p:hover {
-    color: navy;
-    font-size: 20px;
+  .a-shortcuts:hover {
+    background-color: snow;
   }
 
   .faqHead-hamburger {
@@ -190,7 +204,7 @@
     cursor: pointer;
   }
 
-  .faq-upload-icon img {
+  .a-shortcuts img {
     display: flex;
     flex-shrink: 1;
     width: 24px;
@@ -201,7 +215,7 @@
     margin-top: 0.3rem;
   }
 
-  .faq-upload-icon span {
+  .a-shortcuts span {
     display: flex;
     margin-right: 0.5rem;
     flex-shrink: 1;
@@ -222,11 +236,19 @@
   }
 
   .FaqHeader-Login-Create p {
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    background-color: transparent;
+    font-weight: 550;
+    letter-spacing: 2px;
+    color: black;
+    font-size: 0.8rem;
     cursor: pointer;
   }
 
   .FaqHeader-Login-Create p:hover {
-    color: navy;
-    font-size: 20px;
+    background-color: snow;
   }
 }

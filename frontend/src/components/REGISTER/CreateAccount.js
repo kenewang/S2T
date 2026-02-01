@@ -159,7 +159,7 @@ const CreateAccount = ({
             Create Account
           </button>
 
-          <div className="divider">or</div>
+          <div className="a-divider">or</div>
           <div className="toCreateAccount">
             <label>Already have an account?</label>
             <label className="loginLabel" onClick={goToLogin}>

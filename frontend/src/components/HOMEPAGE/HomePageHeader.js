@@ -110,7 +110,7 @@ const HomePageHeader = ({
               navigate("/home/filemoderation");
             }}
           >
-            File Moderation
+            FILE MODERATION
           </p>
 
           <p
@@ -120,8 +120,7 @@ const HomePageHeader = ({
               navigate("/home/fileupload");
             }}
           >
-            <span>Upload</span>
-            <img src={uploadIcon} alt="Upload Icon" />
+            UPLOAD
           </p>
 
           <p
@@ -129,7 +128,7 @@ const HomePageHeader = ({
               navigate("/home/reports");
             }}
           >
-            Reports
+            REPORTS
           </p>
         </div>
       )}
@@ -141,7 +140,7 @@ const HomePageHeader = ({
             navigate("/faqs");
           }}
         >
-          Faqs
+          FAQS
         </p>
       )}
 

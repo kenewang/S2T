@@ -48,6 +48,7 @@ import Subjects from "./components/SUBJECTS/Subjects";
 import "./components/SUBJECTS/Subjects.css";
 import CreateAccount from "./components/REGISTER/CreateAccount";
 import "./components/REGISTER/CreateAccount.css";
+import GradePopover from "./components/GradePopover";
 
 export default function App() {
   const [leftNavOpen, setLeftNavOpen] = useState(false);
@@ -80,9 +81,14 @@ export default function App() {
 
   const [hideElements, setHideElements] = useState(false);
   const [value, setValue] = useState("");
+  const [selectedGradeRange, setSelectedGradeRange] = useState("");
 
-  const { databaseNames, storage_path, file_rating, fileIds, handlePopUp } =
-    useFiles(ratingTrigger, setNotFound);
+  const { databaseNames, storage_path, file_rating, fileIds } = useFiles(
+    ratingTrigger,
+    setNotFound,
+    selectedGradeRange
+  ); //call useFiles with props (ratingTrigger, setNotFound)
+  //return it as an object and then destructure
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token") //quick trick to turn something into a true/false
@@ -161,12 +167,9 @@ export default function App() {
                           leftNavOpen={leftNavOpen}
                         />
 
-                        <button
-                          className="grade_landingPage"
-                          onClick={handlePopUp}
-                        >
-                          View By Grade
-                        </button>
+                        <GradePopover
+                          onSelect={(grade) => setSelectedGradeRange(grade)} //pass a method as a prop
+                        />
                         {!notFound && (
                           <DocumentList
                             openRightNav={openRightNav}

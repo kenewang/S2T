@@ -43,7 +43,7 @@ const HeaderV2 = ({
             navigate("/home/filemoderation");
           }}
         >
-          File Moderation
+          FILE MODERATION
         </p>
 
         <p
@@ -53,15 +53,14 @@ const HeaderV2 = ({
             navigate("/home/fileupload");
           }}
         >
-          <span>Upload</span>
-          <img src={uploadIcon} alt="Upload Icon" />
+          UPLOAD
         </p>
         <p
           onClick={() => {
             navigate("/faqs");
           }}
         >
-          FAQs
+          FAQS
         </p>
       </div>
       <h2

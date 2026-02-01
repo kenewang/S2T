@@ -14,7 +14,7 @@ import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/moderation")
+@RequestMapping("/api/moderation")
 public class ModerationController {
 
     private final ModerationService moderationService;

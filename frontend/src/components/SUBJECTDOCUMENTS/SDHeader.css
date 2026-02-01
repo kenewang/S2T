@@ -170,6 +170,10 @@
     width: 100%;
     max-width: 60rem;
     min-width: 0;
+
+    height: 4.5rem;
+
+    border-radius: 10px;
   }
 
   .s-small-header {
@@ -187,6 +191,10 @@
     width: 100%;
     max-width: 55rem;
     min-width: 0;
+
+    height: 4.5rem;
+
+    border-radius: 10px;
   }
 
   .s-s2t-heading {
@@ -198,6 +206,9 @@
     margin-right: 0;
     min-width: 0;
     cursor: pointer;
+
+    letter-spacing: 1px;
+    height: 2rem;
   }
 
   .s-menu-icon {
@@ -226,69 +237,92 @@
   }
 
   .s-shortcuts p {
+    text-align: center;
     cursor: pointer;
+    font-weight: 550;
+    letter-spacing: 1px;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    color: black;
+    font-size: 0.8rem;
   }
 
   .s-shortcuts p:hover {
-    color: navy;
-    font-size: 20px;
+    background-color: snow;
   }
 
   .s-para {
     display: block;
-    cursor: pointer;
+
     position: relative;
     right: 3rem;
+
+    text-align: center;
+    cursor: pointer;
+    font-weight: 550;
+    letter-spacing: 1px;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    color: black;
+    font-size: 0.8rem;
   }
 
   .s-para:hover {
-    color: navy;
-    font-size: 20px;
+    background-color: snow;
   }
 
   .s-pc-screen-search {
     display: flex;
     flex-shrink: 1;
     justify-content: flex-start;
-
+    border: 1px solid;
     position: relative;
     right: 0.5rem;
-    border: solid rgb(244, 226, 244);
-    border-radius: 4px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    border-radius: 20px;
     min-width: 0;
   }
 
   .s-pc-screen-search-form {
     background-color: rgb(235, 229, 235);
     display: flex;
-    border-radius: 8px;
+    border-color: hsla(289, 29%, 81%, 0.819);
     flex-shrink: 1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 20px;
     min-width: 0;
   }
 
   .s-pc-screen-search-form input {
     flex: 1;
     min-width: 0;
-    border: none;
+
     outline: none;
     width: 11rem;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border: 1px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
   }
 
   .s-pc-screen-search-form input::placeholder {
     text-align: justify;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 
   .s-pc-screen-search-form button {
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: rgb(248, 235, 250);
+    background-color: transparent;
     text-overflow: hidden;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 4px;
+    color: black;
   }
 
   .s-pc-screen-search-form img {
@@ -297,7 +331,7 @@
     align-self: center;
     padding: 10px;
     color: black;
-    background: white;
+    background: transparent;
     flex-shrink: 1;
     min-width: 0;
   }
@@ -306,46 +340,51 @@
     display: flex;
     flex-shrink: 1;
     justify-content: flex-start;
+    border: 1px solid;
+    border-radius: 20px;
 
+    border-color: hsla(289, 29%, 81%, 0.819);
     position: relative;
 
-    border: solid rgb(244, 226, 244);
-    border-radius: 4px;
-    margin: 0 auto;
+    min-width: 0;
   }
 
   .s-pc-screen-search-form-allowed {
     background-color: rgb(235, 229, 235);
     display: flex;
-
-    border-radius: 8px;
+    border-color: hsla(289, 29%, 81%, 0.819);
     flex-shrink: 1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 20px;
     min-width: 0;
   }
 
   .s-pc-screen-search-form-allowed input {
     flex: 1;
     min-width: 0;
-    border: none;
+
     outline: none;
-    width: 18rem;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    width: 11rem;
+    border: 1px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
   }
 
   .s-pc-screen-search-form-allowed input::placeholder {
-    text-align: center;
-    font-size: 1.2rem;
+    text-align: justify;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 
   .s-pc-screen-search-form-allowed button {
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: rgb(248, 235, 250);
+    background-color: transparent;
     text-overflow: hidden;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 4px;
+    color: black;
   }
 
   .s-pc-screen-search-form-allowed img {
@@ -354,7 +393,7 @@
     align-self: center;
     padding: 10px;
     color: black;
-    background: white;
+    background: transparent;
     flex-shrink: 1;
     min-width: 0;
   }

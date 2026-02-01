@@ -63,13 +63,12 @@
   align-items: center;
   white-space: nowrap;
   margin-top: 0.3rem;
-  font-size: 0.7rem;
 }
 
 .forgot_password_label {
   cursor: pointer;
   color: blue;
-  font-size: 0.7rem;
+
   margin-right: 0.8rem;
 }
 
@@ -85,7 +84,7 @@
 .divider::after {
   content: "";
   flex: 1;
-  border-bottom: 2px solid #8c09ff63 !important; /* line style */
+  border-bottom: 1px solid #eee8e8 !important; /* line style */
 }
 
 .divider:not(:empty)::before {
@@ -161,7 +160,6 @@
 
 .login-labels {
   margin-left: 0.8rem;
-  font-size: 0.7rem;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
@@ -242,7 +240,7 @@
   .divider::after {
     content: "";
     flex: 1;
-    border-bottom: 2px solid #8c09ff63 !important; /* line style */
+    border-bottom: 1px solid #eee8e8 !important; /* line style */
   }
 
   .divider:not(:empty)::before {
@@ -435,7 +433,7 @@
   .divider::after {
     content: "";
     flex: 1;
-    border-bottom: 2px solid #8c09ff63 !important; /* line style */
+    border-bottom: 1px solid #eee8e8 !important; /* line style */
   }
 
   .divider:not(:empty)::before {

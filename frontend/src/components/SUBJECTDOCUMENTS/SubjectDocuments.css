@@ -1,3 +1,8 @@
+.sub-parent {
+  background-color: rgb(234, 220, 203);
+  margin: 0 auto;
+}
+
 .subject-container {
   display: flex;
   flex-direction: column;
@@ -21,65 +26,29 @@
   font-weight: 600;
 }
 
-.sd-grade {
-  position: relative;
-
-  margin: 0 auto;
-  margin-top: 4.7rem !important;
-
-  box-shadow: black;
-  color: black;
-  border: none;
-  cursor: pointer;
-
-  background: rgba(248, 248, 248, 0.9);
-  border-color: rgba(120, 40, 40, 0.9);
-  border-radius: 4px;
-  margin-bottom: 0.1rem;
-
-  padding: 0.5rem 1.5rem;
-  font-weight: 600;
-}
-
 .docs-container {
   display: flex;
   flex-direction: column;
-  margin-top: 0.3rem;
-
-  padding: 0 1rem;
-  background: #eee8e8;
-}
-
-.radio-popup {
-  position: inherit;
-  top: 8rem;
-  width: 60%;
-  height: 30%;
-  background-color: (248, 248, 248, 0.9) !important;
-}
-
-.radio-title {
-  text-align: left;
-
-  color: black;
-  font-weight: 100;
-}
-
-.swal2-radio {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 1.5rem !important;
-  background-color: transparent !important;
   position: relative;
+  bottom: 4px;
+  margin-block-start: 0;
+  padding: 0 1rem;
+}
 
-  right: 1rem;
+.g-popover {
+  display: block;
+  margin: 0 auto;
+  margin-block-start: 4.6rem;
+
+  padding: 5px;
+  max-width: 300px;
 }
 
 @media screen and (min-width: 510px) and (max-width: 890px) {
   .sub-parent {
     background-color: rgb(234, 220, 203);
   }
+
   .subject-container {
     display: flex;
     flex-direction: column;
@@ -103,60 +72,24 @@
 
   .subjectDocumentsFooter p {
     padding: 1rem;
-  }
-
-  .sd-grade {
-    position: relative;
-    width: 30%;
-    margin: 0 auto;
-    margin-top: 4.7rem;
-
-    box-shadow: black;
-    color: black;
-    border: none;
-    cursor: pointer;
-
-    background: rgba(248, 248, 248, 0.9);
-    border-color: rgba(120, 40, 40, 0.9);
-    border-radius: 4px;
-    margin-bottom: 0.3rem;
-    bottom: 0.1rem;
-    font-weight: normal;
+    letter-spacing: 1px;
   }
 
   .docs-container {
     display: flex;
     flex-direction: column;
-    margin: 0.3rem auto;
+    margin: 0 auto;
     max-width: 55rem;
     padding: 0 1rem;
     background-color: transparent;
   }
 
-  .radio-popup {
-    position: inherit;
-    top: 8rem;
-    width: 60%;
-    height: 30%;
-    background-color: (248, 248, 248, 0.9) !important;
-  }
-
-  .radio-title {
-    text-align: left;
-
-    color: black;
-    font-weight: 100;
-  }
-
-  .swal2-radio {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 1.5rem !important;
-    background-color: transparent !important;
-    position: relative;
-
-    right: 1rem;
+  .g-popover {
+    display: block;
+    margin: 0 auto;
+    margin-block-start: 4.9rem;
+    max-width: 300px;
+    padding: 5px;
   }
 }
 /*  */
@@ -169,6 +102,7 @@
   .subject-container {
     display: flex;
     flex-direction: column;
+
     max-width: 60rem;
     min-height: 100vh;
     margin: 0 auto;
@@ -185,48 +119,21 @@
 
   .subjectDocumentsFooter p {
     padding: 1rem;
-  }
-
-  .sd-grade {
-    position: relative;
-    width: 30%;
-    margin: 0 auto;
-    margin-top: 5.1rem !important;
-
-    box-shadow: black;
-    color: black;
-    border: none;
-    cursor: pointer;
-
-    background: rgba(248, 248, 248, 0.9);
-    border-color: rgba(120, 40, 40, 0.9);
-    border-radius: 4px;
-    margin-bottom: 0.1rem;
-    font-weight: normal;
+    letter-spacing: 1px;
   }
 
   .docs-container {
     display: flex;
     flex-direction: column;
-    margin: 0.3rem auto;
+    margin: 0 auto;
     max-width: 55rem;
     padding: 0 1rem;
     background-color: transparent;
   }
 
-  .radio-popup {
-    background-color: #f9f9f9;
-    border-radius: 6px;
-    min-width: 20vw !important;
-    max-width: 25vw !important;
-  }
-
-  .radio-title {
+  .g-popover {
+    display: block;
     margin: 0 auto;
-    margin-bottom: 1rem;
-  }
-
-  .options {
-    margin: 0 auto;
+    margin-block-start: 4.8rem;
   }
 }

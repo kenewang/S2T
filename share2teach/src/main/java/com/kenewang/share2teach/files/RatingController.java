@@ -8,7 +8,7 @@ import io.jsonwebtoken.Claims;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/rate-file")
+@RequestMapping("/api/rate-file")
 public class RatingController {
 
     private final RatingService ratingService;

@@ -7,14 +7,13 @@ import "./SubjectDocuments.css";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import NotFound from "../NotFound";
 import { jwtDecode } from "jwt-decode";
+import GradePopover from "../GradePopover";
 
 const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
   const { id } = useParams();
-  const MySwal = withReactContent(Swal);
+
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path, setStoragePath] = useState([]);
   const [file_rating, setFileRating] = useState([]);
@@ -135,37 +134,6 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
     setRatingTrigger((prev) => prev + 1);
   };
 
-  const handlePopUp = async () => {
-    await MySwal.fire({
-      title: "Grade",
-      input: "radio",
-      inputOptions: {
-        primary: "R - 7",
-        secondary: "8 - 12",
-        tertiary: "Tertiary",
-      },
-      showCancelButton: false,
-      showConfirmButton: false,
-      customClass: {
-        popup: "radio-popup",
-        title: "radio-title",
-        input: "options",
-      },
-
-      didOpen: () => {
-        const radios = Swal.getPopup().querySelectorAll("input[type=radio]");
-        radios.forEach((radio) => {
-          radio.addEventListener("change", (e) => {
-            setSelectedGradeRange(e.target.value);
-            setTimeout(() => {
-              Swal.close();
-            }, 300);
-          });
-        });
-      },
-    });
-  };
-
   return (
     <div className="sub-parent">
       <div>
@@ -200,10 +168,11 @@ const SubjectDocuments = ({ isAuthenticated, setAuth }) => {
                 onRatingSubmitted={onRatingSubmitted} // <-- pass callback
                 isAuthenticated={isAuthenticated}
               />
-
-              <button className="sd-grade" onClick={handlePopUp}>
-                View By Grade
-              </button>
+              <div className="g-popover">
+                <GradePopover
+                  onSelect={(grade) => setSelectedGradeRange(grade)} //pass a method as a prop
+                />
+              </div>
               <main className="docs-container">
                 {!notFound && (
                   <DocumentList

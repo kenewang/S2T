@@ -73,7 +73,7 @@ const SDHeader = ({
               navigate("/home/filemoderation");
             }}
           >
-            File Moderation
+            FILE MODERATION
           </p>
 
           <p
@@ -83,8 +83,7 @@ const SDHeader = ({
               navigate("/home/fileupload");
             }}
           >
-            <span>Upload</span>
-            <img src={uploadIcon} alt="Upload Icon" />
+            UPLOAD
           </p>
 
           <p
@@ -92,7 +91,7 @@ const SDHeader = ({
               navigate("/home/reports");
             }}
           >
-            Reports
+            REPORTS
           </p>
         </div>
       )}
@@ -104,7 +103,7 @@ const SDHeader = ({
             navigate("/faqs");
           }}
         >
-          Faqs
+          FAQS
         </p>
       )}
 

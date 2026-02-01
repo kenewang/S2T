@@ -88,7 +88,7 @@ const SubjectsHeader = ({
             navigate("/login");
           }}
         >
-          Log In
+          LOG IN
         </p>
 
         <p
@@ -96,14 +96,14 @@ const SubjectsHeader = ({
             navigate("/createAccount");
           }}
         >
-          Create Account
+          CREATE ACCOUNT
         </p>
         <p
           onClick={() => {
             navigate("/faqs");
           }}
         >
-          Faqs
+          FAQS
         </p>
       </div>
 

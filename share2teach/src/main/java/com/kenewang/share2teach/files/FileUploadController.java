@@ -14,7 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/documents")
+
+@RequestMapping("/api/documents")
 public class FileUploadController {
 
     private final FileService fileService;

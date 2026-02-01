@@ -24,7 +24,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
+  letter-spacing: 1px;
   font-weight: bold;
 }
 
@@ -93,6 +93,7 @@
     max-width: 35rem;
     margin: 0 auto;
     z-index: 10;
+    border-radius: 10px;
   }
 
   .subjects-s2t-heading {
@@ -102,6 +103,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    height: 2rem;
+    letter-spacing: 1px;
   }
 
   .subjectHeader-menu-icon {
@@ -174,6 +177,8 @@
     flex: 1 1 25rem;
 
     min-width: 0;
+    height: 4.5rem;
+    border-radius: 10px;
   }
 
   .subjects-s2t-heading {
@@ -186,6 +191,9 @@
     min-width: 0;
     cursor: pointer;
     margin-right: 0;
+
+    letter-spacing: 1px;
+    height: 2rem;
   }
 
   .subjectHeader-menu-icon {
@@ -203,20 +211,27 @@
     display: flex;
     position: relative;
     align-items: center;
-    gap: 2.5rem;
-    right: 1.6rem;
+    gap: 1.2rem;
+    right: 1.5rem;
     margin-inline-start: 2.5rem;
     margin-left: auto;
   }
 
   .subjects-login-create p {
-    text-align: center;
-    cursor: pointer;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    background-color: transparent;
+    font-weight: 550;
+    letter-spacing: 2px;
+    color: black;
+    font-size: 0.8rem;
   }
 
   .subjects-login-create p:hover {
-    color: navy;
-    font-size: 20px;
+    background-color: snow;
+    cursor: pointer;
   }
 
   .subject-pc-screen-search {
@@ -226,7 +241,10 @@
 
     position: relative;
     right: 1rem;
-    border: solid rgb(244, 226, 244);
+    border: 1px solid;
+    border-radius: 20px;
+
+    border-color: hsla(289, 29%, 81%, 0.819);
 
     min-width: 0;
   }
@@ -236,30 +254,37 @@
     display: flex;
 
     flex-shrink: 1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    border-radius: 20px;
     min-width: 0;
   }
 
   .subject-pc-screen-search-form input {
     flex: 1;
     min-width: 0;
-    border: none;
+    border: 1px;
     outline: none;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
     width: 11rem;
   }
 
   .subject-pc-screen-search-form input::placeholder {
     text-align: justify;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
   }
 
   .subject-pc-screen-search-form button {
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: rgb(248, 235, 250);
+    background-color: transparent;
     text-overflow: hidden;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    padding: 4px;
+    color: black;
   }
 
   .subject-pc-screen-search-form img {
@@ -268,7 +293,7 @@
     align-self: center;
     padding: 10px;
     color: black;
-    background: white;
+    background: transparent;
     flex-shrink: 1;
     min-width: 0;
   }

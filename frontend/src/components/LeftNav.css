@@ -5,7 +5,7 @@
   width: 0; /* default is closed */
   height: 100%;
   overflow-x: hidden;
-  background-color: #f8f8f8;
+  background-color: #eee8e8;
   z-index: 30;
   transition: width 0.3s ease;
   padding-top: 60px;
@@ -18,16 +18,24 @@
 .s-anchor {
   padding: 10px 20px;
   text-decoration: none;
-  font-size: 20px;
+
   color: black;
   display: block;
   transition: 0.2s;
-  text-align: justify;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
-.s-anchor:hover {
-  background-color: #575757;
-  color: khaki;
+.s-anchor:focus {
+  color: black;
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 10px 10px;
+  border-color: hsla(289, 29%, 81%, 0.819);
+  background-color: transparent;
+  font-weight: 550;
+  background-color: snow;
 }
 
 .bigScreen-anchor {
@@ -60,22 +68,31 @@
   .s-anchor {
     padding: 10px 20px;
     text-decoration: none;
-    font-size: 20px;
+
     color: black;
     display: block;
     transition: 0.2s;
-    text-align: justify;
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
   }
 
-  .s-anchor:hover {
-    background-color: #575757;
-    color: khaki;
+  .s-anchor:focus {
+    color: black;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    background-color: transparent;
+    font-weight: 550;
+    background-color: snow;
   }
 }
 
 @media screen and (min-width: 890px) {
   .sidenav.open {
     width: 180px;
+    column-count: 1;
   }
 
   .sidenav {
@@ -98,16 +115,43 @@
 
     padding: 10px 20px;
     text-decoration: none;
-    font-size: 20px;
-    color: black;
 
+    color: black;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
     transition: 0.2s;
 
-    text-align: justify;
+    text-align: center;
   }
 
   .bigScreen-anchor:hover {
     background-color: #575757;
-    color: khaki;
+    color: black;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    background-color: transparent;
+    font-weight: 550;
+    background-color: snow;
+  }
+
+  .s-anchor {
+    letter-spacing: 1px;
+    color: black;
+    font-size: 0.8rem;
+
+    text-align: center;
+  }
+
+  .s-anchor:hover {
+    color: black;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px 10px;
+    border-color: hsla(289, 29%, 81%, 0.819);
+    background-color: transparent;
+    font-weight: 550;
+    background-color: snow;
   }
 }

@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "./useFiles.css";
 import "sweetalert2/dist/sweetalert2.min.css";
-import withReactContent from "sweetalert2-react-content";
 
-const MySwal = withReactContent(Swal);
-
-const useFiles = (ratingTrigger, setNotFound) => {
+const useFiles = (ratingTrigger, setNotFound, selectedGradeRange) => {
   const [databaseNames, setDatabaseNames] = useState([]);
   const [storage_path, setStoragePath] = useState([]);
   const [file_rating, setFileRating] = useState([]);
   const [fileIds, setFileId] = useState([]);
-  const [selectedGradeRange, setSelectedGradeRange] = useState("");
+
   const API_URL = process.env.REACT_APP_API_URL;
 
   // 🟩 Fetch all files normally (when rating changes)
@@ -80,8 +77,7 @@ const useFiles = (ratingTrigger, setNotFound) => {
     fetchFilteredFiles();
   }, [selectedGradeRange]);
 
-  // Define the popup inside hook (so it can use setSelectedGradeRange)
-  const handlePopUp = async () => {
+  /* const handlePopUp = async () => {
     await MySwal.fire({
       title: "Grade",
       input: "radio",
@@ -109,15 +105,15 @@ const useFiles = (ratingTrigger, setNotFound) => {
         });
       },
     });
-  };
+  }; */
 
-  // ✅ Return everything
+  // ✅ Return the object with properties
   return {
     databaseNames,
     storage_path,
     file_rating,
     fileIds,
-    handlePopUp, // 👈 exported here
+
     selectedGradeRange,
   };
 };
